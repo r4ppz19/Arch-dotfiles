@@ -1,0 +1,7 @@
+[Unit]
+Description=Break Reminder Notification
+
+[Service]
+Type=oneshot
+ExecStart=/home/r4ppz/Arch-dotfiles/scripts/break-reminder.sh
+

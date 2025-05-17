@@ -1,0 +1,11 @@
+[Unit]
+Description=Timer to notify for regular breaks
+
+[Timer]
+OnBootSec=25min
+OnUnitActiveSec=25min
+Unit=break-reminder.service
+
+[Install]
+WantedBy=timers.target
+
