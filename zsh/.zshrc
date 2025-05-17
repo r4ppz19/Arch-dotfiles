@@ -12,9 +12,14 @@ if [[ $- == *i* ]]; then
   # TMUX Session Manager
   # =================================================================
 
-  if [[ -z "$TMUX" ]] && [[ $- == *i* ]]; then
+  # Only run session manager in real terminal, not in embedded IDE terminals
+  if [[ $- == *i* ]] && [[ -z "$VSCODE_PID" ]] && [[ "$TERM_PROGRAM" != "vscode" ]]; then
     source ~/Arch-dotfiles/zsh/session-manager.zsh
   fi
+
+  # if [[ -z "$TMUX" ]] && [[ $- == *i* ]]; then
+  #   source ~/Arch-dotfiles/zsh/session-manager.zsh
+  # fi
 
   # Instant Prompt (Powerlevel10k) - Load extremely early for perceived speed
   # =========================================================================
