@@ -1,0 +1,10 @@
+gui:
+  nerdFontsVersion: "3"
+
+  border: single
+
+  theme:
+    # Border color of focused window
+    activeBorderColor:
+      - blue
+      - bold
