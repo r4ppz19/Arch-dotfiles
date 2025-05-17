@@ -57,7 +57,7 @@ run_cmd() {
 				amixer set Master mute
 				systemctl suspend
 				;;
-			'--logout') loginctl kill-session $XDG_SESSION_ID ;;
+			'--logout')  uwsm stop ;;
 		esac
 	else
 		exit 0
