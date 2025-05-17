@@ -13,6 +13,11 @@ window#waybar {
   color: #ebdbb2;
   /* background: none; */
   background: #282828;
+  /* background: #232323; */
+  /* background: rgba(40, 40, 40, 1); */
+  /* border: 1px solid #32302F; */
+  /* border-bottom: 1px solid #282828; */
+  /* border-radius: 1px; */
 }
 
 window#waybar.hidden {
@@ -45,11 +50,11 @@ window#waybar.hidden {
 #custom-power-button,
 #custom-rofi,
 #memory {
-  font-family: JetBrainsMono Nerd Font Propo;
+  font-family: JetBrainsMono Nerd Font;
   font-size: 9px;
   font-weight: 800;
   color: #282828;
-  background: #282828;
+  /* background: #282828; */
   /* border: 4px solid #282828; */
   /* border-radius: 0px; */
 }

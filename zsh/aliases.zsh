@@ -21,6 +21,7 @@ alias r='ranger --choosedir="$HOME/.rangerdir"; LASTDIR=$(cat "$HOME/.rangerdir"
 alias n='nnn'
 alias v="nvim"
 alias calculator='qalc'
+alias lg='lazygit'
 
 # tmux
 alias txd='tmux detach'
