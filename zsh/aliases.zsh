@@ -14,7 +14,6 @@ alias compress='tar -czvf'
 alias mv="mv -iv"
 alias cp="cp -iv"
 alias mkdir="mkdir -pv"
-alias grep="grep -inR"
 
 # mine
 alias r='ranger --choosedir="$HOME/.rangerdir"; LASTDIR=$(cat "$HOME/.rangerdir"); cd "$LASTDIR"'

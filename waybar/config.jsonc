@@ -3,7 +3,7 @@
 {
   // General Waybar configuration
   "layer": "top",
-  "height": 20,
+  "height": 21,
   "spacing": 0,
   "margin-top": 0,
   "margin-right": 0,
@@ -46,12 +46,12 @@
     "format-icons": {
       "1": "󰈹",
       "2": "",
-      "3": "",
+      "3": "",
       "4": "",
       "5": "󰝰",
-      "6": "󱓞",
+      "6": "",
       "7": "󰍛",
-      "8": "󰇧",
+      "8": "",
       "9": "󰍹",
       "10": ""
     },
@@ -64,7 +64,7 @@
 
   // Hyprland window
   "hyprland/window": {
-  "format": " {class}",
+  "format": "  {class}",
   "icon": false,
   "icon-size": 9,
   "separate-outputs": true
@@ -217,7 +217,7 @@
 
   // Custom Rofi launcher module
   "custom/rofi": {
-    "format": "  ",
+    "format": " ",
     "on-click": "~/.config/rofi/launchers/type-4/launcher.sh",
     "on-click-right": "~/.config/rofi/powermenu/type-3/powermenu.sh",
     "escape": true,
