@@ -1,5 +1,10 @@
 local map = vim.keymap.set
 
+-- Preserve yanked text when pasting in visual mode
+map("v", "p", '"_dP', { desc = "Paste without yanking replaced text" })
+-- Delete single character without copying into register
+map("n", "x", '"_x', { desc = "Delete char without copy to register" })
+
 -- Resize windows using Ctrl + Arrow keys
 map("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
 map("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
@@ -7,8 +12,8 @@ map("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width"
 map("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
 
 -- Copilot mappings
-map('n', '<leader>cc', ':CopilotChatOpen<CR>', { desc = 'Open CopilotChat' })
-map('x', '<leader>cc', ':CopilotChatInPlace<CR>', { desc = 'Open CopilotChat InPlace' })
+map("n", "<leader>cc", ":CopilotChatOpen<CR>", { desc = "Open CopilotChat" })
+map("x", "<leader>cc", ":CopilotChatInPlace<CR>", { desc = "Open CopilotChat InPlace" })
 
 -- Save the current file in normal, insert, and visual modes with Ctrl+s
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save file" })

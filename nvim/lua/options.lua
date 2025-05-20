@@ -1,4 +1,3 @@
-
 -------------------------------------- options ------------------------------------------
 local o = vim.o
 local opt = vim.opt
@@ -8,7 +7,6 @@ o.cursorlineopt ='both'
 o.wrap = false
 o.relativenumber = true
 o.scrolloff = 8
-
 
 o.laststatus = 3
 o.showmode = false
