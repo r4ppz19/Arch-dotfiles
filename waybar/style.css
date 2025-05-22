@@ -86,8 +86,8 @@ window#waybar.hidden {
 #workspaces button {
   color: #ebdbb2;
   border-radius: 0.7px;
-  margin-bottom: 4px;
-  margin-top: 4px;
+  margin-bottom: 3px;
+  margin-top: 3px;
   margin-right: 4px;
   margin-left: 4px;
   min-width: 30px;
@@ -210,7 +210,7 @@ window#waybar.empty #window {
 /* battery */
 /* ======================================================== */
 #battery {
-  color: #98971A;
+  color: #98971a;
 }
 #battery.critical {
   color: #cc241d;
@@ -222,7 +222,7 @@ window#waybar.empty #window {
   color: #98971a;
 }
 #battery.charging {
-  color: #B8BB26;
+  color: #b8bb26;
 }
 
 /* ======================================================== */
@@ -265,7 +265,6 @@ window#waybar.empty #window {
   min-width: 22px;
   margin-left: 4px;
   margin-right: 4px;
-  margin-bottom: 4px;
-  margin-top: 4px;
+  margin-bottom: 3px;
+  margin-top: 3px;
 }
-
