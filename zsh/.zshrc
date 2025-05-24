@@ -14,7 +14,13 @@ if [[ $- == *i* ]]; then
 
   # Only run session manager in real terminal, not in embedded IDE terminals
   if [[ $- == *i* ]] && [[ -z "$VSCODE_PID" ]] && [[ "$TERM_PROGRAM" != "vscode" ]]; then
-    source ~/Arch-dotfiles/zsh/session-manager.zsh
+    # Count number of kitty instances running
+    KITTY_COUNT=$(pgrep -c kitty)
+    
+    # Only run if this is the first
+    if [[ $KITTY_COUNT -le 1 ]]; then
+      source ~/Arch-dotfiles/zsh/session-manager.zsh
+    fi
   fi
 
   # if [[ -z "$TMUX" ]] && [[ $- == *i* ]]; then
