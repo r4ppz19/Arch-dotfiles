@@ -1,8 +1,6 @@
 # =========================================================================================
 # Environment Variables
 # =========================================================================================
-# wut variable
-export OLLAMA_MODEL="gemma3:latest"
 
 export EDITOR="nvim"      # Default editor
 export VISUAL="nvim"      # Default visual editor

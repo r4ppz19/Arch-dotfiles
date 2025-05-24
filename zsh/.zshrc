@@ -1,5 +1,5 @@
 # This file sources other configuration files to keep things modular.
-# This .zshrc is located within your dotfiles directory, symlinked to ~/.zshrc.
+# symlinked to ~/.zshrc.
 # The order of sourcing is critical!
 
 # Basic shell setup - check if interactive
@@ -37,7 +37,6 @@ if [[ $- == *i* ]]; then
   compinit
   
   # Load Antidote from its installation directory.
-  # Ensure this path is correct for your setup. This is typically a fixed install location.
   source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 
   # Define the base directory for your Zsh configuration within your dotfiles.
@@ -66,7 +65,6 @@ if [[ $- == *i* ]]; then
   # Source Modular Configuration Files
   # =========================================================================
   # Define the base directory for your modular Zsh configuration files.
-  # This is the same directory where this .zshrc file resides (via symlink).
   local zsh_config_dir="$dotfiles_zsh_dir" # This is the same variable, just aliased for clarity if needed
 
   # Source the modular files in a logical sequence from the determined directory.
@@ -91,16 +89,11 @@ if [[ $- == *i* ]]; then
   # Source the Powerlevel10k configuration file. This applies prompt styles
   # after most other shell settings are established.
   # This file is typically located in your home directory (~/).
-  # If you moved this file, update the path accordingly.
   [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
 
 fi # End of interactive shell check
 
 # Any configuration that *must* run in non-interactive shells (e.g., basic PATH
-# adjustments for scripts) would go here, outside the 'if' block. Based on your
-# current config, everything seems interactive-specific.
+# adjustments for scripts) would go here, outside the 'if' block. 
 
-# End of .zshrc
 # =========================================================================

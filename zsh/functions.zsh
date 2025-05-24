@@ -9,6 +9,7 @@ zshaddhistory() {
   [[ $1 != ${~HISTORY_IGNORE}[[:space:]]## ]]
 }
 
+# yazi
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"

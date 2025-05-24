@@ -12,9 +12,9 @@ setopt extended_history       # Save timestamps for each command in history
 setopt hist_expire_dups_first # Remove duplicates first when trimming history
 setopt hist_find_no_dups      # Don't display duplicates when searching history
 setopt hist_save_no_dups      # Don't write duplicate entries to history file
-setopt HIST_FCNTL_LOCK  # Safer history file locking
-setopt INTERACTIVE_COMMENTS  # Allow comments in interactive shell
-setopt HIST_NO_STORE     # Don't store history commands
-setopt extendedglob
+setopt HIST_FCNTL_LOCK        # Safer history file locking
+setopt INTERACTIVE_COMMENTS   # Allow comments in interactive shell
+setopt HIST_NO_STORE          # Don't store history commands
 setopt HIST_IGNORE_SPACE
+setopt extendedglob
 setopt notify
