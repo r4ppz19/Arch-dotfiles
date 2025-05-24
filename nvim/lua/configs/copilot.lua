@@ -4,7 +4,7 @@ return {
   show_help = true,
   window = {
     layout = "vertical",
-    width = 0.4
+    width = 0.4,
     height = 1,
     border = "single",
     title = "Copilot Chat",

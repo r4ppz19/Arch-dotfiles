@@ -2,15 +2,15 @@ return {
   -- Formatter
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre',
-    opts = require("configs.conform"),
+    event = "BufWritePre",
+    opts = require "configs.conform",
   },
 
   -- LSP Configuration
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
-    opts = require("configs.lspconfig")
+    opts = require "configs.lspconfig",
   },
 
   -- Treesitter
@@ -19,11 +19,17 @@ return {
     opts = {
       ensure_installed = {
         -- Base
-        "vim", "lua", "vimdoc",
+        "vim",
+        "lua",
+        "vimdoc",
         -- Web
-        "html", "css", "javascript",
+        "html",
+        "css",
+        "javascript",
         -- Others
-        "bash", "markdown", "java",
+        "bash",
+        "markdown",
+        "java",
       },
     },
   },
