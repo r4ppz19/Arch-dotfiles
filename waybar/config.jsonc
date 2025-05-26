@@ -26,8 +26,8 @@
     // "disk",
     "pulseaudio",
     "backlight",
-    // "power-profiles-daemon",
     "battery",
+    "power-profiles-daemon",
     "tray",
     // "custom/power-button",
     "custom/rofi"
@@ -202,16 +202,16 @@
     "interval": 1
   },
 
-  // Power Profiles Daemon module (commented out in modules-right)
+  // Power Profiles Daemon module
   "power-profiles-daemon": {
     "format": "{icon}",
     "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
     "tooltip": true,
     "format-icons": {
-      "default": "",
-      "performance": "",
-      "balanced": "",
-      "power-saver": ""
+      "default": " 󰥔 ",
+      "performance": "  ",
+      "balanced": "  ",
+      "power-saver": "  "
     }
   },
 
