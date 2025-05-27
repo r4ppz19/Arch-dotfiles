@@ -1,63 +1,139 @@
 #!/bin/bash
 
-# Improved Battery Warning Script
+# Battery monitoring script for Arch + Hyprland with Nerd Font icons
+# Run this using systemd
 
-# Note to self:
-# Dependency: libnotify, acpid, acpi (anable the acpid service)
-# sudo systemctl enable acpid.service
-# sudo systemctl start acpid.service
+# Configuration
+LOW_BATTERY_THRESHOLD=30
+CRITICAL_BATTERY_THRESHOLD=20
+VERY_CRITICAL_THRESHOLD=10
+CHECK_INTERVAL=30
+LOG_FILE="$HOME/.local/share/battery_monitor.log"
 
-# Create ACPI Event Configuration
-# Create /etc/acpi/events/battery_notify with:
-# event=ac_adapter
-# action=/home/r4ppz/Arch-dotfiles/scripts/battery_warn.sh
-# then restart acpid to apply changes
-# sudo systemctl restart acpid.service
+# Notification tracking to avoid spam
+LAST_NOTIFICATION_LEVEL=""
+NOTIFICATION_COOLDOWN=300  # 5 minutes between same-level notifications
+LAST_NOTIFICATION_TIME=0
 
-# 1. Battery Path Detection (Supports BAT0/BAT1)
-BATTERY_PATH="/sys/class/power_supply"
-for batt in BAT1 BAT0; do
-    [[ -d "$BATTERY_PATH/$batt" ]] && {
-        CAPACITY_FILE="$BATTERY_PATH/$batt/capacity"
-        STATUS_FILE="$BATTERY_PATH/$batt/status"
-        break
-    }
-done
-
-[[ -f "$CAPACITY_FILE" && -f "$STATUS_FILE" ]] || {
-    logger -t battery_warn "Battery files not found!"
-    exit 1
+# Logging function
+log_message() {
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" >> "$LOG_FILE"
 }
 
-# 2. State Management (Prevents Notification Spam)
-CACHE_DIR="$HOME/.cache/battery_warnings"
-mkdir -p "$CACHE_DIR"
-STATE_FILE="$CACHE_DIR/last_state"
-
-# 3. Notification Environment (Hyprland Compatibility)
-export WAYLAND_DISPLAY="$(ls /run/user/$UID/wayland-* | head -n1)"
-export XDG_RUNTIME_DIR="/run/user/$UID"
-
-# 4. Main Logic with Threshold Hysteresis
-BATTERY_LEVEL=$(<"$CAPACITY_FILE")
-STATUS=$(<"$STATUS_FILE")
-LAST_STATE=$(<"$STATE_FILE" 2>/dev/null)
-
-case $STATUS in
-    Discharging)
-        if (( BATTERY_LEVEL <= 20 )) && [[ "$LAST_STATE" != "Low" ]]; then
-            notify-send -u critical "Battery Low" "At ${BATTERY_LEVEL}% - Plug in!"
-            echo "Low" > "$STATE_FILE"
-        elif (( BATTERY_LEVEL > 25 )) && [[ "$LAST_STATE" == "Low" ]]; then
-            echo "Normal" > "$STATE_FILE"  # Reset state when recovering
+# Send notification with cooldown
+send_notification() {
+    local urgency="$1"
+    local title="$2"
+    local message="$3"
+    local current_time=$(date +%s)
+    
+    # Check if we should send notification (avoid spam)
+    if [[ "$LAST_NOTIFICATION_LEVEL" == "$urgency" ]]; then
+        local time_diff=$((current_time - LAST_NOTIFICATION_TIME))
+        if [[ $time_diff -lt $NOTIFICATION_COOLDOWN ]]; then
+            return
         fi
-        ;;
-    Charging|Full)
-        if (( BATTERY_LEVEL >= 95 )) && [[ "$LAST_STATE" != "Full" ]]; then
-            notify-send -u normal "Battery Full" "At ${BATTERY_LEVEL}% - Unplug!"
-            echo "Full" > "$STATE_FILE"
-        elif (( BATTERY_LEVEL < 90 )) && [[ "$LAST_STATE" == "Full" ]]; then
-            echo "Normal" > "$STATE_FILE"  # Reset when below 90%
+    fi
+    
+    # Send notification with timeout and app name for better integration
+    notify-send -u "$urgency" -t 10000 -a "Battery Monitor" "$title" "$message"
+    log_message "Notification sent: $title - $message"
+    
+    LAST_NOTIFICATION_LEVEL="$urgency"
+    LAST_NOTIFICATION_TIME=$current_time
+}
+
+# Get battery icon based on level and status
+get_battery_icon() {
+    local level="$1"
+    local status="$2"
+    
+    if [[ "$status" == "Charging" ]]; then
+        echo "󰂄"  # Battery charging icon
+    elif (( level >= 90 )); then
+        echo "󰁹"  # Battery full
+    elif (( level >= 80 )); then
+        echo "󰂂"  # Battery 4/5
+    elif (( level >= 60 )); then
+        echo "󰂀"  # Battery 3/5
+    elif (( level >= 40 )); then
+        echo "󰁾"  # Battery 2/5
+    elif (( level >= 20 )); then
+        echo "󰁼"  # Battery 1/5
+    elif (( level >= 10 )); then
+        echo "󰁺"  # Battery low
+    else
+        echo "󰂎"  # Battery critical/empty
+    fi
+}
+
+# Get battery info with error handling
+get_battery_info() {
+    local bat_path="/sys/class/power_supply"
+    local battery_dir=""
+    
+    # Find battery directory (BAT0, BAT1, etc.)
+    for bat in "$bat_path"/BAT*; do
+        if [[ -d "$bat" ]]; then
+            battery_dir="$bat"
+            break
         fi
-        ;;
-esac
+    done
+    
+    if [[ -z "$battery_dir" ]]; then
+        log_message "ERROR: No battery found in $bat_path"
+        exit 1
+    fi
+    
+    # Read battery info
+    if [[ -r "$battery_dir/capacity" && -r "$battery_dir/status" ]]; then
+        battery_level=$(cat "$battery_dir/capacity")
+        charging_status=$(cat "$battery_dir/status")
+    else
+        log_message "ERROR: Cannot read battery information from $battery_dir"
+        exit 1
+    fi
+}
+
+# Main monitoring loop
+main() {
+    log_message "Battery monitor started (PID: $$)"
+    
+    while true; do
+        get_battery_info
+        local battery_icon=$(get_battery_icon "$battery_level" "$charging_status")
+        
+        # Only check when not charging
+        if [[ "$charging_status" != "Charging" ]]; then
+            if (( battery_level <= VERY_CRITICAL_THRESHOLD )); then
+                send_notification "critical" "󰂎 CRITICAL BATTERY" \
+                    "Battery at ${battery_level}%! System will shutdown soon. 󱐋 PLUG IN NOW!"
+            elif (( battery_level <= CRITICAL_BATTERY_THRESHOLD )); then
+                send_notification "critical" "󰁺 CRITICAL BATTERY" \
+                    "Battery at ${battery_level}%. 󱐋 Plug in immediately!"
+            elif (( battery_level <= LOW_BATTERY_THRESHOLD )); then
+                send_notification "normal" "${battery_icon} Low Battery" \
+                    "Battery at ${battery_level}%. 󱐋 Please charge soon."
+            fi
+        else
+            # Reset notification tracking when charging
+            LAST_NOTIFICATION_LEVEL=""
+        fi
+        
+        sleep $CHECK_INTERVAL
+    done
+}
+
+# Handle signals gracefully
+cleanup() {
+    log_message "Battery monitor stopped"
+    exit 0
+}
+
+trap cleanup SIGTERM SIGINT
+
+# Create log directory if it doesn't exist
+mkdir -p "$(dirname "$LOG_FILE")"
+
+# Start monitoring
+main
