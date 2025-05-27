@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Improved Battery Warning Script
-
 # Note to self:
 # Dependency: libnotify, acpid, acpi (anable the acpid service)
 # sudo systemctl enable acpid.service

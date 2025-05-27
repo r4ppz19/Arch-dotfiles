@@ -1,0 +1,12 @@
+install the plugin manager
+git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
+
+install the plugins manually
+antidote bundle romkatv/powerlevel10k
+antidote bundle Aloxaf/fzf-tab
+antidote bundle zsh-users/zsh-autosuggestions
+antidote bundle zsh-users/zsh-completions
+antidote bundle zsh-users/zsh-history-substring-search
+antidote bundle zsh-users/zsh-syntax-highlighting
+antidote bundle le0me55i/zsh-extract
+antidote bundle hlissner/zsh-autopair

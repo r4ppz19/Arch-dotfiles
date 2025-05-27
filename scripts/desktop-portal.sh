@@ -2,7 +2,7 @@
 
 # Note to self:
 # run this using exec-once in hyprland
-# dependencies: xdg-desktop-portal-hyprland (AUR), xdg-desktop-portal
+# dependencies: xdg-desktop-portal-hyprland, xdg-desktop-portal
 
 sleep 1
 killall -e xdg-desktop-portal-hyprland

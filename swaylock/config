@@ -1,4 +1,6 @@
-# Material Dark Gruvbox theme for swaylockeffects (Blue variant)
+# Note to self:
+# Use swaylock-effects
+# yay -S swaylock-effects
 
 # Background and basics
 color=1d2021
