@@ -12,7 +12,8 @@
   // Module placement
   "modules-left": [
     "hyprland/workspaces",
-    "hyprland/window"
+    "hyprland/window",
+    "hyprland/submap"
     // "custom/web-links",
     // "custom/playerctl"
   ],
@@ -65,9 +66,16 @@
   // Hyprland window
   "hyprland/window": {
   "format": "  {class}",
+  "max-length": 15,
   "icon": false,
   "icon-size": 9,
   "separate-outputs": true
+  },
+  
+  // Hyprland Submap
+  "hyprland/submap": {
+    "format": "{}",
+    "tooltip": false
   },
 
   // System Tray module
