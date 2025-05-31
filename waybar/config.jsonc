@@ -14,8 +14,6 @@
     "hyprland/workspaces",
     "hyprland/window",
     "hyprland/submap"
-    // "custom/web-links",
-    // "custom/playerctl"
   ],
   "modules-center": [
     "clock"
@@ -107,9 +105,10 @@
   },
 
   // Temperature module
+  // Note: change the thermal-zone to match your CPU sensor (not consistent across systems)
   "temperature": {
     "tooltip": false,
-    "thermal-zone": 6,
+    "thermal-zone": 7,
     "critical-threshold": 70,
     "interval": 2,
     "format": "   {temperatureC}°C",
@@ -146,15 +145,10 @@
     "format-source": "<span color='#458588'>󰍬</span> {volume}%",
     "format-source-muted": "<span color='#cc241d'>󰍭</span>",
     "format-icons": {
-      "headphone": "<span color='#458588'>󰋋</span>",
-      "headset": "<span color='#458588'>󰋎</span>",
-      "phone": "<span color='#458588'>󰏲</span>",
-      "portable": "<span color='#458588'>󰦥</span>",
-      "car": "<span color='#458588'>󰄋</span>",
       "default": [
-        "<span color='#458588'>󰕿</span>",
-        "<span color='#458588'>󰖀</span>",
-        "<span color='#458588'>󰕾</span>"
+        "<span color='#458588'>󰕿</span>",  // low volume
+        "<span color='#458588'>󰖀</span>",  // medium volume
+        "<span color='#458588'>󰕾</span>"   // high volume
       ]
     },
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
