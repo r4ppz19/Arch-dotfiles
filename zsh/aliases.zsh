@@ -21,6 +21,7 @@ alias n='nnn'
 alias v="nvim"
 alias calculator='qalc'
 alias lg='lazygit'
+alias sm='. ~/Arch-dotfiles/zsh/session-manager.zsh'
 
 # tmux
 alias txd='tmux detach'
