@@ -2,7 +2,7 @@ return {
   -- Formatter
   {
     "stevearc/conform.nvim",
-    event = "BufWritePre",
+    -- event = "BufWritePre",
     opts = require "configs.conform",
   },
 
@@ -18,15 +18,12 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
-        -- Base
         "vim",
         "lua",
         "vimdoc",
-        -- Web
         "html",
         "css",
         "javascript",
-        -- Others
         "bash",
         "markdown",
         "java",
@@ -35,5 +32,5 @@ return {
   },
 
   -- NvChad Blink
-  { import = "nvchad.blink.lazyspec" },
+  -- { import = "nvchad.blink.lazyspec" },
 }

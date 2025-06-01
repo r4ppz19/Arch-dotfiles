@@ -12,8 +12,8 @@ map("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width"
 map("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
 
 -- Copilot mappings
-map("n", "<leader>cc", ":CopilotChatOpen<CR>", { desc = "Open CopilotChat" })
-map("x", "<leader>cc", ":CopilotChatInPlace<CR>", { desc = "Open CopilotChat InPlace" })
+-- map("n", "<leader>cc", ":CopilotChatOpen<CR>", { desc = "Open CopilotChat" })
+-- map("x", "<leader>cc", ":CopilotChatInPlace<CR>", { desc = "Open CopilotChat InPlace" })
 
 -- Save the current file in normal, insert, and visual modes with Ctrl+s
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save file" })
