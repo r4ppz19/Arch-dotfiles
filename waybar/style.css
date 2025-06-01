@@ -73,8 +73,8 @@ window#waybar.hidden {
 #battery.critical,
 #battery.warning,
 #memory {
-  margin-right: 7px;
-  margin-left: 7px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 /* ======================================================== */
