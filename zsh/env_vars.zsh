@@ -2,10 +2,7 @@
 # Environment Variables
 # =========================================================================================
 
-export EDITOR=nvim      # Default editor
-export VISUAL=nvim      # Default visual editor
-export TERMINAL=kitty   # Default terminal emulator is Kitty
-export BRAVE_PASSWORD_STORE=gnome  # Use GNOME keyring as the password store for Brave browser
+# Note: use hyprland env for global env-vars
 
 # Reduce completion delay
 export KEYTIMEOUT=1
