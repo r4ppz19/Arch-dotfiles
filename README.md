@@ -4,14 +4,14 @@
 
 This is my setup's **backup** in case I mess something up, a living **reference** of how I've configured things, and a place to keep track of stuff I've **learned** using Linux.
 
-These files fit *my* workflow and *my* taste. Look through, take ideas, build your own setup ;).
+These files fit *my* workflow and *my* taste. Look through, take ideas, build your own ;)
 
 ## Setup
 
 * **OS:** Arch Linux
-* **WM:** Hyprland
-* **Terminal:** Kitty
-* **Shell:** Zsh + Antidote ([Plugins](zsh/zsh_plugins.txt))
+* **WM:** [Hyprland](https://hyprland.org/)
+* **Terminal:** [Kitty](https://github.com/kovidgoyal/kitty)
+* **Shell:** Zsh + [Antidote](https://antidote.sh/) ([Plugins](zsh/zsh_plugins.txt))
 * **Font:** JetBrainsMono Nerd Font
 * **Theme:** Gruvbox
     * GTK: [Gruvbox-Material-Dark](https://github.com/TheGreatMcPain/gruvbox-material-gtk)
@@ -23,16 +23,18 @@ These files fit *my* workflow and *my* taste. Look through, take ideas, build yo
 * **Bar:** Waybar 
 * **Launcher:** Rofi ([config from](https://github.com/adi1090x/rofi))
 * **File Managers:** Thunar (GUI), Ranger, Yazi (TUI)
-* **Wallpaper:** [here](https://wallhaven.cc/w/vq1z55)
+* **Music Player:** [kew](https://github.com/ravachol/kew)
 
-![Screenshot](screenshot/screenshot_2025-06-02_14-38-01.png)
+![Screenshot](screenshot/screenshot_2025-06-02_20-42-26.png)
 
-## Screenshots
+![Screenshot](screenshot/screenshot_2025-06-02_20-29-16.png)
+
+## More screenshots
 
 <details>
 <summary>Click to expand screenshots</summary>
 
-![Screenshot](screenshot/screenshot_2025-05-17_19-19-19.png)
+![Screenshot](screenshot/screenshot_2025-06-02_20-39-54.png)
 
 ![Screenshot](screenshot/screenshot_2025-05-17_19-22-00.png)
 
