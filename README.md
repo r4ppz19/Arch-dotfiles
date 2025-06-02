@@ -25,6 +25,8 @@ These files fit *my* workflow and *my* taste. Look through, take ideas, build yo
 * **File Managers:** Thunar (GUI), Ranger, Yazi (TUI)
 * **Wallpaper:** [here](https://wallhaven.cc/w/vq1z55)
 
+![Screenshot](screenshot/screenshot_2025-06-02_14-38-01.png)
+
 ## Screenshots
 
 <details>
