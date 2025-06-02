@@ -46,4 +46,8 @@ These files fit *my* workflow and *my* taste. Look through, take ideas, build yo
 
 ![Screenshot](screenshot/screenshot_2025-05-17_19-19-04.png)
 
+![Screenshot](screenshot/screenshot_2025-06-02_21-31-26.png)
+
+![Screenshot](screenshot/screenshot_2025-06-02_21-31-50.png)
+
 </details>
