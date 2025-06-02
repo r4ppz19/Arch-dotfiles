@@ -1,6 +1,10 @@
 install the plugin manager
 git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
 
+antidote bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.zsh
+
+or manually
+
 install the plugins manually
 antidote bundle romkatv/powerlevel10k
 antidote bundle Aloxaf/fzf-tab
