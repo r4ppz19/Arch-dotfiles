@@ -2,7 +2,8 @@
 # Environment Variables
 # =========================================================================================
 
-# Note: use hyprland env for global env-vars
+export EDITOR=nvim
+export VISUAL=nvim
 
 # Reduce completion delay
 export KEYTIMEOUT=1
