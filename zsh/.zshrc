@@ -8,18 +8,12 @@
 # This prevents issues when running non-interactive scripts that start with zsh.
 if [[ $- == *i* ]]; then
 
-  # =================================================================
-  # TMUX Session Manager
-  # =================================================================
-
   # Instant Prompt (Powerlevel10k) - Load extremely early for perceived speed
   # =========================================================================
   # Load Powerlevel10k instant prompt cache. Keep this near the top!
-  # This path is standard and typically outside the dotfiles directory.
   if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
   fi
-
 
   # Plugin Management (Antidote) and Completions
   # =========================================================================
@@ -38,7 +32,7 @@ if [[ $- == *i* ]]; then
   # Source Modular Configuration Files
   # =========================================================================
   # Define the base directory for your modular Zsh configuration files.
-  local zsh_config_dir="/home/r4ppz/Arch-dotfiles/zsh/"
+  local zsh_config_dir="$HOME/Arch-dotfiles/zsh/"
 
   # Source the modular files in a logical sequence from the determined directory.
   if [[ -d "$zsh_config_dir" ]]; then
@@ -63,6 +57,6 @@ if [[ $- == *i* ]]; then
 fi # End of interactive shell check
 
 # Any configuration that *must* run in non-interactive shells (e.g., basic PATH
-# adjustments for scripts) would go here, outside the 'if' block. 
+# adjustments for scripts) would go here, outside the 'if' block.
 
 # =========================================================================
