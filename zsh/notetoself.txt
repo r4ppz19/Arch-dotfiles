@@ -1,7 +1,7 @@
 install the plugin manager
 git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
 
-antidote bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.zsh
+antidote bundle < ~/Arch-dotfiles/zsh/zsh_plugins.txt > ~/.zsh_plugins.zsh
 
 or manually
 

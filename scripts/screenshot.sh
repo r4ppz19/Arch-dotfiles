@@ -2,7 +2,7 @@
 
 # Note to self:
 # bind this to your liking
-# dependencies: grim & slurp & notification-deamon (ex. swaync, dunst), libnotify
+# dependencies: grim & slurp & notification-deamon
 
 # Define the lock file
 LOCKFILE="/tmp/screenshot.lock"

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Note to self:
+# (probebly not needed)
 # run this using exec-once in hyprland
 # dependencies: xdg-desktop-portal-hyprland, xdg-desktop-portal
 

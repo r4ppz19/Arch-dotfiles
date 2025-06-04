@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Note to self:
+# Note to self (dont use, it sucks):
 # Dependency: libnotify, acpid, acpi (anable the acpid service)
 # sudo systemctl enable acpid.service
 # sudo systemctl start acpid.service
@@ -42,21 +42,20 @@ STATUS=$(<"$STATUS_FILE")
 LAST_STATE=$(<"$STATE_FILE" 2>/dev/null)
 
 case $STATUS in
-  Discharging)
-    if (( BATTERY_LEVEL <= 20 )) && [[ "$LAST_STATE" != "Low" ]]; then
-      notify-send -u critical "Battery Low" "At ${BATTERY_LEVEL}% - Plug in!"
-      echo "Low" > "$STATE_FILE"
-    elif (( BATTERY_LEVEL > 25 )) && [[ "$LAST_STATE" == "Low" ]]; then
-        echo "Normal" > "$STATE_FILE"  # Reset state when recovering
-    fi
-    ;;
-  Charging|Full)
-    if (( BATTERY_LEVEL >= 95 )) && [[ "$LAST_STATE" != "Full" ]]; then
-      notify-send -u normal "Battery Full" "At ${BATTERY_LEVEL}% - Unplug!"
-      echo "Full" > "$STATE_FILE"
-    elif (( BATTERY_LEVEL < 90 )) && [[ "$LAST_STATE" == "Full" ]]; then
-      echo "Normal" > "$STATE_FILE"  # Reset when below 90%
-    fi
-    ;;
+Discharging)
+  if ((BATTERY_LEVEL <= 20)) && [[ "$LAST_STATE" != "Low" ]]; then
+    notify-send -u critical "Battery Low" "At ${BATTERY_LEVEL}% - Plug in!"
+    echo "Low" >"$STATE_FILE"
+  elif ((BATTERY_LEVEL > 25)) && [[ "$LAST_STATE" == "Low" ]]; then
+    echo "Normal" >"$STATE_FILE" # Reset state when recovering
+  fi
+  ;;
+Charging | Full)
+  if ((BATTERY_LEVEL >= 95)) && [[ "$LAST_STATE" != "Full" ]]; then
+    notify-send -u normal "Battery Full" "At ${BATTERY_LEVEL}% - Unplug!"
+    echo "Full" >"$STATE_FILE"
+  elif ((BATTERY_LEVEL < 90)) && [[ "$LAST_STATE" == "Full" ]]; then
+    echo "Normal" >"$STATE_FILE" # Reset when below 90%
+  fi
+  ;;
 esac
-

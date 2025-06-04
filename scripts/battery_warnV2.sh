@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Battery monitoring script for Arch + Hyprland with Nerd Font icons
+# Note to self:
 # Run this using systemd
 
 # Configuration
