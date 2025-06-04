@@ -2,6 +2,13 @@
 # Environment Variables
 # =========================================================================================
 
+# nvm
+source /usr/share/nvm/init-nvm.sh
+
+# fzf
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
 export EDITOR=nvim
 export VISUAL=nvim
 

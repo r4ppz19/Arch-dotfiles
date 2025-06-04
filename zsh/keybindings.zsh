@@ -1,9 +1,6 @@
 # =========================================================================================
 # Keybindings
 # =========================================================================================
-# FZF keybindings (keep this!)
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
 
 bindkey -e  # Explicitly set emacs mode (default but ensures no conflicts)
 
