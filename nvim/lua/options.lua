@@ -3,8 +3,14 @@ local o = vim.o
 local opt = vim.opt
 local g = vim.g
 
+o.sidescroll = 1
+o.sidescrolloff = 5
+o.wrap = true
+o.linebreak = true
+o.breakindent = true
+o.showbreak = "↪ "
+-- o.colorcolumn = "130"
 o.cursorlineopt ='both'
-o.wrap = false
 o.relativenumber = true
 o.scrolloff = 8
 
