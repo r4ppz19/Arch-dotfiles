@@ -2,6 +2,17 @@ return {
   "kdheepak/lazygit.nvim",
   lazy = true,
   dependencies = { "nvim-lua/plenary.nvim" },
-  cmd = require("configs.lazygit").commands,
-  keys = require("configs.lazygit").mappings,
+
+  cmd = {
+    "LazyGit",
+    "LazyGitConfig",
+    "LazyGitCurrentFile",
+    "LazyGitFilter",
+    "LazyGitFilterCurrentFile",
+  },
+
+  keys = {
+    { "<leader>gg", "<cmd>LazyGit<cr>", desc = "Open LazyGit" },
+  },
 }
+

@@ -10,7 +10,7 @@ o.linebreak = true
 o.breakindent = true
 o.showbreak = "↪ "
 -- o.colorcolumn = "130"
-o.cursorlineopt ='both'
+o.cursorlineopt = "both"
 o.relativenumber = true
 o.scrolloff = 8
 
