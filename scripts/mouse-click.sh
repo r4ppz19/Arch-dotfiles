@@ -13,17 +13,19 @@ toggle)
   STATE_FILE="/tmp/mouse_state"
 
   if [ ! -f "$STATE_FILE" ]; then
-    echo "40" >"$STATE_FILE"
+    echo "released" >"$STATE_FILE"
   fi
 
   CURRENT_STATE=$(cat "$STATE_FILE")
 
-  if [ "$CURRENT_STATE" = "40" ]; then
-    echo "80" >"$STATE_FILE"
-    /usr/bin/ydotool click 0x80
-  else
-    echo "40" >"$STATE_FILE"
+  if [ "$CURRENT_STATE" = "released" ]; then
+    echo "pressed" >"$STATE_FILE"
     /usr/bin/ydotool click 0x40
+    notify-send "Mouse: Pressed"
+  else
+    echo "released" >"$STATE_FILE"
+    /usr/bin/ydotool click 0x80
+    notify-send "Mouse: Released"
   fi
   ;;
 esac

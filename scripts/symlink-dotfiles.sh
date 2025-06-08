@@ -8,10 +8,10 @@ mkdir -p "$CONFIG_DIR"
 
 # Symlink config folders
 for item in btop hypr kitty lazygit neofetch nvim ranger rofi swaylock swaync systemd waybar yazi; do
-    src="$DOTFILES/$item"
-    dest="$CONFIG_DIR/$item"
-    echo "Linking $src → $dest"
-    ln -sf "$src" "$dest"
+  src="$DOTFILES/$item"
+  dest="$CONFIG_DIR/$item"
+  echo "Linking $src → $dest"
+  ln -sf "$src" "$dest"
 done
 
 # Symlink top-level dotfiles
