@@ -18,21 +18,19 @@ These files fit *my* workflow and *my* taste. Look through, take ideas, build yo
     * QT: [Gruvbox-Dark-Blue](https://github.com/sachnr/gruvbox-kvantum-themes)
     * Icons: [Gruvbox Plus Dark](https://github.com/SylEleuth/gruvbox-plus-icon-pack)
 * **Cursor:** [Hackeyed](https://www.gnome-look.org/p/999998)
-* **Display Manager:** SDDM ([config from](https://github.com/Keyitdev/sddm-astronaut-theme))
-* **Notification:** SwayNC 
-* **Bar:** Waybar 
-* **Launcher:** Rofi ([config from](https://github.com/adi1090x/rofi))
-* **File Managers:** Thunar (GUI), Ranger, Yazi (TUI)
+* **Display Manager:** [SDDM](https://github.com/sddm/sddm) ([config from](https://github.com/Keyitdev/sddm-astronaut-theme))
+* **Notification:** [SwayNC](https://github.com/ErikReider/SwayNotificationCenter)
+* **Bar:** [Waybar](https://github.com/Alexays/Waybar)
+* **Launcher:** [Rofi](https://github.com/davatorium/rofi) ([config from](https://github.com/adi1090x/rofi))
+* **File Managers:** Thunar (GUI), Ranger, [Yazi](https://yazi-rs.github.io/) (TUI)
 * **Music Player:** [kew](https://github.com/ravachol/kew)
 
 ![Screenshot](screenshot/screenshot_2025-06-02_20-42-26.png)
 
 ![Screenshot](screenshot/screenshot_2025-06-02_20-29-16.png)
 
-## More screenshots
-
 <details>
-<summary>Click to expand screenshots</summary>
+<summary>Click to see more screenshots</summary>
 
 ![Screenshot](screenshot/screenshot_2025-06-02_20-39-54.png)
 
