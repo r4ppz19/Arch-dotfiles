@@ -31,6 +31,26 @@ return {
     },
   },
 
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    opts = function()
+      local cmp = require "cmp"
+      local conf = require "nvchad.configs.cmp"
+
+      -- Disable automatic completion popup while typing
+      conf.completion = {
+        autocomplete = false, -- disables automatic popup
+      }
+
+      -- Add manual trigger with Alt+Space
+      conf.mapping["<M-Space>"] = cmp.mapping.complete()
+
+      return conf
+    end,
+  },
+
   -- NvChad Blink
+
   -- { import = "nvchad.blink.lazyspec" },
 }
