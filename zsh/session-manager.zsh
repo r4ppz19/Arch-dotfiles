@@ -1,5 +1,4 @@
-# TMUX Session Manager UI for Zsh
-# Modular, clean, and easy to maintain
+# TMUX Session Manager UI
 
 # ──────────────────────────────────────────────────────────────
 # Draws a centered box with a title

@@ -5,7 +5,7 @@
 # Background and basics
 color=1d2021
 font=Roboto
-image=/home/r4ppz/Pictures/Wallpaper/wallpaper1.png
+image=/home/r4ppz/Pictures/Wallpaper/wallpaper2.png
 
 # Effects
 screenshots
@@ -22,7 +22,7 @@ indicator-thickness=10
 indicator-caps-lock
 indicator-idle-visible
 
-# Colors - Material Gruvbox Dark (Blue variant)
+# Colors
 inside-color=1d202188
 inside-clear-color=1d202188
 inside-ver-color=1d202188

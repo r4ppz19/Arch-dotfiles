@@ -31,6 +31,7 @@ return {
     },
   },
 
+  -- cmp
   {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
@@ -51,6 +52,5 @@ return {
   },
 
   -- NvChad Blink
-
   -- { import = "nvchad.blink.lazyspec" },
 }
