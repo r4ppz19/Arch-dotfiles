@@ -1,0 +1,8 @@
+For some reason, the line appears in version 25.5.31.
+If you want noline, downgrade to an earlier version, you can try version 25.4.8.
+
+To downgrade
+Install the downgrade tool:
+- yay -S downgrade
+- downgrade yazi
+Then select version 25.4.8 from the list.
