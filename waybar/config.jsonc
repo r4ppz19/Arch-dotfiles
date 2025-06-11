@@ -2,6 +2,7 @@
 
 {
   // General Waybar configuration
+  "position": "top",
   "layer": "top",
   "height": 21,
   "spacing": 0,
