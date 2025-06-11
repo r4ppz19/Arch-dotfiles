@@ -1,9 +1,17 @@
 install the plugin manager
 git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
 
-put .zsh_plugins.txt in home directory
+put all the plugins ~/.zsh_plugins.txt
 
-antidote bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.zsh
+then paste this:
+  zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins
+  [[ -f ${zsh_plugins}.txt ]] || touch ${zsh_plugins}.txt
+  fpath=($HOME/.antidote/functions $fpath)
+  autoload -Uz antidote
+  if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
+    antidote bundle <${zsh_plugins}.txt >|${zsh_plugins}.zsh
+  fi
+  source ${zsh_plugins}.zsh
 
 or manually install plugins
 
