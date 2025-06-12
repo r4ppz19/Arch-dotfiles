@@ -37,8 +37,11 @@
   // Modules configuration
   // -------------------------------------------------------------------------
 
+
   // Hyprland Workspaces module
   "hyprland/workspaces": {
+    "special-visible-only": false,
+    "show-special": true,
     "active-only": false,
     "all-outputs": true,
     "warp-on-scroll": false,
@@ -53,7 +56,8 @@
       "7": "󰍛",
       "8": "",
       "9": "󰍹",
-      "10": ""
+      "10": "",
+      "special": ""
     },
     "persistent-workspaces": {
       "*": 4
