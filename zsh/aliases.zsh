@@ -19,18 +19,9 @@ alias mkdir="mkdir -pv"
 alias r='ranger --choosedir="$HOME/.rangerdir"; LASTDIR=$(cat "$HOME/.rangerdir"); cd "$LASTDIR"'
 alias n='nnn'
 alias v="nvim"
-alias calculator='qalc'
 alias lg='lazygit'
 alias sm='. ~/Arch-dotfiles/zsh/session-manager.zsh'
-
-# tmux
-alias txd='tmux detach'
-alias txls='tmux ls'
-alias txa='tmux attach'
-
-# package management
-alias search='pacman -Ss && yay -Ss'
-alias pkglist='pacman -Qqe'
+alias ssh='TERM=xterm-256color ssh'
 
 # AI
 alias explain='gh copilot explain'
