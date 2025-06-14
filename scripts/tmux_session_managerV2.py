@@ -57,10 +57,10 @@ def print_sessions(sessions):
 def print_options():
     """Print the menu options."""
     print("Options:")
-    print("  [number] - Attach session")
-    print("  n        - New session")
-    print("  d        - Delete session")
-    print("  q        - Quit")
+    print(" [number]   - Attach session")
+    print(" [n]        - New session")
+    print(" [d]        - Delete session")
+    print(" [q]        - Quit")
     print()
 
 def prompt_choice():
