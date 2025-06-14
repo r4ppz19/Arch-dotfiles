@@ -20,8 +20,8 @@ alias r='ranger --choosedir="$HOME/.rangerdir"; LASTDIR=$(cat "$HOME/.rangerdir"
 alias n='nnn'
 alias v="nvim"
 alias lg='lazygit'
-alias sm='. ~/Arch-dotfiles/zsh/session-manager.zsh'
-alias sm='python ~/Arch-dotfiles/scripts/tmux_session_managerV2.py'
+# alias sm='. ~/Arch-dotfiles/zsh/session-manager.zsh'
+alias sm='~/Arch-dotfiles/scripts/tmux_session_managerV2.py'
 alias ssh='TERM=xterm-256color ssh'
 
 # AI
