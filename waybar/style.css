@@ -30,6 +30,8 @@ window#waybar.hidden {
 #workspaces button.active,
 #workspaces button.active:hover,
 #workspaces button.urgent,
+#workspaces button.special,
+#workspaces button.special.active,
 #window,
 #tray,
 #disk,
@@ -80,10 +82,6 @@ window#waybar.hidden {
 /* ======================================================== */
 /* workspaces module */
 /* ======================================================== */
-/* #workspaces { */
-/*   margin: 3px; */
-/* } */
-
 #workspaces button {
   color: #ebdbb2;
   border-radius: 0.7px;
@@ -118,6 +116,14 @@ window#waybar.hidden {
   background: #ea6962;
 }
 
+#workspaces button.special {
+  background-color: #D79921;
+}
+
+#workspaces button.special.active {
+  background-color: #D65D0E;
+}
+
 /* ======================================================== */
 /* window */
 /* ======================================================== */
@@ -143,7 +149,7 @@ window#waybar.empty #window {
 }
 
 /* For debugging */
-/* window#waybar.empty { */
+/* window#waybar { */
 /*   margin: 0; */
 /*   padding: 0; */
 /*   background: transparent; */
