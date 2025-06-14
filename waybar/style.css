@@ -117,11 +117,11 @@ window#waybar.hidden {
 }
 
 #workspaces button.special {
-  background-color: #D79921;
+  background-color: #B16286;
 }
 
 #workspaces button.special.active {
-  background-color: #D65D0E;
+  background-color: #D79921;
 }
 
 /* ======================================================== */
