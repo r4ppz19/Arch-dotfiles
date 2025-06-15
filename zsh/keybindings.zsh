@@ -2,7 +2,7 @@
 # Keybindings
 # =========================================================================================
 
-bindkey -e  # Explicitly set emacs mode (default but ensures no conflicts)
+bindkey -e  # emacs mode
 
 # Modern word jumps (Alt+←/→ and Ctrl+←/→)
 bindkey '^[[1;3D' backward-word    # Alt+←
