@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Note to self
+# Bind this somewhere idk
+# waybar must run using systemd --user
+
 # State file to track zen mode
 STATE="$HOME/.cache/hypr-zen-mode"
 
