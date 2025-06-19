@@ -36,7 +36,9 @@ send_notification() {
   fi
 
   # Send notification with timeout and app name for better integration
-  notify-send -u "$urgency" -t 10000 -a "Battery Monitor" "$title" "$message"
+  notify-send -u "$urgency" -t 10000 -a "Battery Monitor" \
+    -h boolean:transient:true \
+    "$title" "$message"
   log_message "Notification sent: $title - $message"
 
   LAST_NOTIFICATION_LEVEL="$urgency"

@@ -21,11 +21,9 @@ toggle)
   if [ "$CURRENT_STATE" = "released" ]; then
     echo "pressed" >"$STATE_FILE"
     /usr/bin/ydotool click 0x40
-    notify-send "Mouse: Pressed"
   else
     echo "released" >"$STATE_FILE"
     /usr/bin/ydotool click 0x80
-    notify-send "Mouse: Released"
   fi
   ;;
 esac

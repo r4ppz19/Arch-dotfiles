@@ -1,11 +1,6 @@
-# Note to self:
-# Use swaylock-effects
-# yay -S swaylock-effects
-
 # Background and basics
 color=1d2021
 font=Roboto
-image=/home/r4ppz/Pictures/Wallpaper/wallpaper2.png
 
 # Effects
 screenshots

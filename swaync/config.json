@@ -73,22 +73,35 @@
     "label": {
       "max-lines": 5,
       "text": "Label Text"
-    }
-     ,"mpris": {
+    },
+    "mpris": {
       "image-size": 60,
-      "image-radius": 2,
-      "blacklist": []
+      "image-radius": 2
     },
     "buttons-grid": {
       "actions": [
         {
-          "label": "直",
+          "label": "󰖩",
           "type": "toggle",
           "active": true,
           "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && nmcli radio wifi on || nmcli radio wifi off'",
           "update-command": "sh -c '[[ $(nmcli radio wifi) == \"enabled\" ]] && echo true || echo false'"
+        },
+        {
+          "label": "󰂯",
+          "type": "toggle",
+          "active": false,
+          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && bluetoothctl power on || bluetoothctl power off'",
+          "update-command": "sh -c 'bluetoothctl show | grep -q \"Powered: yes\" && echo true || echo false'"
         }
       ]
+    },
+    "volume": {
+      "label": "󰕾",
+      "show-per-app": false
+    },
+    "backlight": {
+      "label": "󰃠"
     }
   }
 }

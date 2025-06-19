@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# Note to self
-# Bind this somewhere idk
-# waybar must run using systemd --user
-
 # State file to track zen mode
 STATE="$HOME/.cache/hypr-zen-mode"
 
@@ -22,7 +18,7 @@ ZEN_ROUNDING=0
 ZEN_ROUNDING_POWER=0
 
 set_hyprland() {
-    hyprctl --batch "keyword general:gaps_out $1; \
+  hyprctl --batch "keyword general:gaps_out $1; \
                      keyword general:gaps_in $2; \
                      keyword general:border_size $3; \
                      keyword decoration:rounding $4; \
@@ -30,13 +26,13 @@ set_hyprland() {
 }
 
 if [[ -f "$STATE" ]]; then
-    # Restore normal mode
-    set_hyprland "$NORMAL_GAPS_OUTER" "$NORMAL_GAPS_INNER" "$NORMAL_BORDER_SIZE" "$NORMAL_ROUNDING" "$NORMAL_ROUNDING_POWER"
-    systemctl --user start waybar.service
-    rm -f "$STATE"
+  # Restore normal mode
+  set_hyprland "$NORMAL_GAPS_OUTER" "$NORMAL_GAPS_INNER" "$NORMAL_BORDER_SIZE" "$NORMAL_ROUNDING" "$NORMAL_ROUNDING_POWER"
+  systemctl --user start waybar.service
+  rm -f "$STATE"
 else
-    # Set zen mode
-    set_hyprland "$ZEN_GAPS_OUTER" "$ZEN_GAPS_INNER" "$ZEN_BORDER_SIZE" "$ZEN_ROUNDING" "$ZEN_ROUNDING_POWER"
-    systemctl --user stop waybar.service
-    touch "$STATE"
+  # Set zen mode
+  set_hyprland "$ZEN_GAPS_OUTER" "$ZEN_GAPS_INNER" "$ZEN_BORDER_SIZE" "$ZEN_ROUNDING" "$ZEN_ROUNDING_POWER"
+  systemctl --user stop waybar.service
+  touch "$STATE"
 fi
