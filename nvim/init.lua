@@ -29,9 +29,9 @@ require("lazy").setup({
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
-require("options")
-require("autocmd")
+require("configs.options")
+require("configs.autocmd")
 
 vim.schedule(function()
-	require("mappings")
+	require("configs.mappings")
 end)

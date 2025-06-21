@@ -1,14 +1,33 @@
 return {
-	{
-		"nvim-tree/nvim-tree.lua",
-		cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-		opts = require("configs.nvim-tree"),
-	},
-	{
-		"nvim-tree/nvim-web-devicons",
-		config = function()
-			dofile(vim.g.base46_cache .. "devicons")
-			return { override = require("nvchad.icons.devicons") }
-		end,
+	"nvim-tree/nvim-tree.lua",
+	cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+	opts = {
+		git = {
+			enable = false,
+		},
+		actions = {
+			open_file = {
+				quit_on_open = true,
+			},
+		},
+		filters = {
+			dotfiles = false,
+			custom = { "^.git$" },
+		},
+		renderer = {
+			highlight_git = false,
+			icons = {
+				show = {
+					file = true,
+					folder = true,
+					folder_arrow = true,
+					git = false,
+				},
+			},
+		},
+		view = {
+			width = 25,
+			side = "left",
+		},
 	},
 }
