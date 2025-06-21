@@ -1,26 +1,23 @@
 local map = vim.keymap.set
 
--- Preserve yanked text when pasting in visual mode
 map("v", "p", '"_dP', { desc = "Paste without yanking replaced text" })
--- Delete single character without copying into register
 map("n", "x", '"_x', { desc = "Delete char without copy to register" })
 
--- Resize windows using Ctrl + Arrow keys
 map("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
 map("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
 map("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
 map("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
 
--- Save the current file in normal, insert, and visual modes with Ctrl+s
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save file" })
 
--- Move selected lines down in visual mode
 map("v", "<S-Down>", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down" })
 map("v", "<S-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
 
--- In visual mode, indent right and keep selection active with '> & <'
 map("v", "<", "<gv", { desc = "Indent left and reselect" })
 map("v", ">", ">gv", { desc = "Indent right and reselect" })
+
+
+-- Default from nvchad
 
 map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "move end of line" })
