@@ -4,7 +4,7 @@ local g = vim.g
 
 o.sidescroll = 1
 o.sidescrolloff = 5
-o.wrap = true
+o.wrap = false
 o.linebreak = true
 o.breakindent = true
 o.showbreak = "↪ "

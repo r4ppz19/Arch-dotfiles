@@ -16,6 +16,7 @@ map("v", "<S-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
 map("v", "<", "<gv", { desc = "Indent left and reselect" })
 map("v", ">", ">gv", { desc = "Indent right and reselect" })
 
+map("n", "<leader>mp", "<cmd>MarkdownPreview<cr>", { desc = "Makrdown preview" })
 
 -- Default from nvchad
 
