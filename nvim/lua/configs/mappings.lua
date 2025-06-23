@@ -1,17 +1,31 @@
 local map = vim.keymap.set
 
+map({ "n", "v" }, "<S-Left>", "b", { desc = "Move to the beginning of the word (like 'b')" })
+map({ "n", "v" }, "<S-Right>", "e", { desc = "Move to the end of the word (like 'e')" })
+
+map("i", "<S-Left>", "<C-o>b", { desc = "Move to the beginning of the word in insert mode" })
+map("i", "<S-Right>", "<C-o>e", { desc = "Move to the end of the word in insert mode" })
+
+map({ "n", "v" }, "<S-Up>", "<C-u>", { desc = "Scroll half a page up" })
+map({ "n", "v" }, "<S-Down>", "<C-d>", { desc = "Scroll half a page down" })
+
+map("i", "<S-Up>", "<C-o><C-u>", { desc = "Scroll half a page up in insert mode" })
+map("i", "<S-Down>", "<C-o><C-d>", { desc = "Scroll half a page down in insert mode" })
+map("n", "<C-Down>", "<C-e>", { desc = "Scroll window down one line" })
+map("n", "<C-Up>", "<C-y>", { desc = "Scroll window up one line" })
+
 map("v", "p", '"_dP', { desc = "Paste without yanking replaced text" })
 map("n", "x", '"_x', { desc = "Delete char without copy to register" })
 
-map("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
-map("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
-map("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
-map("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
+map("n", "<C-j>", ":resize +2<CR>", { desc = "Increase window height" })
+map("n", "<C-k>", ":resize -2<CR>", { desc = "Decrease window height" })
+map("n", "<C-h>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
+map("n", "<C-l>", ":vertical resize +2<CR>", { desc = "Increase window width" })
 
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save file" })
 
-map("v", "<S-Down>", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down" })
-map("v", "<S-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
+-- map("v", "<S-Down>", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down" })
+-- map("v", "<S-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
 
 map("v", "<", "<gv", { desc = "Indent left and reselect" })
 map("v", ">", ">gv", { desc = "Indent right and reselect" })
@@ -22,11 +36,6 @@ map("i", "<C-h>", "<Left>", { desc = "move left" })
 map("i", "<C-l>", "<Right>", { desc = "move right" })
 map("i", "<C-j>", "<Down>", { desc = "move down" })
 map("i", "<C-k>", "<Up>", { desc = "move up" })
-
-map("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
-map("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
-map("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
-map("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
 
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
 
@@ -88,15 +97,14 @@ map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" }
 map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
 
 -- TERMINAL
--- new terminals
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
 
 map("n", "<leader>th", function()
-  require("nvchad.term").new({ pos = "sp" })
+	require("nvchad.term").new({ pos = "sp" })
 end, { desc = "terminal new horizontal term" })
 
 map("n", "<leader>tv", function()
-  require("nvchad.term").new({ pos = "vsp" })
+	require("nvchad.term").new({ pos = "vsp" })
 end, { desc = "terminal new vertical term" })
 -- toggleable
 map({ "n", "t" }, "<A-v>", function()

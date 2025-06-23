@@ -13,8 +13,11 @@ return {
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
 				json = { "prettier" },
+        markdown = { "prettier" },
+        yaml = { "prettier" },
 				bash = { "shfmt" },
 				sh = { "shfmt" },
+				python = { "black" },
 			},
 
 			format_on_save = {

@@ -2,6 +2,7 @@ local o = vim.o
 local opt = vim.opt
 local g = vim.g
 
+o.completeopt = "menuone,noinsert,noselect,popup"
 o.sidescroll = 1
 o.sidescrolloff = 5
 o.wrap = false
@@ -43,7 +44,7 @@ opt.shortmess:append("sI")
 o.signcolumn = "yes"
 o.splitbelow = true
 o.splitright = true
-o.timeoutlen = 400
+o.timeoutlen = 300
 o.undofile = true
 
 -- interval for writing swap file to disk, also used by gitsigns
