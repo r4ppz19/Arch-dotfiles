@@ -16,10 +16,6 @@ map("v", "<S-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
 map("v", "<", "<gv", { desc = "Indent left and reselect" })
 map("v", ">", ">gv", { desc = "Indent right and reselect" })
 
-map("n", "<leader>mp", "<cmd>MarkdownPreview<cr>", { desc = "Makrdown preview" })
-
--- Default from nvchad
-
 map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "move end of line" })
 map("i", "<C-h>", "<Left>", { desc = "move left" })
@@ -37,16 +33,36 @@ map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
 map("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
 
-map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "toggle line number" })
-map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
-map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
-
-map({ "n", "x" }, "<leader>fm", function()
+-- PLUGINS
+map({ "n", "x" }, "<leader>pf", function()
 	require("conform").format({ lsp_fallback = true })
 end, { desc = "general format file" })
+map("n", "<leader>pm", "<cmd>MarkdownPreview<cr>", { desc = "Makrdown preview" })
+map("n", "<leader>pl", "<cmd>LiveServerStart<CR>", { desc = "Live Preview" })
 
--- global lsp mappings
-map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
+-- TELESCOPE
+map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Telescope: live grep" })
+map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Telescope: find buffers" })
+map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Telescope: help page" })
+map("n", "<leader>fm", "<cmd>Telescope marks<CR>", { desc = "Telescope: find marks" })
+map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "Telescope: find oldfiles" })
+map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope: find in current buffer" })
+map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope: git commits" })
+map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "Telescope: git status" })
+map("n", "<leader>ft", "<cmd>Telescope terms<CR>", { desc = "Telescope pick: hidden term" })
+map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Telescope: find files" })
+map(
+	"n",
+	"<leader>fa",
+	"<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
+	{ desc = "telescope find all files" }
+)
+
+-- NVCHAD
+map("n", "<leader>nc", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
+map("n", "<leader>nt", function()
+	require("nvchad.themes").open()
+end, { desc = "telescope nvchad themes" })
 
 -- tabufline
 map("n", "<leader>b", "<cmd>enew<CR>", { desc = "buffer new" })
@@ -71,41 +87,17 @@ map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
 map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
 map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
 
--- telescope
-map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
-map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "telescope find buffers" })
-map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "telescope help page" })
-map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "telescope find marks" })
-map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "telescope find oldfiles" })
-map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "telescope find in current buffer" })
-map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "telescope git commits" })
-map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "telescope git status" })
-map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "telescope pick hidden term" })
-
-map("n", "<leader>th", function()
-	require("nvchad.themes").open()
-end, { desc = "telescope nvchad themes" })
-
-map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "telescope find files" })
-map(
-	"n",
-	"<leader>fa",
-	"<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-	{ desc = "telescope find all files" }
-)
-
--- terminal
+-- TERMINAL
+-- new terminals
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
 
--- new terminals
-map("n", "<leader>h", function()
-	require("nvchad.term").new({ pos = "sp" })
+map("n", "<leader>th", function()
+  require("nvchad.term").new({ pos = "sp" })
 end, { desc = "terminal new horizontal term" })
 
-map("n", "<leader>v", function()
-	require("nvchad.term").new({ pos = "vsp" })
+map("n", "<leader>tv", function()
+  require("nvchad.term").new({ pos = "vsp" })
 end, { desc = "terminal new vertical term" })
-
 -- toggleable
 map({ "n", "t" }, "<A-v>", function()
 	require("nvchad.term").toggle({ pos = "vsp", id = "vtoggleTerm" })
