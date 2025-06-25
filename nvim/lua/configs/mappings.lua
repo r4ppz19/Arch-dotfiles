@@ -64,7 +64,7 @@ map(
 	"n",
 	"<leader>fa",
 	"<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-	{ desc = "telescope find all files" }
+	{ desc = "Telescope: find all files" }
 )
 
 -- NVCHAD
