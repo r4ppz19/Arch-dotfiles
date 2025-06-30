@@ -1,0 +1,52 @@
+configuration {
+    show-icons: false;
+}
+
+/*****----- Global Properties -----*****/
+* {
+    font:            "JetBrainsMono Nerd Font 10";
+    background:      #282828FF;
+    background-alt:  #3c3836FF;
+    foreground:      #ebdbb2FF;
+    selected:        #83a598FF;
+    active:          #b8bb26FF;
+    urgent:          #fb4934FF;
+}
+
+/*****----- Window -----*****/
+window {
+    location: center;
+    anchor: center;
+    fullscreen: false;
+    width: 25%;
+    border: 1px;
+    border-radius: 2px;
+    padding: 10px;
+    border-color: @selected;
+    background-color: @background;
+}
+
+/*****----- Main Box -----*****/
+mainbox {
+    spacing: 10px;
+    padding: 10px;
+    background-color: transparent;
+    orientation: vertical;
+    children: [ "inputbar" ];
+}
+
+/*****----- Input Bar -----*****/
+inputbar {
+    spacing: 10px;
+    background-color: @background-alt;
+    border-radius: 2px;
+    padding: 8px 12px;
+    children: [ "entry" ];
+}
+
+entry {
+    background-color: inherit;
+    text-color: @foreground;
+    placeholder: "Search...";
+    placeholder-color: #a89984;
+}
