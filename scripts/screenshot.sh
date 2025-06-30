@@ -18,7 +18,7 @@ flock -n 200 || {
 mkdir -p ~/Pictures/Screenshot
 
 # Define the screenshot file name with timestamp
-FILE=~/Pictures/Screenshot/screenshot_$(date +%Y-%m-%d_%H-%M-%S).png
+FILE=~/Pictures/screenshot/screenshot_$(date +%Y-%m-%d_%H-%M-%S).png
 
 # Check if required tools are installed
 if ! command -v grim &>/dev/null || ! command -v slurp &>/dev/null; then
