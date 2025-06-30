@@ -13,6 +13,8 @@ M.base46 = {
 	hl_override = {
 		Comment = { italic = true },
 		["@comment"] = { italic = true },
+		FloatBorder = { fg = "grey_fg" },
+		-- FloatBorder = { fg = "blue" }
 	},
 }
 

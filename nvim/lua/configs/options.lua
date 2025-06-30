@@ -4,7 +4,7 @@ local g = vim.g
 
 o.completeopt = "menuone,noinsert,noselect,popup"
 o.sidescroll = 1
-o.sidescrolloff = 5
+o.sidescrolloff = 8
 o.wrap = false
 o.linebreak = true
 o.breakindent = true
@@ -50,7 +50,7 @@ o.undofile = true
 -- interval for writing swap file to disk, also used by gitsigns
 o.updatetime = 250
 
--- opt.whichwrap:append("<>[]hl")
+opt.whichwrap:append("<>[]hl")
 
 -- disable some default providers
 g.loaded_node_provider = 0

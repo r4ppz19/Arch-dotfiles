@@ -3,12 +3,22 @@ return {
 	install = { colorscheme = { "nvchad" } },
 
 	ui = {
+		border = "single",
+		size = {
+			width = 0.8,
+			height = 0.8,
+		},
 		icons = {
 			ft = "",
 			lazy = "󰂠 ",
 			loaded = "",
 			not_loaded = "",
 		},
+	},
+
+	change_detection = {
+		enabled = true,
+		notify = false,
 	},
 
 	performance = {

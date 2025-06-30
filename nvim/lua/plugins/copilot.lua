@@ -29,10 +29,10 @@ return {
 		"CopilotChatAgents",
 	},
 	keys = {
-		-- In your plugin config or keymaps.lua
 		{ "<leader>ca", "<cmd>CopilotChatAgents<cr>", desc = "Copilot Agents" },
 		{ "<leader>cp", "<cmd>CopilotChatPrompts<cr>", desc = "Copilot Prompts" },
 		{ "<leader>cm", "<cmd>CopilotChatModels<cr>", desc = "Copilot Models" },
-		{ "<leader>cc", "<cmd>CopilotChatToggle<cr>", desc = "Copilot Chat" },
+		{ "<leader>cc", "<cmd>CopilotChatToggle<cr>", mode = "n", desc = "Copilot Chat" },
+		{ "<leader>cc", "<cmd>CopilotChatToggle<cr>", mode = "v", desc = "Copilot Chat" },
 	},
 }

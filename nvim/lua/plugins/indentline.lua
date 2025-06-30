@@ -27,6 +27,10 @@ return {
 				"notify",
 				"toggleterm",
 				"lazyterm",
+				"NvimTree",
+				"neo-tree",
+				"Trouble",
+				"alpha",
 			},
 			buftypes = {
 				"terminal",

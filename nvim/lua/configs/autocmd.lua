@@ -1,3 +1,30 @@
+local api = vim.api
+
+-- Python and Java = 4 spaces
+api.nvim_create_autocmd("FileType", {
+	pattern = { "python", "java" },
+	callback = function()
+		vim.bo.tabstop = 4
+		vim.bo.shiftwidth = 4
+		vim.bo.softtabstop = 4
+		vim.bo.expandtab = true
+	end,
+})
+
+-- All other filetypes = 2 spaces (except the above)
+api.nvim_create_autocmd("FileType", {
+	pattern = "*",
+	callback = function()
+		local ft = vim.bo.filetype
+		if ft ~= "python" and ft ~= "java" then
+			vim.bo.tabstop = 2
+			vim.bo.shiftwidth = 2
+			vim.bo.softtabstop = 2
+			vim.bo.expandtab = true
+		end
+	end,
+})
+
 -- Hightlight yanking
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
@@ -9,14 +36,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- Trim trailing whitespace on save
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*" },
-  callback = function()
-    local exclude = { "markdown", "gitcommit" }
-    if vim.tbl_contains(exclude, vim.bo.filetype) then return end
-    local save_cursor = vim.fn.getpos(".")
-    vim.cmd([[%s/\s\+$//e]])
-    vim.fn.setpos(".", save_cursor)
-  end,
+	pattern = { "*" },
+	callback = function()
+		local exclude = { "markdown", "gitcommit" }
+		if vim.tbl_contains(exclude, vim.bo.filetype) then
+			return
+		end
+		local save_cursor = vim.fn.getpos(".")
+		vim.cmd([[%s/\s\+$//e]])
+		vim.fn.setpos(".", save_cursor)
+	end,
 })
 
 -- From nvchad default

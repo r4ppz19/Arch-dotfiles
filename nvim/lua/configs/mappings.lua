@@ -8,9 +8,9 @@ map("i", "<S-Right>", "<C-o>e", { desc = "Move to the end of the word in insert 
 
 map({ "n", "v" }, "<S-Up>", "<C-u>", { desc = "Scroll half a page up" })
 map({ "n", "v" }, "<S-Down>", "<C-d>", { desc = "Scroll half a page down" })
-
 map("i", "<S-Up>", "<C-o><C-u>", { desc = "Scroll half a page up in insert mode" })
 map("i", "<S-Down>", "<C-o><C-d>", { desc = "Scroll half a page down in insert mode" })
+
 map("n", "<C-Down>", "<C-e>", { desc = "Scroll window down one line" })
 map("n", "<C-Up>", "<C-y>", { desc = "Scroll window up one line" })
 
@@ -47,25 +47,47 @@ map({ "n", "x" }, "<leader>pf", function()
 	require("conform").format({ lsp_fallback = true })
 end, { desc = "general format file" })
 map("n", "<leader>pm", "<cmd>MarkdownPreview<cr>", { desc = "Makrdown preview" })
-map("n", "<leader>pl", "<cmd>LiveServerStart<CR>", { desc = "Live Preview" })
+map("n", "<leader>pls", "<cmd>LiveServerStart<CR>", { desc = "Live Preview Start" })
+map("n", "<leader>plx", "<cmd>LiveServerStop<CR>", { desc = "Live Preview Stop" })
 
 -- TELESCOPE
-map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Telescope: live grep" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Telescope: find buffers" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Telescope: help page" })
 map("n", "<leader>fm", "<cmd>Telescope marks<CR>", { desc = "Telescope: find marks" })
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "Telescope: find oldfiles" })
-map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope: find in current buffer" })
-map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope: git commits" })
-map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "Telescope: git status" })
 map("n", "<leader>ft", "<cmd>Telescope terms<CR>", { desc = "Telescope pick: hidden term" })
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Telescope: find files" })
+map("n", "<leader>fc", "<cmd>Telescope commands<CR>", { desc = "Telescope: command palette" })
+map("n", "<leader>fq", "<cmd>Telescope quickfix<CR>", { desc = "Telescope: quickfix list" })
+map("n", "<leader>fl", "<cmd>Telescope loclist<CR>", { desc = "Telescope: location list" })
 map(
 	"n",
 	"<leader>fa",
 	"<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
 	{ desc = "Telescope: find all files" }
 )
+map("n", "<leader>fH", function()
+	require("telescope.builtin").find_files({
+		prompt_title = "Home Files",
+		cwd = vim.fn.expand("~"),
+		hidden = true,
+		no_ignore = true,
+		follow = true,
+	})
+end, { desc = "Telescope: find files from $HOME" })
+map("n", "<leader>fgc", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope: find in current buffer" })
+map("n", "<leader>fgl", "<cmd>Telescope live_grep<CR>", { desc = "Telescope: live grep" })
+map("n", "<leader>fgh", function()
+	require("telescope.builtin").live_grep({
+		prompt_title = "Grep in Home",
+		cwd = vim.fn.expand("~"),
+		additional_args = function()
+			return { "--hidden", "--no-ignore" }
+		end,
+	})
+end, { desc = "Telescope: grep in $HOME" })
+map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope: git commits" })
+map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "Telescope: git status" })
 
 -- NVCHAD
 map("n", "<leader>nc", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
