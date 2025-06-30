@@ -1,6 +1,6 @@
-# =========================================================================================
-# Environment Variables
-# =========================================================================================
+#  ╭─────────────────────────────────────────────╮
+#  │           Environment Variables             │
+#  ╰─────────────────────────────────────────────╯
 
 # nvm
 source /usr/share/nvm/init-nvm.sh
@@ -20,13 +20,6 @@ export KEYTIMEOUT=1
 export HISTFILE=~/.zsh_history
 export HISTSIZE=50000
 export SAVEHIST=50000
-
-# nnn
-export NNN_PLUG='f:finder;o:fzopen;p:mocq;d:diffs;t:nmount;v:imgview'
-export NNN_TMPFILE='/tmp/.lastd' 
-export NNN_FCOLORS="a088429691af6ccb84d68e6d"
-export NNN_COLORS="#2828283c504a"
-export NNN_OPTS="ec" # opener
 
 # fzf
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git --exclude node_modules --exclude .cache"
