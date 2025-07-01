@@ -37,8 +37,7 @@ if [[ $- == *i* ]]; then
     source "$zsh_config_dir/functions.zsh"
     source "$zsh_config_dir/keybindings.zsh"
   else
-    echo "Warning: Zsh config directory '$zsh_config_dir' not found."
-    echo "Please ensure your Zsh dotfiles are in '$dotfiles_zsh_dir'."
+    echo "Warning: zsh config directory '$zsh_config_dir' not found."
   fi
 
   # Load Powerlevel10k config - Typically loaded last
