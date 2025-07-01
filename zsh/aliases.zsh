@@ -14,7 +14,6 @@ alias tree="eza -T --icons --group-directories-first --color=auto"
 alias less="less -SRX"
 alias mv="mv -v"
 alias cp="cp -v"
-alias rm="rm -v"
 alias mkdir="mkdir -pv"
 alias ..="cd .."
 
