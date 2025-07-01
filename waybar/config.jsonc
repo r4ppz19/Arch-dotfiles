@@ -49,8 +49,8 @@
     "format-icons": {
       "1": "",
       "2": "",
-      "3": "",
-      "4": "",
+      "3": "",
+      "4": "",
       "5": "󰝰",
       "6": "",
       "7": "󰍛",
@@ -74,7 +74,7 @@
   "icon-size": 9,
   "separate-outputs": true
   },
-  
+
   // Hyprland Submap
   "hyprland/submap": {
     "format": "{}",
