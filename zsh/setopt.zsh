@@ -14,5 +14,5 @@ setopt hist_find_no_dups      # Prevent duplicates from showing in reverse-i-sea
 setopt hist_save_no_dups      # Don't write duplicates to `.zsh_history`
 setopt interactive_comments   # Allow `#` to be used as comments even interactively
 setopt hist_ignore_space      # Don't save commands starting with a space
-setopt extendedglob           # Enables powerful globbing (like `^`, `~`, `**/`, etc.)
+setopt extended_glob          # Enables powerful globbing (like `^`, `~`, `**/`, etc.)
 setopt notify                 # Immediately notify background job status
