@@ -3,7 +3,7 @@
 #  ╰─────────────────────────────────────────────╯
 
 # filter history
-HISTORY_IGNORE='( *"*" | *''* )'
+HISTORY_IGNORE='(*"*"*|*'\''*)'
 zshaddhistory() {
   emulate -L zsh
   [[ $1 != ${~HISTORY_IGNORE}[[:space:]]## ]]
