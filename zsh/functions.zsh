@@ -3,10 +3,11 @@
 #  ╰─────────────────────────────────────────────╯
 
 # filter history
-HISTORY_IGNORE='(*"*"*|*'\''*)'
+setopt EXTENDED_HISTORY
 zshaddhistory() {
   emulate -L zsh
-  [[ $1 != ${~HISTORY_IGNORE}[[:space:]]## ]]
+  [[ $1 == *\'* || $1 == *\"* ]] && return 1
+  return 0
 }
 
 # yazi
