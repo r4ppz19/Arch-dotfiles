@@ -26,6 +26,8 @@ alias sm='~/Arch-dotfiles/scripts/tmux-session-manager.py'
 alias ssh='TERM=xterm-256color ssh'
 alias top='btop'
 alias of="~/Arch-dotfiles/scripts/open-file.sh"
+alias fs="sudo systemctl start smb.service nmb.service"
+alias fss="sudo systemctl stop smb.service nmb.service"
 
 # AI
 alias explain='gh copilot explain'
