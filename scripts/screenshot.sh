@@ -15,7 +15,7 @@ flock -n 200 || {
 }
 
 # Ensure the screenshot directory exists
-mkdir -p ~/Pictures/Screenshot
+mkdir -p ~/Pictures/screenshot
 
 # Define the screenshot file name with timestamp
 FILE=~/Pictures/screenshot/screenshot_$(date +%Y-%m-%d_%H-%M-%S).png
