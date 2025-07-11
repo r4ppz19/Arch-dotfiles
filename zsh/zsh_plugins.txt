@@ -4,5 +4,3 @@ zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
 zsh-users/zsh-history-substring-search
 zsh-users/zsh-syntax-highlighting
-le0me55i/zsh-extract
-hlissner/zsh-autopair
