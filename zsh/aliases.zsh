@@ -16,6 +16,7 @@ alias mv="mv -v"
 alias cp="cp -v"
 alias mkdir="mkdir -pv"
 alias ..="cd .."
+alias open="xdg-open"
 
 alias compress='tar -czvf'
 alias r='ranger --choosedir="$HOME/.rangerdir"; LASTDIR=$(cat "$HOME/.rangerdir"); cd "$LASTDIR"'
