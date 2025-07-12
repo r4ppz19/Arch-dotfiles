@@ -1,12 +1,10 @@
 ## My personal dotfiles for Arch Linux + Hyprland.
 
-**Ricing is personal art.**
-
 This is my setup's **backup** in case I mess something up, a living **reference** of how I've configured things, and a place to keep track of stuff I've **learned** using Linux.
 
 These files fit *my* workflow and *my* taste. Look through, take ideas, build your own ;)
 
-## Setup
+### Setup
 
 * **OS:** Arch Linux
 * **WM:** [Hyprland](https://hyprland.org/)
