@@ -2,26 +2,20 @@
 #  │           Environment Variables             │
 #  ╰─────────────────────────────────────────────╯
 
-# nvm
+# init
 source /usr/share/nvm/init-nvm.sh
-
-# fzf
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
-export EDITOR=nvim
-export VISUAL=nvim
-export GOPATH=$HOME/.go
+export EDITOR='nvim'
+export VISUAL='nvim'
+export GOPATH="$HOME/.go"
 
-# Reduce completion delay
 export KEYTIMEOUT=1
-
-# History file configuration
 export HISTFILE=~/.zsh_history
 export HISTSIZE=50000
 export SAVEHIST=50000
 
-# fzf
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git --exclude node_modules --exclude .cache"
 export FZF_ALT_C_COMMAND="fd --type d --hidden --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
