@@ -48,6 +48,3 @@ These files fit _my_ workflow and _my_ taste. Look through, take ideas, build yo
 
 ## </details>
 
----
-
-#### 📦 [List of all installed packages on the system](pkglist.txt)
