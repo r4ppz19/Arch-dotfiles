@@ -1,7 +1,6 @@
 # Rofi Configuration
 
-This rofi configuration is based on [adi1090x/rofi](https://github.com/adi1090x/rofi) with a little bit of adjustment for my Hyprland setup.
+This rofi configuration is based on [adi1090x/rofi](https://github.com/adi1090x/rofi) with adjustment for my Hyprland setup.
 
-## Original Work
-The original configuration and themes are created by [Aditya Shakya (@adi1090x)](https://github.com/adi1090x) and are licensed under GPL-3.0. You can find the original project here:
-- Original Repository: https://github.com/adi1090x/rofi
+All unused themes, scripts, and assets from the original repo have been removed for a minimal and clean setup.
+
