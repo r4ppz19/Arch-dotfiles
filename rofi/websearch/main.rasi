@@ -3,14 +3,14 @@ configuration {
 }
 
 /*****----- Global Properties -----*****/
+@import "~/.config/rofi/shared/font.rasi"
 * {
-    font:            "JetBrainsMono Nerd Font 10";
     background:      #282828FF;
-    background-alt:  #3c3836FF;
-    foreground:      #ebdbb2FF;
+    background-alt:  #353535FF;
+    foreground:      #EBDBB2FF;
     selected:        #504945FF;
-    active:          #b8bb26FF;
-    urgent:          #fb4934FF;
+    active:          #B8BB26FF;
+    urgent:          #FB4934FF;
 }
 
 /*****----- Window -----*****/
@@ -19,7 +19,7 @@ window {
     anchor: center;
     fullscreen: false;
     width: 25%;
-    border: 1px;
+    border: 2px;
     border-radius: 2px;
     padding: 10px;
     border-color: @selected;
@@ -48,5 +48,6 @@ entry {
     background-color: inherit;
     text-color: @foreground;
     placeholder: "Search...";
-    placeholder-color: #a89984;
+    placeholder-color: #A89984FF; /* kept consistent with Gruvbox palette */
 }
+

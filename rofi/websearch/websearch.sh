@@ -4,7 +4,7 @@
 engine_url="https://www.google.com/search?q="
 
 # Prompt user for query
-query=$(rofi -dmenu -theme "$HOME/Arch-dotfiles/rofi/randog/websearch.rasi")
+query=$(rofi -dmenu -theme "$HOME/.config/rofi/websearch/main.rasi")
 
 # Exit if query is empty
 [ -z "$query" ] && exit
