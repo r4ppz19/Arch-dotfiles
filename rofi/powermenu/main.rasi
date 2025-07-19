@@ -5,9 +5,10 @@ configuration {
 
 /*****----- Global Properties -----*****/
 @import "~/.config/rofi/shared/gruvbox.rasi"
-@import "~/.config/rofi/shared/font.rasi"
+
 
 * {
+    font: "JetBrains Mono Nerd Font 12";
     /* Resolution : 1366x768 */
     box-spacing:                 30px;
     box-margin:                  200px 200px;

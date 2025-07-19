@@ -3,7 +3,6 @@
 # Directories & Theme
 dir="$HOME/.config/rofi/powermenu"
 theme='main'
-theme2='confirm'
 
 # Get system info
 uptime="$(uptime -p | sed -e 's/up //g')"
@@ -31,7 +30,7 @@ confirm_cmd() {
   rofi -dmenu \
     -p 'Confirmation' \
     -mesg 'Are you sure?' \
-    -theme "${dir}/${theme2}.rasi"
+    -theme "${dir}/confirm.rasi"
 }
 
 # Ask for Confirmation
