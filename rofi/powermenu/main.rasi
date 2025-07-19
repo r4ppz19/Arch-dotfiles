@@ -1,32 +1,24 @@
-/**
- *
- * Author : Aditya Shakya (adi1090x)
- * Github : @adi1090x
- * 
- * Rofi Theme File
- * Rofi Version: 1.7.3
- **/
-
 /*****----- Configuration -----*****/
 configuration {
     show-icons:                 false;
 }
 
 /*****----- Global Properties -----*****/
-@import                          "shared/colors.rasi"
-@import                          "shared/fonts.rasi"
+@import "~/.config/rofi/shared/gruvbox.rasi"
+@import "~/.config/rofi/shared/font.rasi"
 
 * {
-    /* Resolution : 1920x1080 */
-    box-spacing:                 50px;
-    box-margin:                  300px 200px;
+    /* Resolution : 1366x768 */
+    box-spacing:                 30px;
+    box-margin:                  200px 200px;
+    message-margin:              0px 200px;
     inputbar-spacing:            0px;
     list-spacing:                30px;
-    general-padding:             20px;
-    element-padding:             80px 10px;
-    element-radius:              100%;
-    general-radius:              100%;
-    element-font:                "feather 64";
+    general-padding:             15px;
+    element-padding:             40px 8px;
+    element-radius:              15px;
+    general-radius:              80%;
+    element-font:                "feather 36";
 }
 
 /*****----- Main Window -----*****/
@@ -61,7 +53,7 @@ mainbox {
     border-radius:               0px;
     border-color:                @selected;
     background-color:            transparent;
-    children:                    [ "inputbar", "listview" ];
+    children:                    [ "message", "listview" ];
 }
 
 /*****----- Inputbar -----*****/
@@ -87,14 +79,14 @@ textbox-prompt-colon {
     expand:                      false;
     str:                         "SYSTEM";
     padding:                     var(general-padding);
-    border-radius:               100% 0px 0px 100%;
+    border-radius:               var(general-radius);
     background-color:            @urgent;
     text-color:                  @background;
 }
 prompt {
     enabled:                     true;
     padding:                     var(general-padding);
-    border-radius:               0px 100% 100% 0px;
+    border-radius:               var(general-radius);
     background-color:            @active;
     text-color:                  @background;
 }
@@ -102,9 +94,9 @@ prompt {
 /*****----- Message -----*****/
 message {
     enabled:                     true;
-    margin:                      0px;
+    margin:                      var(message-margin);
     padding:                     var(general-padding);
-    border:                      0px solid;
+    border:                      0px;
     border-radius:               var(general-radius);
     border-color:                @selected;
     background-color:            @background-alt;
@@ -140,7 +132,7 @@ listview {
     reverse:                     false;
     fixed-height:                true;
     fixed-columns:               true;
-    
+
     spacing:                     var(list-spacing);
     margin:                      0px;
     padding:                     0px;
