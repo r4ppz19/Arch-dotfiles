@@ -7,7 +7,7 @@
   "control-center-layer": "top",
   "layer-shell": true,
   "layer-shell-cover-screen": true,
-  "cssPriority": "highest",
+  "cssPriority": "user",
   "control-center-margin-top": 15,
   "control-center-margin-bottom": 15,
   "control-center-margin-right": 15,
@@ -76,8 +76,6 @@
       "text": "Label Text"
     },
     "mpris": {
-      "blacklist": [],
-      "autohide": false,
       "show-album-art": "always",
       "loop-carousel": false
     },
