@@ -9,8 +9,8 @@
   margin-right: 8px;
   box-shadow: none;
   border: none;
-  min-width: 24px;
-  min-height: 24px;
+  min-width: 20px;
+  min-height: 20px;
 }
 
 .close-button:hover {
@@ -30,7 +30,7 @@
 }
 
 .notification-row .notification-background {
-  padding: 6px 12px;
+  margin: 0px -6px 0px 0px;
 }
 
 .notification-row .notification-background .notification {
@@ -74,7 +74,7 @@
 
 .notification-row .notification-background .notification .notification-default-action:hover {
   -gtk-icon-filter: none;
-  background: #282828
+  background: #282828;
 }
 
 .notification-row .notification-background .notification .notification-default-action:not(:only-child) {
@@ -179,7 +179,7 @@
 }
 
 .notification-row .notification-background .notification .notification-default-action .notification-content .inline-reply .inline-reply-button:hover {
-  background: #383838;
+  background: #282828;
 }
 
 .notification-row .notification-background .notification .notification-alt-actions {
@@ -193,19 +193,24 @@
   /* The alternative actions below the default action */
   margin: 4px;
   padding: 0;
+  font-size: 10px;
 }
 
 .notification-row .notification-background .notification .notification-action>button {
   border-radius: 2px;
+  font-size: 10px;
+  padding: 1px;
 }
 
 .notification-group {
   /* Styling only for Grouped Notifications */
   transition: opacity 200ms ease-in-out;
+  outline: none;
 }
 
 .notification-group:focus {
   background: #282828;
+  outline: none;
 }
 
 /* .notification-group.low {
@@ -230,32 +235,35 @@
   color: #EBDBB2;
 }
 
-/* .notification-group .notification-group-headers {
-  /* Notification Group Headers
-} */
+.notification-group .notification-group-headers {
+  font-size: 10px;
+  width: 10px;
+  height: 10px;
+}
 
 .notification-group .notification-group-headers .notification-group-icon {
   color: #EBDBB2;
-  -gtk-icon-size: 25px;
+  -gtk-icon-size: 17px;
+  font-size: 12px;
 }
 
 .notification-group .notification-group-headers .notification-group-header {
+  font-size: 12px;
   color: #EBDBB2;
 }
 
-/* .notification-group .notification-group-buttons {
-} */
+.notification-group .notification-group-buttons {
+  margin: 5px;
+}
 
-/* .notification-group.collapsed {
-  /* When another group is expanded, lower the opacity of the collapsed ones
-} */
+/* .notification-group.collapsed {} */
 
 .notification-group.collapsed.not-expanded {
   opacity: 1.0;
 }
 
 .notification-group.collapsed .notification-row .notification {
-  background-color: rgb(48, 48, 48);
+  background-color: #303030;
 }
 
 /* .notification-group.collapsed .notification-row:not(:last-child) {
@@ -269,7 +277,7 @@
 }
 
 .notification-group.collapsed:hover .notification-row:not(:only-child) .notification {
-  background-color: #383838;
+  background-color: #282828;
 }
 
 .control-center {
@@ -278,6 +286,7 @@
   color: #EBDBB2;
   border-radius: 2px;
   border: 1px solid #504945;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
 }
 
 .control-center .control-center-list-placeholder {
@@ -290,9 +299,9 @@
   background: transparent;
 }
 
-.control-center .control-center-list .notification {
+/* .control-center .control-center-list .notification {
   box-shadow: 0 0 0 1px rgb(0, 0, 0), 0 1px 3px 1px rgb(0, 0, 0), 0 2px 6px 2px rgb(0, 0, 0);
-}
+} */
 
 .control-center .control-center-list .notification .notification-default-action,
 .control-center .control-center-list .notification .notification-action {
@@ -301,7 +310,7 @@
 
 .control-center .control-center-list .notification .notification-default-action:hover,
 .control-center .control-center-list .notification .notification-action:hover {
-  background-color: #383838;
+  background-color: #282828;
 }
 
 .blank-window {
@@ -365,17 +374,17 @@
 /* Mpris widget */
 .widget-mpris {
   margin: 5px;
-  /* The parent to all players */
 }
 
 .widget-mpris .widget-mpris-player {
-  margin: 16px 20px;
-  border-radius: 5px;
+  margin: 10px 10px;
+  border-radius: 2px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
+  border: 1px solid #504945;
 }
 
 .widget-mpris .widget-mpris-player .mpris-background {
-  filter: blur(10px);
+  filter: blur(2px);
 }
 
 .widget-mpris .widget-mpris-player .mpris-overlay {
@@ -385,11 +394,11 @@
 
 .widget-mpris .widget-mpris-player .mpris-overlay button:hover {
   /* The media player buttons (play, pause, next, etc...) */
-  background: #383838;
+  background: #282828;
 }
 
 .widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-album-art {
-  border-radius: 5px;
+  border-radius: 2px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
   -gtk-icon-size: 50px;
 }
@@ -403,18 +412,22 @@
   font-size: 10px;
 }
 
-/* .widget-mpris .widget-mpris-player .mpris-overlay > box > button {
-} */
+.widget-mpris .widget-mpris-player .mpris-overlay>box>button {
+  margin: 2px;
+  color: #EBDBB2;
+}
 
 .widget-mpris .widget-mpris-player .mpris-overlay>box>button:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* .widget-mpris > box > button {
+.widget-mpris>box>button {
+  color: #EBDBB2;
 }
 
-.widget-mpris > box > button:disabled {
-} */
+.widget-mpris>box>button:disabled {
+  color: #5C554A;
+}
 
 /* Buttons widget */
 .widget-buttons-grid {
