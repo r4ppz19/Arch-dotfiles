@@ -218,7 +218,7 @@
 } */
 
 /* .notification-group.normal {
-  /* Low Priority Group 
+  /* Low Priority Group
 } */
 
 /* .notification-group.critical {
@@ -263,7 +263,7 @@
 }
 
 .notification-group.collapsed .notification-row .notification {
-  background-color: #303030;
+  background-color: #1D2021;
 }
 
 /* .notification-group.collapsed .notification-row:not(:last-child) {
