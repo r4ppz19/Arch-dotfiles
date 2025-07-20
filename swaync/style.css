@@ -179,7 +179,7 @@
 }
 
 .notification-row .notification-background .notification .notification-default-action .notification-content .inline-reply .inline-reply-button:hover {
-  background: #383838;
+  background: #282828;
 }
 
 .notification-row .notification-background .notification .notification-alt-actions {
@@ -252,8 +252,11 @@
   color: #EBDBB2;
 }
 
-/* .notification-group .notification-group-buttons {}
-.notification-group.collapsed {} */
+.notification-group .notification-group-buttons {
+  margin: 5px;
+}
+
+/* .notification-group.collapsed {} */
 
 .notification-group.collapsed.not-expanded {
   opacity: 1.0;
@@ -274,7 +277,7 @@
 }
 
 .notification-group.collapsed:hover .notification-row:not(:only-child) .notification {
-  background-color: #383838;
+  background-color: #282828;
 }
 
 .control-center {
@@ -283,6 +286,7 @@
   color: #EBDBB2;
   border-radius: 2px;
   border: 1px solid #504945;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
 }
 
 .control-center .control-center-list-placeholder {
@@ -306,7 +310,7 @@
 
 .control-center .control-center-list .notification .notification-default-action:hover,
 .control-center .control-center-list .notification .notification-action:hover {
-  background-color: #383838;
+  background-color: #282828;
 }
 
 .blank-window {
