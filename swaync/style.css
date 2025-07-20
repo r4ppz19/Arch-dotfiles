@@ -205,10 +205,12 @@
 .notification-group {
   /* Styling only for Grouped Notifications */
   transition: opacity 200ms ease-in-out;
+  outline: none;
 }
 
 .notification-group:focus {
   background: #282828;
+  outline: none;
 }
 
 /* .notification-group.low {
