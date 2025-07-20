@@ -30,7 +30,7 @@
 }
 
 .notification-row .notification-background {
-  padding: 6px 12px;
+  margin: 0px -6px 0px 0px;
 }
 
 .notification-row .notification-background .notification {
