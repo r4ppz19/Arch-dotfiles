@@ -26,7 +26,7 @@
 }
 
 .notification-row:focus {
-  background: #444444;
+  background: #282828
 }
 
 .notification-row .notification-background {
@@ -74,7 +74,7 @@
 
 .notification-row .notification-background .notification .notification-default-action:hover {
   -gtk-icon-filter: none;
-  background: #383838;
+  background: #282828
 }
 
 .notification-row .notification-background .notification .notification-default-action:not(:only-child) {
