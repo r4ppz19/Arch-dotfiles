@@ -9,8 +9,8 @@
   margin-right: 8px;
   box-shadow: none;
   border: none;
-  min-width: 24px;
-  min-height: 24px;
+  min-width: 20px;
+  min-height: 20px;
 }
 
 .close-button:hover {
