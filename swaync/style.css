@@ -60,17 +60,14 @@
   background: rgb(var(--noti-bg)); /* Changed from rgba to rgb, removed alpha variable */
 }
 
-.notification-row .notification-background .notification.low {
-  /* Low Priority Notification */
+/* .notification-row .notification-background .notification.low {
 }
 
 .notification-row .notification-background .notification.normal {
-  /* Normal Priority Notification */
 }
 
 .notification-row .notification-background .notification.critical {
-  /* Critical Priority Notification */
-}
+} */
 
 .notification-row .notification-background .notification .notification-default-action {
   /* The large action that also displays the notification summary and body */
@@ -222,17 +219,17 @@
   background: var(--noti-bg-focus);
 }
 
-.notification-group.low {
-  /* Low Priority Group */
-}
+/* .notification-group.low {
+  /* Low Priority Group
+} */
 
-.notification-group.normal {
-  /* Low Priority Group */
-}
+/* .notification-group.normal {
+  /* Low Priority Group 
+} */
 
-.notification-group.critical {
-  /* Low Priority Group */
-}
+/* .notification-group.critical {
+  /* Low Priority Group
+} */
 
 .notification-group .notification-group-close-button .close-button {
   margin: 12px 20px;
@@ -243,9 +240,9 @@
   color: var(--text-color);
 }
 
-.notification-group .notification-group-headers {
-  /* Notification Group Headers */
-}
+/* .notification-group .notification-group-headers {
+  /* Notification Group Headers
+} */
 
 .notification-group .notification-group-headers .notification-group-icon {
   color: var(--text-color);
@@ -256,13 +253,12 @@
   color: var(--text-color);
 }
 
-.notification-group .notification-group-buttons {
-  /* Notification Group Buttons */
-}
+/* .notification-group .notification-group-buttons {
+} */
 
-.notification-group.collapsed {
-  /* When another group is expanded, lower the opacity of the collapsed ones */
-}
+/* .notification-group.collapsed {
+  /* When another group is expanded, lower the opacity of the collapsed ones
+} */
 
 .notification-group.collapsed.not-expanded {
   opacity: 1.0; /* Changed opacity to 1.0 for full opacity */
@@ -272,10 +268,10 @@
   background-color: rgb(var(--noti-bg)); /* Changed from rgba to rgb */
 }
 
-.notification-group.collapsed .notification-row:not(:last-child) {
+/* .notification-group.collapsed .notification-row:not(:last-child) {
   /* Top notification in stack */
-  /* Set lower stacked notifications opacity to 0 */
-}
+  /* Set lower stacked notifications opacity to 0
+} */
 
 .notification-group.collapsed .notification-row:not(:last-child) .notification-action,
 .notification-group.collapsed .notification-row:not(:last-child) .notification-default-action {
@@ -415,21 +411,18 @@
   font-size: 1rem;
 }
 
-.widget-mpris .widget-mpris-player .mpris-overlay > box > button {
-  /* Change player control buttons */
-}
+/* .widget-mpris .widget-mpris-player .mpris-overlay > box > button {
+} */
 
 .widget-mpris .widget-mpris-player .mpris-overlay > box > button:hover {
   background-color: var(--mpris-button-hover);
 }
 
-.widget-mpris > box > button {
-  /* Change player side buttons */
+/* .widget-mpris > box > button {
 }
 
 .widget-mpris > box > button:disabled {
-  /* Change player side buttons insensitive */
-}
+} */
 
 /* Buttons widget */
 .widget-buttons-grid {
@@ -442,12 +435,11 @@
   border-radius: 2px;
 }
 
-.widget-buttons-grid flowboxchild > button.toggle:checked {
-  /* style given to the active toggle button */
-}
+/* .widget-buttons-grid flowboxchild > button.toggle:checked {
+} */
 
 /* Menubar widget */
-.widget-menubar {
+/* .widget-menubar {
   /* The revealer buttons */
   /* .AnyName { Name defined in config after #
      background-color: rgb(var(--noti-bg)); // Changed from rgba to rgb
@@ -463,14 +455,14 @@
 
    .AnyName>button:hover {
      background-color: var(--noti-bg-hover);
-   } */
+   }
 }
 
 .widget-menubar > .menu-button-bar {
   /* The left button container */
   /* The right button container */
-  /* The left and right button container */
-}
+  /* The left and right button container
+} */
 
 .widget-menubar > .menu-button-bar > .start {
   margin-left: 8px;
