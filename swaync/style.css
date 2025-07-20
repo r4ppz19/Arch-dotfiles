@@ -37,19 +37,28 @@
   /* The actual notification */
   border-radius: 2px;
   border: 1px solid #504945;
-  padding: 0;
   transition: background 0.15s ease-in-out;
   background: rgb(48, 48, 48);
+  padding: 2px 4px;
 }
 
-/* .notification-row .notification-background .notification.low {
+.notification-row .notification-background .notification.low {
+  background: rgb(48, 48, 48);
+  border-left: 3px solid #EBDBB2;
+  padding: 2px 4px;
 }
 
 .notification-row .notification-background .notification.normal {
+  background: rgb(48, 48, 48);
+  border-left: 3px solid #83A598;
+  padding: 2px 4px;
 }
 
 .notification-row .notification-background .notification.critical {
-} */
+  background: rgb(48, 48, 48);
+  border-left: 3px solid #FB4934;
+  padding: 2px 4px;
+}
 
 .notification-row .notification-background .notification .notification-default-action {
   /* The large action that also displays the notification summary and body */
@@ -85,7 +94,6 @@
   -gtk-icon-filter: none;
   -gtk-icon-size: 25px;
   border-radius: 50px;
-  /* Size in px */
   margin: 4px;
 }
 
