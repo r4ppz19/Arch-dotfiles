@@ -370,17 +370,17 @@
 /* Mpris widget */
 .widget-mpris {
   margin: 5px;
-  /* The parent to all players */
 }
 
 .widget-mpris .widget-mpris-player {
-  margin: 16px 20px;
-  border-radius: 5px;
+  margin: 10px 10px;
+  border-radius: 2px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
+  border: 1px solid #504945;
 }
 
 .widget-mpris .widget-mpris-player .mpris-background {
-  filter: blur(10px);
+  filter: blur(2px);
 }
 
 .widget-mpris .widget-mpris-player .mpris-overlay {
@@ -390,11 +390,11 @@
 
 .widget-mpris .widget-mpris-player .mpris-overlay button:hover {
   /* The media player buttons (play, pause, next, etc...) */
-  background: #383838;
+  background: #282828;
 }
 
 .widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-album-art {
-  border-radius: 5px;
+  border-radius: 2px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
   -gtk-icon-size: 50px;
 }
@@ -408,18 +408,22 @@
   font-size: 10px;
 }
 
-/* .widget-mpris .widget-mpris-player .mpris-overlay > box > button {
-} */
+.widget-mpris .widget-mpris-player .mpris-overlay>box>button {
+  margin: 2px;
+  color: #EBDBB2;
+}
 
 .widget-mpris .widget-mpris-player .mpris-overlay>box>button:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* .widget-mpris > box > button {
+.widget-mpris>box>button {
+  color: #EBDBB2;
 }
 
-.widget-mpris > box > button:disabled {
-} */
+.widget-mpris>box>button:disabled {
+  color: #5C554A;
+}
 
 /* Buttons widget */
 .widget-buttons-grid {
