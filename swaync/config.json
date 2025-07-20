@@ -1,30 +1,31 @@
 {
   "$schema": "/etc/xdg/swaync/configSchema.json",
+  "ignore-gtk-theme": true,
   "positionX": "right",
   "positionY": "top",
   "layer": "overlay",
   "control-center-layer": "top",
   "layer-shell": true,
   "layer-shell-cover-screen": true,
-  "cssPriority": "user",
+  "cssPriority": "highest",
   "control-center-margin-top": 15,
   "control-center-margin-bottom": 15,
   "control-center-margin-right": 15,
   "control-center-margin-left": 0,
   "notification-2fa-action": true,
   "notification-inline-replies": false,
-  "notification-icon-size": 25,
   "notification-body-image-height": 100,
   "notification-body-image-width": 200,
-  "timeout": 8,
-  "timeout-low": 4,
+  "timeout": 10,
+  "timeout-low": 5,
   "timeout-critical": 0,
   "fit-to-screen": true,
   "relative-timestamps": true,
   "control-center-width": 300,
-  "control-center-height": 400,
-  "notification-window-width": 320,
+  "control-center-height": 600,
+  "notification-window-width": 300,
   "keyboard-shortcuts": true,
+  "notification-grouping": true,
   "image-visibility": "when-available",
   "transition-time": 200,
   "hide-on-clear": false,
@@ -75,33 +76,23 @@
       "text": "Label Text"
     },
     "mpris": {
-      "image-size": 60,
-      "image-radius": 2
+      "blacklist": [],
+      "autohide": false,
+      "show-album-art": "always",
+      "loop-carousel": false
     },
     "buttons-grid": {
+      "buttons-per-row": 7,
       "actions": [
         {
-          "label": "󰖩",
+          "label": "直",
           "type": "toggle",
           "active": true,
           "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && nmcli radio wifi on || nmcli radio wifi off'",
           "update-command": "sh -c '[[ $(nmcli radio wifi) == \"enabled\" ]] && echo true || echo false'"
-        },
-        {
-          "label": "󰂯",
-          "type": "toggle",
-          "active": false,
-          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && bluetoothctl power on || bluetoothctl power off'",
-          "update-command": "sh -c 'bluetoothctl show | grep -q \"Powered: yes\" && echo true || echo false'"
         }
       ]
-    },
-    "volume": {
-      "label": "󰕾",
-      "show-per-app": false
-    },
-    "backlight": {
-      "label": "󰃠"
     }
   }
 }
+
