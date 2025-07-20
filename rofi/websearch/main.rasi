@@ -4,14 +4,7 @@ configuration {
 
 /*****----- Global Properties -----*****/
 @import "~/.config/rofi/shared/font.rasi"
-* {
-    background:      #282828FF;
-    background-alt:  #353535FF;
-    foreground:      #EBDBB2FF;
-    selected:        #504945FF;
-    active:          #B8BB26FF;
-    urgent:          #FB4934FF;
-}
+@import "~/.config/rofi/shared/gruvbox.rasi"
 
 /*****----- Window -----*****/
 window {
@@ -22,7 +15,7 @@ window {
     border: 2px;
     border-radius: 2px;
     padding: 10px;
-    border-color: @selected;
+    border-color: @border;
     background-color: @background;
 }
 
@@ -48,6 +41,6 @@ entry {
     background-color: inherit;
     text-color: @foreground;
     placeholder: "Search...";
-    placeholder-color: #A89984FF; /* kept consistent with Gruvbox palette */
+    placeholder-color: #A89984FF;
 }
 
