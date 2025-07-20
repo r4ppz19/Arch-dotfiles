@@ -38,24 +38,24 @@
   border-radius: 2px;
   border: 1px solid #504945;
   transition: background 0.15s ease-in-out;
-  background: #303030;
+  background: #282828;
   padding: 2px 4px;
 }
 
 .notification-row .notification-background .notification.low {
-  background: #303030;
+  background: #282828;
   border-left: 3px solid #EBDBB2;
   padding: 2px 4px;
 }
 
 .notification-row .notification-background .notification.normal {
-  background: #303030;
+  background: #282828;
   border-left: 3px solid #83A598;
   padding: 2px 4px;
 }
 
 .notification-row .notification-background .notification.critical {
-  background: #303030;
+  background: #282828;
   border-left: 3px solid #FB4934;
   padding: 2px 4px;
 }
