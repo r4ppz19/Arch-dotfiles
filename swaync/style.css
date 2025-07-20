@@ -112,7 +112,7 @@
 
 .notification-row .notification-background .notification .notification-default-action .notification-content .text-box .summary {
   /* Notification summary/title */
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
   background: transparent;
   color: #EBDBB2;
@@ -121,7 +121,7 @@
 
 .notification-row .notification-background .notification .notification-default-action .notification-content .text-box .time {
   /* Notification time-ago */
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
   background: transparent;
   color: #EBDBB2;
@@ -202,7 +202,6 @@
 .notification-group {
   /* Styling only for Grouped Notifications */
   transition: opacity 200ms ease-in-out;
-  /* The groups close button */
 }
 
 .notification-group:focus {
@@ -237,7 +236,7 @@
 
 .notification-group .notification-group-headers .notification-group-icon {
   color: #EBDBB2;
-  -gtk-icon-size: 27px;
+  -gtk-icon-size: 25px;
 }
 
 .notification-group .notification-group-headers .notification-group-header {
@@ -322,19 +321,27 @@
 /* Title widget */
 .widget-title>label {
   margin: 8px;
-  font-size: 14px;
+  font-weight: 700;
+  font-size: 12px;
 }
 
 .widget-title>button {
   margin: 8px;
   border-radius: 2px;
+  font-size: 10px;
+  background: #282828;
+  border: 1px solid #5C554A;
+  padding: 3px 10px;
+  color: #EBDBB2;
+  font-weight: 700;
+
 }
 
 /* DND widget */
 .widget-dnd label {
   color: #EBDBB2;
   margin: 8px;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .widget-dnd switch {
@@ -389,11 +396,11 @@
 
 .widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-title {
   font-weight: bold;
-  font-size: 11pxm;
+  font-size: 10px;
 }
 
 .widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-subtitle {
-  font-size: 11px;
+  font-size: 10px;
 }
 
 /* .widget-mpris .widget-mpris-player .mpris-overlay > box > button {
@@ -513,7 +520,7 @@
 /* Inhibitors widget */
 .widget-inhibitors>label {
   margin: 8px;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .widget-inhibitors>button {
