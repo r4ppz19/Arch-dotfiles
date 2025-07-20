@@ -74,7 +74,7 @@
 
 .notification-row .notification-background .notification .notification-default-action:hover {
   -gtk-icon-filter: none;
-  background: #282828
+  background: #282828;
 }
 
 .notification-row .notification-background .notification .notification-default-action:not(:only-child) {
