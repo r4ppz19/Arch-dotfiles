@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Note to self:
-# Run this using systemd
-
 # Configuration
 LOW_BATTERY_THRESHOLD=30
 CRITICAL_BATTERY_THRESHOLD=20

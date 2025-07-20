@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Dependencies: slurp grim tesseract wl-clipboard tesseract-data-eng
-
 LOCKFILE="/tmp/screenshot_ocr.lock"
 TMPIMG=$(mktemp --suffix=.png)
 
