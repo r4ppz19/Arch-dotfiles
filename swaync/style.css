@@ -314,7 +314,7 @@
 /* Title widget */
 .widget-title>label {
   margin: 8px;
-  font-size: 1.2rem;
+  font-size: 14px;
 }
 
 .widget-title>button {
@@ -326,7 +326,7 @@
 .widget-dnd label {
   color: #EBDBB2;
   margin: 8px;
-  font-size: 1rem;
+  font-size: 12px;
 }
 
 .widget-dnd switch {
@@ -344,7 +344,7 @@
 }
 
 .widget-label>label {
-  font-size: 1rem;
+  font-size: 10px;
 }
 
 /* Mpris widget */
@@ -381,11 +381,11 @@
 
 .widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-title {
   font-weight: bold;
-  font-size: 1.15rem;
+  font-size: 11pxm;
 }
 
 .widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-subtitle {
-  font-size: 1rem;
+  font-size: 11px;
 }
 
 /* .widget-mpris .widget-mpris-player .mpris-overlay > box > button {
@@ -505,7 +505,7 @@
 /* Inhibitors widget */
 .widget-inhibitors>label {
   margin: 8px;
-  font-size: 1.2rem;
+  font-size: 12px;
 }
 
 .widget-inhibitors>button {
