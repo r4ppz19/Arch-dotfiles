@@ -7,15 +7,10 @@
   --text-primary: #EBDBB2;
   --text-disabled: #5C554A;
   --border-color: #504945;
-  --border-radius: 2px;
-  --font-size-small: 10px;
-  --font-size-normal: 12px;
-  --margin-standard: 8px;
-  --padding-standard: 8px;
-  --transition-standard: 0.15s ease-in-out;
   --priority-low: #EBDBB2;
   --priority-normal: #83A598;
   --priority-critical: #FB4934;
+  --transition-standard: 0.15s ease-in-out;
 }
 
 /* Base styles */
@@ -44,7 +39,7 @@ scrollbar slider {
 .widget-menubar>.menu-button-bar>.widget-menubar-container button,
 .widget-menubar>revealer button,
 .widget-inhibitors>button {
-  border-radius: var(--border-radius);
+  border-radius: 2px;
   border: none;
   box-shadow: none;
   transition: background var(--transition-standard);
@@ -57,8 +52,8 @@ scrollbar slider {
   text-shadow: none;
   padding: 0;
   border-radius: 50%;
-  margin-top: var(--margin-standard);
-  margin-right: var(--margin-standard);
+  margin-top: 8px;
+  margin-right: 8px;
   min-width: 20px;
   min-height: 20px;
 }
@@ -70,13 +65,11 @@ scrollbar slider {
 /* Notification rows */
 .notification-row {
   background: none;
-  outline: none;
 }
 
 .notification-row:focus,
 .notification-group:focus {
   background: var(--bg-primary);
-  outline: none;
 }
 
 .notification-row .notification-background {
@@ -85,7 +78,7 @@ scrollbar slider {
 
 /* Base notification styles */
 .notification-row .notification-background .notification {
-  border-radius: var(--border-radius);
+  border-radius: 2px;
   border: 1px solid var(--border-color);
   transition: background var(--transition-standard);
   background: var(--bg-primary);
@@ -114,7 +107,7 @@ scrollbar slider {
   border: none;
   color: var(--text-primary);
   transition: background var(--transition-standard);
-  border-radius: var(--border-radius);
+  border-radius: 2px;
 }
 
 .notification-default-action:hover {
@@ -130,7 +123,7 @@ scrollbar slider {
 /* Notification content */
 .notification-content {
   background: transparent;
-  border-radius: var(--border-radius);
+  border-radius: 2px;
   padding: 0;
 }
 
@@ -156,7 +149,7 @@ scrollbar slider {
 .notification-content .text-box .summary,
 .notification-content .text-box .time,
 .notification-content .text-box .body {
-  font-size: var(--font-size-small);
+  font-size: 10px;
   background: transparent;
   color: var(--text-primary);
   text-shadow: none;
@@ -196,14 +189,14 @@ scrollbar slider {
   color: var(--text-primary);
   caret-color: var(--text-primary);
   border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
+  border-radius: 2px;
 }
 
 .notification-content .inline-reply .inline-reply-button {
   margin-left: 4px;
   background: rgb(48, 48, 48);
   border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
+  border-radius: 2px;
   color: var(--text-primary);
 }
 
@@ -229,19 +222,18 @@ scrollbar slider {
 .notification-action {
   margin: 4px;
   padding: 0;
-  font-size: var(--font-size-small);
+  font-size: 10px;
 }
 
 .notification-action>button {
-  border-radius: var(--border-radius);
-  font-size: var(--font-size-small);
+  border-radius: 2px;
+  font-size: 10px;
   padding: 1px;
 }
 
 /* Notification groups */
 .notification-group {
   transition: opacity 200ms ease-in-out;
-  outline: none;
 }
 
 .notification-group .notification-group-close-button .close-button {
@@ -255,19 +247,22 @@ scrollbar slider {
 }
 
 .notification-group .notification-group-headers {
-  font-size: var(--font-size-small);
+  font-size: 10px;
   width: 10px;
   height: 10px;
 }
 
 .notification-group .notification-group-headers .notification-group-icon {
   color: var(--text-primary);
-  -gtk-icon-size: 17px;
-  font-size: var(--font-size-normal);
+  -gtk-icon-size: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  margin: 5px 5px 5px 0px;
 }
 
 .notification-group .notification-group-headers .notification-group-header {
-  font-size: var(--font-size-normal);
+  font-size: 12px;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
@@ -296,7 +291,7 @@ scrollbar slider {
 .control-center {
   background: var(--bg-primary);
   color: var(--text-primary);
-  border-radius: var(--border-radius);
+  border-radius: 2px;
   border: 1px solid var(--border-color);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
 }
@@ -331,14 +326,14 @@ scrollbar slider {
 
 /* Widgets */
 .widget-title>label {
-  margin: var(--margin-standard);
+  margin: 8px;
   font-weight: 700;
-  font-size: var(--font-size-normal);
+  font-size: 12px;
 }
 
 .widget-title>button {
-  margin: var(--margin-standard);
-  font-size: var(--font-size-small);
+  margin: 8px;
+  font-size: 10px;
   background: var(--bg-primary);
   border: 1px solid var(--text-disabled);
   padding: 3px 10px;
@@ -352,29 +347,29 @@ scrollbar slider {
 .widget-volume,
 .widget-slider,
 .widget-backlight {
-  margin: var(--margin-standard);
+  margin: 8px;
 }
 
 .widget-dnd label,
 .widget-label>label {
   color: var(--text-primary);
-  font-size: var(--font-size-small);
+  font-size: 10px;
 }
 
 .widget-dnd label {
-  margin: var(--margin-standard);
+  margin: 8px;
 }
 
 .widget-dnd switch {
-  margin: var(--margin-standard);
+  margin: 8px;
 }
 
 .widget-dnd switch slider {
-  border-radius: var(--border-radius);
+  border-radius: 2px;
 }
 
 .widget-label {
-  margin: var(--margin-standard);
+  margin: 8px;
 }
 
 /* Mpris widget */
@@ -384,7 +379,7 @@ scrollbar slider {
 
 .widget-mpris .widget-mpris-player {
   margin: 10px 10px;
-  border-radius: var(--border-radius);
+  border-radius: 2px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
   border: 1px solid var(--border-color);
 }
@@ -403,18 +398,18 @@ scrollbar slider {
 }
 
 .widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-album-art {
-  border-radius: var(--border-radius);
+  border-radius: 2px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
   -gtk-icon-size: 50px;
 }
 
 .widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-title {
   font-weight: bold;
-  font-size: var(--font-size-small);
+  font-size: 10px;
 }
 
 .widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-subtitle {
-  font-size: var(--font-size-small);
+  font-size: 10px;
 }
 
 .widget-mpris .widget-mpris-player .mpris-overlay>box>button {
@@ -436,22 +431,22 @@ scrollbar slider {
 
 /* Buttons widget */
 .widget-buttons-grid {
-  padding: var(--padding-standard);
-  margin: var(--margin-standard);
-  border-radius: var(--border-radius);
+  padding: 8px;
+  margin: 8px;
+  border-radius: 2px;
 }
 
 .widget-buttons-grid flowboxchild>button {
-  border-radius: var(--border-radius);
+  border-radius: 2px;
 }
 
 /* Menubar widget */
 .widget-menubar>.menu-button-bar>.start {
-  margin-left: var(--margin-standard);
+  margin-left: 8px;
 }
 
 .widget-menubar>.menu-button-bar>.end {
-  margin-right: var(--margin-standard);
+  margin-right: 8px;
 }
 
 .widget-menubar>.menu-button-bar>.widget-menubar-container button {
@@ -459,18 +454,18 @@ scrollbar slider {
 }
 
 .widget-menubar>revealer {
-  margin-top: var(--margin-standard);
+  margin-top: 8px;
 }
 
 .widget-menubar>revealer button {
-  margin: var(--margin-standard);
+  margin: 8px;
   margin-top: 0;
 }
 
 /* Volume widget */
 .widget-volume {
-  padding: var(--padding-standard);
-  border-radius: var(--border-radius);
+  padding: 8px;
+  border-radius: 2px;
 }
 
 .widget-volume row image {
@@ -481,13 +476,13 @@ scrollbar slider {
   background-color: var(--bg-secondary);
   padding: 4px 8px 8px 8px;
   margin: 0px 8px 8px 8px;
-  border-radius: var(--border-radius);
+  border-radius: 2px;
 }
 
 /* Slider widget */
 .widget-slider {
-  padding: var(--padding-standard);
-  border-radius: var(--border-radius);
+  padding: 8px;
+  border-radius: 2px;
 }
 
 .widget-slider label {
@@ -496,16 +491,16 @@ scrollbar slider {
 
 /* Backlight widget */
 .widget-backlight {
-  padding: var(--padding-standard);
-  border-radius: var(--border-radius);
+  padding: 8px;
+  border-radius: 2px;
 }
 
 /* Inhibitors widget */
 .widget-inhibitors>label {
-  margin: var(--margin-standard);
-  font-size: var(--font-size-small);
+  margin: 8px;
+  font-size: 10px;
 }
 
 .widget-inhibitors>button {
-  margin: var(--margin-standard);
+  margin: 8px;
 }
