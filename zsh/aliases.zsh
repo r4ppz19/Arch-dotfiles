@@ -2,10 +2,6 @@
 #  │                  Aliases                    │
 #  ╰─────────────────────────────────────────────╯
 
-# Dependencies: eza, bat, less, ranger, btop, lazygit, tar,
-# myscript , gh (github cli + copilot extension), ollama (model: gemma3),
-# tgpt, neovim, ssh
-
 # Built-in improvements
 alias ls='eza --icons --group-directories-first --color=auto'
 alias la='eza -a --icons --group-directories-first --color=auto'

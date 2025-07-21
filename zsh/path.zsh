@@ -2,7 +2,7 @@
 #  │              Path Management                │
 #  ╰─────────────────────────────────────────────╯
 
-typeset -U path  # Ensure unique entries in PATH
+typeset -U path
 path=(
   $HOME/.local/bin
   $GOPATH/bin
