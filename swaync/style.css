@@ -263,7 +263,7 @@
 }
 
 .notification-group.collapsed .notification-row .notification {
-  background-color: #1D2021;
+  background-color: #282828;
 }
 
 /* .notification-group.collapsed .notification-row:not(:last-child) {
