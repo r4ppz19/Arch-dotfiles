@@ -1,3 +1,25 @@
+* {
+  outline: none;
+}
+
+*:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+scrollbar {
+  opacity: 0;
+  min-width: 0px;
+  min-height: 0px;
+}
+
+scrollbar slider {
+  opacity: 0;
+  min-width: 0px;
+  min-height: 0px;
+  background: transparent;
+}
+
 .close-button {
   /* The notification Close Button */
   background: #4E4E4E;
