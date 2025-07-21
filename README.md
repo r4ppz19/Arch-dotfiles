@@ -32,7 +32,7 @@ These files fit _my_ workflow and _my_ taste. Look through, take ideas, build yo
 
 ![Screenshot](screenshot/screenshot_2025-06-02_20-39-54.png)
 
-![Screenshot](screenshot/screenshot_2025-05-17_19-22-00.png)
+![Screenshot](screenshot/screenshot_2025-07-21_20-14-17.png)
 
 ![Screenshot](screenshot/screenshot_2025-05-17_19-29-13.png)
 
@@ -47,4 +47,3 @@ These files fit _my_ workflow and _my_ taste. Look through, take ideas, build yo
 ![Screenshot](screenshot/screenshot_2025-06-02_21-31-50.png)
 
 ## </details>
-
