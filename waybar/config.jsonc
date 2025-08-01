@@ -1,0 +1,243 @@
+// r4ppz
+
+{
+  // General Waybar configuration
+  "position": "top",
+  "layer": "top",
+  "height": 21,
+  "spacing": 0,
+  "margin-top": 0,
+  "margin-right": 0,
+  "margin-left": 0,
+
+  // Module placement
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/window",
+    "hyprland/submap"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "memory",
+    "cpu",
+    "temperature",
+    // "disk",
+    "pulseaudio",
+    "backlight",
+    "battery",
+    "power-profiles-daemon",
+    "tray",
+    // "custom/power-button",
+    "custom/rofi"
+  ],
+
+  // --------------------------------------------------
+  // Modules configuration
+  // --------------------------------------------------
+
+  // Hyprland Workspaces module
+  "hyprland/workspaces": {
+    "special-visible-only": false,
+    "show-special": true,
+    "active-only": false,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "󰝰",
+      "6": "",
+      "7": "󰍛",
+      "8": "",
+      "9": "󰍹",
+      "10": "󰭴",
+      "11": "󰑴",
+      "12": "",
+      "13": "",
+      "14": "",
+      "special": ""
+    },
+    "persistent-workspaces": {
+      "*": 3
+    }
+    // "on-scroll-up": "hyprctl dispatch workspace e+1",
+    // "on-scroll-down": "hyprctl dispatch workspace e-1"
+  },
+
+  // Hyprland window
+  "hyprland/window": {
+  "format": "  {class}",
+  "max-length": 15,
+  "icon": false,
+  "icon-size": 9,
+  "separate-outputs": true,
+  "tooltip": false
+  },
+
+  // Hyprland Submap
+  "hyprland/submap": {
+    "format": "{}",
+    "tooltip": false
+  },
+
+  // System Tray module
+  "tray": {
+    "icon-size": 12,
+    "spacing": 7
+  },
+
+  // Disk module
+  "disk": {
+    "format": " 󰣆  {free}",
+    "interval": 20
+  },
+
+  // CPU module
+  "cpu": {
+    "format": "   {usage}%",
+    "tooltip": true,
+    "tooltip-format": "CPU Usage: {usage}%",
+    "interval": 2
+  },
+
+  // Memory module
+  "memory": {
+    "format": "   {used} GiB ({percentage}%)",
+    "tooltip": true,
+    "tooltip-format": "Total: {total}\nAvailable: {avail}",
+    "interval": 10,
+    "on-click-right": "kitty -e btop"
+  },
+
+  // Temperature module
+  "temperature": {
+    "tooltip": false,
+    "thermal-zone": 7,
+    "critical-threshold": 70,
+    "interval": 2,
+    "format": "   {temperatureC}°C",
+    "format-critical": "   {temperatureC}°C"
+  },
+
+  // Backlight module
+  "backlight": {
+    // "device": "acpi_video1",
+    "format": " {icon}  {percent}%",
+    "format-icons": [
+      "󰃚", // 0-14%
+      "󰃛", // 15-29%
+      "󰃜", // 30-44%
+      "󰃝", // 45-59%
+      "󰃞", // 60-74%
+      "󰃟", // 75-89%
+      "󰃠" // 90-100%
+    ],
+    "on-scroll-up": "brightnessctl set +1%",
+    "on-scroll-down": "brightnessctl set 1%-",
+    "on-click": "$HOME/Arch-dotfiles/scripts/toggle-hyprsunset.sh",
+    "smooth-scrolling-threshold": 1,
+    "tooltip": false,
+    "tooltip-format": "Brightness: {percent}%"
+  },
+
+  // PulseAudio module
+  "pulseaudio": {
+    "scroll-step": 1,
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 {volume}%",
+    "format-bluetooth": "󰂰 {volume}%",
+    "format-bluetooth-muted": "󰂲 {volume}%",
+    "format-source": "󰍬 {volume}%",
+    "format-source-muted": "󰍭",
+    "format-icons": {
+      "default": [
+        "󰕿",
+        "󰖀",
+        "󰕾"
+      ]
+    },
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%",
+    "tooltip": false,
+    "tooltip-format": "{desc} - {volume}%",
+    "max-volume": 130
+  },
+
+  // Battery module
+  "battery": {
+    "interval": 10,
+    "states": {
+      "good": 99,
+      "warning": 30,
+      "critical": 20
+    },
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "format": "{icon}  {capacity}%",
+    "format-critical": " {icon}  {capacity}%!!",
+    "format-warning": " {icon}  {capacity}%",
+    "format-full": " {icon}  {capacity}%",
+    "format-charging": " 󰂅  {capacity}%",
+    "format-charging-warning": " 󰢝  {capacity}%",
+    "format-charging-critical": " 󰢜  {capacity}%",
+    "format-plugged": " 󰂅  {capacity}%",
+    "format-alt": " 󱧥  {time}",
+    "tooltip": true
+  },
+
+  // Clock module
+  "clock": {
+    "format": "󰥔  {:%I:%M:%S %p}",
+    "format-alt": "  {:%m-%d-%Y}",
+    "tooltip": true,
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "on-click-right": "gsimplecal",
+    "interval": 1
+  },
+
+  // Power Profiles Daemon module
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "{profile}",
+    "tooltip": true,
+    "format-icons": {
+      "default": " 󰥔 ",
+      "performance": "  ",
+      "balanced": "  ",
+      "power-saver": "  "
+    }
+  },
+
+  // Custom Rofi launcher module
+  "custom/rofi": {
+    "format": " ",
+    "on-click": "~/.config/rofi/launcher/launcher.sh",
+    "on-click-right": "~/.config/rofi/powermenu/powermenu.sh",
+    "escape": true,
+    "tooltip": false
+  },
+
+  // Custom Power Button module
+  "custom/power-button": {
+    "format": "  ",
+    "on-click": "~/.config/rofi/powermenu/powermenu.sh",
+    "tooltip": false
+  }
+}

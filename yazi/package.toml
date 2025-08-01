@@ -1,0 +1,34 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:no-status"
+rev = "55bf699"
+hash = "513a23ac28e1eaa626f3a1bb6c8130d0"
+
+[[plugin.deps]]
+use = "Lil-Dank/lazygit"
+rev = "7a08a09"
+hash = "a1fa2b3e1826c3a34804ea8c548e9f80"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:mount"
+rev = "55bf699"
+hash = "dd97eede8e20e59cd2604e8006e470e2"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "55bf699"
+hash = "7918aab6a71caf31b58411f789195677"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:jump-to-char"
+rev = "55bf699"
+hash = "a670c03eb3760812e044a24f94cedc55"
+
+[[flavor.deps]]
+use = "bennyyip/gruvbox-dark"
+rev = "91fdfa7"
+hash = "f48f510e5505f5d01e79c4f8257ec5cb"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-macchiato"
+rev = "02f3fc6"
+hash = "3ec21bcfd2735cfcbab61faaf43e59e4"

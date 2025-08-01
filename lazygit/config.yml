@@ -1,0 +1,9 @@
+gui:
+  nerdFontsVersion: "3"
+
+  border: single
+
+  theme:
+    activeBorderColor:
+      - blue
+      - bold

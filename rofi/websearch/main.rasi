@@ -1,0 +1,46 @@
+configuration {
+    show-icons: false;
+}
+
+/*****----- Global Properties -----*****/
+@import "~/.config/rofi/shared/font.rasi"
+@import "~/.config/rofi/shared/gruvbox.rasi"
+
+/*****----- Window -----*****/
+window {
+    location: center;
+    anchor: center;
+    fullscreen: false;
+    width: 25%;
+    border: 2px;
+    border-radius: 2px;
+    padding: 10px;
+    border-color: @border;
+    background-color: @background;
+}
+
+/*****----- Main Box -----*****/
+mainbox {
+    spacing: 10px;
+    padding: 10px;
+    background-color: transparent;
+    orientation: vertical;
+    children: [ "inputbar" ];
+}
+
+/*****----- Input Bar -----*****/
+inputbar {
+    spacing: 10px;
+    background-color: @background-alt;
+    border-radius: 2px;
+    padding: 8px 12px;
+    children: [ "entry" ];
+}
+
+entry {
+    background-color: inherit;
+    text-color: @foreground;
+    placeholder: "Search...";
+    placeholder-color: #A89984FF;
+}
+
