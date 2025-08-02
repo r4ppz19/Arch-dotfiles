@@ -170,6 +170,7 @@ virtualbox
 virtualbox-host-dkms
 visual-studio-code-bin
 vulkan-intel
+vulkan-tools
 waybar
 wev
 wget
