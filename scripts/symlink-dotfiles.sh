@@ -20,6 +20,7 @@ CONFIG_ITEMS=(
   systemd
   waybar
   yazi
+  uwsm
 )
 
 for item in "${CONFIG_ITEMS[@]}"; do
