@@ -1,16 +1,21 @@
 #!/bin/bash
 
-# Google Search URL
-engine_url="https://www.google.com/search?q="
+declare -A sites=(
+    [chat]="https://chatgpt.com/"
+    [fb]="https://www.facebook.com"
+    [gh]="https://github.com"
+    [yt]="https://www.youtube.com"
+    [pins]="https://www.pinterest.com"
+)
 
-# Prompt user for query
 query=$(rofi -dmenu -theme "$HOME/.config/rofi/websearch/main.rasi")
-
-# Exit if query is empty
 [ -z "$query" ] && exit
 
-# Encode query
-encoded_query=$(echo "$query" | jq -s -R -r @uri)
+url=${sites[$query]}
+if [ -n "$url" ]; then
+    xdg-open "$url"
+else
+    encoded_query=$(echo "$query" | jq -s -R -r @uri)
+    xdg-open "https://www.google.com/search?q=${encoded_query}"
+fi
 
-# Launch search in default browser
-xdg-open "${engine_url}${encoded_query}"
