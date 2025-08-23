@@ -13,6 +13,7 @@ alias cp='cp -v'
 alias mkdir='mkdir -pv'
 alias ..='cd ..'
 alias open='xdg-open'
+alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
 
 alias compress='tar -czvf'
 alias r='ranger --choosedir="$HOME/.rangerdir"; LASTDIR=$(cat "$HOME/.rangerdir"); cd "$LASTDIR"'
@@ -20,7 +21,7 @@ alias v='nvim'
 alias lg='lazygit'
 alias top='btop'
 alias music='kew'
-alias ssh='TERM=xterm-256color ssh'
+# alias ssh='TERM=xterm-256color ssh'
 alias smb-start='sudo systemctl start smb.service nmb.service'
 alias smb-stop='sudo systemctl stop smb.service nmb.service'
 
