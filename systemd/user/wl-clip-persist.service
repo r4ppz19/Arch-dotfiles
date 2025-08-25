@@ -1,0 +1,11 @@
+[Unit]
+Description=Clipboard persistence for Wayland
+After=graphical.target
+
+[Service]
+ExecStart=/usr/bin/wl-clip-persist --clipboard regular
+Restart=on-failure
+
+[Install]
+WantedBy=hyprland.target
+
