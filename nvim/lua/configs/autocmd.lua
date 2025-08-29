@@ -1,27 +1,20 @@
 local api = vim.api
 
--- 4 spaces
+-- Indentation
+local four_space_langs = { "python", "java", "rust" }
 api.nvim_create_autocmd("FileType", {
-	pattern = { "python", "java", "rust" },
-	callback = function()
-		vim.bo.tabstop = 4
-		vim.bo.shiftwidth = 4
-		vim.bo.softtabstop = 4
-		vim.bo.expandtab = true
-	end,
-})
-
--- All other filetypes = 2 spaces (except the above)
-api.nvim_create_autocmd("FileType", {
-	pattern = "*",
 	callback = function()
 		local ft = vim.bo.filetype
-		if ft ~= "python" and ft ~= "java" then
+		if vim.tbl_contains(four_space_langs, ft) then
+			vim.bo.tabstop = 4
+			vim.bo.shiftwidth = 4
+			vim.bo.softtabstop = 4
+		else
 			vim.bo.tabstop = 2
 			vim.bo.shiftwidth = 2
 			vim.bo.softtabstop = 2
-			vim.bo.expandtab = true
 		end
+		vim.bo.expandtab = true
 	end,
 })
 
