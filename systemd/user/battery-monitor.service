@@ -1,6 +1,7 @@
 [Unit]
 Description=Battery Level Monitor
 After=graphical-session.target
+PartOf=hyprland.target
 
 [Service]
 Type=simple
