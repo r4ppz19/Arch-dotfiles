@@ -1,8 +1,8 @@
 local api = vim.api
 
--- Python and Java = 4 spaces
+-- 4 spaces
 api.nvim_create_autocmd("FileType", {
-	pattern = { "python", "java" },
+	pattern = { "python", "java", "rust" },
 	callback = function()
 		vim.bo.tabstop = 4
 		vim.bo.shiftwidth = 4

@@ -12,6 +12,7 @@ return {
 			"bash",
 			"markdown",
 			"java",
+      "rust",
 		},
 	},
 }
