@@ -11,6 +11,7 @@ declare -A sites=(
     [book]="https://annas-archive.org/"
     [music]="https://open.spotify.com/"
     [figma]="https://www.figma.com/files/team/1453677715883679951/drafts?fuid=1453677713981521812"
+    [olsis]="https://tsis.assumptiondavao.edu.ph/"
 )
 
 query=$(rofi -dmenu -theme "$HOME/.config/rofi/websearch/main.rasi")
