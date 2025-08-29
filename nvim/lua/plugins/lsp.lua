@@ -115,6 +115,12 @@ return {
 			capabilities = capabilities,
 			settings = {
 				["rust-analyzer"] = {
+					inlayHints = {
+						bindingModeHints = false,
+						typeHints = false,
+						parameterHints = false,
+						chainingHints = false,
+					},
 					cargo = { allFeatures = true },
 					check = { command = "clippy" },
 				},
