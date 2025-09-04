@@ -28,11 +28,14 @@ return {
 			ensure_installed = {
 				"lua_ls",
 				"pyright",
-				"ts_ls",
 				"bashls",
 				"html",
 				"cssls",
 				"rust_analyzer",
+				"tailwindcss",
+				"ts_ls",
+				"systemd_ls",
+				"grammarly",
 			},
 			automatic_installation = true,
 		})
@@ -125,6 +128,20 @@ return {
 					check = { command = "clippy" },
 				},
 			},
+		})
+
+		lspconfig.tailwindcss.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
+
+		lspconfig.systemd_ls.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
+		lspconfig.grammarly.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
 		})
 	end,
 }

@@ -13,6 +13,8 @@ return {
 			"markdown",
 			"java",
       "rust",
+      "typescript",
+      "tsx"
 		},
 	},
 }
