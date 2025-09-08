@@ -35,7 +35,6 @@ return {
 				"tailwindcss",
 				"ts_ls",
 				"systemd_ls",
-				"grammarly",
 			},
 			automatic_installation = true,
 		})
@@ -139,9 +138,14 @@ return {
 			on_attach = on_attach,
 			capabilities = capabilities,
 		})
-		lspconfig.grammarly.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
+
+		require("lspconfig").cssmodules_ls.setup({
+			on_attach = function(client)
+				client.server_capabilities.definitionProvider = false
+			end,
+			init_options = {
+				camelCase = "dashes",
+			},
 		})
 	end,
 }
