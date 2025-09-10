@@ -1,9 +1,20 @@
 return {
 	-- Formatter
 	"stevearc/conform.nvim",
-	-- event = "BufWritePre",
+	event = "BufWritePre",
 	opts = {
 		options = {
+			formatters = {
+				prettier = {
+					command = "npx",
+					args = {
+						"prettier",
+						"--stdin-filepath",
+						"$FILENAME",
+					},
+					cwd = require("conform.util").root_file,
+				},
+			},
 			formatters_by_ft = {
 				lua = { "stylua" },
 				css = { "prettier" },
@@ -13,13 +24,11 @@ return {
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
 				json = { "prettier" },
-        markdown = { "prettier" },
-        yaml = { "prettier" },
-				bash = { "shfmt" },
+				markdown = { "prettier" },
+				yaml = { "prettier" },
 				sh = { "shfmt" },
 				python = { "black" },
 			},
-
 			format_on_save = {
 				timeout_ms = 500,
 				lsp_fallback = true,

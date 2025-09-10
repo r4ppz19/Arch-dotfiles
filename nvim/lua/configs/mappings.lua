@@ -37,7 +37,13 @@ map("n", "<C-l>", ":vertical resize +2<CR>", { desc = "Increase window width" })
 map("v", "<", "<gv", { desc = "Indent left and reselect" })
 map("v", ">", ">gv", { desc = "Indent right and reselect" })
 
-map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save file" })
+map(
+	{ "n", "i", "v" },
+	"<C-s>",
+	"<cmd>lua require('conform').format()<cr><cmd>write<cr>",
+	{ desc = "Save file with format" }
+)
+-- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save file" })
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "escape terminal mode" })
@@ -142,13 +148,13 @@ map({ "n", "t" }, "<A-h>", function()
 end, { desc = "terminal toggleable horizontal term" })
 
 -- tabufline
-map("n", "<leader>b", "<cmd>enew<CR>", { desc = "buffer new" })
-map("n", "<tab>", function()
+map("n", "<leader>b", "<cmd>enew<CR>", { desc = "Buffer new" })
+map("n", "<S-Right>", function()
 	require("nvchad.tabufline").next()
-end, { desc = "buffer goto next" })
-map("n", "<S-tab>", function()
+end, { desc = "Buffer goto next" })
+map("n", "<S-Left>", function()
 	require("nvchad.tabufline").prev()
-end, { desc = "buffer goto prev" })
+end, { desc = "Buffer goto prev" })
 map("n", "<leader>x", function()
 	require("nvchad.tabufline").close_buffer()
-end, { desc = "buffer close" })
+end, { desc = "Buffer close" })
