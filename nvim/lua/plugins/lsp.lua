@@ -32,7 +32,6 @@ return {
 				"html",
 				"cssls",
 				"rust_analyzer",
-				"tailwindcss",
 				"ts_ls",
 				"systemd_ls",
 			},
@@ -112,6 +111,16 @@ return {
 			capabilities = capabilities,
 		})
 
+		lspconfig.systemd_ls.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
+
+		lspconfig.cssmodules_ls.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
+
 		lspconfig.rust_analyzer.setup({
 			on_attach = on_attach,
 			capabilities = capabilities,
@@ -126,25 +135,6 @@ return {
 					cargo = { allFeatures = true },
 					check = { command = "clippy" },
 				},
-			},
-		})
-
-		lspconfig.tailwindcss.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
-
-		lspconfig.systemd_ls.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
-
-		require("lspconfig").cssmodules_ls.setup({
-			on_attach = function(client)
-				client.server_capabilities.definitionProvider = false
-			end,
-			init_options = {
-				camelCase = "dashes",
 			},
 		})
 	end,
