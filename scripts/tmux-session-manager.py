@@ -86,12 +86,15 @@ def prompt_delete_session(sessions):
         input("Press Enter to continue...")
         print()
         return None
+
     print("Which session to delete?")
     for idx, name in enumerate(sessions, 1):
         print(f"  {idx}) {name}")
     print()
+
     del_choice = input("Session number to delete: ").strip()
     print()
+
     if del_choice.isdigit():
         del_idx = int(del_choice) - 1
         if 0 <= del_idx < len(sessions):
@@ -100,7 +103,7 @@ def prompt_delete_session(sessions):
                 f"Are you sure you want to delete session '{session_to_kill}'? (Y/n): "
             ).strip().lower()
             print()
-            if confirm in ("", "y"):
+            if confirm != "n":
                 return session_to_kill
             else:
                 print("Delete canceled.\n")
