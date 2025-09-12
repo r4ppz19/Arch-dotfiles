@@ -11,9 +11,7 @@ CONFIG_ITEMS=(
   hypr
   kitty
   lazygit
-  neofetch
   nvim
-  ranger
   rofi
   swaylock
   swaync
@@ -21,6 +19,7 @@ CONFIG_ITEMS=(
   waybar
   yazi
   uwsm
+  fastfetch
 )
 
 for item in "${CONFIG_ITEMS[@]}"; do
