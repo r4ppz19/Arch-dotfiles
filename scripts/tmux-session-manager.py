@@ -96,9 +96,11 @@ def prompt_delete_session(sessions):
         del_idx = int(del_choice) - 1
         if 0 <= del_idx < len(sessions):
             session_to_kill = sessions[del_idx]
-            confirm = input(f"Are you sure you want to delete session '{session_to_kill}'? (y/N): ").strip().lower()
+            confirm = input(
+                f"Are you sure you want to delete session '{session_to_kill}'? (Y/n): "
+            ).strip().lower()
             print()
-            if confirm == "y":
+            if confirm in ("", "y"):
                 return session_to_kill
             else:
                 print("Delete canceled.\n")
@@ -178,3 +180,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
