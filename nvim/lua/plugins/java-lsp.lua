@@ -5,7 +5,14 @@ return {
 		"mfussenegger/nvim-jdtls",
 	},
 	config = function()
-		require("java").setup({})
+		require("java").setup({
+			extendedClientCapabilities = {
+				progressReportProvider = true,
+			},
+			spring = {
+				enabled = true,
+			},
+		})
 	end,
 	priority = 1000,
 }
