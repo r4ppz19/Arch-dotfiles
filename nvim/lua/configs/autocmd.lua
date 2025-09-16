@@ -48,7 +48,7 @@ autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
 	group = vim.api.nvim_create_augroup("NvFilePost", { clear = true }),
 	callback = function(args)
 		local file = vim.api.nvim_buf_get_name(args.buf)
-		local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
+		local buftype = vim.bo[args.buf].buftype
 
 		if not vim.g.ui_entered and args.event == "UIEnter" then
 			vim.g.ui_entered = true
