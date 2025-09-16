@@ -22,6 +22,10 @@ return {
 					package_uninstalled = "✗",
 				},
 			},
+			registries = {
+				"github:nvim-java/mason-registry",
+				"github:mason-org/mason-registry",
+			},
 		})
 
 		require("mason-lspconfig").setup({
@@ -34,7 +38,6 @@ return {
 				"rust_analyzer",
 				"ts_ls",
 				"systemd_ls",
-				"jdtls",
 			},
 			automatic_installation = true,
 		})
@@ -137,11 +140,6 @@ return {
 					check = { command = "clippy" },
 				},
 			},
-		})
-
-		lspconfig.jdtls.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
 		})
 	end,
 }

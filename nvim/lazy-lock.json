@@ -1,7 +1,7 @@
 {
-  "CopilotChat.nvim": { "branch": "main", "commit": "e9e426d6f9199138513f6fc2bc9f1058690e97f5" },
+  "CopilotChat.nvim": { "branch": "main", "commit": "9a63e83b9fade8e7fa50deb414d58b703352b13a" },
   "LspUI.nvim": { "branch": "main", "commit": "4013830bd896d81bd47470ebb7b9ef7ca9ebe2c0" },
-  "LuaSnip": { "branch": "master", "commit": "21f74f7ba8c49f95f9d7c8293b147c2901dd2d3a" },
+  "LuaSnip": { "branch": "master", "commit": "b3104910bb5ebf40492aadffae18f2528fa757d9" },
   "NvChad": { "branch": "v2.5", "commit": "b5b38ebee53bcc8b71a917916ce61504ffffd509" },
   "base46": { "branch": "v3.0", "commit": "390bbb6cf149dc9da1a91548598c809f62fbc3c6" },
   "cmp-async-path": { "branch": "main", "commit": "0ed1492f59e730c366d261a5ad822fa37e44c325" },
@@ -32,7 +32,6 @@
   "nvim-java-dap": { "branch": "main", "commit": "55f239532f7a3789d21ea68d1e795abc77484974" },
   "nvim-java-refactor": { "branch": "main", "commit": "b51a57d862338999059e1d1717df3bc80a3a15c0" },
   "nvim-java-test": { "branch": "main", "commit": "7f0f40e9c5b7eab5096d8bec6ac04251c6e81468" },
-  "nvim-jdtls": { "branch": "master", "commit": "3b9df08323d832f2980b8425ea6812debc8082b7" },
   "nvim-lspconfig": { "branch": "master", "commit": "d9879110d0422a566fa01d732556f4d5515e1738" },
   "nvim-tree.lua": { "branch": "master", "commit": "e179ad2f83b5955ab0af653069a493a1828c2697" },
   "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
