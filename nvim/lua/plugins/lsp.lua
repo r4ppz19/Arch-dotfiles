@@ -88,16 +88,56 @@ return {
 		lspconfig.lua_ls.setup({
 			on_attach = on_attach,
 			capabilities = capabilities,
+			settings = {
+				Lua = {
+					diagnostics = {
+						globals = { "vim" },
+					},
+					workspace = {
+						library = {
+							vim.fn.expand("$VIMRUNTIME/lua"),
+							vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
+							vim.fn.stdpath("data") .. "/lazy/ui/nvchad_types",
+							vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
+						},
+						maxPreload = 100000,
+						preloadFileSize = 10000,
+					},
+					telemetry = { enable = false },
+				},
+			},
 		})
 
 		lspconfig.pyright.setup({
 			on_attach = on_attach,
 			capabilities = capabilities,
+			settings = {
+				python = {
+					analysis = {
+						typeCheckingMode = "basic",
+						autoSearchPaths = true,
+						useLibraryCodeForTypes = true,
+					},
+				},
+			},
 		})
 
 		lspconfig.ts_ls.setup({
 			on_attach = on_attach,
 			capabilities = capabilities,
+			settings = {
+				typescript = {
+					inlayHints = {
+						includeInlayParameterNameHints = "all",
+						includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+						includeInlayFunctionParameterTypeHints = true,
+						includeInlayVariableTypeHints = true,
+						includeInlayPropertyDeclarationTypeHints = true,
+						includeInlayFunctionLikeReturnTypeHints = true,
+						includeInlayEnumMemberValueHints = true,
+					},
+				},
+			},
 		})
 
 		lspconfig.bashls.setup({

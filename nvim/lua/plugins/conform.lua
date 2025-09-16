@@ -66,7 +66,8 @@ return {
 			markdown = { "prettier" },
 			yaml = { "prettier" },
 			sh = { "shfmt" },
-			python = { "black" },
+			python = { "black", "isort" },
+			rust = { "rustfmt" },
 		},
 		format_on_save = {
 			timeout_ms = 500,
