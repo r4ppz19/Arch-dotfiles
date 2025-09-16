@@ -24,8 +24,8 @@ alias music='kew'
 # alias ssh='TERM=xterm-256color ssh'
 alias smb-start='sudo systemctl start smb.service nmb.service'
 alias smb-stop='sudo systemctl stop smb.service nmb.service'
-alias phone-mount='sshfs phone:/storage/emulated/0 ~/Phone'
-alias phone-umount='fusermount -u ~/Phone'
+alias pmount='sshfs phone:/storage/emulated/0 ~/Phone'
+alias pumount='fusermount -u ~/Phone'
 
 # script
 alias of='~/Arch-dotfiles/scripts/open-file.sh'
