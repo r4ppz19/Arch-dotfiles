@@ -37,12 +37,7 @@ map("n", "<C-l>", ":vertical resize +2<CR>", { desc = "Increase window width" })
 map("v", "<", "<gv", { desc = "Indent left and reselect" })
 map("v", ">", ">gv", { desc = "Indent right and reselect" })
 
-map(
-	{ "n", "i", "v" },
-	"<C-s>",
-	"<cmd>lua require('conform').format()<cr><cmd>write<cr>",
-	{ desc = "Save file with format" }
-)
+map({ "n", "i", "v" }, "<C-s>", "<cmd>write<cr>", { desc = "Save file" })
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save file" })
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
