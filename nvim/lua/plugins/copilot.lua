@@ -36,7 +36,7 @@ return {
 			{ "<leader>cc", "<cmd>CopilotChatToggle<cr>", desc = "Toggle CopilotChat" },
 			{ "<leader>cr", "<cmd>CopilotChatReset<cr>", desc = "Reset CopilotChat" },
 
-			-- Visual mode keybindings - select text and press these keys
+			-- Visual mode keybindings
 			{ "<leader>ce", "<cmd>CopilotChatExplain<cr>", mode = "v", desc = "Explain selected code" },
 			{ "<leader>cf", "<cmd>CopilotChatFix<cr>", mode = "v", desc = "Fix selected code" },
 			{ "<leader>co", "<cmd>CopilotChatOptimize<cr>", mode = "v", desc = "Optimize selected code" },
@@ -53,7 +53,20 @@ return {
 					})
 				end,
 				mode = "v",
-				desc = "Open chat with selected code as context",
+				desc = "Open chat with selected code",
+			},
+
+			{
+				"<leader>cq",
+				function()
+					local chat = require("CopilotChat")
+					chat.open()
+					chat.chat:add_message({
+						role = "user",
+						content = "#buffer\n\n",
+					}, true)
+				end,
+				desc = "Open chat with current buffer",
 			},
 		},
 	},
