@@ -190,7 +190,8 @@ return {
 						runtimes = {
 							{
 								name = "JavaSE-21",
-								path = "/usr/lib/jvm/java-21-openjdk",
+								path = vim.fn.expand("$JAVA_HOME") ~= "" and vim.fn.expand("$JAVA_HOME")
+									or "/usr/lib/jvm/java-21-openjdk",
 								default = true,
 							},
 						},
