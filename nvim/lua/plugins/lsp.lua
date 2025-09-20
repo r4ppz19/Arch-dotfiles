@@ -33,12 +33,15 @@ return {
 				"lua_ls",
 				"pyright",
 				"bashls",
+				"rust_analyzer",
+				"systemd_ls",
 				"html",
 				"cssls",
-				"rust_analyzer",
 				"ts_ls",
-				"systemd_ls",
 				"emmet_ls",
+				"css_variables",
+				"cssmodules_ls",
+				"tailwindcss",
 			},
 			automatic_installation = true,
 		})
@@ -82,10 +85,9 @@ return {
 			map("n", "<leader>ld", tb.diagnostics, { buffer = bufnr, desc = "Diagnostics" })
 		end
 
-		local lspconfig = require("lspconfig")
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-		lspconfig.lua_ls.setup({
+		vim.lsp.config("lua_ls", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 			settings = {
@@ -108,7 +110,7 @@ return {
 			},
 		})
 
-		lspconfig.pyright.setup({
+		vim.lsp.config("pyright", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 			settings = {
@@ -122,13 +124,7 @@ return {
 			},
 		})
 
-		lspconfig.ts_ls.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-			filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-		})
-
-		lspconfig.emmet_ls.setup({
+		vim.lsp.config("emmet_ls", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 			filetypes = {
@@ -139,6 +135,7 @@ return {
 				"typescriptreact",
 				"javascript",
 				"typescript",
+				"cssmodules_ls",
 			},
 			init_options = {
 				html = {
@@ -151,32 +148,7 @@ return {
 			},
 		})
 
-		lspconfig.bashls.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
-
-		lspconfig.html.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
-
-		lspconfig.cssls.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
-
-		lspconfig.systemd_ls.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
-
-		lspconfig.cssmodules_ls.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
-
-		lspconfig.rust_analyzer.setup({
+		vim.lsp.config("rust_analyzer", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 			settings = {
@@ -191,6 +163,47 @@ return {
 					check = { command = "clippy" },
 				},
 			},
+		})
+
+		vim.lsp.config("ts_ls", {
+			on_attach = on_attach,
+			capabilities = capabilities,
+			filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+		})
+
+		vim.lsp.config("bashls", {
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
+
+		vim.lsp.config("html", {
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
+
+		vim.lsp.config("cssls", {
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
+
+		vim.lsp.config("systemd_ls", {
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
+
+		vim.lsp.config("cssmodules_ls", {
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
+
+		vim.lsp.config("css_variables", {
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
+
+		vim.lsp.config("tailwindcss", {
+			on_attach = on_attach,
+			capabilities = capabilities,
 		})
 	end,
 }
