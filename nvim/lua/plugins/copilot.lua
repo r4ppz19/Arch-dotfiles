@@ -68,6 +68,19 @@ return {
 				end,
 				desc = "Open chat with current buffer",
 			},
+
+			{
+				"<leader>ca",
+				function()
+					local chat = require("CopilotChat")
+					chat.open()
+					chat.chat:add_message({
+						role = "user",
+						content = "#buffers\n\n",
+					}, true)
+				end,
+				desc = "Open chat with all open buffers",
+			},
 		},
 	},
 }
