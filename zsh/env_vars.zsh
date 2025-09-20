@@ -11,6 +11,7 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 export GOPATH="$HOME/.go"
 export MANPAGER="nvim +Man!"
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 
 export KEYTIMEOUT=1
 export HISTFILE=~/.zsh_history
