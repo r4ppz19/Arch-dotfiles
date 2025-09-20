@@ -38,12 +38,10 @@ return {
 				"rust_analyzer",
 				"ts_ls",
 				"systemd_ls",
+				"emmet_ls",
 			},
 			automatic_installation = true,
 		})
-
-		local lspconfig = require("lspconfig")
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 		local function on_attach(_, bufnr)
 			local map = vim.keymap.set
@@ -84,7 +82,9 @@ return {
 			map("n", "<leader>ld", tb.diagnostics, { buffer = bufnr, desc = "Diagnostics" })
 		end
 
-		-- LSP server configurations
+		local lspconfig = require("lspconfig")
+		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 		lspconfig.lua_ls.setup({
 			on_attach = on_attach,
 			capabilities = capabilities,
@@ -125,16 +125,27 @@ return {
 		lspconfig.ts_ls.setup({
 			on_attach = on_attach,
 			capabilities = capabilities,
-			settings = {
-				typescript = {
-					inlayHints = {
-						includeInlayParameterNameHints = "all",
-						includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-						includeInlayFunctionParameterTypeHints = true,
-						includeInlayVariableTypeHints = true,
-						includeInlayPropertyDeclarationTypeHints = true,
-						includeInlayFunctionLikeReturnTypeHints = true,
-						includeInlayEnumMemberValueHints = true,
+			filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+		})
+
+		lspconfig.emmet_ls.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+			filetypes = {
+				"html",
+				"css",
+				"scss",
+				"javascriptreact",
+				"typescriptreact",
+				"javascript",
+				"typescript",
+			},
+			init_options = {
+				html = {
+					options = {
+						bem = {
+							enabled = true,
+						},
 					},
 				},
 			},
