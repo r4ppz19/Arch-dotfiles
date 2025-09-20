@@ -1,33 +1,8 @@
 return {
 	"nvim-java/nvim-java",
-	dependencies = {
-		"nvim-java/lua-async-await",
-		"nvim-java/nvim-java-refactor",
-		"nvim-java/nvim-java-core",
-		"nvim-java/nvim-java-test",
-		"nvim-java/nvim-java-dap",
-		"MunifTanjim/nui.nvim",
-		"neovim/nvim-lspconfig",
-		"mfussenegger/nvim-dap",
-		{
-			"JavaHello/spring-boot.nvim",
-			commit = "218c0c26c14d99feca778e4d13f5ec3e8b1b60f0",
-		},
-		{
-			"mason-org/mason.nvim",
-			opts = {
-				registries = {
-					"github:nvim-java/mason-registry",
-					"github:mason-org/mason-registry",
-				},
-			},
-		},
-	},
 	ft = { "java" },
 	config = function()
-		-- Setup nvim-java before lspconfig
 		require("java").setup({
-			-- Configuration options
 			notifications = {
 				dap = true,
 			},
@@ -37,40 +12,33 @@ return {
 				invalid_mason_registry = false,
 			},
 			jdk = {
-				auto_install = false,
+				auto_install = true,
+				version = "21",
 			},
 		})
 
 		-- Setup jdtls through lspconfig after nvim-java setup
-		local lspconfig = require("lspconfig")
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 		-- LSP keybindings function
 		local function on_attach(_, bufnr)
 			local map = vim.keymap.set
+			local tb = require("telescope.builtin")
 
-			-- Use LspUI commands instead of default LSP functions
-			map("n", "K", "<cmd>LspUI hover<CR>", { buffer = bufnr, desc = "Hover Doc" })
-			map("n", "gd", "<cmd>LspUI definition<CR>", { buffer = bufnr, desc = "Goto Definition" })
-			map("n", "gi", "<cmd>LspUI implementation<CR>", { buffer = bufnr, desc = "Goto Implementation" })
-			map("n", "gt", "<cmd>LspUI type_definition<CR>", { buffer = bufnr, desc = "Goto Type Definition" })
-			map("n", "<leader>lr", "<cmd>LspUI reference<CR>", { buffer = bufnr, desc = "LSP References" })
-			map("n", "<leader>la", "<cmd>LspUI code_action<CR>", { buffer = bufnr, desc = "Code Action" })
-			map("n", "<leader>lI", "<cmd>LspUI inlay_hint<CR>", { buffer = bufnr, desc = "Toggle Inlay Hints" })
-			map(
-				"n",
-				"<leader>lci",
-				"<cmd>LspUI call_hierarchy incoming_calls<CR>",
-				{ buffer = bufnr, desc = "Incoming Calls" }
-			)
-			map(
-				"n",
-				"<leader>lco",
-				"<cmd>LspUI call_hierarchy outgoing_calls<CR>",
-				{ buffer = bufnr, desc = "Outgoing Calls" }
-			)
+			-- Use Telescope LSP pickers
+			map("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover Doc" })
+			map("n", "gd", tb.lsp_definitions, { buffer = bufnr, desc = "Goto Definition" })
+			map("n", "gi", tb.lsp_implementations, { buffer = bufnr, desc = "Goto Implementation" })
+			map("n", "gt", tb.lsp_type_definitions, { buffer = bufnr, desc = "Goto Type Definition" })
+			map("n", "<leader>lr", tb.lsp_references, { buffer = bufnr, desc = "LSP References" })
+			map("n", "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code Action" })
+			map("n", "<leader>lI", function()
+				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+			end, { buffer = bufnr, desc = "Toggle Inlay Hints" })
+			map("n", "<leader>lci", tb.lsp_incoming_calls, { buffer = bufnr, desc = "Incoming Calls" })
+			map("n", "<leader>lco", tb.lsp_outgoing_calls, { buffer = bufnr, desc = "Outgoing Calls" })
 
-			-- Default LSP functions
+			-- LSP functions
 			map("n", "<leader>lh", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
 			map("i", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
 			map("n", "<leader>ln", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename Symbol" })
@@ -78,8 +46,7 @@ return {
 			map("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Next Diagnostic" })
 			map("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "Prev Diagnostic" })
 
-			-- Telescope for symbols and diagnostics
-			local tb = require("telescope.builtin")
+			-- Telescope LSP pickers
 			map("n", "<leader>ls", tb.lsp_document_symbols, { buffer = bufnr, desc = "LSP Document Symbols" })
 			map("n", "<leader>lS", tb.lsp_workspace_symbols, { buffer = bufnr, desc = "LSP Workspace Symbols" })
 			map("n", "<leader>ld", tb.diagnostics, { buffer = bufnr, desc = "Diagnostics" })
@@ -139,19 +106,9 @@ return {
 				require("java").refactor.extract_field()
 			end, { buffer = bufnr, desc = "Java: Extract Field" })
 
-			-- Spring Boot keybindings (using Telescope/FzfLua for Spring symbols)
-			map(
-				"n",
-				"<leader>jsb",
-				"<cmd>Telescope lsp_workspace_symbols<CR>",
-				{ buffer = bufnr, desc = "Spring Boot: Find Beans" }
-			)
-			map(
-				"n",
-				"<leader>jse",
-				"<cmd>Telescope lsp_workspace_symbols<CR>",
-				{ buffer = bufnr, desc = "Spring Boot: Find Endpoints" }
-			)
+			-- Spring Boot keybindings (using Telescope for Spring symbols)
+			map("n", "<leader>jsb", tb.lsp_workspace_symbols, { buffer = bufnr, desc = "Spring Boot: Find Beans" })
+			map("n", "<leader>jse", tb.lsp_workspace_symbols, { buffer = bufnr, desc = "Spring Boot: Find Endpoints" })
 
 			-- Maven build keybindings
 			map("n", "<leader>jmc", "<cmd>!mvn clean<CR>", { buffer = bufnr, desc = "Maven: Clean" })
@@ -181,23 +138,10 @@ return {
 		end
 
 		-- Setup jdtls with nvim-java
-		lspconfig.jdtls.setup({
+		vim.lsp.config("jdtls", {
 			on_attach = on_attach,
 			capabilities = capabilities,
-			settings = {
-				java = {
-					configuration = {
-						runtimes = {
-							{
-								name = "JavaSE-21",
-								path = vim.fn.expand("$JAVA_HOME") ~= "" and vim.fn.expand("$JAVA_HOME")
-									or "/usr/lib/jvm/java-21-openjdk",
-								default = true,
-							},
-						},
-					},
-				},
-			},
 		})
+		vim.lsp.enable("jdtls")
 	end,
 }

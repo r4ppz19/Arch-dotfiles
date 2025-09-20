@@ -5,12 +5,9 @@ return {
 		"mason-org/mason.nvim",
 		"hrsh7th/cmp-nvim-lsp",
 		"nvim-telescope/telescope.nvim",
-		"jinzhongjia/LspUI.nvim",
 	},
 
 	config = function()
-		require("configs.lspui").setup()
-
 		require("mason").setup({
 			ui = {
 				border = "single",
@@ -21,10 +18,6 @@ return {
 					package_pending = "➜",
 					package_uninstalled = "✗",
 				},
-			},
-			registries = {
-				"github:nvim-java/mason-registry",
-				"github:mason-org/mason-registry",
 			},
 		})
 
@@ -46,29 +39,22 @@ return {
 
 		local function on_attach(_, bufnr)
 			local map = vim.keymap.set
+			local tb = require("telescope.builtin")
 
-			-- Use LspUI commands instead of default LSP functions
-			map("n", "K", "<cmd>LspUI hover<CR>", { buffer = bufnr, desc = "Hover Doc" })
-			map("n", "gd", "<cmd>LspUI definition<CR>", { buffer = bufnr, desc = "Goto Definition" })
-			map("n", "gi", "<cmd>LspUI implementation<CR>", { buffer = bufnr, desc = "Goto Implementation" })
-			map("n", "gt", "<cmd>LspUI type_definition<CR>", { buffer = bufnr, desc = "Goto Type Definition" })
-			map("n", "<leader>lr", "<cmd>LspUI reference<CR>", { buffer = bufnr, desc = "LSP References" })
-			map("n", "<leader>la", "<cmd>LspUI code_action<CR>", { buffer = bufnr, desc = "Code Action" })
-			map("n", "<leader>lI", "<cmd>LspUI inlay_hint<CR>", { buffer = bufnr, desc = "Toggle Inlay Hints" })
-			map(
-				"n",
-				"<leader>lci",
-				"<cmd>LspUI call_hierarchy incoming_calls<CR>",
-				{ buffer = bufnr, desc = "Incoming Calls" }
-			)
-			map(
-				"n",
-				"<leader>lco",
-				"<cmd>LspUI call_hierarchy outgoing_calls<CR>",
-				{ buffer = bufnr, desc = "Outgoing Calls" }
-			)
+			-- Use Telescope LSP pickers
+			map("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover Doc" })
+			map("n", "gd", tb.lsp_definitions, { buffer = bufnr, desc = "Goto Definition" })
+			map("n", "gi", tb.lsp_implementations, { buffer = bufnr, desc = "Goto Implementation" })
+			map("n", "gt", tb.lsp_type_definitions, { buffer = bufnr, desc = "Goto Type Definition" })
+			map("n", "<leader>lr", tb.lsp_references, { buffer = bufnr, desc = "LSP References" })
+			map("n", "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code Action" })
+			map("n", "<leader>lI", function()
+				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+			end, { buffer = bufnr, desc = "Toggle Inlay Hints" })
+			map("n", "<leader>lci", tb.lsp_incoming_calls, { buffer = bufnr, desc = "Incoming Calls" })
+			map("n", "<leader>lco", tb.lsp_outgoing_calls, { buffer = bufnr, desc = "Outgoing Calls" })
 
-			-- Default LSP functions
+			-- LSP functions
 			map("n", "<leader>lh", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
 			map("i", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
 			map("n", "<leader>ln", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename Symbol" })
@@ -76,51 +62,13 @@ return {
 			map("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Next Diagnostic" })
 			map("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "Prev Diagnostic" })
 
-			-- Telescope for symbols and diagnostics
-			local tb = require("telescope.builtin")
+			-- Telescope LSP pickers
 			map("n", "<leader>ls", tb.lsp_document_symbols, { buffer = bufnr, desc = "LSP Document Symbols" })
 			map("n", "<leader>lS", tb.lsp_workspace_symbols, { buffer = bufnr, desc = "LSP Workspace Symbols" })
 			map("n", "<leader>ld", tb.diagnostics, { buffer = bufnr, desc = "Diagnostics" })
 		end
 
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-		vim.lsp.config("lua_ls", {
-			on_attach = on_attach,
-			capabilities = capabilities,
-			settings = {
-				Lua = {
-					diagnostics = {
-						globals = { "vim" },
-					},
-					workspace = {
-						library = {
-							vim.fn.expand("$VIMRUNTIME/lua"),
-							vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
-							vim.fn.stdpath("data") .. "/lazy/ui/nvchad_types",
-							vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
-						},
-						maxPreload = 100000,
-						preloadFileSize = 10000,
-					},
-					telemetry = { enable = false },
-				},
-			},
-		})
-
-		vim.lsp.config("pyright", {
-			on_attach = on_attach,
-			capabilities = capabilities,
-			settings = {
-				python = {
-					analysis = {
-						typeCheckingMode = "basic",
-						autoSearchPaths = true,
-						useLibraryCodeForTypes = true,
-					},
-				},
-			},
-		})
 
 		vim.lsp.config("emmet_ls", {
 			on_attach = on_attach,
@@ -132,16 +80,8 @@ return {
 				"javascriptreact",
 				"typescriptreact",
 			},
-			init_options = {
-				html = {
-					options = {
-						bem = {
-							enabled = true,
-						},
-					},
-				},
-			},
 		})
+		vim.lsp.enable("emmet_ls")
 
 		vim.lsp.config("rust_analyzer", {
 			on_attach = on_attach,
@@ -159,6 +99,7 @@ return {
 				},
 			},
 		})
+		vim.lsp.enable("rust_analyzer")
 
 		vim.lsp.config("ts_ls", {
 			on_attach = on_attach,
@@ -169,47 +110,51 @@ return {
 				"typescript",
 				"typescriptreact",
 			},
-			settings = {
-				typescript = {
-					inlayHints = {
-						includeInlayParameterNameHints = "all",
-						includeInlayFunctionParameterTypeHints = true,
-					},
-				},
-				javascript = {
-					inlayHints = {
-						includeInlayParameterNameHints = "all",
-						includeInlayFunctionParameterTypeHints = true,
-					},
-				},
-			},
 			root_dir = vim.fs.dirname(vim.fs.find({ "package.json", "tsconfig.json" }, { upward = true })[1]),
 		})
+		vim.lsp.enable("ts_ls")
 
 		vim.lsp.config("eslint", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 		})
+		vim.lsp.enable("eslint")
 
 		vim.lsp.config("cssls", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 			filetypes = { "css" },
 		})
+		vim.lsp.enable("cssls")
 
 		vim.lsp.config("bashls", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 		})
+		vim.lsp.enable("bashls")
 
 		vim.lsp.config("html", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 		})
+		vim.lsp.enable("html")
 
 		vim.lsp.config("systemd_ls", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 		})
+		vim.lsp.enable("systemd_ls")
+
+		vim.lsp.config("lua_ls", {
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
+		vim.lsp.enable("lua_ls")
+
+		vim.lsp.config("pyright", {
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
+		vim.lsp.enable("pyright")
 	end,
 }
