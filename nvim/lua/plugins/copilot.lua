@@ -1,106 +1,92 @@
 return {
-	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
-		config = function()
-			require("copilot").setup({
-				suggestion = { enabled = false },
-				panel = { enabled = false },
-			})
-		end,
+	"CopilotC-Nvim/CopilotChat.nvim",
+	branch = "main",
+	dependencies = {
+		{ "zbirenbaum/copilot.lua" },
+		{ "nvim-lua/plenary.nvim" },
 	},
-
-	{
-		"CopilotC-Nvim/CopilotChat.nvim",
-		branch = "main",
-		dependencies = {
-			{ "zbirenbaum/copilot.lua" },
-			{ "nvim-lua/plenary.nvim" },
+	build = "make tiktoken",
+	opts = {
+		model = "gpt-4o",
+		temperature = 0.1,
+		window = {
+			layout = "vertical",
+			width = 0.4,
 		},
-		build = "make tiktoken",
-		opts = {
-			model = "gpt-4o",
-			temperature = 0.1,
-			window = {
-				layout = "vertical",
-				width = 0.4,
-			},
-			auto_insert_mode = false,
+		auto_insert_mode = false,
+	},
+	config = function(_, opts)
+		require("CopilotChat").setup(opts)
+	end,
+	keys = {
+		-- Normal mode keybindings
+		{ "<leader>cc", "<cmd>CopilotChatToggle<cr>", desc = "Toggle CopilotChat" },
+		{ "<leader>cr", "<cmd>CopilotChatReset<cr>", desc = "Reset CopilotChat" },
+
+		-- Visual mode keybindings
+		{
+			"<leader>ce",
+			"<cmd>CopilotChatExplain<cr>",
+			mode = "v",
+			desc = "Explain selected code",
 		},
-		config = function(_, opts)
-			require("CopilotChat").setup(opts)
-		end,
-		keys = {
-			-- Normal mode keybindings
-			{ "<leader>cc", "<cmd>CopilotChatToggle<cr>", desc = "Toggle CopilotChat" },
-			{ "<leader>cr", "<cmd>CopilotChatReset<cr>", desc = "Reset CopilotChat" },
+		{ "<leader>cf", "<cmd>CopilotChatFix<cr>", mode = "v", desc = "Fix selected code" },
+		{
+			"<leader>co",
+			"<cmd>CopilotChatOptimize<cr>",
+			mode = "v",
+			desc = "Optimize selected code",
+		},
+		{ "<leader>cr", "<cmd>CopilotChatReview<cr>", mode = "v", desc = "Review selected code" },
+		{
+			"<leader>cd",
+			"<cmd>CopilotChatDocs<cr>",
+			mode = "v",
+			desc = "Add docs to selected code",
+		},
+		{
+			"<leader>ct",
+			"<cmd>CopilotChatTests<cr>",
+			mode = "v",
+			desc = "Generate tests for selected code",
+		},
 
-			-- Visual mode keybindings
-			{
-				"<leader>ce",
-				"<cmd>CopilotChatExplain<cr>",
-				mode = "v",
-				desc = "Explain selected code",
-			},
-			{ "<leader>cf", "<cmd>CopilotChatFix<cr>", mode = "v", desc = "Fix selected code" },
-			{
-				"<leader>co",
-				"<cmd>CopilotChatOptimize<cr>",
-				mode = "v",
-				desc = "Optimize selected code",
-			},
-			{ "<leader>cr", "<cmd>CopilotChatReview<cr>", mode = "v", desc = "Review selected code" },
-			{
-				"<leader>cd",
-				"<cmd>CopilotChatDocs<cr>",
-				mode = "v",
-				desc = "Add docs to selected code",
-			},
-			{
-				"<leader>ct",
-				"<cmd>CopilotChatTests<cr>",
-				mode = "v",
-				desc = "Generate tests for selected code",
-			},
+		{
+			"<leader>cc",
+			function()
+				local select = require("CopilotChat.select")
+				require("CopilotChat").open({
+					selection = select.visual,
+				})
+			end,
+			mode = "v",
+			desc = "Open chat with selected code",
+		},
 
-			{
-				"<leader>cc",
-				function()
-					local select = require("CopilotChat.select")
-					require("CopilotChat").open({
-						selection = select.visual,
-					})
-				end,
-				mode = "v",
-				desc = "Open chat with selected code",
-			},
+		{
+			"<leader>cq",
+			function()
+				local chat = require("CopilotChat")
+				chat.open()
+				chat.chat:add_message({
+					role = "user",
+					content = "#buffer\n\n",
+				}, true)
+			end,
+			desc = "Open chat with current buffer",
+		},
 
-			{
-				"<leader>cq",
-				function()
-					local chat = require("CopilotChat")
-					chat.open()
-					chat.chat:add_message({
-						role = "user",
-						content = "#buffer\n\n",
-					}, true)
-				end,
-				desc = "Open chat with current buffer",
-			},
-
-			{
-				"<leader>ca",
-				function()
-					local chat = require("CopilotChat")
-					chat.open()
-					chat.chat:add_message({
-						role = "user",
-						content = "#buffers\n\n",
-					}, true)
-				end,
-				desc = "Open chat with all open buffers",
-			},
+		{
+			"<leader>ca",
+			function()
+				local chat = require("CopilotChat")
+				chat.open()
+				chat.chat:add_message({
+					role = "user",
+					content = "#buffers\n\n",
+				}, true)
+			end,
+			desc = "Open chat with all open buffers",
 		},
 	},
 }
