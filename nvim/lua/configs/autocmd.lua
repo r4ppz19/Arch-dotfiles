@@ -1,8 +1,6 @@
-local api = vim.api
-
 -- Indentation
 local four_space_langs = { "python", "java", "rust" }
-api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
 		local ft = vim.bo.filetype
 		if vim.tbl_contains(four_space_langs, ft) then
@@ -15,6 +13,16 @@ api.nvim_create_autocmd("FileType", {
 			vim.bo.softtabstop = 2
 		end
 		vim.bo.expandtab = true
+	end,
+})
+
+-- Wraping
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "markdown", "text" },
+	callback = function()
+		vim.opt_local.wrap = true
+		vim.opt_local.linebreak = true
+		vim.opt_local.breakindent = true
 	end,
 })
 
