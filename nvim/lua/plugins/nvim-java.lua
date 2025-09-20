@@ -3,17 +3,60 @@ return {
 	ft = { "java" },
 	config = function()
 		require("java").setup({
-			notifications = {
-				dap = true,
+			root_markers = {
+				"settings.gradle",
+				"settings.gradle.kts",
+				"pom.xml",
+				"build.gradle",
+				"mvnw",
+				"gradlew",
+				"build.gradle",
+				"build.gradle.kts",
+				".git",
 			},
-			verification = {
-				invalid_order = true,
-				duplicate_setup_calls = true,
-				invalid_mason_registry = false,
+
+			jdtls = {
+				version = "v1.43.0",
 			},
+
+			lombok = {
+				version = "nightly",
+			},
+
+			java_test = {
+				enable = true,
+				version = "0.40.1",
+			},
+
+			java_debug_adapter = {
+				enable = true,
+				version = "0.58.1",
+			},
+
+			spring_boot_tools = {
+				enable = true,
+				version = "1.55.1",
+			},
+
 			jdk = {
 				auto_install = true,
 				version = "21",
+			},
+
+			notifications = {
+				dap = true,
+			},
+
+			verification = {
+				invalid_order = true,
+				duplicate_setup_calls = true,
+				invalid_mason_registry = true,
+			},
+
+			mason = {
+				registries = {
+					"github:nvim-java/mason-registry",
+				},
 			},
 		})
 
@@ -32,11 +75,6 @@ return {
 			map("n", "gt", tb.lsp_type_definitions, { buffer = bufnr, desc = "Goto Type Definition" })
 			map("n", "<leader>lr", tb.lsp_references, { buffer = bufnr, desc = "LSP References" })
 			map("n", "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code Action" })
-			map("n", "<leader>lI", function()
-				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-			end, { buffer = bufnr, desc = "Toggle Inlay Hints" })
-			map("n", "<leader>lci", tb.lsp_incoming_calls, { buffer = bufnr, desc = "Incoming Calls" })
-			map("n", "<leader>lco", tb.lsp_outgoing_calls, { buffer = bufnr, desc = "Outgoing Calls" })
 
 			-- LSP functions
 			map("n", "<leader>lh", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })

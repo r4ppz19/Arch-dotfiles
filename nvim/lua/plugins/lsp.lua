@@ -42,17 +42,13 @@ return {
 			local tb = require("telescope.builtin")
 
 			-- Use Telescope LSP pickers
-			map("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover Doc" })
 			map("n", "gd", tb.lsp_definitions, { buffer = bufnr, desc = "Goto Definition" })
 			map("n", "gi", tb.lsp_implementations, { buffer = bufnr, desc = "Goto Implementation" })
 			map("n", "gt", tb.lsp_type_definitions, { buffer = bufnr, desc = "Goto Type Definition" })
 			map("n", "<leader>lr", tb.lsp_references, { buffer = bufnr, desc = "LSP References" })
+
+			map("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover Doc" })
 			map("n", "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code Action" })
-			map("n", "<leader>lI", function()
-				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-			end, { buffer = bufnr, desc = "Toggle Inlay Hints" })
-			map("n", "<leader>lci", tb.lsp_incoming_calls, { buffer = bufnr, desc = "Incoming Calls" })
-			map("n", "<leader>lco", tb.lsp_outgoing_calls, { buffer = bufnr, desc = "Outgoing Calls" })
 
 			-- LSP functions
 			map("n", "<leader>lh", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
@@ -70,19 +66,18 @@ return {
 
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-		vim.lsp.config("emmet_ls", {
+		vim.lsp.config("lua_ls", {
 			on_attach = on_attach,
 			capabilities = capabilities,
-			filetypes = {
-				"html",
-				"css",
-				"scss",
-				"javascriptreact",
-				"typescriptreact",
+			settings = {
+				Lua = {
+					runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
+					diagnostics = { globals = { "vim" } },
+					workspace = { library = vim.api.nvim_get_runtime_file("", true), checkThirdParty = false },
+					telemetry = { enable = false },
+				},
 			},
 		})
-		vim.lsp.enable("emmet_ls")
-
 		vim.lsp.config("rust_analyzer", {
 			on_attach = on_attach,
 			capabilities = capabilities,
@@ -99,8 +94,6 @@ return {
 				},
 			},
 		})
-		vim.lsp.enable("rust_analyzer")
-
 		vim.lsp.config("ts_ls", {
 			on_attach = on_attach,
 			capabilities = capabilities,
@@ -112,49 +105,52 @@ return {
 			},
 			root_dir = vim.fs.dirname(vim.fs.find({ "package.json", "tsconfig.json" }, { upward = true })[1]),
 		})
-		vim.lsp.enable("ts_ls")
-
+		vim.lsp.config("emmet_ls", {
+			on_attach = on_attach,
+			capabilities = capabilities,
+			filetypes = {
+				"html",
+				"css",
+				"scss",
+				"javascriptreact",
+				"typescriptreact",
+			},
+		})
 		vim.lsp.config("eslint", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 		})
-		vim.lsp.enable("eslint")
-
 		vim.lsp.config("cssls", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 			filetypes = { "css" },
 		})
-		vim.lsp.enable("cssls")
-
 		vim.lsp.config("bashls", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 		})
-		vim.lsp.enable("bashls")
-
 		vim.lsp.config("html", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 		})
-		vim.lsp.enable("html")
-
 		vim.lsp.config("systemd_ls", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 		})
-		vim.lsp.enable("systemd_ls")
-
-		vim.lsp.config("lua_ls", {
-			on_attach = on_attach,
-			capabilities = capabilities,
-		})
-		vim.lsp.enable("lua_ls")
-
 		vim.lsp.config("pyright", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 		})
+
+		vim.lsp.enable("emmet_ls")
+		vim.lsp.enable("lua_ls")
+		vim.lsp.enable("rust_analyzer")
+		vim.lsp.enable("ts_ls")
+		vim.lsp.enable("eslint")
+		vim.lsp.enable("cssls")
+		vim.lsp.enable("bashls")
+		vim.lsp.enable("html")
+		vim.lsp.enable("systemd_ls")
 		vim.lsp.enable("pyright")
 	end,
 }
