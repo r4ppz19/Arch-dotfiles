@@ -7,7 +7,7 @@ return {
 	},
 	build = "make tiktoken",
 	opts = {
-		model = "gpt-4o",
+		model = "gpt-4.1",
 		temperature = 0.1,
 		window = {
 			layout = "vertical",
@@ -15,12 +15,15 @@ return {
 		},
 		auto_insert_mode = false,
 	},
+
 	config = function(_, opts)
 		require("CopilotChat").setup(opts)
 	end,
+
 	keys = {
 		-- Normal mode keybindings
 		{ "<leader>cc", "<cmd>CopilotChatToggle<cr>", desc = "Toggle CopilotChat" },
+
 		{ "<leader>cr", "<cmd>CopilotChatReset<cr>", desc = "Reset CopilotChat" },
 
 		-- Visual mode keybindings
@@ -30,20 +33,25 @@ return {
 			mode = "v",
 			desc = "Explain selected code",
 		},
+
 		{ "<leader>cf", "<cmd>CopilotChatFix<cr>", mode = "v", desc = "Fix selected code" },
+
 		{
 			"<leader>co",
 			"<cmd>CopilotChatOptimize<cr>",
 			mode = "v",
 			desc = "Optimize selected code",
 		},
+
 		{ "<leader>cr", "<cmd>CopilotChatReview<cr>", mode = "v", desc = "Review selected code" },
+
 		{
 			"<leader>cd",
 			"<cmd>CopilotChatDocs<cr>",
 			mode = "v",
 			desc = "Add docs to selected code",
 		},
+
 		{
 			"<leader>ct",
 			"<cmd>CopilotChatTests<cr>",

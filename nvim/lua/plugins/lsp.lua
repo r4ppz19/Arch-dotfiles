@@ -33,7 +33,7 @@ return {
 				"emmet_ls",
 				"ts_ls",
 				"eslint",
-                "jsonls",
+				"jsonls",
 			},
 			automatic_installation = true,
 		})
@@ -49,6 +49,7 @@ return {
 			map("n", "gt", tb.lsp_type_definitions, { buffer = bufnr, desc = "Goto Type Definition" })
 			map("n", "<leader>ls", tb.lsp_document_symbols, { buffer = bufnr, desc = "LSP Document Symbols" })
 			map("n", "<leader>lS", tb.lsp_workspace_symbols, { buffer = bufnr, desc = "LSP Workspace Symbols" })
+
 			map("n", "<leader>ld", function()
 				tb.diagnostics(themes.get_dropdown({
 					previewer = false,
@@ -67,10 +68,9 @@ return {
 				})
 			end, { buffer = bufnr, desc = "LSP References (Dropdown)" })
 
+			-- LSP functions
 			map("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover Doc" })
 			map("n", "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code Action" })
-
-			-- LSP functions
 			map("n", "<leader>lh", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
 			map("i", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
 			map("n", "<leader>ln", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename Symbol" })
@@ -93,6 +93,7 @@ return {
 				},
 			},
 		})
+
 		vim.lsp.config("rust_analyzer", {
 			on_attach = on_attach,
 			capabilities = capabilities,
@@ -109,6 +110,7 @@ return {
 				},
 			},
 		})
+
 		vim.lsp.config("ts_ls", {
 			on_attach = on_attach,
 			capabilities = capabilities,
@@ -120,6 +122,7 @@ return {
 			},
 			root_dir = vim.fs.dirname(vim.fs.find({ "package.json", "tsconfig.json" }, { upward = true })[1]),
 		})
+
 		vim.lsp.config("emmet_ls", {
 			on_attach = on_attach,
 			capabilities = capabilities,
@@ -129,36 +132,43 @@ return {
 				"scss",
 			},
 		})
+
 		vim.lsp.config("eslint", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 		})
+
 		vim.lsp.config("cssls", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 			filetypes = { "css" },
 		})
+
 		vim.lsp.config("bashls", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 		})
+
 		vim.lsp.config("html", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 		})
+
 		vim.lsp.config("systemd_ls", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 		})
+
 		vim.lsp.config("pyright", {
 			on_attach = on_attach,
 			capabilities = capabilities,
 		})
-        vim.lsp.config("jsonls", {
-            on_attach = on_attach,
-            capabilities = capabilities,
-            filetypes = { "json", "jsonc" },
-        })
+
+		vim.lsp.config("jsonls", {
+			on_attach = on_attach,
+			capabilities = capabilities,
+			filetypes = { "json", "jsonc" },
+		})
 
 		vim.lsp.enable("emmet_ls")
 		vim.lsp.enable("lua_ls")
@@ -170,6 +180,6 @@ return {
 		vim.lsp.enable("html")
 		vim.lsp.enable("systemd_ls")
 		vim.lsp.enable("pyright")
-        vim.lsp.enable("jsonls")
+		vim.lsp.enable("jsonls")
 	end,
 }

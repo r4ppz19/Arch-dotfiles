@@ -57,6 +57,7 @@ return {
 			map("n", "gt", tb.lsp_type_definitions, { buffer = bufnr, desc = "Goto Type Definition" })
 			map("n", "<leader>ls", tb.lsp_document_symbols, { buffer = bufnr, desc = "LSP Document Symbols" })
 			map("n", "<leader>lS", tb.lsp_workspace_symbols, { buffer = bufnr, desc = "LSP Workspace Symbols" })
+
 			map("n", "<leader>ld", function()
 				tb.diagnostics(themes.get_dropdown({
 					previewer = false,
@@ -68,6 +69,7 @@ return {
 					include_declaration = true,
 				}))
 			end, { buffer = bufnr, desc = "Diagnostics" })
+
 			map("n", "<leader>lr", function()
 				tb.lsp_references({
 					jump_type = "never",
