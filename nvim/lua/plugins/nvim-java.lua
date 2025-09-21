@@ -15,27 +15,9 @@ return {
 				".git",
 			},
 
-			jdtls = {
-				version = "v1.43.0",
-			},
-
-			lombok = {
-				version = "nightly",
-			},
-
-			java_test = {
-				enable = true,
-				version = "0.40.1",
-			},
-
-			java_debug_adapter = {
-				enable = true,
-				version = "0.58.1",
-			},
-
 			spring_boot_tools = {
 				enable = true,
-				version = "1.55.1",
+				version = "1.59.0",
 			},
 
 			jdk = {
@@ -50,7 +32,7 @@ return {
 			verification = {
 				invalid_order = true,
 				duplicate_setup_calls = true,
-				invalid_mason_registry = true,
+				invalid_mason_registry = false,
 			},
 
 			mason = {
@@ -67,27 +49,40 @@ return {
 		local function on_attach(_, bufnr)
 			local map = vim.keymap.set
 			local tb = require("telescope.builtin")
+			local themes = require("telescope.themes")
 
 			-- Use Telescope LSP pickers
-			map("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover Doc" })
 			map("n", "gd", tb.lsp_definitions, { buffer = bufnr, desc = "Goto Definition" })
 			map("n", "gi", tb.lsp_implementations, { buffer = bufnr, desc = "Goto Implementation" })
 			map("n", "gt", tb.lsp_type_definitions, { buffer = bufnr, desc = "Goto Type Definition" })
-			map("n", "<leader>lr", tb.lsp_references, { buffer = bufnr, desc = "LSP References" })
-			map("n", "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code Action" })
+			map("n", "<leader>ls", tb.lsp_document_symbols, { buffer = bufnr, desc = "LSP Document Symbols" })
+			map("n", "<leader>lS", tb.lsp_workspace_symbols, { buffer = bufnr, desc = "LSP Workspace Symbols" })
+			map("n", "<leader>ld", function()
+				tb.diagnostics(themes.get_dropdown({
+					previewer = false,
+					layout_config = {
+						width = 0.7,
+						height = 0.7,
+					},
+					prompt_title = "Diagnostics",
+					include_declaration = true,
+				}))
+			end, { buffer = bufnr, desc = "Diagnostics" })
+			map("n", "<leader>lr", function()
+				tb.lsp_references({
+					jump_type = "never",
+				})
+			end, { buffer = bufnr, desc = "LSP References (Dropdown)" })
 
 			-- LSP functions
+			map("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover Doc" })
+			map("n", "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code Action" })
 			map("n", "<leader>lh", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
 			map("i", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
 			map("n", "<leader>ln", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename Symbol" })
 			map("n", "<leader>lq", vim.diagnostic.setloclist, { desc = "Diagnostics: Set Loclist" })
 			map("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Next Diagnostic" })
 			map("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "Prev Diagnostic" })
-
-			-- Telescope LSP pickers
-			map("n", "<leader>ls", tb.lsp_document_symbols, { buffer = bufnr, desc = "LSP Document Symbols" })
-			map("n", "<leader>lS", tb.lsp_workspace_symbols, { buffer = bufnr, desc = "LSP Workspace Symbols" })
-			map("n", "<leader>ld", tb.diagnostics, { buffer = bufnr, desc = "Diagnostics" })
 
 			-- Java runner keybindings
 			map("n", "<leader>jrc", "<cmd>JavaRunnerRunMain<CR>", { buffer = bufnr, desc = "Java: Run Main Class" })
@@ -176,10 +171,9 @@ return {
 		end
 
 		-- Setup jdtls with nvim-java
-		vim.lsp.config("jdtls", {
+		require("lspconfig").jdtls.setup({
 			on_attach = on_attach,
 			capabilities = capabilities,
 		})
-		vim.lsp.enable("jdtls")
 	end,
 }

@@ -1,8 +1,8 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		"mason-org/mason-lspconfig.nvim",
-		"mason-org/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+		"williamboman/mason.nvim",
 		"hrsh7th/cmp-nvim-lsp",
 		"nvim-telescope/telescope.nvim",
 	},
@@ -33,6 +33,7 @@ return {
 				"emmet_ls",
 				"ts_ls",
 				"eslint",
+                "jsonls",
 			},
 			automatic_installation = true,
 		})
@@ -40,12 +41,31 @@ return {
 		local function on_attach(_, bufnr)
 			local map = vim.keymap.set
 			local tb = require("telescope.builtin")
+			local themes = require("telescope.themes")
 
 			-- Use Telescope LSP pickers
 			map("n", "gd", tb.lsp_definitions, { buffer = bufnr, desc = "Goto Definition" })
 			map("n", "gi", tb.lsp_implementations, { buffer = bufnr, desc = "Goto Implementation" })
 			map("n", "gt", tb.lsp_type_definitions, { buffer = bufnr, desc = "Goto Type Definition" })
-			map("n", "<leader>lr", tb.lsp_references, { buffer = bufnr, desc = "LSP References" })
+			map("n", "<leader>ls", tb.lsp_document_symbols, { buffer = bufnr, desc = "LSP Document Symbols" })
+			map("n", "<leader>lS", tb.lsp_workspace_symbols, { buffer = bufnr, desc = "LSP Workspace Symbols" })
+			map("n", "<leader>ld", function()
+				tb.diagnostics(themes.get_dropdown({
+					previewer = false,
+					layout_config = {
+						width = 0.7,
+						height = 0.7,
+					},
+					prompt_title = "Diagnostics",
+					include_declaration = true,
+				}))
+			end, { buffer = bufnr, desc = "Diagnostics" })
+
+			map("n", "<leader>lr", function()
+				tb.lsp_references({
+					jump_type = "never",
+				})
+			end, { buffer = bufnr, desc = "LSP References (Dropdown)" })
 
 			map("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover Doc" })
 			map("n", "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code Action" })
@@ -57,11 +77,6 @@ return {
 			map("n", "<leader>lq", vim.diagnostic.setloclist, { desc = "Diagnostics: Set Loclist" })
 			map("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Next Diagnostic" })
 			map("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "Prev Diagnostic" })
-
-			-- Telescope LSP pickers
-			map("n", "<leader>ls", tb.lsp_document_symbols, { buffer = bufnr, desc = "LSP Document Symbols" })
-			map("n", "<leader>lS", tb.lsp_workspace_symbols, { buffer = bufnr, desc = "LSP Workspace Symbols" })
-			map("n", "<leader>ld", tb.diagnostics, { buffer = bufnr, desc = "Diagnostics" })
 		end
 
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -112,8 +127,6 @@ return {
 				"html",
 				"css",
 				"scss",
-				"javascriptreact",
-				"typescriptreact",
 			},
 		})
 		vim.lsp.config("eslint", {
@@ -141,6 +154,11 @@ return {
 			on_attach = on_attach,
 			capabilities = capabilities,
 		})
+        vim.lsp.config("jsonls", {
+            on_attach = on_attach,
+            capabilities = capabilities,
+            filetypes = { "json", "jsonc" },
+        })
 
 		vim.lsp.enable("emmet_ls")
 		vim.lsp.enable("lua_ls")
@@ -152,5 +170,6 @@ return {
 		vim.lsp.enable("html")
 		vim.lsp.enable("systemd_ls")
 		vim.lsp.enable("pyright")
+        vim.lsp.enable("jsonls")
 	end,
 }
