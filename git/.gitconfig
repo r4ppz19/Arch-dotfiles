@@ -1,6 +1,6 @@
 [user]
-	name = r4ppz
-	email = johnreyrabosa.f@gmail.com
+  name = r4ppz
+  email = johnreyrabosa.f@gmail.com
   signingKey = ~/.ssh/id_ed25519.pub
 
 [gpg]
@@ -10,45 +10,50 @@
   gpgSign = true
 
 [push]
-	autoSetupRemote = true
+  autoSetupRemote = true
 
 [pull]
   rebase = true
 
 [commit]
-	verbose = true
-	gpgsign = true
+  verbose = true
+  gpgsign = true
 
 [init]
-	defaultBranch = main
-
-[diff]
-	tool = vscode
-
-[difftool "vscode"]
-	cmd = "code --wait --diff  "
+  defaultBranch = main
 
 [core]
   editor = nvim
-	pager = delta
+  pager = delta
   autocrlf = input
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [branch]
     autosetuprebase = always
 
-[interactive]
-	diffFilter = delta --color-only
+[diff]
+  tool = nvimdiff
 
-[delta]
-	navigate = true
-  line-numbers = true
-  hyperlinks = true
-  hyperlinks-file-link-format = "vscode://file/{path}:{line}"
-  side-by-side = true
+[difftool "nvimdiff"]
+  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+
+[merge]
+  tool = nvimdiff
+
+[mergetool "nvimdiff"]
+  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\" -c 'wincmd J'"
 
 [merge]
   conflictStyle = zdiff3
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  line-numbers = true
+  side-by-side = false
+  hyperlinks = true
 
 [alias]
   s = status -sb
