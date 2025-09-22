@@ -19,6 +19,7 @@ return {
 					"ts_ls",
 					"eslint",
 					"jsonls",
+					"jdtls",
 				},
 			},
 		},
@@ -29,6 +30,12 @@ return {
 	config = function()
 		-- Set up capabilities for completion
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+		-- Global LSP configuration for all servers
+		vim.lsp.config("*", {
+			capabilities = capabilities,
+			root_markers = { ".git", ".hg", "package.json", "vite.config.js", "vite.config.ts" },
+		})
 
 		-- Configure specific servers that need custom settings
 		vim.lsp.config("lua_ls", {
@@ -56,15 +63,33 @@ return {
 			},
 		})
 
+		-- Enable all configured LSP servers
+		local servers = {
+			"lua_ls",
+			"pyright",
+			"bashls",
+			"rust_analyzer",
+			"html",
+			"cssls",
+			"emmet_ls",
+			"ts_ls",
+			"eslint",
+			"jsonls",
+			"jdtls",
+		}
+
+		for _, server in ipairs(servers) do
+			vim.lsp.enable(server)
+		end
+
 		-- Add custom keymaps when LSP attaches
 		vim.api.nvim_create_autocmd("LspAttach", {
 			callback = function(args)
 				local bufnr = args.buf
-				local client = vim.lsp.get_client_by_id(args.data.client_id)
 				local tb = require("telescope.builtin")
 				local themes = require("telescope.themes")
 
-				-- Custom keymaps (in addition to Neovim 0.11+ defaults)
+				-- Custom keymaps
 				local map = function(mode, lhs, rhs, desc)
 					vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
 				end
@@ -102,9 +127,41 @@ return {
 				map("n", "<leader>lf", vim.lsp.buf.format, "Format Buffer")
 				map("n", "<leader>lq", vim.diagnostic.setloclist, "Diagnostics to Loclist")
 
-				-- Enable completion if supported
-				if client and client.supports_method("textDocument/completion") then
-					vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
+				-- Enhanced navigation (keeping native LSP power)
+				map("n", "gd", function()
+					vim.lsp.buf.definition({ reuse_win = true })
+				end, "Go to Definition")
+
+				map("n", "gD", vim.lsp.buf.declaration, "Go to Declaration")
+
+				-- Advanced features if supported
+				local client = vim.lsp.get_client_by_id(args.data.client_id)
+				if client then
+					-- Document highlighting
+					if client:supports_method("textDocument/documentHighlight") then
+						map("n", "<leader>lH", vim.lsp.buf.document_highlight, "Highlight References")
+						map("n", "<leader>lc", vim.lsp.buf.clear_references, "Clear Highlights")
+					end
+
+					-- Inlay hints
+					if client:supports_method("textDocument/inlayHint") then
+						map("n", "<leader>lI", function()
+							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+						end, "Toggle Inlay Hints")
+					end
+
+					-- Code lens
+					if client:supports_method("textDocument/codeLens") then
+						map("n", "<leader>ll", vim.lsp.codelens.run, "Run Code Lens")
+						map("n", "<leader>lL", vim.lsp.codelens.refresh, "Refresh Code Lens")
+					end
+
+					-- Semantic tokens
+					if client:supports_method("textDocument/semanticTokens/full") then
+						map("n", "<leader>lT", function()
+							vim.lsp.semantic_tokens.enable(not vim.lsp.semantic_tokens.is_enabled())
+						end, "Toggle Semantic Tokens")
+					end
 				end
 			end,
 		})
