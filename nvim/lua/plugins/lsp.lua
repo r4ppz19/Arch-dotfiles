@@ -123,7 +123,11 @@ return {
 				"typescript",
 				"typescriptreact",
 			},
-			root_dir = vim.fs.dirname(vim.fs.find({ "package.json", "tsconfig.json" }, { upward = true })[1]),
+			root_dir = function(fname)
+				return vim.fs.dirname(
+					vim.fs.find({ "package.json", "tsconfig.json" }, { path = fname, upward = true })[1]
+				)
+			end,
 		})
 
 		vim.lsp.config("emmet_ls", {
