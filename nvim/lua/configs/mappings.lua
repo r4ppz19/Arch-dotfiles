@@ -5,6 +5,9 @@ local map = function(mode, lhs, rhs, opts)
 end
 
 -- Editor remaps/ built in
+
+map("n", "q", "<Nop>")
+
 map("n", "*", [[<Cmd>let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>]], { desc = "Highlight word (no jump)" })
 map("n", "#", [[<Cmd>let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>]], { desc = "Highlight word (no jump)" })
 map(
