@@ -34,6 +34,8 @@ return {
 				"ts_ls",
 				"eslint",
 				"jsonls",
+				"css_variables",
+				"cssmodules_ls",
 			},
 			automatic_installation = true,
 		})
@@ -43,10 +45,21 @@ return {
 			local tb = require("telescope.builtin")
 			local themes = require("telescope.themes")
 
-			-- Use Telescope LSP pickers
-			map("n", "gd", tb.lsp_definitions, { buffer = bufnr, desc = "Goto Definition" })
-			map("n", "gi", tb.lsp_implementations, { buffer = bufnr, desc = "Goto Implementation" })
-			map("n", "gt", tb.lsp_type_definitions, { buffer = bufnr, desc = "Goto Type Definition" })
+			-- LSP API
+			map("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Goto Definition" })
+			map("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "Goto Implementation" })
+			map("n", "gt", vim.lsp.buf.type_definition, { buffer = bufnr, desc = "Goto Type Definition" })
+			map("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover Doc" })
+			map("i", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
+			map("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Next Diagnostic" })
+			map("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "Prev Diagnostic" })
+
+			map("n", "<leader>lh", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
+			map("n", "<leader>lq", vim.diagnostic.setloclist, { desc = "Diagnostics: Set Loclist" })
+			map("n", "<leader>ln", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename Symbol" })
+			map("n", "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code Action" })
+
+			-- Telescope API
 			map("n", "<leader>ls", tb.lsp_document_symbols, { buffer = bufnr, desc = "LSP Document Symbols" })
 			map("n", "<leader>lS", tb.lsp_workspace_symbols, { buffer = bufnr, desc = "LSP Workspace Symbols" })
 
@@ -66,17 +79,7 @@ return {
 				tb.lsp_references({
 					jump_type = "never",
 				})
-			end, { buffer = bufnr, desc = "LSP References (Dropdown)" })
-
-			-- LSP functions
-			map("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "Hover Doc" })
-			map("n", "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code Action" })
-			map("n", "<leader>lh", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
-			map("i", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
-			map("n", "<leader>ln", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename Symbol" })
-			map("n", "<leader>lq", vim.diagnostic.setloclist, { desc = "Diagnostics: Set Loclist" })
-			map("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Next Diagnostic" })
-			map("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "Prev Diagnostic" })
+			end, { buffer = bufnr, desc = "LSP References" })
 		end
 
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -170,6 +173,20 @@ return {
 			filetypes = { "json", "jsonc" },
 		})
 
+		vim.lsp.config("css_variables", {
+			on_attach = on_attach,
+			capabilities = capabilities,
+			filetypes = { "css" },
+		})
+
+		vim.lsp.config("cssmodules_ls", {
+			on_attach = on_attach,
+			capabilities = capabilities,
+			filetypes = { "css" },
+		})
+
+		vim.lsp.enable("css_variables")
+		vim.lsp.enable("cssmodules_ls")
 		vim.lsp.enable("emmet_ls")
 		vim.lsp.enable("lua_ls")
 		vim.lsp.enable("rust_analyzer")
