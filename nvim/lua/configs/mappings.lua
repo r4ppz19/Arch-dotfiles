@@ -6,6 +6,18 @@ end
 
 -- Editor remaps/ built in
 
+-- Open visually selected text as a URL/file
+map("v", "gx", function()
+	vim.cmd('normal! "vy')
+	local url = vim.fn.getreg("v")
+	url = vim.fn.trim(url)
+	if url ~= "" then
+		vim.fn.jobstart({ "xdg-open", url }, { detach = true })
+	else
+		print("No URL selected")
+	end
+end, { silent = true })
+
 map("n", "q", "<Nop>")
 
 map("n", "*", [[<Cmd>let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>]], { desc = "Highlight word (no jump)" })
@@ -91,6 +103,10 @@ map("n", "<leader>wk", function()
 	vim.cmd("WhichKey " .. vim.fn.input("WhichKey: "))
 end, { desc = "whichkey query lookup" })
 
+-- JAVA (nvim-jdtls) - Available only in Java files
+-- These keymaps are defined here for reference but will only work in Java buffers
+-- The actual keybindings are set up in ftplugin/java.lua
+
 -- TELESCOPE
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Telescope: find buffers" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Telescope: help page" })
@@ -168,3 +184,13 @@ end, { desc = "Buffer goto prev" })
 map("n", "<leader>x", function()
 	require("nvchad.tabufline").close_buffer()
 end, { desc = "Buffer close" })
+
+local function close_all_buffers_but_current()
+	local current_buf = vim.api.nvim_get_current_buf()
+	for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+		if bufnr ~= current_buf and vim.bo[bufnr].buflisted then
+			vim.api.nvim_buf_delete(bufnr, {})
+		end
+	end
+end
+vim.keymap.set("n", "<leader>X", close_all_buffers_but_current, { desc = "Close all buffers except current" })

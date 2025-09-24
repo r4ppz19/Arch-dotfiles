@@ -20,11 +20,14 @@ return {
 					"eslint",
 					"jsonls",
 					"jdtls",
+					"cssmodules_ls",
+					"lemminx",
 				},
 			},
 		},
 		"hrsh7th/cmp-nvim-lsp",
 		"nvim-telescope/telescope.nvim",
+		"mfussenegger/nvim-jdtls",
 	},
 
 	config = function()
@@ -76,6 +79,8 @@ return {
 			"eslint",
 			"jsonls",
 			"jdtls",
+			"cssmodules_ls",
+			"lemminx",
 		}
 
 		for _, server in ipairs(servers) do
@@ -86,7 +91,7 @@ return {
 		vim.api.nvim_create_autocmd("LspAttach", {
 			callback = function(args)
 				local bufnr = args.buf
-				local tb = require("telescope.builtin")
+				local telescope = require("telescope.builtin")
 				local themes = require("telescope.themes")
 
 				-- Custom keymaps
@@ -95,17 +100,18 @@ return {
 				end
 
 				-- Telescope LSP integration with <leader>l prefix
-				map("n", "<leader>ls", tb.lsp_document_symbols, "Document Symbols")
-				map("n", "<leader>lS", tb.lsp_workspace_symbols, "Workspace Symbols")
-				map("n", "<leader>lr", tb.lsp_references, "LSP References")
-				map("n", "<leader>li", tb.lsp_implementations, "LSP Implementations")
-				map("n", "<leader>lt", tb.lsp_type_definitions, "Type Definitions")
-				map("n", "<leader>lc", tb.lsp_incoming_calls, "Incoming Calls")
-				map("n", "<leader>lC", tb.lsp_outgoing_calls, "Outgoing Calls")
+				map("n", "gd", telescope.lsp_definitions, "Go to Definition (Telescope)")
+				map("n", "<leader>ls", telescope.lsp_document_symbols, "Document Symbols")
+				map("n", "<leader>lS", telescope.lsp_workspace_symbols, "Workspace Symbols")
+				map("n", "<leader>lr", telescope.lsp_references, "LSP References")
+				map("n", "<leader>li", telescope.lsp_implementations, "LSP Implementations")
+				map("n", "<leader>lt", telescope.lsp_type_definitions, "Type Definitions")
+				map("n", "<leader>lc", telescope.lsp_incoming_calls, "Incoming Calls")
+				map("n", "<leader>lC", telescope.lsp_outgoing_calls, "Outgoing Calls")
 
 				-- Diagnostics with dropdown theme
 				map("n", "<leader>ld", function()
-					tb.diagnostics(themes.get_dropdown({
+					telescope.diagnostics(themes.get_dropdown({
 						previewer = false,
 						layout_config = { width = 0.7, height = 0.7 },
 					}))
@@ -113,7 +119,7 @@ return {
 
 				-- Buffer-specific diagnostics
 				map("n", "<leader>lD", function()
-					tb.diagnostics(themes.get_dropdown({
+					telescope.diagnostics(themes.get_dropdown({
 						previewer = false,
 						layout_config = { width = 0.7, height = 0.7 },
 						bufnr = 0,
@@ -124,19 +130,39 @@ return {
 				map("n", "<leader>la", vim.lsp.buf.code_action, "Code Action")
 				map("n", "<leader>ln", vim.lsp.buf.rename, "Rename Symbol")
 				map("n", "<leader>lh", vim.lsp.buf.signature_help, "Signature Help")
-				map("n", "<leader>lf", vim.lsp.buf.format, "Format Buffer")
 				map("n", "<leader>lq", vim.diagnostic.setloclist, "Diagnostics to Loclist")
-
-				-- Enhanced navigation (keeping native LSP power)
-				map("n", "gd", function()
-					vim.lsp.buf.definition({ reuse_win = true })
-				end, "Go to Definition")
-
-				map("n", "gD", vim.lsp.buf.declaration, "Go to Declaration")
 
 				-- Advanced features if supported
 				local client = vim.lsp.get_client_by_id(args.data.client_id)
 				if client then
+					-- Java-specific keymaps (nvim-jdtls)
+					if client.name == "jdtls" then
+						local jdtls = require("jdtls")
+						map("n", "<leader>jo", jdtls.organize_imports, "Java: Organize Imports")
+						map("n", "<leader>jv", jdtls.extract_variable, "Java: Extract Variable")
+						map("v", "<leader>jv", function()
+							jdtls.extract_variable(true)
+						end, "Java: Extract Variable")
+						map("n", "<leader>jc", jdtls.extract_constant, "Java: Extract Constant")
+						map("v", "<leader>jc", function()
+							jdtls.extract_constant(true)
+						end, "Java: Extract Constant")
+						map("v", "<leader>jm", function()
+							jdtls.extract_method(true)
+						end, "Java: Extract Method")
+						map("n", "<leader>jcc", function()
+							jdtls.compile("full")
+						end, "Java: Compile Full")
+						map("n", "<leader>jci", function()
+							jdtls.compile("incremental")
+						end, "Java: Compile Incremental")
+
+						-- Test commands (if nvim-dap is available)
+						if pcall(require, "dap") then
+							map("n", "<leader>jtc", jdtls.test_class, "Java: Test Class")
+							map("n", "<leader>jtm", jdtls.test_nearest_method, "Java: Test Method")
+						end
+					end
 					-- Document highlighting
 					if client:supports_method("textDocument/documentHighlight") then
 						map("n", "<leader>lH", vim.lsp.buf.document_highlight, "Highlight References")
@@ -154,13 +180,6 @@ return {
 					if client:supports_method("textDocument/codeLens") then
 						map("n", "<leader>ll", vim.lsp.codelens.run, "Run Code Lens")
 						map("n", "<leader>lL", vim.lsp.codelens.refresh, "Refresh Code Lens")
-					end
-
-					-- Semantic tokens
-					if client:supports_method("textDocument/semanticTokens/full") then
-						map("n", "<leader>lT", function()
-							vim.lsp.semantic_tokens.enable(not vim.lsp.semantic_tokens.is_enabled())
-						end, "Toggle Semantic Tokens")
 					end
 				end
 			end,

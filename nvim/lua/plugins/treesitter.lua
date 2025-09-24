@@ -22,7 +22,8 @@ return {
 			"sql",
 			"c",
 			"cpp",
-            "json",
+			"json",
+			"xml",
 		},
 	},
 }
