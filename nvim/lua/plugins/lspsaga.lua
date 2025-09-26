@@ -11,7 +11,7 @@ return {
 				sign_priority = 40,
 			},
 			finder = {
-				default = "tyd+ref+imp+def",
+				default = "ref+imp+def",
 			},
 		})
 
