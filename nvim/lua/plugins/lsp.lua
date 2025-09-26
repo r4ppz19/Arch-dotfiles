@@ -26,15 +26,12 @@ return {
 					"jsonls",
 					"jdtls",
 					"cssmodules_ls",
-					"lemminx",
+					"marksman",
 				},
 				automatic_enable = false,
 			},
 		},
-		"hrsh7th/cmp-nvim-lsp",
-		"nvim-telescope/telescope.nvim",
 		"mfussenegger/nvim-jdtls",
-		"nvimdev/lspsaga.nvim",
 	},
 
 	config = function()
@@ -47,7 +44,6 @@ return {
 			root_markers = { ".git", ".hg", "package.json", "vite.config.js", "vite.config.ts", "tsconfig.json" },
 		})
 
-		-- TypeScript/JavaScript/React specific configuration
 		vim.lsp.config("ts_ls", {
 			capabilities = capabilities,
 			filetypes = {
@@ -84,7 +80,6 @@ return {
 			},
 		})
 
-		-- CSS/Module CSS configuration
 		vim.lsp.config("cssls", {
 			capabilities = capabilities,
 			settings = {
@@ -103,13 +98,11 @@ return {
 			},
 		})
 
-		-- CSS Modules LSP (if you use CSS Modules)
 		vim.lsp.config("cssmodules_ls", {
 			capabilities = capabilities,
 			filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 		})
 
-		-- ESLint configuration
 		vim.lsp.config("eslint", {
 			capabilities = capabilities,
 			filetypes = {
@@ -148,7 +141,6 @@ return {
 			},
 		})
 
-		-- Configure specific servers that need custom settings
 		vim.lsp.config("lua_ls", {
 			capabilities = capabilities,
 			settings = {
@@ -188,7 +180,7 @@ return {
 			"jsonls",
 			"jdtls",
 			"cssmodules_ls",
-			"lemminx",
+			"marksman",
 		}
 
 		for _, server in ipairs(servers) do
