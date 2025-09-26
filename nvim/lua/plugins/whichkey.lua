@@ -12,7 +12,6 @@ return {
 			{ "<leader>f", group = "Telescope", icon = "󰭎" },
 			{ "<leader>n", group = "NvChad", icon = "" },
 			{ "<leader>p", group = "Plugins", icon = "󰏖" },
-			{ "<leader>t", group = "Terminal", icon = "" },
 			{ "<leader>w", group = "WhichKey", icon = "󰘳" },
 			{ "<leader>fg", group = "Grep", icon = "󰘳" },
 

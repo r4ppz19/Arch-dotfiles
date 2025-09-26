@@ -64,7 +64,6 @@ map("v", "<", "<gv", { desc = "Indent left and reselect" })
 map("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 map({ "n", "i", "v" }, "<C-s>", "<cmd>write<cr>", { desc = "Save file" })
--- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save file" })
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "escape terminal mode" })
@@ -90,27 +89,29 @@ map("n", "<leader>nt", function()
 	require("nvchad.themes").open()
 end, { desc = "telescope nvchad themes" })
 
--- TERMINAL
-map("n", "<leader>tf", "<cmd>Telescope terms<CR>", { desc = "Termianl: telescope hidden term" })
-map({ "n", "t" }, "<leader>tp", function()
-	require("nvchad.term").toggle({ pos = "float", id = "floatTerm" })
-end, { desc = "Terminal: toggle popup term" })
-
-map("n", "<leader>th", function()
-	require("nvchad.term").new({ pos = "sp" })
-end, { desc = "Terminal: new horizontal term" })
-map("n", "<leader>tv", function()
-	require("nvchad.term").new({ pos = "vsp" })
-end, { desc = "Terminal: new vertical term" })
-
--- toggleable
+-- Toggleable terminal
 map({ "n", "t" }, "<A-v>", function()
-	require("nvchad.term").toggle({ pos = "vsp", id = "vtoggleTerm" })
-end, { desc = "terminal toggleable vertical term" })
+	require("nvchad.term").toggle({
+		pos = "vsp",
+		id = "vtoggleTerm",
+		size = 0.3,
+	})
+end, { desc = "Toggle Vertical terminal" })
 
 map({ "n", "t" }, "<A-h>", function()
-	require("nvchad.term").toggle({ pos = "sp", id = "htoggleTerm" })
-end, { desc = "terminal toggleable horizontal term" })
+	require("nvchad.term").toggle({
+		pos = "sp",
+		id = "htoggleTerm",
+		size = 0.5,
+	})
+end, { desc = "Toggle horizontal terminal" })
+
+map({ "n", "t" }, "<A-d>", function()
+	require("nvchad.term").toggle({
+		pos = "float",
+		id = "ftoggleTerm",
+	})
+end, { desc = "Toggle floating terminal" })
 
 -- tabufline
 map("n", "<leader>b", "<cmd>enew<CR>", { desc = "Buffer new" })

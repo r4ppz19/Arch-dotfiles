@@ -38,7 +38,7 @@ return {
 			function()
 				require("conform").format({ lsp_fallback = true })
 			end,
-			desc = "general format file",
+			desc = "Formal File",
 		},
 	},
 }
