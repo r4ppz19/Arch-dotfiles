@@ -32,6 +32,7 @@ return {
 			},
 		},
 		"mfussenegger/nvim-jdtls",
+		"nvimdev/lspsaga.nvim",
 	},
 
 	config = function()
@@ -44,124 +45,28 @@ return {
 			root_markers = { ".git", ".hg", "package.json", "vite.config.js", "vite.config.ts", "tsconfig.json" },
 		})
 
-		vim.lsp.config("ts_ls", {
-			capabilities = capabilities,
-			filetypes = {
-				"javascript",
-				"javascriptreact",
-				"javascript.jsx",
-				"typescript",
-				"typescriptreact",
-				"typescript.tsx",
-			},
-			settings = {
-				typescript = {
-					inlayHints = {
-						includeInlayParameterNameHints = "all",
-						includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-						includeInlayFunctionParameterTypeHints = true,
-						includeInlayVariableTypeHints = true,
-						includeInlayPropertyDeclarationTypeHints = true,
-						includeInlayFunctionLikeReturnTypeHints = true,
-						includeInlayEnumMemberValueHints = true,
-					},
-				},
-				javascript = {
-					inlayHints = {
-						includeInlayParameterNameHints = "all",
-						includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-						includeInlayFunctionParameterTypeHints = true,
-						includeInlayVariableTypeHints = true,
-						includeInlayPropertyDeclarationTypeHints = true,
-						includeInlayFunctionLikeReturnTypeHints = true,
-						includeInlayEnumMemberValueHints = true,
-					},
-				},
-			},
-		})
-
-		vim.lsp.config("cssls", {
-			capabilities = capabilities,
-			settings = {
-				css = {
-					validate = true,
-					lint = {
-						unknownAtRules = "ignore",
-					},
-				},
-				scss = {
-					validate = true,
-				},
-				less = {
-					validate = true,
-				},
-			},
-		})
-
-		vim.lsp.config("cssmodules_ls", {
-			capabilities = capabilities,
-			filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-		})
-
-		vim.lsp.config("eslint", {
-			capabilities = capabilities,
-			filetypes = {
-				"javascript",
-				"javascriptreact",
-				"typescript",
-				"typescriptreact",
-				"vue",
-				"svelte",
-				"astro",
-			},
-			settings = {
-				codeAction = {
-					disableRuleComment = {
-						enable = true,
-						location = "separateLine",
-					},
-					showDocumentation = {
-						enable = true,
-					},
-				},
-				codeActionOnSave = {
-					enable = false,
-					mode = "all",
-				},
-				format = false,
-				quiet = false,
-				onIgnoredFiles = "off",
-				rulesCustomizations = {},
-				run = "onType",
-				useESLintClass = false,
-				validate = "on",
-				workingDirectory = {
-					mode = "auto",
-				},
-			},
-		})
-
 		vim.lsp.config("lua_ls", {
 			capabilities = capabilities,
 			settings = {
 				Lua = {
-					runtime = { version = "LuaJIT" },
-					diagnostics = { globals = { "vim" } },
-					workspace = {
-						library = vim.api.nvim_get_runtime_file("", true),
-						checkThirdParty = false,
+					runtime = {
+						version = "LuaJIT",
 					},
-					telemetry = { enable = false },
-				},
-			},
-		})
-
-		vim.lsp.config("rust_analyzer", {
-			capabilities = capabilities,
-			settings = {
-				["rust-analyzer"] = {
-					cargo = { allFeatures = true },
-					check = { command = "clippy" },
+					diagnostics = {
+						globals = { "vim" },
+					},
+					workspace = {
+						library = {
+							vim.env.VIMRUNTIME,
+							vim.fn.stdpath("config"),
+						},
+						checkThirdParty = false,
+						maxPreload = 2000,
+						preloadFileSize = 1000,
+					},
+					telemetry = {
+						enable = false,
+					},
 				},
 			},
 		})

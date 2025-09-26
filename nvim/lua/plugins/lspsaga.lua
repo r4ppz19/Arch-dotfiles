@@ -18,84 +18,71 @@ return {
 		-- Lspsaga keymaps setup in LspAttach autocmd
 		vim.api.nvim_create_autocmd("LspAttach", {
 			callback = function(args)
-				local bufnr = args.buf
-				local keymap = vim.keymap.set
+				local buffer = args.buf
+				local map = vim.keymap.set
 
 				-- Navigation
-				keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>", { buffer = bufnr, desc = "Go to Definition" })
-				keymap("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "Go to Declaration" })
-				keymap("n", "gr", "<cmd>Lspsaga finder<CR>", { buffer = bufnr, desc = "Find References" })
-				keymap("n", "gi", "<cmd>Lspsaga finder imp<CR>", { buffer = bufnr, desc = "Go to Implementation" })
-				keymap(
+				map("n", "gd", "<cmd>Lspsaga goto_definition<CR>", { buffer = buffer, desc = "Go to Definition" })
+				map("n", "gr", "<cmd>Lspsaga finder<CR>", { buffer = buffer, desc = "Find References" })
+				map("n", "gi", "<cmd>Lspsaga finder imp<CR>", { buffer = buffer, desc = "Go to Implementation" })
+				map(
 					"n",
 					"gy",
 					"<cmd>Lspsaga goto_type_definition<CR>",
-					{ buffer = bufnr, desc = "Go to Type Definition" }
+					{ buffer = buffer, desc = "Go to Type Definition" }
 				)
-				keymap(
+
+				map("n", "gD", "<cmd>Lspsaga peek_definition<CR>", { buffer = buffer, desc = "Peek Definition" })
+				map(
 					"n",
-					"<leader>lpd",
-					"<cmd>Lspsaga peek_definition<CR>",
-					{ buffer = bufnr, desc = "Peek Definition" }
-				)
-				keymap(
-					"n",
-					"<leader>lpt",
+					"gT",
 					"<cmd>Lspsaga peek_type_definition<CR>",
-					{ buffer = bufnr, desc = "Peek Type Definition" }
+					{ buffer = buffer, desc = "Peek Type Definition" }
 				)
 
 				-- Code Actions
-				keymap(
+				map(
 					{ "n", "v" },
 					"<leader>la",
 					"<cmd>Lspsaga code_action<CR>",
-					{ buffer = bufnr, desc = "Code Actions" }
+					{ buffer = buffer, desc = "Code Actions" }
 				)
-				keymap("n", "<leader>lr", "<cmd>Lspsaga rename<CR>", { buffer = bufnr, desc = "Rename Symbol" })
-				keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", { buffer = bufnr, desc = "Hover Documentation" })
-				keymap("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
+				map("n", "<leader>lr", "<cmd>Lspsaga rename<CR>", { buffer = buffer, desc = "Rename Symbol" })
+				map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { buffer = buffer, desc = "Hover Documentation" })
+				map("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = buffer, desc = "Signature Help" })
 
 				-- Diagnostics
-				keymap(
+				map(
 					"n",
 					"[d",
 					"<cmd>Lspsaga diagnostic_jump_prev<CR>",
-					{ buffer = bufnr, desc = "Previous Diagnostic" }
+					{ buffer = buffer, desc = "Previous Diagnostic" }
 				)
-				keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", { buffer = bufnr, desc = "Next Diagnostic" })
-				keymap(
+				map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", { buffer = buffer, desc = "Next Diagnostic" })
+				map(
 					"n",
 					"<leader>ld",
 					"<cmd>Lspsaga show_buf_diagnostics<CR>",
-					{ buffer = bufnr, desc = "Show Line Diagnostics" }
+					{ buffer = buffer, desc = "Show Line Diagnostics" }
 				)
-				keymap(
+				map(
 					"n",
 					"<leader>lD",
 					"<cmd>Lspsaga show_workspace_diagnostics<CR>",
-					{ buffer = bufnr, desc = "Show Cursor Diagnostics" }
+					{ buffer = buffer, desc = "Show Cursor Diagnostics" }
 				)
 
 				-- LSPSaga Features
-				keymap(
+				map(
 					"n",
-					"<leader>lo",
+					"<leader>ls",
 					"<cmd>Lspsaga outline<CR>",
-					{ buffer = bufnr, desc = "Outline/Symbols Browser" }
+					{ buffer = buffer, desc = "Outline/Symbols Browser" }
 				)
-				keymap(
-					"n",
-					"<leader>lci",
-					"<cmd>Lspsaga incoming_calls<CR>",
-					{ buffer = bufnr, desc = "Incoming Calls" }
-				)
-				keymap(
-					"n",
-					"<leader>lco",
-					"<cmd>Lspsaga outgoing_calls<CR>",
-					{ buffer = bufnr, desc = "Outgoing Calls" }
-				)
+				map("n", "<leader>li", "<cmd>Lspsaga incoming_calls<CR>", { buffer = buffer, desc = "Incoming Calls" })
+				map("n", "<leader>lo", "<cmd>Lspsaga outgoing_calls<CR>", { buffer = buffer, desc = "Outgoing Calls" })
+
+				map("n", "<A-t>", "<cmd>Lspsaga term_toggle<CR>", { buffer = buffer, desc = "Float Terminal" })
 			end,
 		})
 	end,
