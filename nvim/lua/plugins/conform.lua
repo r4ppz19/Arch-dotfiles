@@ -32,4 +32,13 @@ return {
 			lsp_fallback = true,
 		},
 	},
+	keys = {
+		{
+			"<leader>pf",
+			function()
+				require("conform").format({ lsp_fallback = true })
+			end,
+			desc = "general format file",
+		},
+	},
 }

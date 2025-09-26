@@ -6,17 +6,16 @@ end
 
 -- Editor remaps/ built in
 
--- Open visually selected text as a URL/file
 map("v", "gx", function()
-	vim.cmd('normal! "vy')
-	local url = vim.fn.getreg("v")
+	vim.cmd([[normal! "vy]])
+	local url = vim.fn.getreg('"')
 	url = vim.fn.trim(url)
 	if url ~= "" then
 		vim.fn.jobstart({ "xdg-open", url }, { detach = true })
 	else
-		print("No URL selected")
+		vim.notify("No URL selected", vim.log.levels.WARN)
 	end
-end, { silent = true })
+end, { silent = true, desc = "Open selected text as URL" })
 
 map("n", "q", "<Nop>")
 
@@ -81,69 +80,9 @@ map("t", "<C-x>", "<C-\\><C-N>", { desc = "escape terminal mode" })
 -- map("i", "<C-j>", "<Down>", { desc = "move down" })
 -- map("i", "<C-k>", "<Up>", { desc = "move up" })
 
--- PLUGINS
-map({ "n", "x" }, "<leader>pf", function()
-	require("conform").format({ lsp_fallback = true })
-end, { desc = "general format file" })
-map("n", "<leader>pm", "<cmd>MarkdownPreview<cr>", { desc = "Markdown preview" })
-map("n", "<leader>pls", "<cmd>LiveServerStart<CR>", { desc = "Live Preview Start" })
-map("n", "<leader>plx", "<cmd>LiveServerStop<CR>", { desc = "Live Preview Stop" })
-
 -- Comment
 map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
 map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
-
--- nvimtree
-map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
-map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
-
--- whichkey
-map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "whichkey all keymaps" })
-map("n", "<leader>wk", function()
-	vim.cmd("WhichKey " .. vim.fn.input("WhichKey: "))
-end, { desc = "whichkey query lookup" })
-
--- JAVA (nvim-jdtls) - Available only in Java files
--- These keymaps are defined here for reference but will only work in Java buffers
--- The actual keybindings are set up in ftplugin/java.lua
-
--- TELESCOPE
-map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Telescope: find buffers" })
-map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Telescope: help page" })
-map("n", "<leader>fm", "<cmd>Telescope marks<CR>", { desc = "Telescope: find marks" })
-map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "Telescope: find oldfiles" })
-map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Telescope: find files" })
-map("n", "<leader>fc", "<cmd>Telescope commands<CR>", { desc = "Telescope: command palette" })
-map("n", "<leader>fq", "<cmd>Telescope quickfix<CR>", { desc = "Telescope: quickfix list" })
-map("n", "<leader>fl", "<cmd>Telescope loclist<CR>", { desc = "Telescope: location list" })
-map(
-	"n",
-	"<leader>fa",
-	"<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-	{ desc = "Telescope: find all files" }
-)
-map("n", "<leader>fH", function()
-	require("telescope.builtin").find_files({
-		prompt_title = "Home Files",
-		cwd = vim.fn.expand("~"),
-		hidden = true,
-		no_ignore = true,
-		follow = true,
-	})
-end, { desc = "Telescope: find files from $HOME" })
-map("n", "<leader>fgc", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope: find in current buffer" })
-map("n", "<leader>fgl", "<cmd>Telescope live_grep<CR>", { desc = "Telescope: live grep" })
-map("n", "<leader>fgh", function()
-	require("telescope.builtin").live_grep({
-		prompt_title = "Grep in Home",
-		cwd = vim.fn.expand("~"),
-		additional_args = function()
-			return { "--hidden", "--no-ignore" }
-		end,
-	})
-end, { desc = "Telescope: grep in $HOME" })
-map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope: git commits" })
-map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "Telescope: git status" })
 
 -- NVCHAD
 map("n", "<leader>nc", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
@@ -193,4 +132,4 @@ local function close_all_buffers_but_current()
 		end
 	end
 end
-vim.keymap.set("n", "<leader>X", close_all_buffers_but_current, { desc = "Close all buffers except current" })
+vim.keymap.set("n", "<leader>X", close_all_buffers_but_current, { desc = "Close all buffers" })

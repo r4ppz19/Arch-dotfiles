@@ -2,8 +2,9 @@ return {
 	"CopilotC-Nvim/CopilotChat.nvim",
 	branch = "main",
 	dependencies = {
-		{ "zbirenbaum/copilot.lua" },
-		{ "nvim-lua/plenary.nvim" },
+		"zbirenbaum/copilot.lua",
+		"nvim-lua/plenary.nvim",
+		"nvim-telescope/telescope.nvim",
 	},
 	build = "make tiktoken",
 	opts = {
@@ -12,6 +13,20 @@ return {
 		window = {
 			layout = "vertical",
 			width = 0.4,
+		},
+		prompts = {
+			MyCustomPrompt = {
+				prompt = "Explain how it works.",
+				system_prompt = "You are very good at explaining stuff",
+				mapping = "<leader>cmc",
+				description = "My custom prompt description",
+			},
+			Yarrr = {
+				system_prompt = "You are fascinated by pirates, so please respond in pirate speak.",
+			},
+			NiceInstructions = {
+				system_prompt = "You are a nice coding tutor, so please respond in a friendly and helpful manner.",
+			},
 		},
 		auto_insert_mode = false,
 	},
