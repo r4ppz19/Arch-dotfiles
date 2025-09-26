@@ -11,6 +11,7 @@ return {
 			"javascript",
 			"bash",
 			"markdown",
+			"markdown_inline",
 			"java",
 			"rust",
 			"typescript",

@@ -28,6 +28,7 @@ return {
 					"cssmodules_ls",
 					"lemminx",
 				},
+				automatic_enable = false,
 			},
 		},
 		"hrsh7th/cmp-nvim-lsp",
@@ -193,50 +194,5 @@ return {
 		for _, server in ipairs(servers) do
 			vim.lsp.enable(server)
 		end
-
-		-- Add custom keymaps when LSP attaches
-		vim.api.nvim_create_autocmd("LspAttach", {
-			callback = function(args)
-				local bufnr = args.buf
-
-				-- Custom keymaps
-				local map = function(mode, lhs, rhs, desc)
-					vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
-				end
-
-				-- Advanced features if supported
-				local client = vim.lsp.get_client_by_id(args.data.client_id)
-				if client then
-					-- Java-specific keymaps (nvim-jdtls)
-					if client.name == "jdtls" then
-						local jdtls = require("jdtls")
-						map("n", "<leader>jo", jdtls.organize_imports, "Java: Organize Imports")
-						map("n", "<leader>jv", jdtls.extract_variable, "Java: Extract Variable")
-						map("v", "<leader>jv", function()
-							jdtls.extract_variable(true)
-						end, "Java: Extract Variable")
-						map("n", "<leader>jc", jdtls.extract_constant, "Java: Extract Constant")
-						map("v", "<leader>jc", function()
-							jdtls.extract_constant(true)
-						end, "Java: Extract Constant")
-						map("v", "<leader>jm", function()
-							jdtls.extract_method(true)
-						end, "Java: Extract Method")
-						map("n", "<leader>jcc", function()
-							jdtls.compile("full")
-						end, "Java: Compile Full")
-						map("n", "<leader>jci", function()
-							jdtls.compile("incremental")
-						end, "Java: Compile Incremental")
-
-						-- Test commands (if nvim-dap is available)
-						if pcall(require, "dap") then
-							map("n", "<leader>jtc", jdtls.test_class, "Java: Test Class")
-							map("n", "<leader>jtm", jdtls.test_nearest_method, "Java: Test Method")
-						end
-					end
-				end
-			end,
-		})
 	end,
 }

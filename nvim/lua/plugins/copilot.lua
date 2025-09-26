@@ -7,8 +7,7 @@ return {
 	},
 	build = "make tiktoken",
 	opts = {
-		system_prompt = "Your name is Jarvis",
-		model = "gpt-4.1",
+		model = "grok-code-fast-1",
 		temperature = 0.1,
 		window = {
 			layout = "vertical",

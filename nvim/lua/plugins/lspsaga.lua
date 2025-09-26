@@ -10,7 +10,9 @@ return {
 				debounce = 10,
 				sign_priority = 40,
 			},
-			enable = true,
+			finder = {
+				default = "tyd+ref+imp+def",
+			},
 		})
 
 		-- Lspsaga keymaps setup in LspAttach autocmd
@@ -50,7 +52,7 @@ return {
 					"<cmd>Lspsaga code_action<CR>",
 					{ buffer = bufnr, desc = "Code Actions" }
 				)
-				keymap("n", "<leader>lrn", "<cmd>Lspsaga rename<CR>", { buffer = bufnr, desc = "Rename Symbol" })
+				keymap("n", "<leader>lr", "<cmd>Lspsaga rename<CR>", { buffer = bufnr, desc = "Rename Symbol" })
 				keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", { buffer = bufnr, desc = "Hover Documentation" })
 				keymap("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
 
