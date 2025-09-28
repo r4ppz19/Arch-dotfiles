@@ -55,7 +55,7 @@ return {
 			config = {
 				header = logo_lines,
 				week_header = { enable = false },
-				packages = { enable = false },
+				packages = { enable = true },
 				project = { enable = false },
 				mru = { enable = false },
 				shortcut = {},
