@@ -22,6 +22,7 @@ return {
 		"zbirenbaum/copilot.lua",
 		"nvim-lua/plenary.nvim",
 		"nvim-telescope/telescope.nvim",
+		"nvim-telescope/telescope-ui-select.nvim",
 	},
 	build = "make tiktoken",
 	opts = {
@@ -45,8 +46,7 @@ return {
 		prompts = {
 			Explain = {
 				prompt = dedent([[
-          #selection (preferred)
-          #buffer (additional context)
+          #selection
           Explain what this code does in [language/framework]:
           - Describe functionality and purpose
           - Break down syntax, keywords, and structure
@@ -94,8 +94,7 @@ return {
 
 			Optimize = {
 				prompt = dedent([[
-          #selection (preferred)
-          #buffer (additional context)
+          #buffer
           Optimize this code:
           - Identify performance or readability issues
           - Suggest improvements
@@ -110,8 +109,7 @@ return {
 
 			Docs = {
 				prompt = dedent([[
-          #selection (preferred)
-          #buffer (additional context)
+          #selection
           Write documentation for this code:
           - Document purpose, parameters, return values, and side effects
           - Use conventions of [language/framework]
@@ -126,8 +124,7 @@ return {
 
 			Tests = {
 				prompt = dedent([[
-          #selection (preferred)
-          #buffer (additional context)
+          #selection
           Generate tests for this code:
           - Cover normal, edge, and error cases
           - Use proper framework for [language/framework]
@@ -265,6 +262,42 @@ return {
 			end,
 			mode = { "n", "v" },
 			desc = "Open chat with all buffer",
+		},
+
+		{
+			"<leader>cf",
+			function()
+				local builtin = require("telescope.builtin")
+				local chat = require("CopilotChat")
+
+				builtin.find_files({
+					attach_mappings = function(prompt_bufnr, map)
+						local actions = require("telescope.actions")
+						local action_state = require("telescope.actions.state")
+						map("i", "<CR>", function()
+							local picker = action_state.get_current_picker(prompt_bufnr)
+							local multi_selection = picker:get_multi_selection()
+							if #multi_selection == 0 then
+								local entry = action_state.get_selected_entry()
+								multi_selection = { entry }
+							end
+							local lines = {}
+							for _, entry in ipairs(multi_selection) do
+								table.insert(lines, "#file:" .. entry.path)
+							end
+							actions.close(prompt_bufnr)
+							chat.open()
+							chat.chat:add_message({
+								role = "user",
+								content = table.concat(lines, "\n") .. "\n\n",
+							}, true)
+						end)
+						return true
+					end,
+					multi_selection = true,
+				})
+			end,
+			desc = "Pick files with Telescope",
 		},
 	},
 }

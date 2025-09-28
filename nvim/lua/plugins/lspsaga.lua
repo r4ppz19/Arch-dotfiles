@@ -5,10 +5,6 @@ return {
 		require("lspsaga").setup({
 			lightbulb = {
 				enable = false,
-				sign = true,
-				virtual_text = false,
-				debounce = 10,
-				sign_priority = 40,
 			},
 			finder = {
 				default = "ref+imp+def",
