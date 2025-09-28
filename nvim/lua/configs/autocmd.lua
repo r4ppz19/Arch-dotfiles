@@ -16,6 +16,14 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "copilot-chat",
+	callback = function()
+		vim.opt_local.relativenumber = false
+		vim.opt_local.number = false
+	end,
+})
+
 -- Wraping
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "markdown", "text" },
