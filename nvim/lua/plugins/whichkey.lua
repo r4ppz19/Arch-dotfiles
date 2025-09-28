@@ -11,7 +11,7 @@ return {
 			{ "<leader>c", group = "Copilot", icon = "" },
 			{ "<leader>f", group = "Telescope", icon = "󰭎" },
 			{ "<leader>n", group = "NvChad", icon = "" },
-			{ "<leader>p", group = "Plugins", icon = "󰏖" },
+			{ "<leader>p", group = "Others", icon = "󰏖" },
 			{ "<leader>w", group = "WhichKey", icon = "󰘳" },
 			{ "<leader>fg", group = "Grep", icon = "󰘳" },
 
@@ -42,12 +42,5 @@ return {
 
 	keys = {
 		{ "<leader>wK", "<cmd>WhichKey<CR>", desc = "whichkey all keymaps" },
-		{
-			"<leader>wk",
-			function()
-				vim.cmd("WhichKey " .. vim.fn.input("WhichKey: "))
-			end,
-			desc = "whichkey query lookup",
-		},
 	},
 }
