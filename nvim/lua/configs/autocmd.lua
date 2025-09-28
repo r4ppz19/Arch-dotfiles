@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 -- Wraping
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "markdown", "text" },
+	pattern = { "text" },
 	callback = function()
 		vim.opt_local.wrap = true
 		vim.opt_local.linebreak = true
