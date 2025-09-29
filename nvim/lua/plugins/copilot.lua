@@ -231,7 +231,7 @@ return {
     },
 
     {
-      "<leader>ct",
+      "<M-c>",
       "<cmd>CopilotChatToggle<cr>",
       mode = { "n", "v" },
       desc = "Toggle CopilotChat",

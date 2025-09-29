@@ -20,6 +20,7 @@ return {
           "cssmodules_ls",
           "css_variables",
           "eslint",
+          "vtsls",
           "jsonls",
           "marksman",
           "lua_ls",
@@ -39,7 +40,45 @@ return {
   },
 
   config = function()
-    require("nvchad.configs.lspconfig").defaults()
+    -- Set up capabilities for completion
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+    -- Global LSP configuration
+    vim.lsp.config("*", {
+      capabilities = capabilities,
+      root_markers = { ".git", ".hg", "package.json", "vite.config.js", "vite.config.ts", "tsconfig.json" },
+    })
+
+    vim.lsp.config("lua_ls", {
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          runtime = {
+            version = "LuaJIT",
+          },
+          diagnostics = {
+            globals = { "vim" },
+          },
+          workspace = {
+            library = {
+              -- Neovim runtime
+              [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+              [vim.env.VIMRUNTIME] = true,
+              [vim.fn.stdpath "config"] = true,
+              [vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types"] = true,
+              [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
+              ["${3rd}/luv/library"] = true,
+            },
+            checkThirdParty = false,
+            maxPreload = 2000,
+            preloadFileSize = 1000,
+          },
+          telemetry = {
+            enable = false,
+          },
+        },
+      },
+    })
 
     local servers = {
       "html",
@@ -48,6 +87,7 @@ return {
       "css_variables",
       "eslint",
       "jsonls",
+      "vtsls",
       "marksman",
       "lua_ls",
       "pyright",
@@ -56,8 +96,9 @@ return {
       "emmet_ls",
       "jdtls",
     }
-    vim.lsp.enable(servers)
 
-    vim.keymap.set("n", "<leader>lr", vim.lsp.buf.hover, { desc = "LSP Hover" })
+    for _, server in ipairs(servers) do
+      vim.lsp.enable(server)
+    end
   end,
 }

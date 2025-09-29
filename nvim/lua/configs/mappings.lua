@@ -6,6 +6,12 @@ end
 
 -- Editor remaps/ built in
 
+map("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "New tab" })
+map("n", "<leader>to", "<cmd>tabonly<CR>", { desc = "Close all other tabs" })
+map("n", "<leader>tc", "<cmd>tabclose<CR>", { desc = "Close tab" })
+map("n", "<leader>tm", "<cmd>tabnext<CR>", { desc = "Next tab" })
+map("n", "<leader>tM", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
+
 map("v", "gx", function()
   vim.cmd [[normal! "vy]]
   local url = vim.fn.getreg '"'

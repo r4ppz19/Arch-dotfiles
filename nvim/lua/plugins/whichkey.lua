@@ -13,6 +13,7 @@ return {
       { "<leader>n", group = "NvChad", icon = "" },
       { "<leader>p", group = "Others", icon = "󰏖" },
       { "<leader>w", group = "WhichKey", icon = "󰘳" },
+      { "<leader>t", group = "Tabs", icon = "" },
       { "<leader>fg", group = "Grep", icon = "󰘳" },
 
       { "<C-n>", desc = "Toggle NvimTree", icon = "󰙅" },
