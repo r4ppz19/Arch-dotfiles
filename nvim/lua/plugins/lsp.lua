@@ -1,98 +1,63 @@
 return {
-	"neovim/nvim-lspconfig",
-	dependencies = {
-		{
-			"mason-org/mason.nvim",
-			opts = {
-				registries = {
-					"github:mason-org/mason-registry",
-					"github:nvim-java/mason-registry",
-				},
-			},
-			dependencies = "nvim-telescope/telescope.nvim",
-		},
-		{
-			"mason-org/mason-lspconfig.nvim",
-			opts = {
-				ensure_installed = {
-					"html",
-					"cssls",
-					"cssmodules_ls",
-					"css_variables",
-					"eslint",
-					"jsonls",
-					"marksman",
-					"lua_ls",
-					"pyright",
-					"bashls",
-					"rust_analyzer",
-					"emmet_ls",
-					"jdtls",
-				},
-				automatic_enable = false,
-			},
-		},
+  "neovim/nvim-lspconfig",
+  dependencies = {
+    {
+      "mason-org/mason.nvim",
+      opts = {
+        registries = {
+          "github:mason-org/mason-registry",
+          "github:nvim-java/mason-registry",
+        },
+      },
+      dependencies = "nvim-telescope/telescope.nvim",
+    },
+    {
+      "mason-org/mason-lspconfig.nvim",
+      opts = {
+        ensure_installed = {
+          "html",
+          "cssls",
+          "cssmodules_ls",
+          "css_variables",
+          "eslint",
+          "jsonls",
+          "marksman",
+          "lua_ls",
+          "pyright",
+          "bashls",
+          "rust_analyzer",
+          "emmet_ls",
+          "jdtls",
+        },
+        automatic_enable = false,
+      },
+    },
 
-		"hrsh7th/cmp-nvim-lsp",
-		"mfussenegger/nvim-jdtls",
-		"nvimdev/lspsaga.nvim",
-	},
+    "hrsh7th/cmp-nvim-lsp",
+    "mfussenegger/nvim-jdtls",
+    "nvimdev/lspsaga.nvim",
+  },
 
-	config = function()
-		-- Set up capabilities for completion
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  config = function()
+    require("nvchad.configs.lspconfig").defaults()
 
-		-- Global LSP configuration
-		vim.lsp.config("*", {
-			capabilities = capabilities,
-			root_markers = { ".git", ".hg", "package.json", "vite.config.js", "vite.config.ts", "tsconfig.json" },
-		})
+    local servers = {
+      "html",
+      "cssls",
+      "cssmodules_ls",
+      "css_variables",
+      "eslint",
+      "jsonls",
+      "marksman",
+      "lua_ls",
+      "pyright",
+      "bashls",
+      "rust_analyzer",
+      "emmet_ls",
+      "jdtls",
+    }
+    vim.lsp.enable(servers)
 
-		vim.lsp.config("lua_ls", {
-			capabilities = capabilities,
-			settings = {
-				Lua = {
-					runtime = {
-						version = "LuaJIT",
-					},
-					diagnostics = {
-						globals = { "vim" },
-					},
-					workspace = {
-						library = {
-							vim.env.VIMRUNTIME,
-							vim.fn.stdpath("config"),
-						},
-						checkThirdParty = false,
-						maxPreload = 2000,
-						preloadFileSize = 1000,
-					},
-					telemetry = {
-						enable = false,
-					},
-				},
-			},
-		})
-
-		-- Enable all configured LSP servers
-		local servers = {
-			"html",
-			"cssls",
-			"cssmodules_ls",
-			"css_variables",
-			"eslint",
-			"jsonls",
-			"marksman",
-			"lua_ls",
-			"pyright",
-			"bashls",
-			"rust_analyzer",
-			"emmet_ls",
-			"jdtls",
-		}
-
-		for _, server in ipairs(servers) do
-			vim.lsp.enable(server)
-		end
-	end,
+    vim.keymap.set("n", "<leader>lr", vim.lsp.buf.hover, { desc = "LSP Hover" })
+  end,
 }
