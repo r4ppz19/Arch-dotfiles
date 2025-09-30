@@ -36,66 +36,18 @@ return {
 
     "hrsh7th/cmp-nvim-lsp",
     "nvimdev/lspsaga.nvim",
-
-    "mfussenegger/nvim-jdtls",
-    "nvim-java/nvim-java",
-    "nvim-java/lua-async-await",
-    "nvim-java/nvim-java-core",
-    "nvim-java/nvim-java-test",
-    "nvim-java/nvim-java-dap",
   },
 
   config = function()
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    local caps = require("cmp_nvim_lsp").default_capabilities()
 
     vim.lsp.config("*", {
-      capabilities = capabilities,
+      capabilities = caps,
       root_markers = { ".git", ".hg", "package.json", "vite.config.js", "vite.config.ts", "tsconfig.json" },
     })
 
-    vim.lsp.config("java", {
-      capabilities = capabilities,
-      install = { maven = true, gradle = true },
-      spring = { enable = true },
-      dap = { enable = true, hotcodereplace = "auto" },
-      test = { enable = true },
-      root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" },
-      settings = {
-        java = {
-          eclipse = { downloadSources = true },
-          maven = { downloadSources = true, updateSnapshots = true },
-          implementationsCodeLens = { enabled = true },
-          referencesCodeLens = { enabled = true },
-          signatureHelp = { enabled = true },
-          completion = {
-            favoriteStaticMembers = {
-              "org.assertj.core.api.Assertions.*",
-              "org.junit.Assert.*",
-              "org.junit.jupiter.api.Assertions.*",
-              "org.mockito.Mockito.*",
-              "org.mockito.ArgumentMatchers.*",
-            },
-            filteredTypes = {
-              "com.sun.*",
-              "sun.*",
-              "jdk.*",
-              "java.awt.*",
-            },
-          },
-          sources = { organizeImports = { starThreshold = 99, staticStarThreshold = 99 } },
-          codeGeneration = {
-            useBlocks = true,
-            toString = {
-              template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
-            },
-            hashCodeEquals = { useJava7Objects = true },
-          },
-        },
-      },
-    })
-
     vim.lsp.config("lua_ls", {
-      capabilities = capabilities,
+      capabilities = caps,
       settings = {
         Lua = {
           runtime = {
@@ -125,6 +77,70 @@ return {
       },
     })
 
+    vim.lsp.config("vtsls", {
+      capabilities = caps,
+      settings = {
+        typescript = {
+          inlayHints = {
+            includeInlayParameterNameHints = "all",
+            includeInlayTypeParameterHints = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayVariableTypeHints = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+          },
+          preferences = {
+            importModuleSpecifier = "relative",
+          },
+        },
+        javascript = {
+          inlayHints = {
+            includeInlayParameterNameHints = "all",
+            includeInlayTypeParameterHints = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayVariableTypeHints = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+          },
+          preferences = {
+            importModuleSpecifier = "relative",
+          },
+        },
+      },
+    })
+
+    vim.lsp.config("cssmodules_ls", {
+      capabilities = caps,
+      filetypes = { "typescriptreact", "javascriptreact", "tsx", "jsx" },
+    })
+
+    vim.lsp.config("cssls", {
+      capabilities = caps,
+      settings = {
+        css = { validate = true, lint = { cssConflict = "warning" } },
+        scss = { validate = true, lint = { cssConflict = "warning" } },
+        less = { validate = true, lint = { cssConflict = "warning" } },
+      },
+    })
+
+    vim.lsp.config("emmet_ls", {
+      capabilities = caps,
+      filetypes = { "html", "javascriptreact", "typescriptreact", "css", "scss" },
+    })
+
+    vim.lsp.config("eslint", {
+      capabilities = caps,
+      on_attach = function(_, bufnr)
+        -- eslint only fix lint issues
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          buffer = bufnr,
+          command = "EslintFixAll",
+        })
+      end,
+      settings = {
+        format = false, -- use prettier
+        codeActionOnSave = { enable = true, mode = "all" },
+      },
+    })
+
     local servers = {
       "html",
       "cssls",
@@ -142,8 +158,8 @@ return {
       "jdtls",
     }
 
-    for _, server in ipairs(servers) do
-      vim.lsp.enable(server)
+    for _, s in ipairs(servers) do
+      vim.lsp.enable(s)
     end
   end,
 }
