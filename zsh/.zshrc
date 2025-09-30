@@ -1,6 +1,5 @@
 # symlinked to ~/.zshrc.
 
-# Basic shell setup - check if interactive
 # ───────────────────────────────────────────────────────────────────────────────────────
 if [[ $- == *i* ]]; then
 
@@ -10,7 +9,7 @@ if [[ $- == *i* ]]; then
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
   fi
 
-  # Plugin Management (Antidote) and Completions
+  # Plugin Management (Antidote)
   # ─────────────────────────────────────────────────────────────────────────────────────
   autoload -Uz compinit
   compinit
@@ -29,7 +28,6 @@ if [[ $- == *i* ]]; then
   local zsh_config_dir="$HOME/Arch-dotfiles/zsh/"
 
   if [[ -d "$zsh_config_dir" ]]; then
-    # Environment -> Behavior -> Commands -> Interactive
     source "$zsh_config_dir/path.zsh"
     source "$zsh_config_dir/env_vars.zsh"
     source "$zsh_config_dir/setopt.zsh"
@@ -40,7 +38,6 @@ if [[ $- == *i* ]]; then
     echo "Warning: zsh config directory '$zsh_config_dir' not found."
   fi
 
-  # Load Powerlevel10k config - Typically loaded last
   # ────────────────────────────────────────────────────────────────────────────────────
   [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

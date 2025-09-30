@@ -1,14 +1,14 @@
 :root {
   --bg-primary: #282828;
   --bg-secondary: #262626;
-  --bg-button: #4E4E4E;
-  --bg-button-hover: #5E5E5E;
-  --text-primary: #EBDBB2;
-  --text-disabled: #5C554A;
+  --bg-button: #4e4e4e;
+  --bg-button-hover: #5e5e5e;
+  --text-primary: #ebdbb2;
+  --text-disabled: #5c554a;
   --border-color: #504945;
-  --priority-low: #EBDBB2;
-  --priority-normal: #83A598;
-  --priority-critical: #FB4934;
+  --priority-low: #ebdbb2;
+  --priority-normal: #83a598;
+  --priority-critical: #fb4934;
   --transition-standard: 0.15s ease-in-out;
 }
 
@@ -33,11 +33,11 @@ scrollbar slider {
 
 /* Common button styles */
 .close-button,
-.widget-title>button,
+.widget-title > button,
 .widget-dnd switch,
-.widget-menubar>.menu-button-bar>.widget-menubar-container button,
-.widget-menubar>revealer button,
-.widget-inhibitors>button {
+.widget-menubar > .menu-button-bar > .widget-menubar-container button,
+.widget-menubar > revealer button,
+.widget-inhibitors > button {
   border-radius: 2px;
   border: none;
   box-shadow: none;
@@ -224,7 +224,7 @@ scrollbar slider {
   font-size: 10px;
 }
 
-.notification-action>button {
+.notification-action > button {
   border-radius: 2px;
   font-size: 10px;
   padding: 1px;
@@ -270,19 +270,25 @@ scrollbar slider {
 }
 
 .notification-group.collapsed.not-expanded {
-  opacity: 1.0;
+  opacity: 1;
 }
 
 .notification-group.collapsed .notification-row .notification {
   background-color: var(--bg-primary);
 }
 
-.notification-group.collapsed .notification-row:not(:last-child) .notification-action,
-.notification-group.collapsed .notification-row:not(:last-child) .notification-default-action {
-  opacity: 1.0;
+.notification-group.collapsed
+  .notification-row:not(:last-child)
+  .notification-action,
+.notification-group.collapsed
+  .notification-row:not(:last-child)
+  .notification-default-action {
+  opacity: 1;
 }
 
-.notification-group.collapsed:hover .notification-row:not(:only-child) .notification {
+.notification-group.collapsed:hover
+  .notification-row:not(:only-child)
+  .notification {
   background-color: var(--bg-primary);
 }
 
@@ -296,7 +302,7 @@ scrollbar slider {
 }
 
 .control-center .control-center-list-placeholder {
-  opacity: 1.0;
+  opacity: 1;
 }
 
 .control-center .control-center-list {
@@ -305,10 +311,15 @@ scrollbar slider {
 
 .control-center .control-center-list .notification .notification-default-action,
 .control-center .control-center-list .notification .notification-action {
-  transition: opacity 400ms ease-in-out, background var(--transition-standard);
+  transition:
+    opacity 400ms ease-in-out,
+    background var(--transition-standard);
 }
 
-.control-center .control-center-list .notification .notification-default-action:hover,
+.control-center
+  .control-center-list
+  .notification
+  .notification-default-action:hover,
 .control-center .control-center-list .notification .notification-action:hover {
   background-color: var(--bg-primary);
 }
@@ -324,13 +335,13 @@ scrollbar slider {
 }
 
 /* Widgets */
-.widget-title>label {
+.widget-title > label {
   margin: 8px;
   font-weight: 700;
   font-size: 12px;
 }
 
-.widget-title>button {
+.widget-title > button {
   margin: 8px;
   font-size: 10px;
   background: var(--bg-primary);
@@ -350,7 +361,7 @@ scrollbar slider {
 }
 
 .widget-dnd label,
-.widget-label>label {
+.widget-label > label {
   color: var(--text-primary);
   font-size: 10px;
 }
@@ -411,20 +422,20 @@ scrollbar slider {
   font-size: 10px;
 }
 
-.widget-mpris .widget-mpris-player .mpris-overlay>box>button {
+.widget-mpris .widget-mpris-player .mpris-overlay > box > button {
   margin: 2px;
   color: var(--text-primary);
 }
 
-.widget-mpris .widget-mpris-player .mpris-overlay>box>button:hover {
+.widget-mpris .widget-mpris-player .mpris-overlay > box > button:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.widget-mpris>box>button {
+.widget-mpris > box > button {
   color: var(--text-primary);
 }
 
-.widget-mpris>box>button:disabled {
+.widget-mpris > box > button:disabled {
   color: var(--text-disabled);
 }
 
@@ -435,28 +446,28 @@ scrollbar slider {
   border-radius: 2px;
 }
 
-.widget-buttons-grid flowboxchild>button {
+.widget-buttons-grid flowboxchild > button {
   border-radius: 2px;
 }
 
 /* Menubar widget */
-.widget-menubar>.menu-button-bar>.start {
+.widget-menubar > .menu-button-bar > .start {
   margin-left: 8px;
 }
 
-.widget-menubar>.menu-button-bar>.end {
+.widget-menubar > .menu-button-bar > .end {
   margin-right: 8px;
 }
 
-.widget-menubar>.menu-button-bar>.widget-menubar-container button {
+.widget-menubar > .menu-button-bar > .widget-menubar-container button {
   margin: 0 4px;
 }
 
-.widget-menubar>revealer {
+.widget-menubar > revealer {
   margin-top: 8px;
 }
 
-.widget-menubar>revealer button {
+.widget-menubar > revealer button {
   margin: 8px;
   margin-top: 0;
 }
@@ -495,11 +506,11 @@ scrollbar slider {
 }
 
 /* Inhibitors widget */
-.widget-inhibitors>label {
+.widget-inhibitors > label {
   margin: 8px;
   font-size: 10px;
 }
 
-.widget-inhibitors>button {
+.widget-inhibitors > button {
   margin: 8px;
 }

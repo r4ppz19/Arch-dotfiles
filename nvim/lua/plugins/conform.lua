@@ -24,7 +24,7 @@ return {
       markdown = { "prettier" },
       yaml = { "prettier" },
       sh = { "shfmt" },
-      python = { "black", "isort" },
+      python = { "black" },
       rust = { "rustfmt" },
     },
     format_on_save = {

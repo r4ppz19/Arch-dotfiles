@@ -44,4 +44,3 @@ else
   systemctl --user stop waybar.service
   touch "$STATE"
 fi
-

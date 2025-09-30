@@ -19,4 +19,3 @@ else
   create_tmux_session "$SESSION"
   tmux attach -t "$SESSION"
 fi
-

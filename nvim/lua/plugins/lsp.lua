@@ -39,15 +39,15 @@ return {
   },
 
   config = function()
-    local caps = require("cmp_nvim_lsp").default_capabilities()
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
     vim.lsp.config("*", {
-      capabilities = caps,
+      capabilities = capabilities,
       root_markers = { ".git", ".hg", "package.json", "vite.config.js", "vite.config.ts", "tsconfig.json" },
     })
 
     vim.lsp.config("lua_ls", {
-      capabilities = caps,
+      capabilities = capabilities,
       settings = {
         Lua = {
           runtime = {
@@ -78,7 +78,7 @@ return {
     })
 
     vim.lsp.config("vtsls", {
-      capabilities = caps,
+      capabilities = capabilities,
       settings = {
         typescript = {
           inlayHints = {
@@ -108,12 +108,12 @@ return {
     })
 
     vim.lsp.config("cssmodules_ls", {
-      capabilities = caps,
+      capabilities = capabilities,
       filetypes = { "typescriptreact", "javascriptreact", "tsx", "jsx" },
     })
 
     vim.lsp.config("cssls", {
-      capabilities = caps,
+      capabilities = capabilities,
       settings = {
         css = { validate = true, lint = { cssConflict = "warning" } },
         scss = { validate = true, lint = { cssConflict = "warning" } },
@@ -122,22 +122,18 @@ return {
     })
 
     vim.lsp.config("emmet_ls", {
-      capabilities = caps,
+      capabilities = capabilities,
       filetypes = { "html", "javascriptreact", "typescriptreact", "css", "scss" },
     })
 
     vim.lsp.config("eslint", {
-      capabilities = caps,
-      on_attach = function(_, bufnr)
-        -- eslint only fix lint issues
-        vim.api.nvim_create_autocmd("BufWritePre", {
-          buffer = bufnr,
-          command = "EslintFixAll",
-        })
-      end,
+      capabilities = capabilities,
       settings = {
-        format = false, -- use prettier
-        codeActionOnSave = { enable = true, mode = "all" },
+        format = false,
+        codeActionOnSave = {
+          enable = true,
+          mode = "all",
+        },
       },
     })
 

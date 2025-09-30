@@ -1,5 +1,4 @@
 // r4ppz
-
 {
   // General Waybar configuration
   "position": "top",
@@ -9,7 +8,6 @@
   "margin-top": 0,
   "margin-right": 0,
   "margin-left": 0,
-
   // Module placement
   "modules-left": [
     "hyprland/workspaces",
@@ -32,11 +30,9 @@
     // "custom/power-button",
     "custom/rofi"
   ],
-
   // --------------------------------------------------
   // Modules configuration
   // --------------------------------------------------
-
   // Hyprland Workspaces module
   "hyprland/workspaces": {
     "special-visible-only": false,
@@ -68,35 +64,30 @@
     // "on-scroll-up": "hyprctl dispatch workspace e+1",
     // "on-scroll-down": "hyprctl dispatch workspace e-1"
   },
-
   // Hyprland window
   "hyprland/window": {
-  "format": "  {class}",
-  "max-length": 15,
-  "icon": false,
-  "icon-size": 9,
-  "separate-outputs": true,
-  "tooltip": false
+    "format": "  {class}",
+    "max-length": 15,
+    "icon": false,
+    "icon-size": 9,
+    "separate-outputs": true,
+    "tooltip": false
   },
-
   // Hyprland Submap
   "hyprland/submap": {
     "format": "{}",
     "tooltip": false
   },
-
   // System Tray module
   "tray": {
     "icon-size": 12,
     "spacing": 7
   },
-
   // Disk module
   "disk": {
     "format": " 󰣆  {free}",
     "interval": 20
   },
-
   // CPU module
   "cpu": {
     "format": "   {usage}%",
@@ -104,7 +95,6 @@
     "tooltip-format": "CPU Usage: {usage}%",
     "interval": 2
   },
-
   // Memory module
   "memory": {
     "format": "   {used} GiB ({percentage}%)",
@@ -113,7 +103,6 @@
     "interval": 10,
     "on-click-right": "kitty -e btop"
   },
-
   // Temperature module
   "temperature": {
     "tooltip": false,
@@ -123,7 +112,6 @@
     "format": "   {temperatureC}°C",
     "format-critical": "   {temperatureC}°C"
   },
-
   // Backlight module
   "backlight": {
     // "device": "acpi_video1",
@@ -144,7 +132,6 @@
     "tooltip": false,
     "tooltip-format": "Brightness: {percent}%"
   },
-
   // PulseAudio module
   "pulseaudio": {
     "scroll-step": 1,
@@ -169,7 +156,6 @@
     "tooltip-format": "{desc} - {volume}%",
     "max-volume": 130
   },
-
   // Battery module
   "battery": {
     "interval": 10,
@@ -201,7 +187,6 @@
     "format-alt": " 󱧥  {time}",
     "tooltip": true
   },
-
   // Clock module
   "clock": {
     "format": "󰥔  {:%I:%M:%S %p}",
@@ -211,7 +196,6 @@
     "on-click-right": "gsimplecal",
     "interval": 1
   },
-
   // Power Profiles Daemon module
   "power-profiles-daemon": {
     "format": "{icon}",
@@ -224,7 +208,6 @@
       "power-saver": "  "
     }
   },
-
   // Custom Rofi launcher module
   "custom/rofi": {
     "format": " ",
@@ -233,7 +216,6 @@
     "escape": true,
     "tooltip": false
   },
-
   // Custom Power Button module
   "custom/power-button": {
     "format": "  ",

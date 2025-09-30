@@ -77,11 +77,11 @@ window#waybar.hidden {
 
 tooltip {
   background-color: #282828;
-  color: #EBDBB2;
+  color: #ebdbb2;
   padding: 5px 10px;
   border: 1px solid #504945;
   border-radius: 2px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 /* ================================= */
@@ -123,19 +123,19 @@ tooltip {
 /* ================================= */
 
 #workspaces button.special {
-  background-color: #D65D0E;
+  background-color: #d65d0e;
 }
 
 #workspaces button.special:hover {
-  background-color: #83A598;
+  background-color: #83a598;
 }
 
 #workspaces button.special.active {
-  background-color: #FE8019;
+  background-color: #fe8019;
 }
 
 #workspaces button.special.active:hover {
-  background-color: #83A598;
+  background-color: #83a598;
 }
 
 /* ================================= */
@@ -198,7 +198,7 @@ window#waybar.empty #window {
 /* ================================= */
 
 #pulseaudio {
-  color: #83A598;
+  color: #83a598;
 }
 
 #pulseaudio.muted {
@@ -208,27 +208,27 @@ window#waybar.empty #window {
 /* ================================= */
 
 #battery {
-  color: #B8BB26;
+  color: #b8bb26;
 }
 
 #battery.critical {
-  color: #CC241D;
+  color: #cc241d;
 }
 
 #battery.warning {
-  color: #FE8019;
+  color: #fe8019;
 }
 
 #battery.full {
-  color: #B8BB26;
+  color: #b8bb26;
 }
 
 #battery.charging {
-  color: #98971A;
+  color: #98971a;
 }
 
 #battery.plugged {
-  color: #98971A;
+  color: #98971a;
 }
 
 #battery.charging.warning {
@@ -236,7 +236,7 @@ window#waybar.empty #window {
 }
 
 #battery.charging.critical {
-  color: #CC241D;
+  color: #cc241d;
 }
 
 /* ================================= */
@@ -275,7 +275,7 @@ window#waybar.empty #window {
 /* ================================= */
 
 #submap {
-  background: #D79921;
+  background: #d79921;
   margin-top: 4px;
   margin-bottom: 4px;
   margin-left: 3px;

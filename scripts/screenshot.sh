@@ -59,4 +59,3 @@ else
     -i dialog-error
   exit 1
 fi
-

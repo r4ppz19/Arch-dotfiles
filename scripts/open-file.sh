@@ -28,14 +28,13 @@ for pattern in "${EXCLUDED_EXTENSIONS[@]}"; do
 done
 
 # Run inside a tmux popup
-fd --type f --hidden --follow --exclude .git "${EXCLUDES[@]}" . "$SEARCH_DIR" 2>/dev/null | \
-fzf-tmux -p 80%,70% --reverse \
-  --ansi \
-  --prompt='Search: ' \
-  --marker='▶' \
-  --preview "$PREVIEW_CMD" \
-  --preview-window="right:50%" \
-  --height=100% \
-  --border \
-| xargs -r -- "$EDITOR"
-
+fd --type f --hidden --follow --exclude .git "${EXCLUDES[@]}" . "$SEARCH_DIR" 2>/dev/null |
+  fzf-tmux -p 80%,70% --reverse \
+    --ansi \
+    --prompt='Search: ' \
+    --marker='▶' \
+    --preview "$PREVIEW_CMD" \
+    --preview-window="right:50%" \
+    --height=100% \
+    --border |
+  xargs -r -- "$EDITOR"
