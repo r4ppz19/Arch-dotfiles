@@ -35,18 +35,63 @@ return {
     },
 
     "hrsh7th/cmp-nvim-lsp",
-    "mfussenegger/nvim-jdtls",
     "nvimdev/lspsaga.nvim",
+
+    "mfussenegger/nvim-jdtls",
+    "nvim-java/nvim-java",
+    "nvim-java/lua-async-await",
+    "nvim-java/nvim-java-core",
+    "nvim-java/nvim-java-test",
+    "nvim-java/nvim-java-dap",
   },
 
   config = function()
-    -- Set up capabilities for completion
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-    -- Global LSP configuration
     vim.lsp.config("*", {
       capabilities = capabilities,
       root_markers = { ".git", ".hg", "package.json", "vite.config.js", "vite.config.ts", "tsconfig.json" },
+    })
+
+    vim.lsp.config("java", {
+      capabilities = capabilities,
+      install = { maven = true, gradle = true },
+      spring = { enable = true },
+      dap = { enable = true, hotcodereplace = "auto" },
+      test = { enable = true },
+      root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" },
+      settings = {
+        java = {
+          eclipse = { downloadSources = true },
+          maven = { downloadSources = true, updateSnapshots = true },
+          implementationsCodeLens = { enabled = true },
+          referencesCodeLens = { enabled = true },
+          signatureHelp = { enabled = true },
+          completion = {
+            favoriteStaticMembers = {
+              "org.assertj.core.api.Assertions.*",
+              "org.junit.Assert.*",
+              "org.junit.jupiter.api.Assertions.*",
+              "org.mockito.Mockito.*",
+              "org.mockito.ArgumentMatchers.*",
+            },
+            filteredTypes = {
+              "com.sun.*",
+              "sun.*",
+              "jdk.*",
+              "java.awt.*",
+            },
+          },
+          sources = { organizeImports = { starThreshold = 99, staticStarThreshold = 99 } },
+          codeGeneration = {
+            useBlocks = true,
+            toString = {
+              template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+            },
+            hashCodeEquals = { useJava7Objects = true },
+          },
+        },
+      },
     })
 
     vim.lsp.config("lua_ls", {
