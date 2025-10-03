@@ -33,9 +33,9 @@ return {
         automatic_enable = false,
       },
     },
-
     "hrsh7th/cmp-nvim-lsp",
     "nvimdev/lspsaga.nvim",
+    "mfussenegger/nvim-jdtls",
   },
 
   config = function()
