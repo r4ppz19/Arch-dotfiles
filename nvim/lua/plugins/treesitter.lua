@@ -4,6 +4,8 @@ return {
   lazy = false,
   opts = {
     ensure_installed = {
+      "luadoc",
+      "printf",
       "vim",
       "lua",
       "vimdoc",

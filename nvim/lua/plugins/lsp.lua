@@ -1,3 +1,24 @@
+dofile(vim.g.base46_cache .. "mason")
+
+local servers = {
+  "html",
+  "cssls",
+  "cssmodules_ls",
+  "css_variables",
+  "eslint",
+  "vtsls",
+  "jsonls",
+  "marksman",
+  "lua_ls",
+  "pyright",
+  "bashls",
+  "rust_analyzer",
+  "emmet_ls",
+  "jdtls",
+  "lemminx",
+  "hyprls",
+}
+
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
@@ -8,30 +29,23 @@ return {
           "github:mason-org/mason-registry",
           "github:nvim-java/mason-registry",
         },
+        PATH = "skip",
+        ui = {
+          border = "single",
+          icons = {
+            package_pending = " ",
+            package_installed = " ",
+            package_uninstalled = " ",
+          },
+        },
+        max_concurrent_installers = 10,
       },
       dependencies = "nvim-telescope/telescope.nvim",
     },
     {
       "mason-org/mason-lspconfig.nvim",
       opts = {
-        ensure_installed = {
-          "html",
-          "cssls",
-          "cssmodules_ls",
-          "css_variables",
-          "eslint",
-          "vtsls",
-          "jsonls",
-          "marksman",
-          "lua_ls",
-          "pyright",
-          "bashls",
-          "rust_analyzer",
-          "emmet_ls",
-          "jdtls",
-          "lemminx",
-          "hyprls",
-        },
+        ensure_installed = servers,
         automatic_enable = false,
       },
     },
@@ -80,35 +94,65 @@ return {
     })
 
     vim.lsp.config("vtsls", {
+      filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+      root_markers = { "package.json", "tsconfig.json", ".git" },
       capabilities = capabilities,
       settings = {
         typescript = {
-          suggest = { diagnostics = false },
+          suggest = {
+            diagnostics = true,
+            completeFunctionCalls = true,
+            includeCompletionsForModuleExports = true,
+            includeCompletionsWithInsertText = true,
+          },
           inlayHints = {
             includeInlayParameterNameHints = "all",
-            includeInlayTypeParameterHints = true,
+            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
             includeInlayFunctionParameterTypeHints = true,
             includeInlayVariableTypeHints = true,
             includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayEnumMemberValueHints = true,
+          },
+          format = {
+            enable = false,
           },
           preferences = {
             importModuleSpecifier = "relative",
+            includePackageJsonAutoImports = "on",
+            quotePreference = "auto",
           },
         },
         javascript = {
-          suggest = { diagnostics = false },
+          suggest = {
+            diagnostics = true,
+            completeFunctionCalls = true,
+            includeCompletionsForModuleExports = true,
+            includeCompletionsWithInsertText = true,
+          },
           inlayHints = {
             includeInlayParameterNameHints = "all",
-            includeInlayTypeParameterHints = true,
+            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
             includeInlayFunctionParameterTypeHints = true,
             includeInlayVariableTypeHints = true,
             includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayEnumMemberValueHints = true,
+          },
+          format = {
+            enable = false,
           },
           preferences = {
             importModuleSpecifier = "relative",
+            includePackageJsonAutoImports = "on",
+            quotePreference = "auto",
           },
         },
+        vtsls = {},
       },
+      on_attach = function(client, _)
+        client.server_capabilities.documentFormattingProvider = false
+      end,
     })
 
     vim.lsp.config("cssmodules_ls", {
@@ -136,30 +180,17 @@ return {
         experimental = { useFlatConfig = true },
         format = false,
         codeActionOnSave = {
-          enable = true,
           mode = "all",
+          disableRuleComment = {
+            enable = true,
+            location = "separateLine",
+          },
+          showDocumentation = {
+            enable = true,
+          },
         },
       },
     })
-
-    local servers = {
-      "html",
-      "cssls",
-      "cssmodules_ls",
-      "css_variables",
-      "eslint",
-      "jsonls",
-      "vtsls",
-      "marksman",
-      "lua_ls",
-      "pyright",
-      "bashls",
-      "rust_analyzer",
-      "emmet_ls",
-      "jdtls",
-      "lemminx",
-      "hyprls",
-    }
 
     for _, s in ipairs(servers) do
       vim.lsp.enable(s)

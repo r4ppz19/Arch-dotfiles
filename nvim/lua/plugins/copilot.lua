@@ -9,8 +9,28 @@ end
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
   branch = "main",
+  lazy = false,
   dependencies = {
-    "zbirenbaum/copilot.lua",
+    {
+      "zbirenbaum/copilot.lua",
+      event = "InsertEnter",
+      config = function()
+        require("copilot").setup {
+          suggestion = {
+            enabled = false,
+          },
+          panel = {
+            enabled = false,
+          },
+        }
+      end,
+      dependencies = {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+          require("copilot_cmp").setup()
+        end,
+      },
+    },
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
@@ -268,8 +288,6 @@ return {
             "#exclude:build/**",
             "#exclude:coverage/**",
             "#exclude:.git/**",
-            "",
-            "Analyze the **entire codebase** and provide a detailed architectural summary.",
           }, "\n"),
         }, true)
       end,

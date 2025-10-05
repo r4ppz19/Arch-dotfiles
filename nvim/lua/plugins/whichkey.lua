@@ -42,6 +42,6 @@ return {
   end,
 
   keys = {
-    { "<leader>wK", "<cmd>WhichKey<CR>", desc = "whichkey all keymaps" },
+    { "<leader>ww", "<cmd>WhichKey<CR>", desc = "whichkey all keymaps" },
   },
 }

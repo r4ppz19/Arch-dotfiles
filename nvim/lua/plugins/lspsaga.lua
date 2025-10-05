@@ -19,11 +19,12 @@ return {
         keys = {
           vsplit = "v",
           split = "s",
+          toggle_or_open = "<S-Right>",
         },
       },
       definition = {
         keys = {
-          edit = "o",
+          edit = "<S-Right>",
         },
       },
     }

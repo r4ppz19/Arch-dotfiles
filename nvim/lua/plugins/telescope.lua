@@ -3,6 +3,7 @@ return {
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
     "nvim-telescope/telescope-ui-select.nvim",
+    "BurntSushi/ripgrep",
   },
   cmd = "Telescope",
 
@@ -43,22 +44,22 @@ return {
 
   keys = {
     -- Telescope core
+
+    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
     { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Find Buffers" },
     { "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Help Page" },
     { "<leader>fm", "<cmd>Telescope marks<CR>", desc = "Find Marks" },
-    { "<leader>fo", "<cmd>Telescope oldfiles<CR>", desc = "Find Oldfiles" },
-    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
     { "<leader>fc", "<cmd>Telescope commands<CR>", desc = "Command Palette" },
+    { "<leader>fh", "<cmd>Telescope command_history<CR>", desc = "Command Palette" },
+    { "<leader>fs", "<cmd>Telescope spell_suggest<CR>", desc = "Command Palette" },
+
     { "<leader>fq", "<cmd>Telescope quickfix<CR>", desc = "Quickfix List" },
     { "<leader>fl", "<cmd>Telescope loclist<CR>", desc = "Location List" },
-    {
-      "<leader>fa",
-      "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-      desc = "Find All Files",
-    },
-    { "<leader>fgc", "<cmd>Telescope current_buffer_fuzzy_find<CR>", desc = "Grep Current Buffer" },
-    { "<leader>fgl", "<cmd>Telescope live_grep<CR>", desc = "Live Grep" },
+
     { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Git Commits" },
     { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Git Status" },
+
+    { "<leader>FF", "<cmd>Telescope live_grep<CR>", desc = "Live Grep Project" },
+    { "<leader>Ff", "<cmd>Telescope current_buffer_fuzzy_find<CR>", desc = "Grep Current Buffer" },
   },
 }
