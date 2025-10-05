@@ -20,7 +20,8 @@
   "modules-right": [
     "memory",
     "cpu",
-    "temperature",
+    "custom/cputemp",
+    // "temperature",
     // "disk",
     "pulseaudio",
     "backlight",
@@ -111,6 +112,13 @@
     "interval": 2,
     "format": "   {temperatureC}°C",
     "format-critical": "   {temperatureC}°C"
+  },
+  "custom/cputemp": {
+    "exec": "~/Arch-dotfiles/scripts/cputemp.sh",
+    "interval": 2,
+    "format": "  {}",
+    "return-type": "json",
+    "tooltip": false
   },
   // Backlight module
   "backlight": {

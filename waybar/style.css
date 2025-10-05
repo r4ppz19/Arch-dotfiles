@@ -17,6 +17,7 @@ window#waybar.hidden {
   opacity: 0.98;
 }
 
+#custom-cputemp,
 #workspaces button,
 #workspaces button:hover,
 #workspaces button.visible,
@@ -55,6 +56,7 @@ window#waybar.hidden {
   /* border-radius: 0px; */
 }
 
+#custom-cputemp,
 #window,
 #tray,
 #disk,
@@ -180,6 +182,16 @@ window#waybar.empty #window {
 }
 
 #temperature.critical {
+  color: #cc241d;
+}
+
+#custom-cputemp.normal {
+  color: #d8a657;
+}
+#custom-cputemp.warning {
+  color: #fe8019;
+}
+#custom-cputemp.critical {
   color: #cc241d;
 }
 
