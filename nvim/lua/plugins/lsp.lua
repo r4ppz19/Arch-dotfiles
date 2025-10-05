@@ -1,5 +1,3 @@
-dofile(vim.g.base46_cache .. "mason")
-
 local servers = {
   "html",
   "cssls",
@@ -25,6 +23,7 @@ return {
     {
       "mason-org/mason.nvim",
       opts = {
+        dofile(vim.g.base46_cache .. "mason"),
         registries = {
           "github:mason-org/mason-registry",
           "github:nvim-java/mason-registry",

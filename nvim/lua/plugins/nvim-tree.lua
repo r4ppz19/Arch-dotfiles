@@ -1,9 +1,9 @@
-dofile(vim.g.base46_cache .. "nvimtree")
-
 return {
   "nvim-tree/nvim-tree.lua",
   cmd = { "NvimTreeToggle", "NvimTreeFocus" },
   opts = {
+    dofile(vim.g.base46_cache .. "nvimtree"),
+
     git = {
       enable = false,
     },

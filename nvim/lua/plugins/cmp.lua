@@ -1,55 +1,103 @@
 return {
-  "hrsh7th/nvim-cmp",
-  event = "InsertEnter",
-  dependencies = {
-    {
-      "L3MON4D3/LuaSnip",
-      dependencies = "rafamadriz/friendly-snippets",
-      opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-      config = function(_, opts)
-        require("luasnip").config.set_config(opts)
-        require "nvchad.configs.luasnip"
-      end,
-    },
-    {
-      "windwp/nvim-autopairs",
-      opts = {
-        fast_wrap = {},
-        disable_filetype = { "TelescopePrompt", "vim" },
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      {
+        -- snippet plugin
+        "L3MON4D3/LuaSnip",
+        dependencies = "rafamadriz/friendly-snippets",
+        opts = { history = true, updateevents = "TextChanged,TextChangedI" },
+        config = function(_, opts)
+          require("luasnip").config.set_config(opts)
+          require "nvchad.configs.luasnip"
+        end,
       },
-      config = function(_, opts)
-        require("nvim-autopairs").setup(opts)
-        local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-        require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-      end,
+
+      -- autopairing of (){}[] etc
+      {
+        "windwp/nvim-autopairs",
+        opts = {
+          fast_wrap = {},
+          disable_filetype = { "TelescopePrompt", "vim" },
+        },
+        config = function(_, opts)
+          require("nvim-autopairs").setup(opts)
+
+          -- setup cmp for autopairs
+          local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+          require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+        end,
+      },
+
+      -- cmp sources plugins
+      {
+        "saadparwaiz1/cmp_luasnip",
+        "hrsh7th/cmp-nvim-lua",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-buffer",
+        "https://codeberg.org/FelipeLema/cmp-async-path.git",
+      },
     },
-    {
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "https://codeberg.org/FelipeLema/cmp-async-path.git",
-      "zbirenbaum/copilot-cmp",
-      "hrsh7th/nvim-cmp",
-    },
+
+    opts = function()
+      dofile(vim.g.base46_cache .. "cmp")
+
+      local cmp = require "cmp"
+
+      local options = {
+        completion = { completeopt = "menu,menuone,noselect" },
+
+        snippet = {
+          expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+          end,
+        },
+
+        mapping = {
+          ["<C-Up>"] = cmp.mapping.select_prev_item(),
+          ["<C-Down>"] = cmp.mapping.select_next_item(),
+          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-v>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.close(),
+
+          ["<CR>"] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = true,
+          },
+
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif require("luasnip").expand_or_jumpable() then
+              require("luasnip").expand_or_jump()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif require("luasnip").jumpable(-1) then
+              require("luasnip").jump(-1)
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+        },
+
+        sources = {
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+          { name = "buffer" },
+          { name = "nvim_lua" },
+          { name = "async_path" },
+        },
+      }
+
+      return vim.tbl_deep_extend("force", options, require "nvchad.cmp")
+    end,
   },
-
-  opts = function()
-    local cmp = require "cmp"
-    local default_opts = require "nvchad.configs.cmp"
-
-    -- Arrow navigation for completion
-    default_opts.mapping["<C-Up>"] = cmp.mapping.select_prev_item()
-    default_opts.mapping["<C-Down>"] = cmp.mapping.select_next_item()
-
-    default_opts.mapping["<CR>"] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Insert,
-    }
-
-    default_opts.completion.completeopt = "menu,menuone,noselect"
-
-    table.insert(default_opts.sources, 1, { name = "copilot" })
-
-    return default_opts
-  end,
 }
