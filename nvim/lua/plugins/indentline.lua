@@ -31,6 +31,7 @@ return {
         "neo-tree",
         "Trouble",
         "alpha",
+        "text",
       },
       buftypes = {
         "terminal",

@@ -1,5 +1,7 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  branch = "master",
+  lazy = false,
   opts = {
     ensure_installed = {
       "vim",
@@ -24,6 +26,7 @@ return {
       "cpp",
       "json",
       "xml",
+      "hyprlang",
     },
   },
 }

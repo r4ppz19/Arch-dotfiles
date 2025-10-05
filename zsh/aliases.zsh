@@ -20,7 +20,7 @@ alias r='ranger --choosedir="$HOME/.rangerdir"; LASTDIR=$(cat "$HOME/.rangerdir"
 alias v='nvim'
 alias lg='lazygit'
 alias top='btop'
-alias music='kew'
+alias news='clx -n'
 # alias ssh='TERM=xterm-256color ssh'
 alias smb-start='sudo systemctl start smb.service nmb.service'
 alias smb-stop='sudo systemctl stop smb.service nmb.service'

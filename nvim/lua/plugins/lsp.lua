@@ -29,6 +29,8 @@ return {
           "rust_analyzer",
           "emmet_ls",
           "jdtls",
+          "lemminx",
+          "hyprls",
         },
         automatic_enable = false,
       },
@@ -81,6 +83,7 @@ return {
       capabilities = capabilities,
       settings = {
         typescript = {
+          suggest = { diagnostics = false },
           inlayHints = {
             includeInlayParameterNameHints = "all",
             includeInlayTypeParameterHints = true,
@@ -93,6 +96,7 @@ return {
           },
         },
         javascript = {
+          suggest = { diagnostics = false },
           inlayHints = {
             includeInlayParameterNameHints = "all",
             includeInlayTypeParameterHints = true,
@@ -129,6 +133,7 @@ return {
     vim.lsp.config("eslint", {
       capabilities = capabilities,
       settings = {
+        experimental = { useFlatConfig = true },
         format = false,
         codeActionOnSave = {
           enable = true,
@@ -152,6 +157,8 @@ return {
       "rust_analyzer",
       "emmet_ls",
       "jdtls",
+      "lemminx",
+      "hyprls",
     }
 
     for _, s in ipairs(servers) do

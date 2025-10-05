@@ -1,18 +1,9 @@
 local function dedent(str)
-  str = str:gsub("^%s*\n", ""):gsub("\n%s*$", "")
-  local min_indent
-  for line in str:gmatch "[^\n]+" do
-    local indent = line:match "^(%s*)%S"
-    if indent then
-      if not min_indent or #indent < #min_indent then
-        min_indent = indent
-      end
-    end
+  local indent = str:match "\n([ \t]+)%S"
+  if not indent then
+    return str
   end
-  if min_indent then
-    str = str:gsub("\n" .. min_indent, "\n")
-  end
-  return str
+  return str:gsub("\n" .. indent, "\n")
 end
 
 return {
@@ -44,19 +35,58 @@ return {
     auto_insert_mode = false,
 
     prompts = {
+      ExplainHighLevel = {
+        prompt = dedent [[
+          #selection
+          Give a **high-level explanation** of what this code does in [language/framework]:
+          - Summarize the overall purpose and role of this code
+          - Describe the logic flow and main components
+          - Explain how this fits into typical usage patterns or architecture
+          - Avoid excessive syntax detail — focus on intent and design
+        ]],
+        system_prompt = dedent [[
+          You are an expert software engineer explaining the conceptual purpose of this code.
+          Assume the reader knows general programming principles but not this language or framework.
+          Be technical, structured, and concise. Prioritize clarity over depth.
+          Use markdown sections like **Purpose**, **Flow**, and **Concepts**.
+        ]],
+        description = "Explain code at a high level",
+      },
+      ExplainLowLevel = {
+        prompt = dedent [[
+          #selection
+          Give a **low-level explanation** of this code in [language/framework]:
+          - Break down syntax and keywords line by line or block by block
+          - Clarify how the language’s semantics influence behavior
+          - Explain runtime effects, data flow, and control structures
+          - Mention language-specific idioms, conventions, or pitfalls
+        ]],
+        system_prompt = dedent [[
+          You are an expert explainer focusing on the fine details of this code.
+          The reader knows general programming, but not this specific language.
+          Be precise, technical, and explicit about what each part does.
+          Use markdown sections like **Syntax Breakdown**, **Execution Flow**, and **Language Notes**.
+        ]],
+        description = "Explain code at a low level",
+      },
+
       Explain = {
         prompt = dedent [[
           #selection
-          Explain what this code does in [language/framework]:
-          - Describe functionality and purpose
-          - Break down syntax, keywords, and structure
-          - Clarify language-specific constructs or idioms
+          Provide a **mid-level explanation** of this code in [language/framework]:
+          - Describe the functionality and logical flow
+          - Explain how each major construct or section contributes to the result
+          - Mention key syntax and language features where relevant, but don’t explain every token
+          - Highlight important patterns, idioms, or design choices
+          - Clarify both the “what” (behavior) and “how” (mechanics) at a practical depth
         ]],
         system_prompt = dedent [[
-          You are an expert explainer. Teach a programmer who knows general programming but not this language.
-          Be precise, technical, and concise. Use markdown headings and code blocks.
+          You are an experienced developer explaining code to another competent programmer unfamiliar with this language.
+          Focus on the logic and implementation details at a practical level — not too abstract, not too granular.
+          Explain purpose, structure, and relevant syntax with clarity.
+          Use markdown sections like **Overview**, **Logic Flow**, **Key Constructs**, and **Notes**.
         ]],
-        description = "Explain code with syntax and purpose",
+        description = "Explain code at a balanced depth",
       },
 
       Review = {
@@ -220,6 +250,34 @@ return {
     },
 
     {
+      "<leader>cw",
+      function()
+        local chat = require "CopilotChat"
+
+        chat.open()
+        chat.chat:add_message({
+          role = "user",
+          content = table.concat({
+            -- Include key file types across the workspace
+            "#glob:**/*.{ts,tsx,js,jsx,json,css,scss,less,sass,html,md}",
+            "",
+            -- Explicitly exclude common junk directories
+            "#exclude:node_modules/**",
+            "#exclude:.next/**",
+            "#exclude:dist/**",
+            "#exclude:build/**",
+            "#exclude:coverage/**",
+            "#exclude:.git/**",
+            "",
+            "Analyze the **entire codebase** and provide a detailed architectural summary.",
+          }, "\n"),
+        }, true)
+      end,
+      mode = { "n" },
+      desc = "Full codebase scan + architecture summary (React+TS+CSS)",
+    },
+
+    {
       "<leader>cp",
       function()
         local chat = require "CopilotChat"
@@ -235,12 +293,6 @@ return {
       "<cmd>CopilotChatToggle<cr>",
       mode = { "n", "v" },
       desc = "Toggle CopilotChat",
-    },
-    {
-      "<leader>cr",
-      "<cmd>CopilotChatReset<cr>",
-      mode = "n",
-      desc = "Reset CopilotChat",
     },
 
     {

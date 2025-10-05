@@ -5,9 +5,26 @@ return {
     require("lspsaga").setup {
       lightbulb = {
         enable = false,
+        sign = true,
+        virtual_text = false,
+        debounce = 10,
+        sign_priority = 40,
+      },
+      ui = {
+        code_action = " ",
       },
       finder = {
         default = "ref+imp+def",
+        layout = "float",
+        keys = {
+          vsplit = "v",
+          split = "s",
+        },
+      },
+      definition = {
+        keys = {
+          edit = "o",
+        },
       },
     }
 
@@ -51,11 +68,17 @@ return {
           buffer = buffer,
           desc = "Rename Symbol",
         })
-        map("n", "K", "<cmd>Lspsaga hover_doc<CR>", {
+
+        map("n", "<S-K>", "<cmd>Lspsaga hover_doc<CR>", {
           buffer = buffer,
           desc = "Hover Documentation",
         })
-        map("n", "<C-k>", vim.lsp.buf.signature_help, {
+        map("n", "<S-C-Up>", "<cmd>Lspsaga hover_doc<CR>", {
+          buffer = buffer,
+          desc = "Hover Documentation",
+        })
+
+        map({ "n", "i" }, "<C-k>", vim.lsp.buf.signature_help, {
           buffer = buffer,
           desc = "Signature Help",
         })
