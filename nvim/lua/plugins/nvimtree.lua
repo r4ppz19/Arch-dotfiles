@@ -1,56 +1,56 @@
 return {
-	"nvim-tree/nvim-tree.lua",
-	cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-	opts = function()
-		dofile(vim.g.base46_cache .. "nvimtree")
+  "nvim-tree/nvim-tree.lua",
+  cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+  opts = function()
+    dofile(vim.g.base46_cache .. "nvimtree")
 
-		return {
-			filters = { dotfiles = false },
-			disable_netrw = true,
-			hijack_cursor = true,
-			sync_root_with_cwd = true,
-			update_focused_file = {
-				enable = true,
-				update_root = false,
-			},
-			view = {
-				width = 30,
-				preserve_window_proportions = true,
-			},
+    return {
+      filters = { dotfiles = false },
+      disable_netrw = true,
+      hijack_cursor = true,
+      sync_root_with_cwd = true,
+      update_focused_file = {
+        enable = true,
+        update_root = false,
+      },
+      view = {
+        width = 30,
+        preserve_window_proportions = true,
+      },
 
-			actions = {
-				open_file = {
-					quit_on_open = true,
-				},
-			},
+      actions = {
+        open_file = {
+          quit_on_open = true,
+        },
+      },
 
-			git = {
-				enable = false,
-			},
+      git = {
+        enable = false,
+      },
 
-			renderer = {
-				root_folder_label = false,
-				highlight_git = true,
-				indent_markers = { enable = true },
-				icons = {
-					glyphs = {
-						default = "󰈚",
-						folder = {
-							default = "",
-							empty = "",
-							empty_open = "",
-							open = "",
-							symlink = "",
-						},
-						git = { unmerged = "" },
-					},
-				},
-			},
-		}
-	end,
+      renderer = {
+        root_folder_label = false,
+        highlight_git = true,
+        indent_markers = { enable = true },
+        icons = {
+          glyphs = {
+            default = "󰈚",
+            folder = {
+              default = "",
+              empty = "",
+              empty_open = "",
+              open = "",
+              symlink = "",
+            },
+            git = { unmerged = "" },
+          },
+        },
+      },
+    }
+  end,
 
-	keys = {
-		{ "<M-e>", "<cmd>NvimTreeToggle<CR>", desc = "Toggle NvimTree " },
-		{ "<leader>e", "<cmd>NvimTreeFocus<CR>", desc = "Focus Nvimtree" },
-	},
+  keys = {
+    { "<M-e>", "<cmd>NvimTreeToggle<CR>", desc = "Toggle NvimTree " },
+    { "<leader>e", "<cmd>NvimTreeFocus<CR>", desc = "Focus Nvimtree" },
+  },
 }

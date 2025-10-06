@@ -1,7 +1,7 @@
 local map = function(mode, lhs, rhs, opts)
-	opts = opts or {}
-	opts.noremap = opts.noremap ~= false
-	vim.keymap.set(mode, lhs, rhs, opts)
+  opts = opts or {}
+  opts.noremap = opts.noremap ~= false
+  vim.keymap.set(mode, lhs, rhs, opts)
 end
 
 -- Editor remaps/ built in
@@ -37,16 +37,16 @@ map("i", "<C-Up>", "<C-o><C-y>", { desc = "Scroll window up one line in insert m
 map("n", "*", [[<Cmd>let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>]], { desc = "Highlight word (no jump)" })
 map("n", "#", [[<Cmd>let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>]], { desc = "Highlight word (no jump)" })
 map(
-	"v",
-	"*",
-	[[y:let @/ = '\<' . escape(@", '/\') . '\>'<CR>:set hlsearch<CR>]],
-	{ desc = "Highlight selection (no jump)" }
+  "v",
+  "*",
+  [[y:let @/ = '\<' . escape(@", '/\') . '\>'<CR>:set hlsearch<CR>]],
+  { desc = "Highlight selection (no jump)" }
 )
 map(
-	"v",
-	"#",
-	[[y:let @/ = '\<' . escape(@", '/\') . '\>'<CR>:set hlsearch<CR>]],
-	{ desc = "Highlight selection (no jump)" }
+  "v",
+  "#",
+  [[y:let @/ = '\<' . escape(@", '/\') . '\>'<CR>:set hlsearch<CR>]],
+  { desc = "Highlight selection (no jump)" }
 )
 
 map("v", "p", '"_dP', { desc = "Paste without yanking replaced text" })
@@ -66,14 +66,14 @@ map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "escape terminal mode" })
 
 map("v", "gx", function()
-	vim.cmd([[normal! "vy]])
-	local url = vim.fn.getreg('"')
-	url = vim.fn.trim(url)
-	if url ~= "" then
-		vim.fn.jobstart({ "xdg-open", url }, { detach = true })
-	else
-		vim.notify("No URL selected", vim.log.levels.WARN)
-	end
+  vim.cmd [[normal! "vy]]
+  local url = vim.fn.getreg '"'
+  url = vim.fn.trim(url)
+  if url ~= "" then
+    vim.fn.jobstart({ "xdg-open", url }, { detach = true })
+  else
+    vim.notify("No URL selected", vim.log.levels.WARN)
+  end
 end, { silent = true, desc = "Open selected text as URL" })
 
 -- map("v", "<S-Down>", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down" })
@@ -94,31 +94,31 @@ map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
 -- NVCHAD
 map("n", "<leader>nc", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
 map("n", "<leader>nt", function()
-	require("nvchad.themes").open()
+  require("nvchad.themes").open()
 end, { desc = "telescope nvchad themes" })
 
 -- Toggleable terminal
 map({ "n", "t" }, "<A-v>", function()
-	require("nvchad.term").toggle({
-		pos = "vsp",
-		id = "vtoggleTerm",
-		size = 0.3,
-	})
+  require("nvchad.term").toggle {
+    pos = "vsp",
+    id = "vtoggleTerm",
+    size = 0.3,
+  }
 end, { desc = "Toggle Vertical terminal" })
 
 map({ "n", "t" }, "<A-h>", function()
-	require("nvchad.term").toggle({
-		pos = "sp",
-		id = "htoggleTerm",
-		size = 0.5,
-	})
+  require("nvchad.term").toggle {
+    pos = "sp",
+    id = "htoggleTerm",
+    size = 0.5,
+  }
 end, { desc = "Toggle horizontal terminal" })
 
 map({ "n", "t" }, "<A-d>", function()
-	require("nvchad.term").toggle({
-		pos = "float",
-		id = "ftoggleTerm",
-	})
+  require("nvchad.term").toggle {
+    pos = "float",
+    id = "ftoggleTerm",
+  }
 end, { desc = "Toggle floating terminal" })
 
 -- tabufline
@@ -132,22 +132,22 @@ map("n", "<leader>t<Left>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
 map("n", "<leader>b", "<cmd>enew<CR>", { desc = "Buffer new" })
 
 map("n", "<leader><Right>", function()
-	require("nvchad.tabufline").next()
+  require("nvchad.tabufline").next()
 end, { desc = "Buffer goto next" })
 map("n", "<leader><Left>", function()
-	require("nvchad.tabufline").prev()
+  require("nvchad.tabufline").prev()
 end, { desc = "Buffer goto prev" })
 
 map("n", "<leader>x", function()
-	require("nvchad.tabufline").close_buffer()
+  require("nvchad.tabufline").close_buffer()
 end, { desc = "Buffer close" })
 
 local function close_all_buffers_but_current()
-	local current_buf = vim.api.nvim_get_current_buf()
-	for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-		if bufnr ~= current_buf and vim.bo[bufnr].buflisted then
-			vim.api.nvim_buf_delete(bufnr, {})
-		end
-	end
+  local current_buf = vim.api.nvim_get_current_buf()
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    if bufnr ~= current_buf and vim.bo[bufnr].buflisted then
+      vim.api.nvim_buf_delete(bufnr, {})
+    end
+  end
 end
 vim.keymap.set("n", "<leader>X", close_all_buffers_but_current, { desc = "Buffers Close all " })
