@@ -12,7 +12,7 @@ local servers = {
   "bashls",
   "rust_analyzer",
   "emmet_ls",
-  "jdtls",
+  -- "jdtls",
   "lemminx",
   "hyprls",
 }
@@ -49,7 +49,7 @@ return {
     },
     "hrsh7th/cmp-nvim-lsp",
     "nvimdev/lspsaga.nvim",
-    "mfussenegger/nvim-jdtls",
+    -- "mfussenegger/nvim-jdtls",
   },
 
   config = function()
@@ -85,21 +85,14 @@ return {
         settings = {
           Lua = {
             runtime = { version = "LuaJIT" },
-            diagnostics = { globals = { "vim" } },
             workspace = {
               library = {
-                [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-                [vim.env.VIMRUNTIME] = true,
-                [vim.fn.stdpath "config"] = true,
-                [vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types"] = true,
-                [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
-                ["${3rd}/luv/library"] = true,
+                vim.fn.expand "$VIMRUNTIME/lua",
+                vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
+                vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
+                "${3rd}/luv/library",
               },
-              checkThirdParty = false,
-              maxPreload = 2000,
-              preloadFileSize = 1000,
             },
-            telemetry = { enable = false },
           },
         },
       })

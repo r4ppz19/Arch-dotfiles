@@ -1,4 +1,5 @@
 local function dedent(str)
+  str = str:gsub("^\n", "")
   local indent = str:match "\n([ \t]+)%S"
   if not indent then
     return str
@@ -9,33 +10,32 @@ end
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
   branch = "main",
-  lazy = false,
+  lazy = true,
+  build = "make tiktoken || true",
   dependencies = {
     {
       "zbirenbaum/copilot.lua",
       event = "InsertEnter",
       config = function()
         require("copilot").setup {
-          suggestion = {
-            enabled = false,
-          },
-          panel = {
-            enabled = false,
-          },
+          suggestion = { enabled = false },
+          panel = { enabled = false },
         }
       end,
       dependencies = {
-        "zbirenbaum/copilot-cmp",
-        config = function()
-          require("copilot_cmp").setup()
-        end,
+        {
+          "zbirenbaum/copilot-cmp",
+          config = function()
+            require("copilot_cmp").setup()
+          end,
+        },
       },
     },
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
   },
-  build = "make tiktoken",
+
   opts = {
     model = "gpt-4.1",
     temperature = 0.1,
@@ -72,6 +72,7 @@ return {
         ]],
         description = "Explain code at a high level",
       },
+
       ExplainLowLevel = {
         prompt = dedent [[
           #selection
@@ -250,38 +251,65 @@ return {
   },
 
   keys = {
+    -- Idiomatic check
+    { "<leader>ci", "<cmd>CopilotChatIdiomatic<cr>", mode = { "n", "v" }, desc = "Check if code is idiomatic" },
+
+    -- Explain
+    { "<leader>ce", "<cmd>CopilotChatExplain<cr>", mode = { "n", "v" }, desc = "Explain code" },
+
+    -- Suggest alternatives
+    { "<leader>cs", "<cmd>CopilotChatSuggest<cr>", mode = { "n", "v" }, desc = "Suggest alternatives" },
+
+    -- Toggle chat
+    { "<M-c>", "<cmd>CopilotChatToggle<cr>", mode = { "n", "v" }, desc = "Toggle CopilotChat" },
+
+    -- View/select prompt templates
     {
-      "<leader>ci",
+      "<leader>cp",
+      function()
+        local chat = require "CopilotChat"
+        chat.open()
+        chat.select_prompt()
+      end,
       mode = { "n", "v" },
-      "<cmd>CopilotChatIdiomatic<cr>",
-      desc = "Check if code is idiomatic",
-    },
-    {
-      "<leader>ce",
-      mode = { "n", "v" },
-      "<cmd>CopilotChatExplain<cr>",
-      desc = "Explain code",
-    },
-    {
-      "<leader>cs",
-      mode = { "n", "v" },
-      "<cmd>CopilotChatSuggest<cr>",
-      desc = "Suggest alternatives",
+      desc = "View/select prompt templates",
     },
 
+    -- Open chat with current buffer
+    {
+      "<leader>cc",
+      function()
+        local chat = require "CopilotChat"
+        chat.open()
+        chat.chat:add_message({ role = "user", content = "#buffer\n\n" }, true)
+      end,
+      mode = { "n", "v" },
+      desc = "Open chat with current buffer",
+    },
+
+    -- Open chat with all buffers
+    {
+      "<leader>ca",
+      function()
+        local chat = require "CopilotChat"
+        chat.open()
+        chat.chat:add_message({ role = "user", content = "#buffers\n\n" }, true)
+      end,
+      mode = { "n", "v" },
+      desc = "Open chat with all buffers",
+    },
+
+    -- Workspace scan for React/TS/CSS stacks
     {
       "<leader>cw",
       function()
         local chat = require "CopilotChat"
-
         chat.open()
         chat.chat:add_message({
           role = "user",
           content = table.concat({
-            -- Include key file types across the workspace
             "#glob:**/*.{ts,tsx,js,jsx,json,css,scss,less,sass,html,md}",
             "",
-            -- Explicitly exclude common junk directories
             "#exclude:node_modules/**",
             "#exclude:.next/**",
             "#exclude:dist/**",
@@ -295,64 +323,26 @@ return {
       desc = "Full codebase scan + architecture summary (React+TS+CSS)",
     },
 
-    {
-      "<leader>cp",
-      function()
-        local chat = require "CopilotChat"
-        chat.open()
-        chat.select_prompt()
-      end,
-      mode = { "n", "v" },
-      desc = "Select Prompt",
-    },
-
-    {
-      "<M-c>",
-      "<cmd>CopilotChatToggle<cr>",
-      mode = { "n", "v" },
-      desc = "Toggle CopilotChat",
-    },
-
-    {
-      "<leader>cc",
-      function()
-        local chat = require "CopilotChat"
-        chat.open()
-        chat.chat:add_message({ role = "user", content = "#buffer\n\n" }, true)
-      end,
-      mode = { "n", "v" },
-      desc = "Open chat with current buffer",
-    },
-    {
-      "<leader>ca",
-      function()
-        local chat = require "CopilotChat"
-        chat.open()
-        chat.chat:add_message({ role = "user", content = "#buffers\n\n" }, true)
-      end,
-      mode = { "n", "v" },
-      desc = "Open chat with all buffer",
-    },
-
+    -- Pick files with Telescope and feed them as #file: paths
     {
       "<leader>cf",
       function()
         local builtin = require "telescope.builtin"
+        local actions = require "telescope.actions"
+        local action_state = require "telescope.actions.state"
         local chat = require "CopilotChat"
 
         builtin.find_files {
           attach_mappings = function(prompt_bufnr, map)
-            local actions = require "telescope.actions"
-            local action_state = require "telescope.actions.state"
-            map("i", "<CR>", function()
+            local run = function()
               local picker = action_state.get_current_picker(prompt_bufnr)
-              local multi_selection = picker:get_multi_selection()
-              if #multi_selection == 0 then
+              local multi = picker:get_multi_selection()
+              if #multi == 0 then
                 local entry = action_state.get_selected_entry()
-                multi_selection = { entry }
+                multi = { entry }
               end
               local lines = {}
-              for _, entry in ipairs(multi_selection) do
+              for _, entry in ipairs(multi) do
                 table.insert(lines, "#file:" .. entry.path)
               end
               actions.close(prompt_bufnr)
@@ -361,10 +351,13 @@ return {
                 role = "user",
                 content = table.concat(lines, "\n") .. "\n\n",
               }, true)
-            end)
+            end
+
+            -- Replace default <CR> in both insert and normal modes
+            map("i", "<CR>", run)
+            map("n", "<CR>", run)
             return true
           end,
-          multi_selection = true,
         }
       end,
       desc = "Pick files with Telescope",
