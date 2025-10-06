@@ -12,7 +12,6 @@ local servers = {
   "bashls",
   "rust_analyzer",
   "emmet_ls",
-  -- "jdtls",
   "lemminx",
   "hyprls",
 }
@@ -49,7 +48,6 @@ return {
     },
     "hrsh7th/cmp-nvim-lsp",
     "nvimdev/lspsaga.nvim",
-    -- "mfussenegger/nvim-jdtls",
   },
 
   config = function()
@@ -73,6 +71,10 @@ return {
     local function setup()
       dofile(vim.g.base46_cache .. "lsp")
       require("nvchad.lsp").diagnostic_config()
+
+      vim.diagnostic.config {
+        virtual_text = false,
+      }
 
       vim.lsp.config("*", {
         capabilities = capabilities,
@@ -150,6 +152,15 @@ return {
             },
           },
           vtsls = {},
+        },
+        init_options = {
+          plugins = {
+            {
+              name = "typescript-plugin-css-modules",
+              location = "./node_modules/typescript-plugin-css-modules",
+              languages = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
+            },
+          },
         },
         on_attach = function(client)
           client.server_capabilities.documentFormattingProvider = false

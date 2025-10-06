@@ -10,7 +10,6 @@ end
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
   branch = "main",
-  lazy = true,
   build = "make tiktoken || true",
   dependencies = {
     {
