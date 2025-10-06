@@ -1,65 +1,69 @@
 return {
-  "nvim-telescope/telescope.nvim",
-  dependencies = {
-    "nvim-treesitter/nvim-treesitter",
-    "nvim-telescope/telescope-ui-select.nvim",
-    "BurntSushi/ripgrep",
-  },
-  cmd = "Telescope",
+	"nvim-telescope/telescope.nvim",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-treesitter/nvim-treesitter",
+		"nvim-telescope/telescope-ui-select.nvim",
+		"nvim-telescope/telescope-fzf-native.nvim",
+		build = "make",
+	},
+	cmd = "Telescope",
+	opts = function()
+		dofile(vim.g.base46_cache .. "telescope")
 
-  opts = function()
-    local conf = require "nvchad.configs.telescope"
+		return {
+			defaults = {
+				prompt_prefix = "   ",
+				selection_caret = " ",
+				entry_prefix = " ",
+				sorting_strategy = "ascending",
+				layout_config = {
+					horizontal = {
+						prompt_position = "top",
+						preview_width = 0.55,
+					},
+					width = 0.87,
+					height = 0.80,
+				},
+				mappings = {
+					n = { ["q"] = require("telescope.actions").close },
+				},
+			},
 
-    conf.defaults = vim.tbl_deep_extend("force", conf.defaults or {}, {
-      file_ignore_patterns = {
-        "node_modules",
-        ".git/",
-        "%.jpg",
-        "%.jpeg",
-        "%.png",
-        "%.webp",
-        "%.otf",
-        "%.ttf",
-        "%.lock",
-        "%.zip",
-        "%.tar.gz",
-        "__pycache__",
-        "venv",
-        "%.pyc",
-      },
-    })
+			extensions_list = { "themes", "terms", "ui-select" },
+			extensions = {
+				["ui-select"] = {
+					require("telescope.themes").get_dropdown({}),
+				},
+			},
+		}
+	end,
 
-    -- ui-select dropdown theme
-    conf.extensions = vim.tbl_deep_extend("force", conf.extensions or {}, {
-      ["ui-select"] = require("telescope.themes").get_dropdown {},
-    })
+	config = function(_, opts)
+		local telescope = require("telescope")
+		telescope.setup(opts)
 
-    return conf
-  end,
+		for _, ext in ipairs(opts.extensions_list or {}) do
+			telescope.load_extension(ext)
+		end
+	end,
 
-  config = function(_, opts)
-    require("telescope").setup(opts)
-    require("telescope").load_extension "ui-select"
-  end,
+	keys = {
+		{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+		{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Find Buffers" },
+		{ "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Help Page" },
+		{ "<leader>fm", "<cmd>Telescope marks<CR>", desc = "Find Marks" },
+		{ "<leader>fc", "<cmd>Telescope commands<CR>", desc = "Command Palette" },
+		{ "<leader>fh", "<cmd>Telescope command_history<CR>", desc = "Command Palette" },
+		{ "<leader>fs", "<cmd>Telescope spell_suggest<CR>", desc = "Command Palette" },
 
-  keys = {
-    -- Telescope core
+		{ "<leader>fq", "<cmd>Telescope quickfix<CR>", desc = "Quickfix List" },
+		{ "<leader>fl", "<cmd>Telescope loclist<CR>", desc = "Location List" },
 
-    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
-    { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Find Buffers" },
-    { "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Help Page" },
-    { "<leader>fm", "<cmd>Telescope marks<CR>", desc = "Find Marks" },
-    { "<leader>fc", "<cmd>Telescope commands<CR>", desc = "Command Palette" },
-    { "<leader>fh", "<cmd>Telescope command_history<CR>", desc = "Command Palette" },
-    { "<leader>fs", "<cmd>Telescope spell_suggest<CR>", desc = "Command Palette" },
+		{ "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Git Commits" },
+		{ "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Git Status" },
 
-    { "<leader>fq", "<cmd>Telescope quickfix<CR>", desc = "Quickfix List" },
-    { "<leader>fl", "<cmd>Telescope loclist<CR>", desc = "Location List" },
-
-    { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Git Commits" },
-    { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Git Status" },
-
-    { "<leader>FF", "<cmd>Telescope live_grep<CR>", desc = "Live Grep Project" },
-    { "<leader>Ff", "<cmd>Telescope current_buffer_fuzzy_find<CR>", desc = "Grep Current Buffer" },
-  },
+		{ "<leader>FF", "<cmd>Telescope live_grep<CR>", desc = "Live Grep Project" },
+		{ "<leader>Ff", "<cmd>Telescope current_buffer_fuzzy_find<CR>", desc = "Grep Current Buffer" },
+	},
 }
