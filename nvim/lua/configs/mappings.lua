@@ -7,9 +7,24 @@ end
 -- Editor remaps/ built in
 -- I use arrow keys not hjkl cause I am a fucking weirdo
 
-map("n", "q", "<Nop>")
+map("i", ",", ",<C-g>u")
+map("i", ".", ".<C-g>u")
+map("i", ";", ";<C-g>u")
 
-map("i", "<C-h>", "<C-w>", { desc = "Make Ctrl+Backspace act as ctrl+w in insert mode" })
+map("n", "x", '"_x', { desc = "Delete character without yanking" })
+map("n", "s", '"_s', { desc = "Delete character under cursor without yanking" })
+map("n", "c", '"_c', { desc = "Change text without yanking" })
+map("n", "d", '"_d', { desc = "Delete text without yanking" })
+
+map("n", "<C-z>", "<nop>", { desc = "Disable suspend" })
+
+map("n", "ZZ", "<nop>", { desc = "Disable accidental save and quit (ZZ)" })
+map("n", "ZQ", "<nop>", { desc = "Disable accidental quit (ZQ)" })
+
+map("n", "s", "<nop>", { desc = "Disable s to avoid accidental edits" })
+
+map("n", "q", "<Nop>", { desc = "Disable recording macro (q)" })
+map("n", "Q", "<Nop>", { desc = "Disable Ex mode (Q)" })
 
 map({ "n", "v" }, "!", "^", { desc = "Jump to first non-blank character of the line" })
 map({ "n", "v" }, "@", "g_", { desc = "Jump to last non-blank character of line" })
@@ -29,8 +44,8 @@ map("n", "<S-Down>", "<C-d>zz", { desc = "Scroll half a page down and center" })
 map("i", "<S-Up>", "<C-o><C-u>", { desc = "Scroll half a page up and center in insert mode" })
 map("i", "<S-Down>", "<C-o><C-d>", { desc = "Scroll half a page down and center in insert mode" })
 
-map("n", "<C-Down>", "<C-e>", { desc = "Scroll window down one line" })
-map("n", "<C-Up>", "<C-y>", { desc = "Scroll window up one line" })
+map({ "n", "v" }, "<C-Down>", "<C-e>", { desc = "Scroll window down one line" })
+map({ "n", "v" }, "<C-Up>", "<C-y>", { desc = "Scroll window up one line" })
 map("i", "<C-Down>", "<C-o><C-e>", { desc = "Scroll window down one line in insert mode" })
 map("i", "<C-Up>", "<C-o><C-y>", { desc = "Scroll window up one line in insert mode" })
 
@@ -52,10 +67,10 @@ map(
 map("v", "p", '"_dP', { desc = "Paste without yanking replaced text" })
 map("n", "x", '"_x', { desc = "Delete char without copy to register" })
 
-map("n", "<C-j>", ":resize +2<CR>", { desc = "Increase window height" })
-map("n", "<C-k>", ":resize -2<CR>", { desc = "Decrease window height" })
-map("n", "<C-h>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
-map("n", "<C-l>", ":vertical resize +2<CR>", { desc = "Increase window width" })
+map("n", "<S-j>", ":resize +2<CR>", { desc = "Increase window height" })
+map("n", "<S-k>", ":resize -2<CR>", { desc = "Decrease window height" })
+map("n", "<S-h>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
+map("n", "<S-l>", ":vertical resize +2<CR>", { desc = "Increase window width" })
 
 map("v", "<", "<gv", { desc = "Indent left and reselect" })
 map("v", ">", ">gv", { desc = "Indent right and reselect" })
@@ -76,10 +91,10 @@ map("v", "gx", function()
   end
 end, { silent = true, desc = "Open selected text as URL" })
 
--- map("v", "<S-Down>", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down" })
 -- map("v", "<S-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
+-- map("v", "<S-Down>", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down" })
 
--- If I ever end up using hjkl (unlikely, since I use VSCode for serious work :p )
+-- If I ever end up using hjkl (unlikely)
 -- map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
 -- map("i", "<C-e>", "<End>", { desc = "move end of line" })
 -- map("i", "<C-h>", "<Left>", { desc = "move left" })

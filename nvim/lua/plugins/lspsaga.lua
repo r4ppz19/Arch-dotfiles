@@ -79,11 +79,6 @@ return {
           desc = "Hover Documentation",
         })
 
-        map({ "n", "i" }, "<C-k>", vim.lsp.buf.signature_help, {
-          buffer = buffer,
-          desc = "Signature Help",
-        })
-
         map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", {
           buffer = buffer,
           desc = "Previous Diagnostic",
