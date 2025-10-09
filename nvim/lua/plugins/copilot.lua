@@ -250,19 +250,11 @@ return {
   },
 
   keys = {
-    -- Idiomatic check
     { "<leader>ci", "<cmd>CopilotChatIdiomatic<cr>", mode = { "n", "v" }, desc = "Check if code is idiomatic" },
-
-    -- Explain
     { "<leader>ce", "<cmd>CopilotChatExplain<cr>", mode = { "n", "v" }, desc = "Explain code" },
-
-    -- Suggest alternatives
     { "<leader>cs", "<cmd>CopilotChatSuggest<cr>", mode = { "n", "v" }, desc = "Suggest alternatives" },
-
-    -- Toggle chat
     { "<M-c>", "<cmd>CopilotChatToggle<cr>", mode = { "n", "v" }, desc = "Toggle CopilotChat" },
 
-    -- View/select prompt templates
     {
       "<leader>cp",
       function()

@@ -54,7 +54,7 @@ return {
     { "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Help Page" },
     { "<leader>fm", "<cmd>Telescope marks<CR>", desc = "Find Marks" },
     { "<leader>fc", "<cmd>Telescope commands<CR>", desc = "Command Palette" },
-    { "<leader>fh", "<cmd>Telescope command_history<CR>", desc = "Command Palette" },
+    { "<leader>fH", "<cmd>Telescope command_history<CR>", desc = "Command History" },
     { "<leader>fs", "<cmd>Telescope spell_suggest<CR>", desc = "Command Palette" },
 
     { "<leader>fq", "<cmd>Telescope quickfix<CR>", desc = "Quickfix List" },

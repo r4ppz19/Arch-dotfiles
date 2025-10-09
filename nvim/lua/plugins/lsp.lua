@@ -70,11 +70,15 @@ return {
     -- LSP setup function
     local function setup()
       dofile(vim.g.base46_cache .. "lsp")
-      require("nvchad.lsp").diagnostic_config()
+      -- require("nvchad.lsp").diagnostic_config()
 
-      vim.diagnostic.config {
-        virtual_text = false,
-      }
+      -- vim.diagnostic.config {
+      --   virtual_text = false,
+      --   underline = true,
+      --   signs = true,
+      --   update_in_insert = false,
+      --   severity_sort = true,
+      -- }
 
       vim.lsp.config("*", {
         capabilities = capabilities,

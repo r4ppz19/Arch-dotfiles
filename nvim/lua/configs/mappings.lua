@@ -26,8 +26,8 @@ map("v", "<S-Down>", "}zz", { desc = "Jump to next paragraph (centered)" })
 
 map("n", "<S-Up>", "<C-u>zz", { desc = "Scroll half a page up and center" })
 map("n", "<S-Down>", "<C-d>zz", { desc = "Scroll half a page down and center" })
-map("i", "<S-Up>", "<C-o><C-u>zz", { desc = "Scroll half a page up and center in insert mode" })
-map("i", "<S-Down>", "<C-o><C-d>zz", { desc = "Scroll half a page down and center in insert mode" })
+map("i", "<S-Up>", "<C-o><C-u>", { desc = "Scroll half a page up and center in insert mode" })
+map("i", "<S-Down>", "<C-o><C-d>", { desc = "Scroll half a page down and center in insert mode" })
 
 map("n", "<C-Down>", "<C-e>", { desc = "Scroll window down one line" })
 map("n", "<C-Up>", "<C-y>", { desc = "Scroll window up one line" })
@@ -121,20 +121,19 @@ map({ "n", "t" }, "<A-d>", function()
   }
 end, { desc = "Toggle floating terminal" })
 
--- tabufline
-
 map("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "New tab" })
 map("n", "<leader>tX", "<cmd>tabonly<CR>", { desc = "Close all other tabs" })
 map("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close tab" })
 map("n", "<leader>t<Right>", "<cmd>tabnext<CR>", { desc = "Next tab" })
 map("n", "<leader>t<Left>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
 
+-- tabufline
 map("n", "<leader>b", "<cmd>enew<CR>", { desc = "Buffer new" })
 
-map("n", "<leader><Right>", function()
+map({ "n", "v" }, "<leader><Right>", function()
   require("nvchad.tabufline").next()
 end, { desc = "Buffer goto next" })
-map("n", "<leader><Left>", function()
+map({ "n", "v" }, "<leader><Left>", function()
   require("nvchad.tabufline").prev()
 end, { desc = "Buffer goto prev" })
 
@@ -145,9 +144,9 @@ end, { desc = "Buffer close" })
 local function close_all_buffers_but_current()
   local current_buf = vim.api.nvim_get_current_buf()
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-    if bufnr ~= current_buf and vim.bo[bufnr].buflisted then
-      vim.api.nvim_buf_delete(bufnr, {})
+    if bufnr ~= current_buf and vim.bo[bufnr].buflisted and vim.api.nvim_buf_is_loaded(bufnr) then
+      vim.api.nvim_buf_delete(bufnr, { force = false })
     end
   end
 end
-vim.keymap.set("n", "<leader>X", close_all_buffers_but_current, { desc = "Buffers Close all " })
+vim.keymap.set("n", "<leader>X", close_all_buffers_but_current, { desc = "Close all buffers except current" })

@@ -30,7 +30,9 @@ return {
       anti_conceal = {
         enabled = false,
         disabled_modes = true,
+        render_modes = { "n", "c", "t" },
       },
+      completions = { lsp = { enabled = true } },
     },
     ft = { "markdown", "copilot-chat" },
   },
