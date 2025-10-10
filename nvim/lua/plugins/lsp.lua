@@ -6,6 +6,7 @@ local servers = {
   "eslint",
   "vtsls",
   "jsonls",
+  "tailwindcss",
   "marksman",
   "lua_ls",
   "pyright",
@@ -18,7 +19,7 @@ local servers = {
 
 return {
   "neovim/nvim-lspconfig",
-  event = "User FilePost",
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     {
       "mason-org/mason.nvim",
@@ -123,20 +124,13 @@ return {
 
       -- VTS LSP
       vim.lsp.config("vtsls", {
-        filetypes = {
-          "typescript",
-          "typescriptreact",
-          "javascript",
-          "javascriptreact",
-        },
-        root_markers = {
-          "package.json",
-          "tsconfig.json",
-          ".git",
-        },
+        filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+        root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
         capabilities = capabilities,
         settings = {
+          vtsls = { tsserver = { maxTsServerMemory = 4096 } },
           typescript = {
+            format = { enable = false },
             suggest = {
               diagnostics = true,
               completeFunctionCalls = true,
@@ -145,15 +139,11 @@ return {
             },
             inlayHints = {
               includeInlayParameterNameHints = "all",
-              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
               includeInlayFunctionParameterTypeHints = true,
               includeInlayVariableTypeHints = true,
               includeInlayPropertyDeclarationTypeHints = true,
               includeInlayFunctionLikeReturnTypeHints = true,
               includeInlayEnumMemberValueHints = true,
-            },
-            format = {
-              enable = false,
             },
             preferences = {
               importModuleSpecifier = "relative",
@@ -162,6 +152,7 @@ return {
             },
           },
           javascript = {
+            format = { enable = false },
             suggest = {
               diagnostics = true,
               completeFunctionCalls = true,
@@ -170,15 +161,11 @@ return {
             },
             inlayHints = {
               includeInlayParameterNameHints = "all",
-              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
               includeInlayFunctionParameterTypeHints = true,
               includeInlayVariableTypeHints = true,
               includeInlayPropertyDeclarationTypeHints = true,
               includeInlayFunctionLikeReturnTypeHints = true,
               includeInlayEnumMemberValueHints = true,
-            },
-            format = {
-              enable = false,
             },
             preferences = {
               importModuleSpecifier = "relative",
@@ -186,7 +173,6 @@ return {
               quotePreference = "auto",
             },
           },
-          vtsls = {},
         },
         on_attach = function(client)
           client.server_capabilities.documentFormattingProvider = false
@@ -203,19 +189,21 @@ return {
       vim.lsp.config("cssls", {
         capabilities = capabilities,
         settings = {
-          css = {
-            validate = true,
-            lint = { cssConflict = "warning" },
-          },
-          scss = {
-            validate = true,
-            lint = { cssConflict = "warning" },
-          },
-          less = {
-            validate = true,
-            lint = { cssConflict = "warning" },
-          },
+          css = { validate = true, lint = { unknownAtRules = "ignore" } },
+          scss = { validate = true, lint = { unknownAtRules = "ignore" } },
+          less = { validate = true, lint = { unknownAtRules = "ignore" } },
         },
+      })
+
+      vim.lsp.config("tailwindcss", {
+        capabilities = capabilities,
+        root_dir = require("lspconfig.util").root_pattern(
+          "tailwind.config.js",
+          "tailwind.config.ts",
+          "postcss.config.js",
+          "package.json",
+          ".git"
+        ),
       })
 
       -- Emmet
@@ -258,6 +246,6 @@ return {
     end
 
     -- Run setup
-    setup()
+    vim.schedule(setup)
   end,
 }
