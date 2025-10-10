@@ -128,8 +128,17 @@ return {
         root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
         capabilities = capabilities,
         settings = {
-          vtsls = { tsserver = { maxTsServerMemory = 4096 } },
+          vtsls = {
+            enableMoveToFileCodeAction = true,
+            experimental = {
+              completion = {
+                enableServerSideFuzzyMatch = true,
+                entriesLimit = 256,
+              },
+            },
+          },
           typescript = {
+            tsserver = { maxTsServerMemory = 4096 },
             format = { enable = false },
             suggest = {
               diagnostics = true,

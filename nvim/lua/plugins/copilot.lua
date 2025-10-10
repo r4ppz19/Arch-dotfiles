@@ -9,7 +9,6 @@ end
 
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
-  lazy = false,
   branch = "main",
   build = "make tiktoken || true",
   dependencies = {
@@ -274,7 +273,7 @@ return {
       function()
         local chat = require "CopilotChat"
         chat.open()
-        chat.chat:add_message({ role = "user", content = "#buffer\n\n" }, true)
+        chat.chat:add_message({ role = "user", content = "#buffer\n" }, true)
       end,
       mode = { "n", "v" },
       desc = "Open chat with current buffer",
@@ -286,34 +285,10 @@ return {
       function()
         local chat = require "CopilotChat"
         chat.open()
-        chat.chat:add_message({ role = "user", content = "#buffers\n\n" }, true)
+        chat.chat:add_message({ role = "user", content = "#buffers\n" }, true)
       end,
       mode = { "n", "v" },
       desc = "Open chat with all buffers",
-    },
-
-    -- Workspace scan for React/TS/CSS stacks
-    {
-      "<leader>cw",
-      function()
-        local chat = require "CopilotChat"
-        chat.open()
-        chat.chat:add_message({
-          role = "user",
-          content = table.concat({
-            "#glob:**/*.{ts,tsx,js,jsx,json,css,scss,less,sass,html,md}",
-            "",
-            "#exclude:node_modules/**",
-            "#exclude:.next/**",
-            "#exclude:dist/**",
-            "#exclude:build/**",
-            "#exclude:coverage/**",
-            "#exclude:.git/**",
-          }, "\n"),
-        }, true)
-      end,
-      mode = { "n" },
-      desc = "Full codebase scan + architecture summary (React+TS+CSS)",
     },
 
     -- Pick files with Telescope and feed them as #file: paths
@@ -346,7 +321,6 @@ return {
               }, true)
             end
 
-            -- Replace default <CR> in both insert and normal modes
             map("i", "<CR>", run)
             map("n", "<CR>", run)
             return true
