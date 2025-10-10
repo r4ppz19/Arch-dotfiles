@@ -54,16 +54,25 @@ return {
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
     capabilities.textDocument.completion.completionItem =
       vim.tbl_deep_extend("force", capabilities.textDocument.completion.completionItem or {}, {
-        documentationFormat = { "markdown", "plaintext" },
+        documentationFormat = {
+          "markdown",
+          "plaintext",
+        },
         snippetSupport = true,
         preselectSupport = true,
         insertReplaceSupport = true,
         labelDetailsSupport = true,
         deprecatedSupport = true,
         commitCharactersSupport = true,
-        tagSupport = { valueSet = { 1 } },
+        tagSupport = {
+          valueSet = { 1 },
+        },
         resolveSupport = {
-          properties = { "documentation", "detail", "additionalTextEdits" },
+          properties = {
+            "documentation",
+            "detail",
+            "additionalTextEdits",
+          },
         },
       })
 
@@ -82,7 +91,14 @@ return {
 
       vim.lsp.config("*", {
         capabilities = capabilities,
-        root_markers = { ".git", ".hg", "package.json", "vite.config.js", "vite.config.ts", "tsconfig.json" },
+        root_markers = {
+          ".git",
+          ".hg",
+          "package.json",
+          "vite.config.js",
+          "vite.config.ts",
+          "tsconfig.json",
+        },
       })
 
       -- Lua LSP
@@ -90,7 +106,9 @@ return {
         capabilities = capabilities,
         settings = {
           Lua = {
-            runtime = { version = "LuaJIT" },
+            runtime = {
+              version = "LuaJIT",
+            },
             workspace = {
               library = {
                 vim.fn.expand "$VIMRUNTIME/lua",
@@ -105,8 +123,17 @@ return {
 
       -- VTS LSP
       vim.lsp.config("vtsls", {
-        filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
-        root_markers = { "package.json", "tsconfig.json", ".git" },
+        filetypes = {
+          "typescript",
+          "typescriptreact",
+          "javascript",
+          "javascriptreact",
+        },
+        root_markers = {
+          "package.json",
+          "tsconfig.json",
+          ".git",
+        },
         capabilities = capabilities,
         settings = {
           typescript = {
@@ -125,7 +152,9 @@ return {
               includeInlayFunctionLikeReturnTypeHints = true,
               includeInlayEnumMemberValueHints = true,
             },
-            format = { enable = false },
+            format = {
+              enable = false,
+            },
             preferences = {
               importModuleSpecifier = "relative",
               includePackageJsonAutoImports = "on",
@@ -148,7 +177,9 @@ return {
               includeInlayFunctionLikeReturnTypeHints = true,
               includeInlayEnumMemberValueHints = true,
             },
-            format = { enable = false },
+            format = {
+              enable = false,
+            },
             preferences = {
               importModuleSpecifier = "relative",
               includePackageJsonAutoImports = "on",
@@ -156,15 +187,6 @@ return {
             },
           },
           vtsls = {},
-        },
-        init_options = {
-          plugins = {
-            {
-              name = "typescript-plugin-css-modules",
-              location = "./node_modules/typescript-plugin-css-modules",
-              languages = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
-            },
-          },
         },
         on_attach = function(client)
           client.server_capabilities.documentFormattingProvider = false
@@ -181,28 +203,50 @@ return {
       vim.lsp.config("cssls", {
         capabilities = capabilities,
         settings = {
-          css = { validate = true, lint = { cssConflict = "warning" } },
-          scss = { validate = true, lint = { cssConflict = "warning" } },
-          less = { validate = true, lint = { cssConflict = "warning" } },
+          css = {
+            validate = true,
+            lint = { cssConflict = "warning" },
+          },
+          scss = {
+            validate = true,
+            lint = { cssConflict = "warning" },
+          },
+          less = {
+            validate = true,
+            lint = { cssConflict = "warning" },
+          },
         },
       })
 
       -- Emmet
       vim.lsp.config("emmet_ls", {
         capabilities = capabilities,
-        filetypes = { "html", "javascriptreact", "typescriptreact", "css", "scss" },
+        filetypes = {
+          "html",
+          "javascriptreact",
+          "typescriptreact",
+          "css",
+          "scss",
+        },
       })
 
       -- ESLint
       vim.lsp.config("eslint", {
         capabilities = capabilities,
         settings = {
-          experimental = { useFlatConfig = true },
+          experimental = {
+            useFlatConfig = true,
+          },
           format = false,
           codeActionOnSave = {
             mode = "all",
-            disableRuleComment = { enable = true, location = "separateLine" },
-            showDocumentation = { enable = true },
+            disableRuleComment = {
+              enable = true,
+              location = "separateLine",
+            },
+            showDocumentation = {
+              enable = true,
+            },
           },
         },
       })

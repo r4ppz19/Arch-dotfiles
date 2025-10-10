@@ -25,6 +25,8 @@ return {
       definition = {
         keys = {
           edit = "<S-Right>",
+          vsplit = "v",
+          split = "s",
         },
       },
     }

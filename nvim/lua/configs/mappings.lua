@@ -1,3 +1,5 @@
+-- I use arrow keys not hjkl cause I am a fucking weirdo
+
 local map = function(mode, lhs, rhs, opts)
   opts = opts or {}
   opts.noremap = opts.noremap ~= false
@@ -5,16 +7,16 @@ local map = function(mode, lhs, rhs, opts)
 end
 
 -- Editor remaps/ built in
--- I use arrow keys not hjkl cause I am a fucking weirdo
 
 map("i", ",", ",<C-g>u")
 map("i", ".", ".<C-g>u")
 map("i", ";", ";<C-g>u")
 
+map("v", "p", '"_dP', { desc = "Paste without yanking replaced text" })
 map("n", "x", '"_x', { desc = "Delete character without yanking" })
 map("n", "s", '"_s', { desc = "Delete character under cursor without yanking" })
 map("n", "c", '"_c', { desc = "Change text without yanking" })
-map("n", "d", '"_d', { desc = "Delete text without yanking" })
+-- map("n", "d", '"_d', { desc = "Delete text without yanking" })
 
 map("n", "<C-z>", "<nop>", { desc = "Disable suspend" })
 
@@ -34,10 +36,10 @@ map({ "n", "v" }, "<C-Right>", "e", { desc = "Move to the end of the word" })
 map("i", "<C-Left>", "<C-o>b", { desc = "Move to the beginning of the word in insert mode" })
 map("i", "<C-Right>", "<C-o>e", { desc = "Move to the end of the word in insert mode" })
 
-map("v", "<S-Up>", "{zz", { desc = "Jump to previous paragraph (centered)" })
-map("v", "<S-Down>", "}zz", { desc = "Jump to next paragraph (centered)" })
 -- map("i", "<S-Up>", "<C-o>{zz", { desc = "Jump to previous paragraph (centered) in insert mode" })
 -- map("i", "<S-Down>", "<C-o>}zz", { desc = "Jump to next paragraph (centered) in insert mode" })
+map("v", "<S-Up>", "{zz", { desc = "Jump to previous paragraph (centered)" })
+map("v", "<S-Down>", "}zz", { desc = "Jump to next paragraph (centered)" })
 
 map("n", "<S-Up>", "<C-u>zz", { desc = "Scroll half a page up and center" })
 map("n", "<S-Down>", "<C-d>zz", { desc = "Scroll half a page down and center" })
@@ -63,9 +65,6 @@ map(
   [[y:let @/ = '\<' . escape(@", '/\') . '\>'<CR>:set hlsearch<CR>]],
   { desc = "Highlight selection (no jump)" }
 )
-
-map("v", "p", '"_dP', { desc = "Paste without yanking replaced text" })
-map("n", "x", '"_x', { desc = "Delete char without copy to register" })
 
 map("n", "<S-j>", ":resize +2<CR>", { desc = "Increase window height" })
 map("n", "<S-k>", ":resize -2<CR>", { desc = "Decrease window height" })

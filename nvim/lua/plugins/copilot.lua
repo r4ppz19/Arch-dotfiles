@@ -9,6 +9,7 @@ end
 
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
+  lazy = false,
   branch = "main",
   build = "make tiktoken || true",
   dependencies = {
@@ -254,6 +255,7 @@ return {
     { "<leader>ce", "<cmd>CopilotChatExplain<cr>", mode = { "n", "v" }, desc = "Explain code" },
     { "<leader>cs", "<cmd>CopilotChatSuggest<cr>", mode = { "n", "v" }, desc = "Suggest alternatives" },
     { "<M-c>", "<cmd>CopilotChatToggle<cr>", mode = { "n", "v" }, desc = "Toggle CopilotChat" },
+    { "<leader>cm", "<cmd>CopilotChatModels<cr>", mode = { "n", "v" }, desc = "View/select available models" },
 
     {
       "<leader>cp",
