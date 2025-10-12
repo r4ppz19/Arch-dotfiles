@@ -13,6 +13,14 @@ end
 
 -- Editor remaps/ built in
 
+-- Insert below and above
+map("n", "<leader><Down>", "o", { desc = "Insert below" })
+map("n", "<leader><Up>", "O", { desc = "Inset above" })
+
+-- Undo and Redo
+map("n", ",", "u", { desc = "Undo" })
+map("n", ".", "<C-r>", { desc = "Redo" })
+
 -- Undo breakpoints on punctuation
 map("i", ",", ",<C-g>u")
 map("i", ".", ".<C-g>u")
@@ -29,8 +37,8 @@ map("n", "<C-z>", "<nop>", { desc = "Disable suspend" })
 map("n", "ZZ", "<nop>", { desc = "Disable accidental save and quit (ZZ)" })
 map("n", "ZQ", "<nop>", { desc = "Disable accidental quit (ZQ)" })
 
--- Disable s to avoid accidental edits (remove earlier conflicting mapping)
-map({ "n", "v" }, "s", "<nop>", { desc = "Disable s to avoid accidental edits" })
+-- Disable s to avoid accidental edits
+map("n", "s", "<nop>", { desc = "Disable s to avoid accidental edits" })
 
 -- Macro control
 map("n", "q", "<Nop>", { desc = "Disable recording macro (q)" })
@@ -68,13 +76,13 @@ map("n", "#", [[<Cmd>let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>]]
 map(
   "v",
   "*",
-  [[y:let @/ = '\<' . escape(@", '/\') . '\>'<CR>:set hlsearch<CR>]],
+  [[y<Cmd>let @/ = '\<' . escape(@", '/\') . '\>'<CR>:set hlsearch<CR>]],
   { desc = "Highlight selection (no jump)" }
 )
 map(
   "v",
   "#",
-  [[y:let @/ = '\<' . escape(@", '/\') . '\>'<CR>:set hlsearch<CR>]],
+  [[y<Cmd>let @/ = '\<' . escape(@", '/\') . '\>'<CR>:set hlsearch<CR>]],
   { desc = "Highlight selection (no jump)" }
 )
 

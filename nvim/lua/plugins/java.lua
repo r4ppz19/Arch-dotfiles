@@ -5,7 +5,7 @@ return {
     dependencies = {
       "neovim/nvim-lspconfig",
       "mason-org/mason.nvim",
-      "mfussenegger/nvim-dap", -- for debugging UI
+      "mfussenegger/nvim-dap",
       "rcarriga/nvim-dap-ui",
       "nvim-treesitter/nvim-treesitter",
     },
@@ -18,10 +18,8 @@ return {
         -- notifications = { dap = true },
       }
 
-      -- Configure jdtls via lspconfig with your Java 21 path
       local lspconfig = require "lspconfig"
 
-      -- Build capabilities (ok if cmp isn't present)
       local capabilities
       pcall(function()
         capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -84,7 +82,7 @@ return {
         },
       }
 
-      -- Treesitter Java parser (syntax highlighting is NOT LSP)
+      -- Treesitter Java parser
       pcall(function()
         require("nvim-treesitter.configs").setup {
           ensure_installed = { "java" },

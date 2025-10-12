@@ -57,63 +57,69 @@ return {
       ExplainHighLevel = {
         prompt = dedent [[
           #selection
-          Give a **high-level explanation** of what this code does in [language/framework]:
-          - Summarize the overall purpose and role of this code
-          - Describe the logic flow and main components
-          - Explain how this fits into typical usage patterns or architecture
-          - Avoid excessive syntax detail — focus on intent and design
+          #buffer (additional context)
+          Provide a **high-level conceptual explanation** of the selected code in [language/framework]:
+          - Summarize its overall purpose and role within an application or system.
+          - Describe the main logical flow and key components or modules.
+          - Explain how this code typically fits into common usage patterns, design, or architecture.
+          - Avoid line-by-line syntax detail; focus on intent, design decisions, and structure.
         ]],
         system_prompt = dedent [[
-          You are an expert software engineer explaining the conceptual purpose of this code.
-          Assume the reader knows general programming principles but not this language or framework.
-          Be technical, structured, and concise. Prioritize clarity over depth.
-          Use markdown sections like **Purpose**, **Flow**, and **Concepts**.
+          You are an expert software engineer explaining code at a conceptual level.
+          Assume the reader understands general programming concepts but not this specific language/framework.
+          Be technical, structured, and concise. Prioritize clarity and architecture over syntax.
+          Format your response in markdown with sections such as:
+          **Purpose**, **Flow**, and **Design Concepts**.
         ]],
-        description = "Explain code at a high level",
-      },
-
-      ExplainLowLevel = {
-        prompt = dedent [[
-          #selection
-          Give a **low-level explanation** of this code in [language/framework]:
-          - Break down syntax and keywords line by line or block by block
-          - Clarify how the language’s semantics influence behavior
-          - Explain runtime effects, data flow, and control structures
-          - Mention language-specific idioms, conventions, or pitfalls
-        ]],
-        system_prompt = dedent [[
-          You are an expert explainer focusing on the fine details of this code.
-          The reader knows general programming, but not this specific language.
-          Be precise, technical, and explicit about what each part does.
-          Use markdown sections like **Syntax Breakdown**, **Execution Flow**, and **Language Notes**.
-        ]],
-        description = "Explain code at a low level",
+        description = "Explain code at a high-level",
       },
 
       Explain = {
         prompt = dedent [[
           #selection
-          Provide a **mid-level explanation** of this code in [language/framework]:
-          - Describe the functionality and logical flow
-          - Explain how each major construct or section contributes to the result
-          - Mention key syntax and language features where relevant, but don’t explain every token
-          - Highlight important patterns, idioms, or design choices
-          - Clarify both the “what” (behavior) and “how” (mechanics) at a practical depth
+          #buffer (additional context)
+          Provide a **mid-level explanation** of the selected code in [language/framework]:
+          - Describe its functionality and logical flow in sufficient detail for a competent programmer.
+          - Explain how each major construct, block, or function contributes to the overall behavior.
+          - Highlight relevant syntax and language features without covering every token.
+          - Point out important patterns, idioms, or design choices.
+          - Clarify both the “what” (behavior) and “how” (mechanics) at a practical depth.
         ]],
         system_prompt = dedent [[
           You are an experienced developer explaining code to another competent programmer unfamiliar with this language.
-          Focus on the logic and implementation details at a practical level — not too abstract, not too granular.
-          Explain purpose, structure, and relevant syntax with clarity.
-          Use markdown sections like **Overview**, **Logic Flow**, **Key Constructs**, and **Notes**.
+          Provide a balanced explanation: detailed enough to understand the logic and mechanics, but not exhaustive line-by-line.
+          Use clear markdown sections such as:
+          **Overview**, **Logic Flow**, **Key Constructs**, and **Notes**.
         ]],
-        description = "Explain code at a balanced depth",
+        description = "Explain code at a intermediate depth",
+      },
+
+      ExplainLowLevel = {
+        prompt = dedent [[
+          #selection
+          #buffer (additional context)
+          Provide a **low-level, detailed explanation** of the selected code in [language/framework]:
+          - Break down syntax, keywords, and expressions line by line or char by char.
+          - Explain language semantics, runtime behavior, and control flow in detail.
+          - Highlight how data structures, types, and operations interact.
+          - Point out language-specific idioms, conventions, or potential pitfalls.
+          - Be comprehensive, precise, and explicit in every part of the code.
+        ]],
+        system_prompt = dedent [[
+          You are an expert explainer focusing on precise implementation details.
+          Assume the reader is a programmer familiar with general concepts but not this language/framework.
+          Be meticulous, explicit, and technical. Cover all relevant syntax, data flow, and execution effects.
+          Use markdown sections such as:
+          **Syntax Breakdown**, **Execution Flow**, **Data & Control Analysis**, and **Language Notes**.
+        ]],
+        description = "Explain code at a low-level perspective",
       },
 
       Review = {
         prompt = dedent [[
           #selection (preferred)
           #buffer (additional context)
-          Perform a detailed code review:
+          Perform a detailed code review of the selected code:
           - Highlight issues with exact lines
           - Categorize by severity (critical, warning, suggestion)
           - Suggest fixes with examples
@@ -127,17 +133,20 @@ return {
 
       Fix = {
         prompt = dedent [[
-          #selection (preferred)
+          #buffers
           #diagnostics:current
-          #buffer (additional context)
           Find and fix issues in this code:
-          - Explain the problem
-          - Provide corrected code
-          - Justify why the fix works
+          For your response:
+            - List each issue clearly using bullet points.
+            - Explain why each issue is a problem.
+            - Provide a corrected and improved version of the code.
+            - Use modern, idiomatic best practices for the language.
+            - Justify your fixes with short but precise technical reasoning.
+            - If there are multiple ways to fix something, choose the most maintainable and production-safe approach.
         ]],
         system_prompt = dedent [[
-          You are a debugger and language expert. Deliver minimal, correct fixes with explanations.
-          Include validation hints if relevant.
+          You are a senior software engineer. Review the following code and identify all problems(syntax errors,
+          logic bugs, security issues, performance concerns, bad design, deprecated APIs, or non-idiomatic patterns).
         ]],
         description = "Debug and fix code with reasoning",
       },

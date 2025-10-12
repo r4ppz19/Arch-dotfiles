@@ -18,17 +18,17 @@ return {
         code_action = " ",
       },
       finder = {
-        default = "ref+imp+def",
+        default = "ref+def",
         layout = "float",
         keys = {
           vsplit = "v",
           split = "s",
-          toggle_or_open = "<S-Right>",
+          toggle_or_open = "<leader><Down>",
         },
       },
       definition = {
         keys = {
-          edit = "<S-Right>",
+          edit = "<leader><Down>",
           vsplit = "v",
           split = "s",
         },
