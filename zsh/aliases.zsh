@@ -34,7 +34,7 @@ alias sm='~/Arch-dotfiles/scripts/tmux-session-manager.py'
 # alias sm='. ~/Arch-dotfiles/zsh/session-manager.zsh'
 
 # AI
-alias explain='gh copilot explain'
-alias suggest='gh copilot suggest'
-alias gemma3='tgpt --provider ollama --model gemma3'
+alias ex='gh copilot explain'
+alias sug='gh copilot suggest'
+alias gemma='tgpt --provider ollama --model gemma3'
 alias poll='tgpt --provider pollinations'
