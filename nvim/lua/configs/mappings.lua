@@ -13,64 +13,54 @@ end
 
 -- Editor remaps/ built in
 
--- Insert below and above
+map("n", "n", "nzzzv", { desc = "Next search result centered" })
+map("n", "N", "Nzzzv", { desc = "Previous search result centered" })
+
 map("n", "<leader><Down>", "o", { desc = "Insert below" })
 map("n", "<leader><Up>", "O", { desc = "Inset above" })
 
--- Undo and Redo
 map("n", ",", "u", { desc = "Undo" })
 map("n", ".", "<C-r>", { desc = "Redo" })
 
--- Undo breakpoints on punctuation
-map("i", ",", ",<C-g>u")
-map("i", ".", ".<C-g>u")
-map("i", ";", ";<C-g>u")
+map("i", ",", ",<C-g>u", { desc = "Insert ',' and break undo sequence" })
+map("i", ".", ".<C-g>u", { desc = "Insert '.' and break undo sequence" })
+map("i", ";", ";<C-g>u", { desc = "Insert ';' and break undo sequence" })
 
--- Sensible yanking behavior
 map("v", "p", '"_dP', { desc = "Paste without yanking replaced text" })
 map("n", "x", '"_x', { desc = "Delete character without yanking" })
 map("n", "c", '"_c', { desc = "Change text without yanking" })
 -- map("n", "d", '"_d', { desc = "Delete text without yanking" })
 
 map("n", "<C-z>", "<nop>", { desc = "Disable suspend" })
-
 map("n", "ZZ", "<nop>", { desc = "Disable accidental save and quit (ZZ)" })
 map("n", "ZQ", "<nop>", { desc = "Disable accidental quit (ZQ)" })
 
--- Disable s to avoid accidental edits
 map("n", "s", "<nop>", { desc = "Disable s to avoid accidental edits" })
 
--- Macro control
 map("n", "q", "<Nop>", { desc = "Disable recording macro (q)" })
 map("n", "Q", "<Nop>", { desc = "Disable Ex mode (Q)" })
 
--- Line anchors: you chose !/@ for start/end nonblank
 map({ "n", "v" }, "!", "^", { desc = "Jump to first non-blank character of the line" })
 map({ "n", "v" }, "@", "g_", { desc = "Jump to last non-blank character of line" })
 
--- Word motions on Ctrl+Arrows
 map({ "n", "v" }, "<C-Left>", "b", { desc = "Move to the beginning of the word" })
 map({ "n", "v" }, "<C-Right>", "e", { desc = "Move to the end of the word" })
 map("i", "<C-Left>", "<C-o>b", { desc = "Move to the beginning of the word in insert mode" })
 map("i", "<C-Right>", "<C-o>e", { desc = "Move to the end of the word in insert mode" })
 
--- Paragraph jumps in visual
 map("v", "<S-Up>", "{zz", { desc = "Jump to previous paragraph (centered)" })
 map("v", "<S-Down>", "}zz", { desc = "Jump to next paragraph (centered)" })
 
--- Half-page scroll + center
 map("n", "<S-Up>", "<C-u>zz", { desc = "Scroll half a page up and center" })
 map("n", "<S-Down>", "<C-d>zz", { desc = "Scroll half a page down and center" })
 map("i", "<S-Up>", "<C-o><C-u><C-o>zz", { desc = "Scroll half a page up and center in insert mode" })
 map("i", "<S-Down>", "<C-o><C-d><C-o>zz", { desc = "Scroll half a page down and center in insert mode" })
 
--- Window scroll by one line
 map({ "n", "v" }, "<C-Down>", "<C-e>", { desc = "Scroll window down one line" })
 map({ "n", "v" }, "<C-Up>", "<C-y>", { desc = "Scroll window up one line" })
 map("i", "<C-Down>", "<C-o><C-e>", { desc = "Scroll window down one line in insert mode" })
 map("i", "<C-Up>", "<C-o><C-y>", { desc = "Scroll window up one line in insert mode" })
 
--- Highlight word/selection without jumping
 map("n", "*", [[<Cmd>let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>]], { desc = "Highlight word (no jump)" })
 map("n", "#", [[<Cmd>let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>]], { desc = "Highlight word (no jump)" })
 map(
@@ -86,28 +76,23 @@ map(
   { desc = "Highlight selection (no jump)" }
 )
 
--- Split resizing (warning: these clobber J/K/H/L in terminals)
+-- warning: these clobber J/K/H/L in terminals
 map("n", "<S-j>", ":resize +2<CR>", { desc = "Increase window height" })
 map("n", "<S-k>", ":resize -2<CR>", { desc = "Decrease window height" })
 map("n", "<S-h>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
 map("n", "<S-l>", ":vertical resize +2<CR>", { desc = "Increase window width" })
 
--- Persistent visual selection on indent
 map("v", "<", "<gv", { desc = "Indent left and reselect" })
 map("v", ">", ">gv", { desc = "Indent right and reselect" })
 
--- Save everywhere (fix insert-mode variant)
 map("n", "<C-s>", "<cmd>write<cr>", { desc = "Save file" })
 map("v", "<C-s>", "<cmd>write<cr>", { desc = "Save file" })
 map("i", "<C-s>", "<C-o>:write<CR>", { desc = "Save file" })
 
--- Clear search highlights
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear highlights" })
 
--- Yank whole file to system clipboard
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "Copy whole file" })
 
--- Terminal mode escape
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "Escape terminal mode" })
 
 -- Open selected text as URL (portable)
@@ -127,7 +112,6 @@ local function open_url_portable(url)
   end
   vim.fn.jobstart(cmd, { detach = true })
 end
-
 map("v", "gx", function()
   vim.cmd [[normal! "vy]]
   local url = vim.fn.getreg '"'
@@ -189,7 +173,6 @@ map("n", "<leader>x", function()
   require("nvchad.tabufline").close_buffer()
 end, { desc = "Buffer close" })
 
--- Close all buffers except current
 local function close_all_buffers_but_current()
   local current_buf = vim.api.nvim_get_current_buf()
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
@@ -199,3 +182,26 @@ local function close_all_buffers_but_current()
   end
 end
 map("n", "<leader>X", close_all_buffers_but_current, { desc = "Close all buffers except current" })
+
+-- Just in case I use vim properly (unlikely)
+
+map("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
+map("n", "<C-j>", "<C-w>j", { desc = "Move to below window" })
+map("n", "<C-k>", "<C-w>k", { desc = "Move to above window" })
+map("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
+
+map("n", "<A-j>", ":m .+1<CR>==", { desc = "Move current line down" })
+map("n", "<A-k>", ":m .-2<CR>==", { desc = "Move current line up" })
+map("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { desc = "Move current line down (insert mode)" })
+map("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move current line up (insert mode)" })
+map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down" })
+map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
+
+map("n", "<Tab>", function()
+  require("nvchad.tabufline").next()
+end, { desc = "Buffer goto next" })
+map("n", "<S-Tab>", function()
+  require("nvchad.tabufline").prev()
+end, { desc = "Buffer goto prev" })
+
+map("i", "jk", "<Esc>", { desc = "Exit insert mode" })
