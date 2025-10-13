@@ -20,8 +20,8 @@ map("n", "N", "Nzzzv", { desc = "Previous search result centered" })
 map("n", "<C-c>", "yy", { desc = "Yank line" })
 map("v", "<C-c>", "y", { desc = "Yank" })
 
-map("n", "<A-Up>", "O", { desc = "Inset above" })
-map("n", "<A-Down>", "o", { desc = "Insert below" })
+map("n", "<leader><Up>", "O", { desc = "Insert above" })
+map("n", "<leader><Down>", "o", { desc = "Insert below" })
 
 map("n", ",", "u", { desc = "Undo" })
 map("n", ".", "<C-r>", { desc = "Redo" })

@@ -12,24 +12,7 @@ return {
   branch = "main",
   build = "make tiktoken || true",
   dependencies = {
-    {
-      "zbirenbaum/copilot.lua",
-      event = "InsertEnter",
-      config = function()
-        require("copilot").setup {
-          suggestion = { enabled = false },
-          panel = { enabled = false },
-        }
-      end,
-      dependencies = {
-        {
-          "zbirenbaum/copilot-cmp",
-          config = function()
-            require("copilot_cmp").setup()
-          end,
-        },
-      },
-    },
+    "zbirenbaum/copilot.lua",
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
