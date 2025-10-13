@@ -16,8 +16,12 @@ end
 map("n", "n", "nzzzv", { desc = "Next search result centered" })
 map("n", "N", "Nzzzv", { desc = "Previous search result centered" })
 
-map("n", "<leader><Down>", "o", { desc = "Insert below" })
-map("n", "<leader><Up>", "O", { desc = "Inset above" })
+-- map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "Copy whole file" })
+map("n", "<C-c>", "yy", { desc = "Yank line" })
+map("v", "<C-c>", "y", { desc = "Yank" })
+
+map("n", "<A-Up>", "O", { desc = "Inset above" })
+map("n", "<A-Down>", "o", { desc = "Insert below" })
 
 map("n", ",", "u", { desc = "Undo" })
 map("n", ".", "<C-r>", { desc = "Redo" })
@@ -90,8 +94,6 @@ map("v", "<C-s>", "<cmd>write<cr>", { desc = "Save file" })
 map("i", "<C-s>", "<C-o>:write<CR>", { desc = "Save file" })
 
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear highlights" })
-
-map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "Copy whole file" })
 
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "Escape terminal mode" })
 
