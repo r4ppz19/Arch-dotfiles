@@ -1,4 +1,5 @@
 return {
+
   {
     "iamcco/markdown-preview.nvim",
     cmd = {
@@ -6,11 +7,10 @@ return {
       "MarkdownPreview",
       "MarkdownPreviewStop",
     },
-    build = "cd app && yarn install",
-    init = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-    end,
     ft = { "markdown" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
     keys = {
       {
         "<leader>pm",
@@ -19,6 +19,7 @@ return {
       },
     },
   },
+
   {
     "MeanderingProgrammer/render-markdown.nvim",
     enabled = true,
@@ -27,13 +28,10 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     opts = {
-      anti_conceal = {
-        enabled = false,
-        disabled_modes = true,
-        render_modes = { "n", "c", "t" },
-      },
+      anti_conceal = { enabled = false },
+      -- preset = "none",
       completions = { lsp = { enabled = true } },
     },
-    ft = { "copilot-chat" },
+    ft = { "markdown", "copilot-chat" },
   },
 }

@@ -28,7 +28,7 @@ autocmd("BufEnter", {
 
 -- Wraping
 autocmd("FileType", {
-  pattern = { "markdown", "text" },
+  pattern = { "text" },
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.linebreak = true

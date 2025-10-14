@@ -21,8 +21,8 @@ map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "Copy whole file" })
 map("n", "<leader><Up>", "O", { desc = "Insert above" })
 map("n", "<leader><Down>", "o", { desc = "Insert below" })
 
-map("n", ",", "u", { desc = "Undo" })
-map("n", ".", "<C-r>", { desc = "Redo" })
+map("n", "<leader>,", "u", { desc = "Undo" })
+map("n", "<leader>.", "<C-r>", { desc = "Redo" })
 
 map("i", ",", ",<C-g>u", { desc = "Insert ',' and break undo sequence" })
 map("i", ".", ".<C-g>u", { desc = "Insert '.' and break undo sequence" })
@@ -44,6 +44,11 @@ map("n", "Q", "<Nop>", { desc = "Disable Ex mode (Q)" })
 
 map({ "n", "v" }, "!", "^", { desc = "Jump to first non-blank character of the line" })
 map({ "n", "v" }, "@", "g_", { desc = "Jump to last non-blank character of line" })
+
+map({ "n", "v" }, "<S-Left>", "B", { desc = "Move to the beginning of the word" })
+map({ "n", "v" }, "<S-Right>", "E", { desc = "Move to the end of the word" })
+map("i", "<S-Left>", "<C-o>B", { desc = "Move to the beginning of the word in insert mode" })
+map("i", "<S-Right>", "<C-o>E", { desc = "Move to the end of the word in insert mode" })
 
 map({ "n", "v" }, "<C-Left>", "b", { desc = "Move to the beginning of the word" })
 map({ "n", "v" }, "<C-Right>", "e", { desc = "Move to the end of the word" })
