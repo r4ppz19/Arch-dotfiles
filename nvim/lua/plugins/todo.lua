@@ -23,6 +23,9 @@ return {
       fg = "NONE",
       bg = "BOLD",
     },
+    highlight = {
+      multiline = false,
+    },
     merge_keywords = true,
     colors = {
       error = { "#FB4934" },
