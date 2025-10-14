@@ -68,7 +68,7 @@ return {
         ["<C-Down>"] = cmp.mapping.select_next_item(),
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-s>"] = cmp.mapping.complete(),
+        ["<C-a>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.close(),
 
         ["<CR>"] = cmp.mapping.confirm {
@@ -76,13 +76,14 @@ return {
           select = true,
         },
 
-        ["<C-a>"] = cmp.mapping(function(fallback)
-          if require("luasnip").expand_or_jumpable() then
-            require("luasnip").expand_or_jump()
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
+        -- NOTE: might need later? idk
+        -- ["<fuckingannoyingpieceofshit>"] = cmp.mapping(function(fallback)
+        --   if require("luasnip").expand_or_jumpable() then
+        --     require("luasnip").expand_or_jump()
+        --   else
+        --     fallback()
+        --   end
+        -- end, { "i", "s" }),
 
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then

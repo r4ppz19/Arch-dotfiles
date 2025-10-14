@@ -83,7 +83,6 @@ map(
   { desc = "Highlight selection (no jump)" }
 )
 
--- warning: these clobber J/K/H/L in terminals
 map("n", "<S-j>", ":resize +2<CR>", { desc = "Increase window height" })
 map("n", "<S-k>", ":resize -2<CR>", { desc = "Decrease window height" })
 map("n", "<S-h>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
@@ -134,22 +133,6 @@ map("n", "<leader>nt", function()
 end, { desc = "telescope nvchad themes" })
 
 -- Toggleable terminal
-map({ "n", "t" }, "<A-v>", function()
-  require("nvchad.term").toggle {
-    pos = "vsp",
-    id = "vtoggleTerm",
-    size = 0.3,
-  }
-end, { desc = "Toggle Vertical terminal" })
-
-map({ "n", "t" }, "<A-h>", function()
-  require("nvchad.term").toggle {
-    pos = "sp",
-    id = "htoggleTerm",
-    size = 0.5,
-  }
-end, { desc = "Toggle horizontal terminal" })
-
 map({ "n", "t" }, "<A-d>", function()
   require("nvchad.term").toggle {
     pos = "float",
@@ -170,6 +153,7 @@ map("n", "<leader>b", "<cmd>enew<CR>", { desc = "Buffer new" })
 map({ "n", "v" }, "<leader><Right>", function()
   require("nvchad.tabufline").next()
 end, { desc = "Buffer goto next" })
+
 map({ "n", "v" }, "<leader><Left>", function()
   require("nvchad.tabufline").prev()
 end, { desc = "Buffer goto prev" })
