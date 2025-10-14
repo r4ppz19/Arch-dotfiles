@@ -2,7 +2,7 @@ local opt = vim.opt
 local o = vim.o
 local g = vim.g
 
-o.relativenumber = true
+o.relativenumber = false
 o.scrolloff = 8
 o.sidescroll = 1
 o.sidescrolloff = 8

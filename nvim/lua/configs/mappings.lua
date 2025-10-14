@@ -16,9 +16,7 @@ end
 map("n", "n", "nzzzv", { desc = "Next search result centered" })
 map("n", "N", "Nzzzv", { desc = "Previous search result centered" })
 
--- map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "Copy whole file" })
-map("n", "<C-c>", "yy", { desc = "Yank line" })
-map("v", "<C-c>", "y", { desc = "Yank" })
+map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "Copy whole file" })
 
 map("n", "<leader><Up>", "O", { desc = "Insert above" })
 map("n", "<leader><Down>", "o", { desc = "Insert below" })
