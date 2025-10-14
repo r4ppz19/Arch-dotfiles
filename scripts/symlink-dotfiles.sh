@@ -20,6 +20,7 @@ CONFIG_ITEMS=(
   yazi
   uwsm
   fastfetch
+  pacseek
 )
 
 for item in "${CONFIG_ITEMS[@]}"; do

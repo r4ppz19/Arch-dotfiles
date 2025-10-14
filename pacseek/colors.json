@@ -1,0 +1,15 @@
+{
+  "Transparent": true,
+  "Accent": "83a598",
+  "Title": "458588",
+  "SearchBar": "3c3836",
+  "PackagelistSourceRepository": "98971a",
+  "PackagelistSourceAUR": "83a598",
+  "PackagelistHeader": "fabd2f",
+  "SettingsFieldBackground": "3c3836",
+  "SettingsFieldText": "ebdbb2",
+  "SettingsFieldLabel": "d79921",
+  "SettingsDropdownNotSelected": "504945",
+  "StylePKGBUILD": "native",
+  "Comments": "Gruvbox Material Dark by r4ppz"
+}
