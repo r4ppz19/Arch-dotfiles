@@ -21,7 +21,7 @@ return {
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    enabled = false,
+    enabled = true,
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons",
@@ -34,6 +34,6 @@ return {
       },
       completions = { lsp = { enabled = true } },
     },
-    ft = { "markdown", "copilot-chat" },
+    ft = { "copilot-chat" },
   },
 }
