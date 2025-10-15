@@ -15,6 +15,8 @@ local servers = {
   "emmet_ls",
   "lemminx",
   "hyprls",
+  "clangd",
+  "jdtls",
 }
 
 return {
@@ -49,6 +51,7 @@ return {
     },
     "hrsh7th/cmp-nvim-lsp",
     "nvimdev/lspsaga.nvim",
+    "mfussenegger/nvim-jdtls",
   },
 
   config = function()
@@ -90,21 +93,25 @@ return {
       --   severity_sort = true,
       -- }
 
+      -- Default config for all servers
       vim.lsp.config("*", {
         capabilities = capabilities,
-        root_markers = {
-          ".git",
-          ".hg",
-          "package.json",
-          "vite.config.js",
-          "vite.config.ts",
-          "tsconfig.json",
-        },
+        root_markers = { ".git", ".hg" },
       })
 
       -- Lua LSP
       vim.lsp.config("lua_ls", {
         capabilities = capabilities,
+        root_markers = {
+          ".luarc.json",
+          ".luarc.jsonc",
+          ".luacheckrc",
+          ".stylua.toml",
+          "stylua.toml",
+          "selene.toml",
+          "selene.yml",
+          ".git",
+        },
         settings = {
           Lua = {
             runtime = {
@@ -188,6 +195,63 @@ return {
         end,
       })
 
+      -- Java LSP
+      local jdtls_capabilities = vim.deepcopy(capabilities)
+      jdtls_capabilities.textDocument.semanticTokens = vim.NIL
+
+      vim.lsp.config("jdtls", {
+        capabilities = jdtls_capabilities,
+        root_markers = { "pom.xml", "build.gradle", "build.gradle.kts", "settings.gradle", "gradlew", "mvnw", ".git" },
+        on_attach = function(client)
+          -- Forcefully disable semantic tokens if server ignores capability
+          client.server_capabilities.semanticTokensProvider = nil
+        end,
+        settings = {
+          java = {
+            home = "/usr/lib/jvm/java-21-openjdk/",
+
+            completion = {
+              importOrder = { "java", "javax", "com", "org" },
+              favoriteStaticMembers = {
+                "org.junit.jupiter.api.Assertions.*",
+                "org.mockito.Mockito.*",
+                "org.hamcrest.MatcherAssert.assertThat",
+                "org.hamcrest.Matchers.*",
+              },
+              filteredTypes = {
+                "com.sun.*",
+                "java.awt.*",
+                "jdk.*",
+                "sun.*",
+              },
+            },
+
+            project = {
+              referencedLibraries = {
+                "lib/**/*.jar",
+              },
+            },
+
+            maven = {
+              downloadSources = true,
+            },
+
+            gradle = {
+              wrapper = {
+                enabled = true,
+              },
+            },
+
+            runtimes = {
+              {
+                name = "JavaSE-21",
+                path = "/usr/lib/jvm/java-21-openjdk/",
+              },
+            },
+          },
+        },
+      })
+
       -- CSS Modules
       vim.lsp.config("cssmodules_ls", {
         capabilities = capabilities,
@@ -197,6 +261,7 @@ return {
       -- CSS LSP
       vim.lsp.config("cssls", {
         capabilities = capabilities,
+        root_markers = { "package.json", ".git" },
         settings = {
           css = { validate = true, lint = { unknownAtRules = "ignore" } },
           scss = { validate = true, lint = { unknownAtRules = "ignore" } },
@@ -204,15 +269,21 @@ return {
         },
       })
 
+      -- Tailwind CSS
       vim.lsp.config("tailwindcss", {
         capabilities = capabilities,
-        root_dir = require("lspconfig.util").root_pattern(
+        root_markers = {
           "tailwind.config.js",
+          "tailwind.config.cjs",
+          "tailwind.config.mjs",
           "tailwind.config.ts",
           "postcss.config.js",
+          "postcss.config.cjs",
+          "postcss.config.mjs",
+          "postcss.config.ts",
           "package.json",
-          ".git"
-        ),
+          ".git",
+        },
       })
 
       -- Emmet
@@ -230,6 +301,19 @@ return {
       -- ESLint
       vim.lsp.config("eslint", {
         capabilities = capabilities,
+        root_markers = {
+          ".eslintrc",
+          ".eslintrc.js",
+          ".eslintrc.cjs",
+          ".eslintrc.yaml",
+          ".eslintrc.yml",
+          ".eslintrc.json",
+          "eslint.config.js",
+          "eslint.config.mjs",
+          "eslint.config.cjs",
+          "package.json",
+          ".git",
+        },
         settings = {
           experimental = {
             useFlatConfig = true,
@@ -246,6 +330,76 @@ return {
             },
           },
         },
+      })
+
+      -- Python LSP
+      vim.lsp.config("pyright", {
+        capabilities = capabilities,
+        root_markers = {
+          "pyproject.toml",
+          "setup.py",
+          "setup.cfg",
+          "requirements.txt",
+          "Pipfile",
+          "pyrightconfig.json",
+          ".git",
+        },
+      })
+
+      -- Rust LSP
+      vim.lsp.config("rust_analyzer", {
+        capabilities = capabilities,
+        root_markers = { "Cargo.toml", "rust-project.json", ".git" },
+      })
+
+      -- Bash LSP
+      vim.lsp.config("bashls", {
+        capabilities = capabilities,
+        root_markers = { ".git" },
+      })
+
+      -- C/C++ LSP
+      vim.lsp.config("clangd", {
+        capabilities = capabilities,
+        root_markers = {
+          ".clangd",
+          ".clang-tidy",
+          ".clang-format",
+          "compile_commands.json",
+          "compile_flags.txt",
+          "configure.ac",
+          ".git",
+        },
+      })
+
+      -- HTML LSP
+      vim.lsp.config("html", {
+        capabilities = capabilities,
+        root_markers = { "package.json", ".git" },
+      })
+
+      -- JSON LSP
+      vim.lsp.config("jsonls", {
+        capabilities = capabilities,
+        root_markers = { "package.json", ".git" },
+      })
+
+      -- Markdown LSP
+      vim.lsp.config("marksman", {
+        capabilities = capabilities,
+        root_markers = { ".marksman.toml", ".git" },
+      })
+
+      -- XML LSP
+      vim.lsp.config("lemminx", {
+        capabilities = capabilities,
+        root_markers = { "pom.xml", ".git" },
+      })
+
+      -- Hyprland LSP
+      vim.lsp.config("hyprls", {
+        capabilities = capabilities,
+        root_markers = { "hyprland.conf", ".git" },
       })
 
       -- Enable all listed servers
