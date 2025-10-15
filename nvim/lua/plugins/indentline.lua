@@ -1,6 +1,6 @@
 return {
   "lukas-reineke/indent-blankline.nvim",
-  event = "User FilePost",
+  event = "BufRead",
   opts = {
     indent = { char = "│", highlight = "IblChar" },
     scope = { char = "│", highlight = "IblScopeChar" },
