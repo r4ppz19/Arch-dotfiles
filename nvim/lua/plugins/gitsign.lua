@@ -14,7 +14,7 @@ return {
   keys = {
     -- Navigation
     {
-      "]c",
+      "]h",
       function()
         require("gitsigns").nav_hunk "next"
       end,
@@ -22,7 +22,7 @@ return {
       desc = "Next Git Hunk",
     },
     {
-      "[c",
+      "[h",
       function()
         require("gitsigns").nav_hunk "prev"
       end,
