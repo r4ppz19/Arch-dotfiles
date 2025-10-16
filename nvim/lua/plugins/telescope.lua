@@ -5,7 +5,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "nvim-telescope/telescope-ui-select.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    build = "make",
   },
   cmd = "Telescope",
   opts = function()
@@ -17,6 +16,8 @@ return {
         selection_caret = " ",
         entry_prefix = " ",
         sorting_strategy = "ascending",
+        initial_mode = "insert",
+        path_display = { "truncate" },
         layout_config = {
           horizontal = {
             prompt_position = "top",
@@ -27,6 +28,11 @@ return {
         },
         mappings = {
           n = { ["q"] = require("telescope.actions").close },
+          i = {
+            ["<esc>"] = require("telescope.actions").close,
+            ["<S-Down>"] = require("telescope.actions").preview_scrolling_down,
+            ["<S-Up>"] = require("telescope.actions").preview_scrolling_up,
+          },
         },
       },
 
