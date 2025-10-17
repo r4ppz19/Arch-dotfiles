@@ -97,7 +97,7 @@ map("i", "<C-s>", "<C-o>:write<CR>", { desc = "Save file" })
 
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear highlights" })
 
-map("t", "<C-x>", "<C-\\><C-N>", { desc = "Escape terminal mode" })
+map("t", "<Esc>", "<C-\\><C-N>", { desc = "Escape terminal mode" })
 
 -- Open selected text as URL (portable)
 local function open_url_portable(url)
@@ -185,12 +185,5 @@ map("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { desc = "Move current line down (inser
 map("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move current line up (insert mode)" })
 map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down" })
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
-
-map("n", "<Tab>", function()
-  require("nvchad.tabufline").next()
-end, { desc = "Buffer goto next" })
-map("n", "<S-Tab>", function()
-  require("nvchad.tabufline").prev()
-end, { desc = "Buffer goto prev" })
 
 map("i", "jk", "<Esc>", { desc = "Exit insert mode" })

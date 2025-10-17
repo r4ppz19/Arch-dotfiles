@@ -114,11 +114,6 @@ return {
           buffer = buffer,
           desc = "Outgoing Calls",
         })
-
-        map("n", "<A-t>", "<cmd>Lspsaga term_toggle<CR>", {
-          buffer = buffer,
-          desc = "Float Terminal",
-        })
       end,
     })
   end,

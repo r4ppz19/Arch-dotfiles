@@ -83,6 +83,7 @@ return {
   end,
 
   keys = {
+    { "<M-f>", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
     { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Find Buffers" },
     { "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "Recent Files" },
