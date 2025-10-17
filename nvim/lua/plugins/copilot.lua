@@ -62,8 +62,8 @@ return {
 
       resources = "selection",
 
-      -- model = "gpt-4.1",
-      model = "grok-code-fast-1",
+      model = "gpt-4.1",
+      -- model = "grok-code-fast-1",
       -- model = "gpt-5-mini",
 
       temperature = 0.1,
@@ -311,7 +311,7 @@ return {
           window = {
             layout = "float",
             width = 120,
-            height = 25,
+            height = 28,
             border = "single",
             title = "",
             zindex = 100,
