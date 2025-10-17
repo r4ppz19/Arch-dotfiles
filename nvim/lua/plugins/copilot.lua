@@ -83,7 +83,7 @@ return {
       highlight_headers = true,
 
       auto_fold = true,
-      show_folds = false,
+      show_folds = true,
       auto_insert_mode = false,
       auto_follow_cursor = false,
       show_help = false,

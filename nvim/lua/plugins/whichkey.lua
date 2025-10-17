@@ -16,6 +16,7 @@ return {
       { "<leader>w", group = "WhichKey", icon = "󰘳" },
       { "<leader>t", group = "Tabs", icon = "" },
       { "<leader>F", group = "Grep", icon = "󰘳" },
+      { "<leader>s", group = "Surround", icon = "" },
 
       { "<C-n>", desc = "Toggle NvimTree", icon = "󰙅" },
       { "<leader>e", desc = "Focus NvimTree", icon = "󰉋" },
