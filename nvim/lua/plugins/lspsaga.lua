@@ -39,7 +39,7 @@ return {
     vim.api.nvim_create_autocmd("LspAttach", {
       callback = function(args)
         local buffer = args.buf
-        local map = vim.keymap.set
+        local map = require "utils.map"
 
         map("n", "gd", "<cmd>Lspsaga goto_definition<CR>", {
           buffer = buffer,
@@ -71,15 +71,14 @@ return {
           buffer = buffer,
           desc = "Code Actions",
         })
-        map("n", "<leader>lr", "<cmd>Lspsaga rename<CR>", {
+
+        map("n", "<leader>lr", function()
+          require "nvchad.lsp.renamer"()
+        end, {
           buffer = buffer,
           desc = "Rename Symbol",
         })
 
-        map("n", "<S-K>", "<cmd>Lspsaga hover_doc<CR>", {
-          buffer = buffer,
-          desc = "Hover Documentation",
-        })
         map("n", "<S-C-Up>", "<cmd>Lspsaga hover_doc<CR>", {
           buffer = buffer,
           desc = "Hover Documentation",
@@ -93,6 +92,7 @@ return {
           buffer = buffer,
           desc = "Next Diagnostic",
         })
+
         map("n", "<leader>ld", "<cmd>Lspsaga show_buf_diagnostics<CR>", {
           buffer = buffer,
           desc = "Show Line Diagnostics",

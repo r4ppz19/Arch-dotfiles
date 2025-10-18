@@ -42,7 +42,8 @@ end
 
 return {
   "nvimdev/dashboard-nvim",
-  event = "VimEnter",
+    lazy = false,  -- Changed from event = "VimEnter"
+  priority = 999,  -- Load early but not first
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
     require("dashboard").setup {

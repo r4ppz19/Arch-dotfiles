@@ -100,6 +100,6 @@ return {
     { "<leader>fs", "<cmd>Telescope spell_suggest<CR>", desc = "Spell Suggest" },
     { "<leader>fq", "<cmd>Telescope quickfix<CR>", desc = "Quickfix List" },
     { "<leader>fl", "<cmd>Telescope loclist<CR>", desc = "Location List" },
-    { "<leader>fb", "<cmd>Telescope file_browser<CR>", desc = "File Browser" },
+    { "<leader>fB", "<cmd>Telescope file_browser<CR>", desc = "File Browser" },
   },
 }

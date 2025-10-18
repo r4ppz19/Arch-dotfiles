@@ -18,11 +18,23 @@ M.base46 = {
 }
 
 M.ui = {
+  cmp = {
+    icons = true,
+    style = "default",
+    abbr_maxwidth = 300,
+  },
+
+  telescope = {
+    style = "bordered",
+  },
+
   tabufline = {
     lazyload = false,
   },
+
   statusline = {
     separator_style = "block",
+    theme = "default",
   },
 }
 
@@ -35,6 +47,17 @@ M.term = {
     height = 0.6,
     border = "single",
   },
+}
+
+M.lsp = {
+  signature = true,
+}
+
+M.colorify = {
+  enabled = true,
+  mode = "virtual",
+  virt_text = "󱓻 ",
+  highlight = { hex = true, lspvars = true },
 }
 
 return M

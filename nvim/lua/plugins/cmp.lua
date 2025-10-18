@@ -73,12 +73,12 @@ return {
         ["<C-Down>"] = cmp.mapping.select_next_item(),
         ["<S-Up>"] = cmp.mapping.scroll_docs(-4),
         ["<S-Down>"] = cmp.mapping.scroll_docs(4),
-        ["<C-a>"] = cmp.mapping.complete(),
-        ["<C-e>"] = cmp.mapping.close(),
+        ["<C-S-Down>"] = cmp.mapping.complete(),
+        ["<Esc>"] = cmp.mapping.close(),
 
         ["<CR>"] = cmp.mapping.confirm {
           behavior = cmp.ConfirmBehavior.Insert,
-          select = true,
+          select = false,
         },
 
         -- NOTE: might need later? idk
@@ -117,6 +117,7 @@ return {
       },
     }
 
-    return vim.tbl_deep_extend("force", options, require "nvchad.cmp")
+    options = vim.tbl_deep_extend("force", options, require "nvchad.cmp")
+    cmp.setup(options)
   end,
 }

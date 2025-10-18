@@ -30,7 +30,7 @@ return {
         return {
           PATH = "skip",
           ui = {
-            border = "rounded",
+            border = "single",
             icons = {
               package_pending = " ",
               package_installed = " ",

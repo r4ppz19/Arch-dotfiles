@@ -1,23 +1,15 @@
 -- I use arrow keys not hjkl cause I am a fucking weirdo
 
-local map = function(mode, lhs, rhs, opts)
-  opts = opts or {}
-  if opts.noremap == nil then
-    opts.noremap = true
-  end
-  if opts.silent == nil then
-    opts.silent = true
-  end
-  vim.keymap.set(mode, lhs, rhs, opts)
-end
+local map = require "utils.map"
 
 -- Editor remaps/ built in
-
 map("n", "<C-w><S-Left>", "<C-w>H", { desc = "Move split left" })
 map("n", "<C-w><S-Down>", "<C-w>J", { desc = "Move split down" })
 map("n", "<C-w><S-Up>", "<C-w>K", { desc = "Move split up" })
 map("n", "<C-w><S-Right>", "<C-w>L", { desc = "Move split right" })
 
+map("n", "<Tab>", "nzzzv", { desc = "Next search result centered" })
+map("n", "<S-Tab>", "Nzzzv", { desc = "Previous search result centered" })
 map("n", "n", "nzzzv", { desc = "Next search result centered" })
 map("n", "N", "Nzzzv", { desc = "Previous search result centered" })
 
@@ -167,15 +159,9 @@ map("n", "<leader>x", function()
   require("nvchad.tabufline").close_buffer()
 end, { desc = "Buffer close" })
 
-local function close_all_buffers_but_current()
-  local current_buf = vim.api.nvim_get_current_buf()
-  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-    if bufnr ~= current_buf and vim.bo[bufnr].buflisted and vim.api.nvim_buf_is_loaded(bufnr) then
-      vim.api.nvim_buf_delete(bufnr, { force = false })
-    end
-  end
-end
-map("n", "<leader>X", close_all_buffers_but_current, { desc = "Close all buffers except current" })
+map("n", "<leader>X", function()
+  require("nvchad.tabufline").closeAllBufs(false)
+end, { desc = "Close all buffers except current" })
 
 -- Just in case I use vim properly (unlikely)
 
