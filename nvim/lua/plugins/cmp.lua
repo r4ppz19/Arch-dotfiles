@@ -11,16 +11,20 @@ return {
         require("luasnip").config.set_config(opts)
 
         -- vscode format
-        require("luasnip.loaders.from_vscode").lazy_load { exclude = vim.g.vscode_snippets_exclude or {} }
-        require("luasnip.loaders.from_vscode").lazy_load { paths = vim.g.vscode_snippets_path or "" }
+        require("luasnip.loaders.from_vscode").lazy_load {
+          exclude = vim.g.vscode_snippets_exclude or {},
+        }
+        if vim.g.vscode_snippets_path and vim.g.vscode_snippets_path ~= "" then
+          require("luasnip.loaders.from_vscode").lazy_load {
+            paths = vim.g.vscode_snippets_path,
+          }
+        end
 
         -- snipmate format
-        require("luasnip.loaders.from_snipmate").load()
-        require("luasnip.loaders.from_snipmate").lazy_load { paths = vim.g.snipmate_snippets_path or "" }
+        require("luasnip.loaders.from_snipmate").lazy_load()
 
         -- lua format
-        require("luasnip.loaders.from_lua").load()
-        require("luasnip.loaders.from_lua").lazy_load { paths = vim.g.lua_snippets_path or "" }
+        require("luasnip.loaders.from_lua").lazy_load()
       end,
     },
 
@@ -47,6 +51,7 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "https://codeberg.org/FelipeLema/cmp-async-path.git",
+      "ray-x/cmp-treesitter",
     },
   },
   opts = function()
@@ -66,8 +71,8 @@ return {
       mapping = {
         ["<C-Up>"] = cmp.mapping.select_prev_item(),
         ["<C-Down>"] = cmp.mapping.select_next_item(),
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<S-Up>"] = cmp.mapping.scroll_docs(-4),
+        ["<S-Down>"] = cmp.mapping.scroll_docs(4),
         ["<C-a>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.close(),
 
@@ -108,6 +113,7 @@ return {
         { name = "buffer" },
         { name = "nvim_lua" },
         { name = "async_path" },
+        { name = "treesitter" },
       },
     }
 
