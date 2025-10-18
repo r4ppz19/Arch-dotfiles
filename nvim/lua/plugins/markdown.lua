@@ -29,6 +29,6 @@ return {
       -- preset = "none",
       completions = { lsp = { enabled = true } },
     },
-    ft = { "markdown", "copilot-chat" },
+    ft = { "copilot-chat" },
   },
 }
