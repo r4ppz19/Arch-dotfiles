@@ -33,9 +33,11 @@ return {
       disable_keymaps = false,
     }
 
-    vim.keymap.set("n", "gn", require("illuminate").goto_next_reference, { desc = "Next Reference" })
-    vim.keymap.set("n", "gn", require("illuminate").goto_prev_reference, { desc = "Prev Reference" })
-    vim.keymap.set("o", "ir", require("illuminate").textobj_select, { desc = "Select Reference" })
+    local map = require "utils.map"
+
+    map("n", "gn", require("illuminate").goto_next_reference, { desc = "Next Reference" })
+    map("n", "gn", require("illuminate").goto_prev_reference, { desc = "Prev Reference" })
+    map("o", "ir", require("illuminate").textobj_select, { desc = "Select Reference" })
 
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "terminal",
