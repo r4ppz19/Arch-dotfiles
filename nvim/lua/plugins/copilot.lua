@@ -3,7 +3,16 @@ return {
   branch = "main",
   build = "make tiktoken || true",
   dependencies = {
-    "zbirenbaum/copilot.lua",
+    {
+      "zbirenbaum/copilot.lua",
+      event = "InsertEnter",
+      config = function()
+        require("copilot").setup {
+          suggestion = { enabled = false },
+          panel = { enabled = false },
+        }
+      end,
+    },
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope.nvim",
     "nvim-telescope/telescope-ui-select.nvim",

@@ -44,6 +44,14 @@ return {
       end,
     },
 
+    {
+      "zbirenbaum/copilot-cmp",
+      after = { "copilot.lua" },
+      config = function()
+        require("copilot_cmp").setup()
+      end,
+    },
+
     -- cmp sources plugins
     {
       "saadparwaiz1/cmp_luasnip",
@@ -114,6 +122,7 @@ return {
         { name = "nvim_lua" },
         { name = "async_path" },
         { name = "treesitter" },
+        { name = "copilot" },
       },
     }
 
