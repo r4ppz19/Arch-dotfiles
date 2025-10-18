@@ -18,6 +18,17 @@ autocmd("FileType", {
   end,
 })
 
+-- vertical help split
+autocmd("BufWinEnter", {
+  pattern = "*.txt",
+  callback = function()
+    if vim.bo.buftype == "help" then
+      vim.cmd.wincmd "L"
+    end
+  end,
+})
+
+-- copilot chat
 autocmd("BufEnter", {
   pattern = "copilot-*",
   callback = function()

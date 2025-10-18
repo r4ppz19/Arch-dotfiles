@@ -13,6 +13,11 @@ end
 
 -- Editor remaps/ built in
 
+map("n", "<C-w><S-Left>", "<C-w>H", { desc = "Move split left" })
+map("n", "<C-w><S-Down>", "<C-w>J", { desc = "Move split down" })
+map("n", "<C-w><S-Up>", "<C-w>K", { desc = "Move split up" })
+map("n", "<C-w><S-Right>", "<C-w>L", { desc = "Move split right" })
+
 map("n", "n", "nzzzv", { desc = "Next search result centered" })
 map("n", "N", "Nzzzv", { desc = "Previous search result centered" })
 
