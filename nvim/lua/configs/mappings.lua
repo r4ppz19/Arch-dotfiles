@@ -5,17 +5,11 @@ local map = require "utils.map"
 map("n", "[m", "''", { desc = "Go to previous jump (line-wise)" })
 map("n", "]m", "``", { desc = "Go to previous jump (exact position)" })
 
-map("n", "m1", "mA", { desc = "Set global mark one" })
-map("n", "m2", "mB", { desc = "Set global mark two" })
-map("n", "m3", "mC", { desc = "Set global mark three" })
-map("n", "m4", "mD", { desc = "Set global mark four" })
-map("n", "m5", "mE", { desc = "Set global mark five" })
-
-map("n", "g1", "`A", { desc = "Exact jump to global mark one" })
-map("n", "g2", "`B", { desc = "Exact jump to global mark two" })
-map("n", "g3", "`C", { desc = "Exact jump to global mark three" })
-map("n", "g4", "`D", { desc = "Exact jump to global mark four" })
-map("n", "g5", "`E", { desc = "Exact jump to global mark five" })
+local marks = { "A", "B", "C", "D", "E" }
+for i, mark in ipairs(marks) do
+  map("n", "m" .. i, "m" .. mark, { desc = "Set global mark " .. mark })
+  map("n", "g" .. i, "`" .. mark, { desc = "Exact jump to global mark " .. mark })
+end
 
 map("n", "<C-w><S-Left>", "<C-w>H", { desc = "Move split left" })
 map("n", "<C-w><S-Down>", "<C-w>J", { desc = "Move split down" })
@@ -57,9 +51,9 @@ map({ "n", "v" }, "!", "^", { desc = "Jump to first non-blank character of the l
 map({ "n", "v" }, "@", "g_", { desc = "Jump to last non-blank character of line" })
 
 map({ "n", "v" }, "<S-Left>", "B", { desc = "Move to the beginning of the word" })
-map({ "n", "v" }, "<S-Right>", "E", { desc = "Move to the end of the word" })
+map({ "n", "v" }, "<S-Right>", "W", { desc = "Move to the end of the word" })
 map("i", "<S-Left>", "<C-o>B", { desc = "Move to the beginning of the word in insert mode" })
-map("i", "<S-Right>", "<C-o>E", { desc = "Move to the end of the word in insert mode" })
+map("i", "<S-Right>", "<C-o>W", { desc = "Move to the end of the word in insert mode" })
 
 map({ "n", "v" }, "<C-Left>", "b", { desc = "Move to the beginning of the word" })
 map({ "n", "v" }, "<C-Right>", "e", { desc = "Move to the end of the word" })
