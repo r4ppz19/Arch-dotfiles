@@ -36,6 +36,7 @@ return {
         "json",
         "xml",
         "hyprlang",
+        "query",
       },
 
       highlight = {
@@ -45,6 +46,12 @@ return {
       },
 
       indent = { enable = true },
+      autotag = { enable = true },
+      rainbow = {
+        enable = true,
+        extended_mode = true,
+      },
+      context_commentstring = { enable = true },
     }
   end,
   config = function(_, opts)

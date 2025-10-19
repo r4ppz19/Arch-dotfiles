@@ -23,14 +23,14 @@ return {
     dependencies = { "nvzone/volt" },
     keys = {
       -- Keyboard-driven default menu
-      {
-        "<C-t>",
-        function()
-          require("menu").open "default"
-        end,
-        mode = "n",
-        desc = "Open menu (default)",
-      },
+      -- {
+      --   "<C-t>",
+      --   function()
+      --     require("menu").open "default"
+      --   end,
+      --   mode = "n",
+      --   desc = "Open menu (default)",
+      -- },
 
       -- Right-click context menu (normal/visual)
       {

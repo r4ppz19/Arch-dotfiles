@@ -82,7 +82,7 @@ return {
         ["<S-Up>"] = cmp.mapping.scroll_docs(-4),
         ["<S-Down>"] = cmp.mapping.scroll_docs(4),
         ["<C-S-Down>"] = cmp.mapping.complete(),
-        ["<Esc>"] = cmp.mapping.close(),
+        ["<C-c>"] = cmp.mapping.close(),
 
         ["<CR>"] = cmp.mapping.confirm {
           behavior = cmp.ConfirmBehavior.Insert,
