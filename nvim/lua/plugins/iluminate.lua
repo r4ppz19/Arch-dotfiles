@@ -35,8 +35,8 @@ return {
 
     local map = require "utils.map"
 
-    map("n", "gn", require("illuminate").goto_next_reference, { desc = "Next Reference" })
-    map("n", "gn", require("illuminate").goto_prev_reference, { desc = "Prev Reference" })
+    map("n", "]r", require("illuminate").goto_next_reference, { desc = "Next Reference" })
+    map("n", "[r", require("illuminate").goto_prev_reference, { desc = "Prev Reference" })
     map("o", "ir", require("illuminate").textobj_select, { desc = "Select Reference" })
 
     vim.api.nvim_create_autocmd("FileType", {

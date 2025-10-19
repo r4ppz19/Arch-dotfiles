@@ -72,9 +72,7 @@ return {
           desc = "Code Actions",
         })
 
-        map("n", "<leader>lr", function()
-          require "nvchad.lsp.renamer"()
-        end, {
+        map("n", "<leader>lr", "<cmd>Lspsaga rename<CR>", {
           buffer = buffer,
           desc = "Rename Symbol",
         })

@@ -2,7 +2,21 @@
 
 local map = require "utils.map"
 
--- Editor remaps/ built in
+map("n", "[m", "''", { desc = "Go to previous jump (line-wise)" })
+map("n", "]m", "``", { desc = "Go to previous jump (exact position)" })
+
+map("n", "m1", "mA", { desc = "Set global mark one" })
+map("n", "m2", "mB", { desc = "Set global mark two" })
+map("n", "m3", "mC", { desc = "Set global mark three" })
+map("n", "m4", "mD", { desc = "Set global mark four" })
+map("n", "m5", "mE", { desc = "Set global mark five" })
+
+map("n", "g1", "`A", { desc = "Exact jump to global mark one" })
+map("n", "g2", "`B", { desc = "Exact jump to global mark two" })
+map("n", "g3", "`C", { desc = "Exact jump to global mark three" })
+map("n", "g4", "`D", { desc = "Exact jump to global mark four" })
+map("n", "g5", "`E", { desc = "Exact jump to global mark five" })
+
 map("n", "<C-w><S-Left>", "<C-w>H", { desc = "Move split left" })
 map("n", "<C-w><S-Down>", "<C-w>J", { desc = "Move split down" })
 map("n", "<C-w><S-Up>", "<C-w>K", { desc = "Move split up" })
@@ -94,7 +108,7 @@ map("i", "<C-s>", "<C-o>:write<CR>", { desc = "Save file" })
 
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear highlights" })
 
-map("t", "<Esc>", "<C-\\><C-N>", { desc = "Escape terminal mode" })
+map("t", "<C-q>", "<C-\\><C-N>", { desc = "Escape terminal mode" })
 
 -- Open selected text as URL (portable)
 local function open_url_portable(url)
