@@ -41,6 +41,15 @@ local system_prompt = dedent [[
   ]]
 
 local prompts = {
+  ExplainV2 = {
+    prompt = dedent [[
+      #selectetion
+      Explicate the selected code.
+      Be detailed as possible, including its syntax, semantics and conventions etc.
+    ]],
+    description = "Explicate the code",
+  },
+
   ExplainHighLevel = {
     prompt = dedent [[
       #selection

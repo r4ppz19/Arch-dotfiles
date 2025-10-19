@@ -2,6 +2,10 @@ local opt = vim.opt
 local o = vim.o
 local g = vim.g
 
+vim.api.nvim_set_hl(0, "LspReferenceText", { underline = true })
+vim.api.nvim_set_hl(0, "LspReferenceRead", { underline = true })
+vim.api.nvim_set_hl(0, "LspReferenceWrite", { underline = true })
+
 o.autoread = true
 
 o.relativenumber = false

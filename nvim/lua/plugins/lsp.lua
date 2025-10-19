@@ -55,7 +55,7 @@ return {
   },
 
   config = function()
-    local lsp_config = require "configs.lsp"
+    local server_configs = require "configs.servers"
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
     capabilities.textDocument.completion.completionItem =
       vim.tbl_deep_extend("force", capabilities.textDocument.completion.completionItem or {}, {
@@ -100,7 +100,7 @@ return {
         root_markers = { ".git", ".hg" },
       })
 
-      lsp_config.setup(capabilities)
+      server_configs.setup(capabilities)
 
       -- Enable all listed servers
       for _, s in ipairs(servers) do

@@ -1,9 +1,10 @@
 return {
   "RRethy/vim-illuminate",
   event = "BufRead",
+  enabled = true,
   config = function()
     require("illuminate").configure {
-      providers = { "lsp", "treesitter", "regex" },
+      providers = { "lsp" },
       delay = 50,
       under_cursor = true,
 
