@@ -1,10 +1,18 @@
 return {
   "folke/trouble.nvim",
+  dependencies = "nvim-tree/nvim-web-devicons",
+  cmd = "Trouble",
   opts = {
+    auto_close = true,
     focus = true,
+    follow = true,
     warn_no_results = false,
     open_no_results = false,
     win = { position = "bottom", type = "split", size = 0.4 },
+    preview = {
+      type = "main",
+      scratch = false,
+    },
     modes = {
       lsp_references = {
         params = {
@@ -13,7 +21,7 @@ return {
       },
     },
   },
-  cmd = "Trouble",
+
   keys = {
     { "gr", "<cmd>Trouble lsp toggle<cr>", desc = "LSP References (Trouble)" },
     { "<leader>ld", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },

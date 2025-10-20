@@ -6,7 +6,8 @@
 setopt EXTENDED_HISTORY
 zshaddhistory() {
   emulate -L zsh
-  [[ $1 == *\'* || $1 == *\"* ]] && return 1
+  # [[ $1 == *\'* || $1 == *\"* ]] && return 1
+  [[ $1 == *\'* ]] && return 1
   (( ${#1} > 2000 )) && return 1
   return 0
 }

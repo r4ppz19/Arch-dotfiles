@@ -15,6 +15,13 @@ M.base46 = {
     ["@comment"] = { italic = true },
     FloatBorder = { fg = "grey_fg" },
   },
+
+  integrations = {
+    "lspsaga",
+    "trouble",
+    "todo",
+    "render-markdown",
+  },
 }
 
 M.ui = {

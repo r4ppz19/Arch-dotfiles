@@ -26,8 +26,6 @@ return {
     },
     opts = {
       anti_conceal = { enabled = false },
-      -- preset = "none",
-      completions = { lsp = { enabled = true } },
     },
     ft = { "copilot-chat" },
   },

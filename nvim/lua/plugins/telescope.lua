@@ -9,8 +9,6 @@ return {
   },
   cmd = "Telescope",
   opts = function()
-    dofile(vim.g.base46_cache .. "telescope")
-
     return {
       pickers = {
         spell_suggest = {

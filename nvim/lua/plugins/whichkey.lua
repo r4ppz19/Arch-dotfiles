@@ -3,8 +3,6 @@ return {
   event = "VeryLazy",
   cmd = "WhichKey",
   opts = function()
-    dofile(vim.g.base46_cache .. "whichkey")
-
     local wk = require "which-key"
     wk.add {
       { "<leader>l", group = "LSP", icon = "󰒋" },

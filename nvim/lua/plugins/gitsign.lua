@@ -1,16 +1,12 @@
 return {
   "lewis6991/gitsigns.nvim",
   event = "BufRead",
-  opts = function()
-    dofile(vim.g.base46_cache .. "git")
-
-    return {
-      signs = {
-        delete = { text = "󰍵" },
-        changedelete = { text = "󱕖" },
-      },
-    }
-  end,
+  opts = {
+    signs = {
+      delete = { text = "󰍵" },
+      changedelete = { text = "󱕖" },
+    },
+  },
   keys = {
     -- Navigation
     {
