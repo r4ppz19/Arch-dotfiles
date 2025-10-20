@@ -2,15 +2,6 @@
 
 local map = require "utils.map"
 
-map("n", "[m", "''", { desc = "Go to previous jump (line-wise)" })
-map("n", "]m", "``", { desc = "Go to previous jump (exact position)" })
-
-local marks = { "A", "B", "C", "D", "E" }
-for i, mark in ipairs(marks) do
-  map("n", "m" .. i, "m" .. mark, { desc = "Set global mark " .. mark })
-  map("n", "g" .. i, "`" .. mark, { desc = "Exact jump to global mark " .. mark })
-end
-
 map("n", "<C-w><S-Left>", "<C-w>H", { desc = "Move split left" })
 map("n", "<C-w><S-Down>", "<C-w>J", { desc = "Move split down" })
 map("n", "<C-w><S-Up>", "<C-w>K", { desc = "Move split up" })
@@ -104,6 +95,75 @@ map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear highlights" })
 
 map("t", "<C-q>", "<C-\\><C-N>", { desc = "Escape terminal mode" })
 
+-- Comment
+map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
+map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
+
+-- NVCHAD
+map("n", "<leader>nc", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
+map("n", "<leader>nt", function()
+  require("nvchad.themes").open()
+end, { desc = "telescope nvchad themes" })
+
+-- Tabs
+map("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "New tab" })
+map("n", "<leader>tX", "<cmd>tabonly<CR>", { desc = "Close all other tabs" })
+map("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close tab" })
+map("n", "<leader>t<Right>", "<cmd>tabnext<CR>", { desc = "Next tab" })
+map("n", "<leader>t<Left>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
+
+map("n", "[m", "''", { desc = "Go to previous jump (line-wise)" })
+map("n", "]m", "``", { desc = "Go to previous jump (exact position)" })
+
+local marks = { "A", "B", "C", "D", "E" }
+for i, mark in ipairs(marks) do
+  map("n", "m" .. i, "m" .. mark, { desc = "Set global mark " .. mark })
+  map("n", "g" .. i, "`" .. mark, { desc = "Exact jump to global mark " .. mark })
+end
+
+-- Buffers (tabufline)
+map("n", "<leader>b", "<cmd>enew<CR>", { desc = "Buffer new" })
+
+map({ "n", "v" }, "<leader><Right>", function()
+  require("nvchad.tabufline").next()
+end, { desc = "Buffer goto next" })
+
+map({ "n", "v" }, "<leader><Left>", function()
+  require("nvchad.tabufline").prev()
+end, { desc = "Buffer goto prev" })
+
+map("n", "<leader>x", function()
+  require("nvchad.tabufline").close_buffer()
+end, { desc = "Buffer close" })
+
+map("n", "<leader>X", function()
+  require("nvchad.tabufline").closeAllBufs(false)
+end, { desc = "Close all buffers except current" })
+
+-- Toggleable terminal
+map({ "n", "t" }, "<A-d>", function()
+  require("nvchad.term").toggle {
+    pos = "float",
+    id = "generic",
+  }
+end, { desc = "Toggle generic terminal" })
+
+map({ "n", "t" }, "<A-g>", function()
+  require("nvchad.term").toggle {
+    id = "lazygit",
+    pos = "float",
+    cmd = "lazygit",
+    float_opts = {
+      relative = "editor",
+      row = 0.05,
+      col = 0.05,
+      width = 0.9,
+      height = 0.8,
+      border = "single",
+    },
+  }
+end, { desc = "Toggle LazyGit terminal" })
+
 -- Open selected text as URL (portable)
 local function open_url_portable(url)
   url = vim.fn.trim(url or "")
@@ -126,50 +186,6 @@ map("v", "gx", function()
   local url = vim.fn.getreg '"'
   open_url_portable(url)
 end, { desc = "Open selected text as URL" })
-
--- Comment
-map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
-map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
-
--- NVCHAD
-map("n", "<leader>nc", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
-map("n", "<leader>nt", function()
-  require("nvchad.themes").open()
-end, { desc = "telescope nvchad themes" })
-
--- Toggleable terminal
-map({ "n", "t" }, "<A-d>", function()
-  require("nvchad.term").toggle {
-    pos = "float",
-    id = "ftoggleTerm",
-  }
-end, { desc = "Toggle floating terminal" })
-
--- Tabs
-map("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "New tab" })
-map("n", "<leader>tX", "<cmd>tabonly<CR>", { desc = "Close all other tabs" })
-map("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close tab" })
-map("n", "<leader>t<Right>", "<cmd>tabnext<CR>", { desc = "Next tab" })
-map("n", "<leader>t<Left>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
-
--- Buffers (tabufline)
-map("n", "<leader>b", "<cmd>enew<CR>", { desc = "Buffer new" })
-
-map({ "n", "v" }, "<leader><Right>", function()
-  require("nvchad.tabufline").next()
-end, { desc = "Buffer goto next" })
-
-map({ "n", "v" }, "<leader><Left>", function()
-  require("nvchad.tabufline").prev()
-end, { desc = "Buffer goto prev" })
-
-map("n", "<leader>x", function()
-  require("nvchad.tabufline").close_buffer()
-end, { desc = "Buffer close" })
-
-map("n", "<leader>X", function()
-  require("nvchad.tabufline").closeAllBufs(false)
-end, { desc = "Close all buffers except current" })
 
 -- Just in case I use vim properly (unlikely)
 

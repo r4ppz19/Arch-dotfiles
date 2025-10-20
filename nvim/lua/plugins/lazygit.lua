@@ -1,6 +1,7 @@
 return {
   "kdheepak/lazygit.nvim",
   lazy = false,
+  enabled = false,
   dependencies = {
     "nvim-telescope/telescope.nvim",
     "nvim-lua/plenary.nvim",
