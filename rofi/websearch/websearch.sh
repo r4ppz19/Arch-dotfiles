@@ -1,7 +1,7 @@
 #!/bin/bash
 
 declare -A sites=(
-  [fb]="https://www.facebook.com"
+  [fb]="https://www.facebook.com/messages"
   [gh]="https://github.com/r4ppz"
   [yt]="https://www.youtube.com"
   [pins]="https://www.pinterest.com"
