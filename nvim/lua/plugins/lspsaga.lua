@@ -20,10 +20,12 @@ return {
       finder = {
         default = "ref+def",
         layout = "float",
+        silent = true,
         keys = {
           vsplit = "v",
           split = "s",
           toggle_or_open = "<leader><Down>",
+          shuttle = "<S-Right>",
         },
       },
       definition = {
@@ -36,6 +38,10 @@ return {
       rename = {
         in_select = false,
       },
+      diagnostic = {
+        extend_relatedInformation = true,
+        show_layout = "normal",
+      },
     }
 
     -- Lspsaga keymaps setup in LspAttach autocmd
@@ -44,13 +50,14 @@ return {
         local buffer = args.buf
         local map = require "utils.map"
 
+        -- map("n", "gr", "<cmd>Lspsaga finder<CR>", {
+        --   buffer = buffer,
+        --   desc = "Find References",
+        -- })
+
         map("n", "gd", "<cmd>Lspsaga goto_definition<CR>", {
           buffer = buffer,
           desc = "Go to Definition",
-        })
-        map("n", "gr", "<cmd>Lspsaga finder<CR>", {
-          buffer = buffer,
-          desc = "Find References",
         })
         map("n", "gi", "<cmd>Lspsaga finder imp<CR>", {
           buffer = buffer,
@@ -94,14 +101,14 @@ return {
           desc = "Next Diagnostic",
         })
 
-        map("n", "<leader>ld", "<cmd>Lspsaga show_buf_diagnostics<CR>", {
-          buffer = buffer,
-          desc = "Show Line Diagnostics",
-        })
-        map("n", "<leader>lD", "<cmd>Lspsaga show_workspace_diagnostics<CR>", {
-          buffer = buffer,
-          desc = "Show Cursor Diagnostics",
-        })
+        -- map("n", "<leader>ld", "<cmd>Lspsaga show_buf_diagnostics<CR>", {
+        --   buffer = buffer,
+        --   desc = "Show Line Diagnostics",
+        -- })
+        -- map("n", "<leader>lD", "<cmd>Lspsaga show_workspace_diagnostics<CR>", {
+        --   buffer = buffer,
+        --   desc = "Show Cursor Diagnostics",
+        -- })
 
         map("n", "<leader>ls", "<cmd>Lspsaga outline<CR>", {
           buffer = buffer,

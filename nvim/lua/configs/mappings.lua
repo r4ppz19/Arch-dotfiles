@@ -51,9 +51,9 @@ map({ "n", "v" }, "!", "^", { desc = "Jump to first non-blank character of the l
 map({ "n", "v" }, "@", "g_", { desc = "Jump to last non-blank character of line" })
 
 map({ "n", "v" }, "<S-Left>", "B", { desc = "Move to the beginning of the word" })
-map({ "n", "v" }, "<S-Right>", "W", { desc = "Move to the end of the word" })
+map({ "n", "v" }, "<S-Right>", "E", { desc = "Move to the end of the word" })
 map("i", "<S-Left>", "<C-o>B", { desc = "Move to the beginning of the word in insert mode" })
-map("i", "<S-Right>", "<C-o>W", { desc = "Move to the end of the word in insert mode" })
+map("i", "<S-Right>", "<C-o>E", { desc = "Move to the end of the word in insert mode" })
 
 map({ "n", "v" }, "<C-Left>", "b", { desc = "Move to the beginning of the word" })
 map({ "n", "v" }, "<C-Right>", "e", { desc = "Move to the end of the word" })
