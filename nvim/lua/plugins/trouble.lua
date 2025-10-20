@@ -13,17 +13,10 @@ return {
       type = "main",
       scratch = false,
     },
-    modes = {
-      lsp_references = {
-        params = {
-          include_declaration = true,
-        },
-      },
-    },
   },
 
   keys = {
-    { "gr", "<cmd>Trouble lsp toggle<cr>", desc = "LSP References (Trouble)" },
+    { "gr", "<cmd>Trouble lsp_references toggle<cr>", desc = "LSP References (Trouble)" },
     { "<leader>ld", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
     { "<leader>lD", "<cmd>Trouble diagnostics toggle workspace=true<cr>", desc = "Workspace Diagnostics (Trouble)" },
     { "<leader>lf", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)" },

@@ -4,7 +4,7 @@ return {
   enabled = true,
   config = function()
     require("illuminate").configure {
-      providers = { "lsp", "treesitter" },
+      providers = { "lsp" },
       delay = 50,
       under_cursor = true,
 

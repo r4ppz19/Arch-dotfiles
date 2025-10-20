@@ -112,9 +112,7 @@ map("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close tab" })
 map("n", "<leader>t<Right>", "<cmd>tabnext<CR>", { desc = "Next tab" })
 map("n", "<leader>t<Left>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
 
-map("n", "[m", "''", { desc = "Go to previous jump (line-wise)" })
-map("n", "]m", "``", { desc = "Go to previous jump (exact position)" })
-
+-- Marks
 local marks = { "A", "B", "C", "D", "E" }
 for i, mark in ipairs(marks) do
   map("n", "m" .. i, "m" .. mark, { desc = "Set global mark " .. mark })
