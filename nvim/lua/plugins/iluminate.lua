@@ -4,7 +4,7 @@ return {
   enabled = true,
   config = function()
     require("illuminate").configure {
-      providers = { "lsp" },
+      providers = { "lsp", "treesitter" },
       delay = 50,
       under_cursor = true,
 
@@ -39,19 +39,6 @@ return {
     map("n", "]r", require("illuminate").goto_next_reference, { desc = "Next Reference" })
     map("n", "[r", require("illuminate").goto_prev_reference, { desc = "Prev Reference" })
     map("o", "ir", require("illuminate").textobj_select, { desc = "Select Reference" })
-
-    map(
-      "n",
-      "<leader>rt",
-      (function()
-        local d = "prev"
-        return function()
-          d = (d == "prev" and require("illuminate").goto_next_reference() and "next")
-            or (require("illuminate").goto_prev_reference() and "prev")
-        end
-      end)(),
-      { desc = "Toggle Reference Jump" }
-    )
 
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "terminal",

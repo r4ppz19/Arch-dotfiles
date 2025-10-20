@@ -33,6 +33,9 @@ return {
           split = "s",
         },
       },
+      rename = {
+        in_select = false,
+      },
     }
 
     -- Lspsaga keymaps setup in LspAttach autocmd

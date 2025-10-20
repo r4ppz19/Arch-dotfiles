@@ -1,11 +1,11 @@
 return {
   "andymass/vim-matchup",
-  enabled = false,
+  enabled = true,
   event = { "BufReadPost", "BufWinEnter" },
-  init = function()
-    vim.g.matchup_matchparen_offscreen = { method = "popup" }
-  end,
   config = function()
+    vim.g.matchup_matchparen_enabled = 0
+    vim.g.matchup_matchparen_deferred = 0
+
     pcall(function()
       require("nvim-treesitter.configs").setup {
         ensure_installed = { "html", "javascript", "typescript", "tsx", "xml" },

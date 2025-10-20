@@ -1,7 +1,7 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  event = { "BufReadPost", "BufNewFile" },
-  cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+  branch = "master",
+  lazy = false,
   build = ":TSUpdate",
   opts = function()
     pcall(function()
@@ -41,17 +41,10 @@ return {
 
       highlight = {
         enable = true,
-        use_languagetree = true,
         additional_vim_regex_highlighting = false,
       },
 
       indent = { enable = true },
-      autotag = { enable = true },
-      rainbow = {
-        enable = true,
-        extended_mode = true,
-      },
-      context_commentstring = { enable = true },
     }
   end,
   config = function(_, opts)
