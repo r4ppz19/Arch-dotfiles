@@ -18,7 +18,6 @@ M.base46 = {
 
   integrations = {
     "lspsaga",
-    "trouble",
     "render-markdown",
   },
 }

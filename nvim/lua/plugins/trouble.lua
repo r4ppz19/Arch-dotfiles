@@ -6,22 +6,74 @@ return {
     auto_close = true,
     focus = true,
     follow = true,
+    auto_preview = true,
     warn_no_results = false,
     open_no_results = false,
     win = { position = "bottom", type = "split", size = 0.4 },
     preview = {
       type = "main",
-      scratch = false,
+      scratch = true,
+    },
+    keys = {
+      ["<cr>"] = "jump_close",
+      ["p"] = "preview",
+      ["P"] = "toggle_preview",
     },
   },
 
   keys = {
-    { "gr", "<cmd>Trouble lsp_references toggle<cr>", desc = "LSP References (Trouble)" },
-    { "<leader>ld", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
-    { "<leader>lD", "<cmd>Trouble diagnostics toggle workspace=true<cr>", desc = "Workspace Diagnostics (Trouble)" },
-    { "<leader>lf", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)" },
-    { "<leader>ll", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)" },
-    { "<leader>lq", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix (Trouble)" },
-    { "<leader>lt", "<cmd>Trouble telescope toggle<cr>", desc = "Telescope Results (Trouble)" },
+    {
+      "gr",
+      function()
+        require("trouble").open { mode = "lsp_references" }
+      end,
+      desc = "LSP References (Trouble)",
+    },
+
+    {
+      "<leader>ld",
+      function()
+        require("trouble").toggle "diagnostics"
+      end,
+      desc = "Diagnostics (Trouble)",
+    },
+    {
+      "<leader>lD",
+      function()
+        require("trouble").toggle {
+          mode = "diagnostics",
+          workspace = true,
+        }
+      end,
+      desc = "Workspace Diagnostics (Trouble)",
+    },
+    {
+      "<leader>lf",
+      function()
+        require("trouble").toggle "qflist"
+      end,
+      desc = "Quickfix List (Trouble)",
+    },
+    {
+      "<leader>ll",
+      function()
+        require("trouble").toggle "loclist"
+      end,
+      desc = "Location List (Trouble)",
+    },
+    {
+      "<leader>lq",
+      function()
+        require("trouble").toggle "qflist"
+      end,
+      desc = "Quickfix (Trouble)",
+    },
+    {
+      "<leader>lt",
+      function()
+        require("trouble").toggle "telescope"
+      end,
+      desc = "Telescope Results (Trouble)",
+    },
   },
 }
