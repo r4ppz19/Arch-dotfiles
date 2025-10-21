@@ -26,7 +26,7 @@
     "pulseaudio",
     "backlight",
     "battery",
-    "power-profiles-daemon",
+    // "power-profiles-daemon",
     "tray",
     // "custom/power-button",
     "custom/rofi"
