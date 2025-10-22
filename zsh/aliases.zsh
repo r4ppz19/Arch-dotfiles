@@ -32,6 +32,7 @@ alias of='~/Arch-dotfiles/scripts/open-file.sh'
 alias ti='~/Arch-dotfiles/scripts/tmux-init.sh'
 alias sm='~/Arch-dotfiles/scripts/tmux-session-manager.py'
 # alias sm='. ~/Arch-dotfiles/zsh/session-manager.zsh'
+alias dev='~/Arch-dotfiles/scripts/dev.sh'
 
 # AI
 alias ex='gh copilot explain'
