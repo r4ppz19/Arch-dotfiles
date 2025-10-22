@@ -51,6 +51,7 @@ return {
         "compiler",
         "bugreport",
         "ftplugin",
+        "matchparen",
       },
     },
   },

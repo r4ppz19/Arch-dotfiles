@@ -35,6 +35,32 @@ return {
             height = 0.6,
           },
         },
+        find_files = {
+          hidden = true,
+          follow_symlinks = false,
+        },
+        live_grep = {
+          additional_args = function()
+            return {
+              "--smart-case",
+              "--hidden",
+              "--glob=!**/.git/*",
+              "--glob=!**/node_modules/*",
+              "--glob=!**/.cache/*",
+            }
+          end,
+        },
+        grep_string = {
+          additional_args = function()
+            return {
+              "--smart-case",
+              "--hidden",
+              "--glob=!**/.git/*",
+              "--glob=!**/node_modules/*",
+              "--glob=!**/.cache/*",
+            }
+          end,
+        },
       },
 
       defaults = {
@@ -44,14 +70,70 @@ return {
         sorting_strategy = "ascending",
         initial_mode = "insert",
         path_display = { "truncate" },
+
+        file_ignore_patterns = {
+          "vendor/.*",
+          "%.git/.*",
+          "node_modules/.*",
+          "%.cache/.*",
+          "%.npm/.*",
+          "__pycache__/.*",
+          "%.pytest_cache/.*",
+          "%.tox/.*",
+          "%.coverage.*",
+          "coverage/.*",
+          "dist/.*",
+          "build/.*",
+          "target/.*",
+          "%.stack-work/.*",
+          "%.hg/.*",
+          "%.svn/.*",
+          "%.DS_Store",
+          "Thumbs%.db",
+          "tags",
+        },
+
         layout_config = {
           horizontal = {
             prompt_position = "top",
             preview_width = 0.55,
+            width = 0.87,
+            height = 0.80,
           },
-          width = 0.87,
-          height = 0.80,
+          vertical = {
+            mirror = false,
+            width = 0.95,
+            height = 0.95,
+          },
+          center = {
+            width = 0.4,
+            height = 0.4,
+          },
         },
+
+        -- Performance related settings
+        vimgrep_arguments = {
+          "rg",
+          "--color=never",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--smart-case",
+          "--hidden",
+          "--glob=!**/.git/*",
+        },
+
+        preview = {
+          timeout = 100,
+          delay = 0,
+          check_mime_type = true,
+        },
+
+        git = {
+          max_count = 10000,
+        },
+
         mappings = {
           n = { ["q"] = require("telescope.actions").close },
           i = {

@@ -26,7 +26,10 @@ function M.setup(capabilities)
             vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
             "${3rd}/luv/library",
           },
+          maxPreload = 1000,
+          preloadFileSize = 1000,
         },
+        telemetry = { enable = false },
       },
     },
   })
@@ -42,52 +45,56 @@ function M.setup(capabilities)
         experimental = {
           completion = {
             enableServerSideFuzzyMatch = true,
-            entriesLimit = 256,
+            entriesLimit = 128,
           },
         },
       },
       typescript = {
-        tsserver = { maxTsServerMemory = 4096 },
+        tsserver = {
+          maxTsServerMemory = 2048,
+        },
         format = { enable = false },
         suggest = {
-          diagnostics = true,
-          completeFunctionCalls = true,
-          includeCompletionsForModuleExports = true,
-          includeCompletionsWithInsertText = true,
+          completions = {
+            completeFunctionCalls = true,
+          },
         },
         inlayHints = {
-          includeInlayParameterNameHints = "all",
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayVariableTypeHints = true,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayEnumMemberValueHints = true,
+          includeInlayParameterNameHints = false,
+          includeInlayFunctionParameterTypeHints = false,
+          includeInlayVariableTypeHints = false,
+          includeInlayPropertyDeclarationTypeHints = false,
+          includeInlayFunctionLikeReturnTypeHints = false,
+          includeInlayEnumMemberValueHints = false,
         },
         preferences = {
+          includeCompletionsForModuleExports = true,
+          includeCompletionsWithInsertText = true,
           importModuleSpecifier = "relative",
-          includePackageJsonAutoImports = "on",
+          includePackageJsonAutoImports = "auto",
           quotePreference = "auto",
         },
       },
       javascript = {
         format = { enable = false },
         suggest = {
-          diagnostics = true,
-          completeFunctionCalls = true,
-          includeCompletionsForModuleExports = true,
-          includeCompletionsWithInsertText = true,
+          completions = {
+            completeFunctionCalls = true,
+          },
         },
         inlayHints = {
-          includeInlayParameterNameHints = "all",
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayVariableTypeHints = true,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayEnumMemberValueHints = true,
+          includeInlayParameterNameHints = false,
+          includeInlayFunctionParameterTypeHints = false,
+          includeInlayVariableTypeHints = false,
+          includeInlayPropertyDeclarationTypeHints = false,
+          includeInlayFunctionLikeReturnTypeHints = false,
+          includeInlayEnumMemberValueHints = false,
         },
         preferences = {
+          includeCompletionsForModuleExports = true,
+          includeCompletionsWithInsertText = true,
           importModuleSpecifier = "relative",
-          includePackageJsonAutoImports = "on",
+          includePackageJsonAutoImports = "auto",
           quotePreference = "auto",
         },
       },
@@ -111,8 +118,16 @@ function M.setup(capabilities)
     settings = {
       java = {
         home = "/usr/lib/jvm/java-21-openjdk/",
+        configuration = {
+          runtimes = {
+            {
+              name = "JavaSE-21",
+              path = "/usr/lib/jvm/java-21-openjdk/",
+            },
+          },
+        },
         completion = {
-          importOrder = { "java", "javax", "com", "org" },
+          importOrder = { "java", "javax", "com", "org", "lombok" },
           favoriteStaticMembers = {
             "org.junit.jupiter.api.Assertions.*",
             "org.mockito.Mockito.*",
@@ -129,21 +144,58 @@ function M.setup(capabilities)
         project = {
           referencedLibraries = {
             "lib/**/*.jar",
+            "./out/**/*.jar",
+          },
+          importPrompt = {
+            enabled = true,
           },
         },
         maven = {
           downloadSources = true,
+          updateSnapshots = true,
         },
         gradle = {
+          version = "8.5",
           wrapper = {
             enabled = true,
           },
+          offline = true,
         },
-        runtimes = {
-          {
-            name = "JavaSE-21",
-            path = "/usr/lib/jvm/java-21-openjdk/",
+        autobuild = {
+          enabled = true,
+        },
+        import = {
+          maven = {
+            enabled = true,
           },
+          gradle = {
+            enabled = true,
+          },
+          externalAnnotation = {
+            enabled = true,
+          },
+        },
+        saveActions = {
+          organizeImports = true,
+        },
+        format = {
+          enabled = true,
+          settings = {
+            url = vim.fn.stdpath "config" .. "/java-formatter.xml",
+            profile = "GoogleStyle",
+          },
+        },
+        sources = {
+          organizeImports = {
+            starThreshold = 999,
+            staticStarThreshold = 999,
+          },
+        },
+        typeHierarchy = {
+          multipleInheritance = true,
+        },
+        contentProvider = {
+          preferred = "fernflower",
         },
       },
     },
@@ -153,6 +205,26 @@ function M.setup(capabilities)
   vim.lsp.config("cssmodules_ls", {
     capabilities = capabilities,
     filetypes = { "typescriptreact", "javascriptreact", "tsx", "jsx" },
+    settings = {
+      css = {
+        validate = true,
+        lint = {
+          unknownAtRules = "ignore",
+        },
+      },
+      scss = {
+        validate = true,
+        lint = {
+          unknownAtRules = "ignore",
+        },
+      },
+      less = {
+        validate = true,
+        lint = {
+          unknownAtRules = "ignore",
+        },
+      },
+    },
   })
 
   -- CSS LSP
@@ -164,6 +236,12 @@ function M.setup(capabilities)
       scss = { validate = true, lint = { unknownAtRules = "ignore" } },
       less = { validate = true, lint = { unknownAtRules = "ignore" } },
     },
+  })
+
+  -- CSS Variables
+  vim.lsp.config("css_variables", {
+    capabilities = capabilities,
+    filetypes = { "css", "scss", "sass", "less", "pcss", "typescriptreact", "javascriptreact" },
   })
 
   -- Tailwind CSS
@@ -192,6 +270,8 @@ function M.setup(capabilities)
       "typescriptreact",
       "css",
       "scss",
+      "vue",
+      "svelte",
     },
   })
 
@@ -227,9 +307,13 @@ function M.setup(capabilities)
         },
       },
     },
+    on_attach = function(client, _)
+      -- Reduce diagnostics frequency for better performance
+      client.server_capabilities.documentFormattingProvider = false
+    end,
   })
 
-  -- Python LSP
+  -- Python LSP - optimized
   vim.lsp.config("pyright", {
     capabilities = capabilities,
     root_markers = {
@@ -241,12 +325,40 @@ function M.setup(capabilities)
       "pyrightconfig.json",
       ".git",
     },
+    settings = {
+      python = {
+        analysis = {
+          autoImportCompletions = true,
+          autoSearchPaths = true,
+          diagnosticMode = "openFilesOnly",
+          typeCheckingMode = "basic",
+        },
+      },
+    },
   })
 
-  -- Rust LSP
+  -- Rust LSP - optimized
   vim.lsp.config("rust_analyzer", {
     capabilities = capabilities,
     root_markers = { "Cargo.toml", "rust-project.json", ".git" },
+    settings = {
+      ["rust-analyzer"] = {
+        cargo = {
+          loadOutDirsFromCheck = true,
+          runBuildScripts = true,
+        },
+        procMacro = {
+          enable = true,
+          attributes = {
+            enable = true,
+          },
+        },
+        -- Limit memory usage
+        checkOnSave = {
+          command = "check",
+        },
+      },
+    },
   })
 
   -- Bash LSP
@@ -255,7 +367,7 @@ function M.setup(capabilities)
     root_markers = { ".git" },
   })
 
-  -- C/C++ LSP
+  -- C/C++ LSP - optimized
   vim.lsp.config("clangd", {
     capabilities = capabilities,
     root_markers = {
@@ -267,18 +379,46 @@ function M.setup(capabilities)
       "configure.ac",
       ".git",
     },
+    cmd = {
+      "clangd",
+      "--background-index",
+      "--clang-tidy",
+      "--header-insertion=iwyu",
+      "--completion-style=detailed",
+      "--function-arg-placeholders",
+      "--folding-ranges",
+    },
   })
 
   -- HTML LSP
   vim.lsp.config("html", {
     capabilities = capabilities,
     root_markers = { "package.json", ".git" },
+    settings = {
+      html = {
+        format = { enable = false },
+        suggest = {
+          element = {
+            wrap = {
+              snippets = {},
+            },
+          },
+        },
+      },
+    },
   })
 
   -- JSON LSP
   vim.lsp.config("jsonls", {
     capabilities = capabilities,
     root_markers = { "package.json", ".git" },
+    settings = {
+      json = {
+        format = { enable = false },
+        schemas = {},
+        validate = { enable = true },
+      },
+    },
   })
 
   -- Markdown LSP

@@ -1,11 +1,11 @@
 return {
   "RRethy/vim-illuminate",
-  event = "BufRead",
+  event = "BufReadPost",
   enabled = true,
   config = function()
     require("illuminate").configure {
       providers = { "lsp" },
-      delay = 50,
+      delay = 200, -- Increased delay for better performance
       under_cursor = true,
 
       filetypes_denylist = {
@@ -19,11 +19,14 @@ return {
         "fugitive",
         "copilot-chat",
         "css",
+        "markdown",
+        "txt",
+        "text",
       },
 
-      modes_denylist = { "i" },
+      modes_denylist = { "i", "c" }, -- Also disable in command mode
       providers_regex_syntax_denylist = { "Comment", "String", "Constant" },
-      min_count_to_highlight = 2,
+      min_count_to_highlight = 3, -- Increased to reduce highlighting
 
       disable_keymaps = false,
     }
