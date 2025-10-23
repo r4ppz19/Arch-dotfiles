@@ -49,6 +49,9 @@ o.splitright = true
 o.timeoutlen = 400
 o.undofile = true
 
+-- (new)
+opt.winborder = "rounded"
+
 -- interval for writing swap file to disk, also used by gitsigns
 o.updatetime = 500
 

@@ -10,10 +10,32 @@ return {
     warn_no_results = false,
     open_no_results = false,
     win = { position = "bottom", type = "split", size = 0.4 },
+
     preview = {
       type = "main",
       scratch = true,
     },
+
+    modes = {
+      diagnostics = {
+        groups = {
+          { "filename", format = "{file_icon} {basename:Title} {count}" },
+        },
+      },
+
+      lsp_references = {
+        groups = {
+          { "filename", format = "{file_icon} {basename:Title} {count}" },
+        },
+        preview = {
+          type = "split",
+          relative = "win",
+          position = "right",
+          size = 0.5,
+        },
+      },
+    },
+
     keys = {
       ["<cr>"] = "jump_close",
       ["p"] = "preview",

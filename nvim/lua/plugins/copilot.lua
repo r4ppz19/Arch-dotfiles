@@ -5,7 +5,6 @@ return {
   dependencies = {
     {
       "zbirenbaum/copilot.lua",
-      event = "InsertEnter",
       config = function()
         require("copilot").setup {
           suggestion = { enabled = false },
@@ -25,8 +24,8 @@ return {
 
       resources = "selection",
       temperature = 0.1,
-      model = "gpt-4.1",
-      -- model = "grok-code-fast-1",
+      -- model = "gpt-4.1",
+      model = "grok-code-fast-1",
       -- model = "gpt-5-mini",
 
       window = {
