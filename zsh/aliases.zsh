@@ -7,7 +7,7 @@ alias ls='eza --icons --group-directories-first --color=auto'
 alias la='eza -a --icons --group-directories-first --color=auto'
 alias ll='eza -lh --icons --group-directories-first --color=auto'
 alias tree='eza -T --icons --group-directories-first --color=auto'
-alias less='less -SRX'
+alias less='less -SRXF'
 alias mv='mv -v'
 alias cp='cp -v'
 alias mkdir='mkdir -pv'
@@ -26,6 +26,7 @@ alias smb-start='sudo systemctl start smb.service nmb.service'
 alias smb-stop='sudo systemctl stop smb.service nmb.service'
 alias pmount='sshfs phone:/storage/emulated/0 ~/Phone'
 alias pumount='fusermount -u ~/Phone'
+alias restore="gtrash r"
 
 # script
 alias of='~/Arch-dotfiles/scripts/open-file.sh'
