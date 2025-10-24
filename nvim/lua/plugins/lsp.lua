@@ -80,13 +80,14 @@ return {
         },
       })
 
-    -- LSP setup function
     local function setup()
+      -- Default configurations for all servers
       vim.lsp.config("*", {
         capabilities = capabilities,
         root_markers = { ".git", ".hg" },
       })
 
+      -- Server-specific configurations
       server_configs.setup(capabilities)
 
       -- Enable all listed servers
