@@ -89,7 +89,7 @@ map("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 map("n", "<C-s>", "<cmd>write<cr>", { desc = "Save file" })
 map("v", "<C-s>", "<cmd>write<cr>", { desc = "Save file" })
-map("i", "<C-s>", "<C-o>:write<CR>", { desc = "Save file" })
+-- map("i", "<C-s>", "<C-o>:write<CR>", { desc = "Save file" })
 
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear highlights" })
 

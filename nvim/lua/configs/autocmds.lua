@@ -57,24 +57,22 @@ autocmd("TextYankPost", {
   end,
 })
 
--- Trim trailing whitespace on save
+local exclude = {
+  markdown = true,
+  gitcommit = true,
+  txt = true,
+  text = true,
+  help = true,
+}
+local function remove_trailing_ws()
+  if exclude[vim.bo.filetype] then
+    return
+  end
+  local save_cursor = vim.fn.getpos "."
+  vim.cmd "keeppatterns %s/\\s\\+$//e"
+  vim.fn.setpos(".", save_cursor)
+end
 autocmd("BufWritePre", {
-  pattern = { "*" },
-  callback = function()
-    local exclude = { "markdown", "gitcommit", "txt", "text", "help" }
-    if vim.tbl_contains(exclude, vim.bo.filetype) then
-      return
-    end
-    -- Only trim if there are trailing spaces
-    local line_count = vim.api.nvim_buf_line_count(0)
-    for i = 1, line_count do
-      local line = vim.api.nvim_buf_get_lines(0, i - 1, i, false)[1]
-      if line:match "%s+$" then
-        local save_cursor = vim.fn.getpos "."
-        vim.cmd [[%s/\s\+$//e]]
-        vim.fn.setpos(".", save_cursor)
-        break
-      end
-    end
-  end,
+  pattern = "*",
+  callback = remove_trailing_ws,
 })

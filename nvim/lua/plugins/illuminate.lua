@@ -28,6 +28,7 @@ return {
         "man",
         "DiffviewFiles",
         "DiffviewFileHistory",
+        "markdown",
       },
       min_count_to_highlight = 2,
       under_cursor = true,
