@@ -146,22 +146,6 @@ map({ "n", "t" }, "<A-d>", function()
   }
 end, { desc = "Toggle generic terminal" })
 
-map({ "n", "t" }, "<A-g>", function()
-  require("nvchad.term").toggle {
-    id = "lazygit",
-    pos = "float",
-    cmd = "lazygit",
-    float_opts = {
-      relative = "editor",
-      row = 0.05,
-      col = 0.05,
-      width = 0.9,
-      height = 0.8,
-      border = "single",
-    },
-  }
-end, { desc = "Toggle LazyGit terminal" })
-
 -- Open selected text as URL (portable)
 local function open_url_portable(url)
   url = vim.fn.trim(url or "")

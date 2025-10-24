@@ -167,16 +167,16 @@ return {
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
     { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Find Buffers" },
     { "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "Recent Files" },
-    { "<leader>fg", "<cmd>Telescope git_files<CR>", desc = "Git Files" },
 
     { "<leader>FF", "<cmd>Telescope live_grep<CR>", desc = "Live Grep Project" },
     { "<leader>Ff", "<cmd>Telescope current_buffer_fuzzy_find<CR>", desc = "Grep Current Buffer" },
 
     { "<leader>fc", "<cmd>Telescope commands<CR>", desc = "Commands" },
     { "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Help Tags" },
+    { "<leader>fm", "<cmd>Telescope man_pages<CR>", desc = "Man Pages" },
     { "<leader>fH", "<cmd>Telescope command_history<CR>", desc = "Command History" },
 
-    { "<leader>fm", "<cmd>Telescope marks<CR>", desc = "Marks" },
+    { "<leader>fM", "<cmd>Telescope marks<CR>", desc = "Marks" },
     { "<leader>fs", "<cmd>Telescope spell_suggest<CR>", desc = "Spell Suggest" },
     { "<leader>fq", "<cmd>Telescope quickfix<CR>", desc = "Quickfix List" },
     { "<leader>fl", "<cmd>Telescope loclist<CR>", desc = "Location List" },
