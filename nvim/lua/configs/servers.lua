@@ -337,7 +337,7 @@ function M.setup(capabilities)
     },
   })
 
-  -- Rust LSP - optimized
+  -- Rust LSP
   vim.lsp.config("rust_analyzer", {
     capabilities = capabilities,
     root_markers = { "Cargo.toml", "rust-project.json", ".git" },
@@ -367,7 +367,7 @@ function M.setup(capabilities)
     root_markers = { ".git" },
   })
 
-  -- C/C++ LSP - optimized
+  -- C/C++ LSP
   vim.lsp.config("clangd", {
     capabilities = capabilities,
     root_markers = {
