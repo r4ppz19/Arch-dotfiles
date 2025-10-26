@@ -12,7 +12,6 @@ function M.setup(capabilities)
       "stylua.toml",
       "selene.toml",
       "selene.yml",
-      ".git",
     },
     settings = {
       Lua = {
@@ -37,7 +36,7 @@ function M.setup(capabilities)
   -- VTS LSP
   vim.lsp.config("vtsls", {
     filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
-    root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
+    root_markers = { "package.json", "tsconfig.json", "jsconfig.json" },
     capabilities = capabilities,
     settings = {
       vtsls = {
@@ -110,7 +109,7 @@ function M.setup(capabilities)
 
   vim.lsp.config("jdtls", {
     capabilities = jdtls_capabilities,
-    root_markers = { "pom.xml", "build.gradle", "build.gradle.kts", "settings.gradle", "gradlew", "mvnw", ".git" },
+    root_markers = { "pom.xml", "build.gradle", "build.gradle.kts", "settings.gradle", "gradlew", "mvnw" },
     on_attach = function(client)
       -- Forcefully disable semantic tokens if server ignores capability
       client.server_capabilities.semanticTokensProvider = nil
@@ -230,7 +229,7 @@ function M.setup(capabilities)
   -- CSS LSP
   vim.lsp.config("cssls", {
     capabilities = capabilities,
-    root_markers = { "package.json", ".git" },
+    root_markers = { "package.json" },
     settings = {
       css = { validate = true, lint = { unknownAtRules = "ignore" } },
       scss = { validate = true, lint = { unknownAtRules = "ignore" } },
@@ -257,7 +256,6 @@ function M.setup(capabilities)
       "postcss.config.mjs",
       "postcss.config.ts",
       "package.json",
-      ".git",
     },
   })
 
@@ -289,7 +287,6 @@ function M.setup(capabilities)
       "eslint.config.mjs",
       "eslint.config.cjs",
       "package.json",
-      ".git",
     },
     settings = {
       experimental = {
@@ -323,7 +320,6 @@ function M.setup(capabilities)
       "requirements.txt",
       "Pipfile",
       "pyrightconfig.json",
-      ".git",
     },
     settings = {
       python = {
@@ -340,7 +336,7 @@ function M.setup(capabilities)
   -- Rust LSP
   vim.lsp.config("rust_analyzer", {
     capabilities = capabilities,
-    root_markers = { "Cargo.toml", "rust-project.json", ".git" },
+    root_markers = { "Cargo.toml", "rust-project.json" },
     settings = {
       ["rust-analyzer"] = {
         cargo = {
@@ -361,12 +357,6 @@ function M.setup(capabilities)
     },
   })
 
-  -- Bash LSP
-  vim.lsp.config("bashls", {
-    capabilities = capabilities,
-    root_markers = { ".git" },
-  })
-
   -- C/C++ LSP
   vim.lsp.config("clangd", {
     capabilities = capabilities,
@@ -377,7 +367,6 @@ function M.setup(capabilities)
       "compile_commands.json",
       "compile_flags.txt",
       "configure.ac",
-      ".git",
     },
     cmd = {
       "clangd",
@@ -393,7 +382,7 @@ function M.setup(capabilities)
   -- HTML LSP
   vim.lsp.config("html", {
     capabilities = capabilities,
-    root_markers = { "package.json", ".git" },
+    root_markers = { "package.json" },
     settings = {
       html = {
         format = { enable = false },
@@ -411,7 +400,7 @@ function M.setup(capabilities)
   -- JSON LSP
   vim.lsp.config("jsonls", {
     capabilities = capabilities,
-    root_markers = { "package.json", ".git" },
+    root_markers = { "package.json" },
     settings = {
       json = {
         format = { enable = false },
@@ -424,19 +413,19 @@ function M.setup(capabilities)
   -- Markdown LSP
   vim.lsp.config("marksman", {
     capabilities = capabilities,
-    root_markers = { ".marksman.toml", ".git" },
+    root_markers = { ".marksman.toml" },
   })
 
   -- XML LSP
   vim.lsp.config("lemminx", {
     capabilities = capabilities,
-    root_markers = { "pom.xml", ".git" },
+    root_markers = { "pom.xml" },
   })
 
   -- Hyprland LSP
   vim.lsp.config("hyprls", {
     capabilities = capabilities,
-    root_markers = { "hyprland.conf", ".git" },
+    root_markers = { "hyprland.conf" },
   })
 end
 

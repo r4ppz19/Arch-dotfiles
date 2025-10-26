@@ -40,7 +40,6 @@ return {
   },
 
   config = function(_, opts)
-    -- apply opts properly
     require("gitsigns").setup(opts)
 
     -- nvchad terminal lazygit toggle

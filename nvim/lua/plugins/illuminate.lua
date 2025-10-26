@@ -6,9 +6,8 @@ return {
       providers = {
         "lsp",
         "treesitter",
-        "regex",
       },
-      delay = 100,
+      delay = 200,
       filetypes_denylist = {
         "dirvish",
         "fugitive",
@@ -29,6 +28,8 @@ return {
         "DiffviewFiles",
         "DiffviewFileHistory",
         "markdown",
+        "TelescopePrompt",
+        "TelescopeResults",
       },
       min_count_to_highlight = 2,
       under_cursor = true,

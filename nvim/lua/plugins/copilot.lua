@@ -59,7 +59,7 @@ return {
     { "<leader>cm", "<cmd>CopilotChatModels<cr>", mode = { "n", "v" }, desc = "View/select available models" },
 
     {
-      "<A-v>",
+      "<M-v>",
       function()
         local chat = require "CopilotChat"
         chat.toggle {

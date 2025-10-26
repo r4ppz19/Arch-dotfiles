@@ -36,6 +36,7 @@ return {
 
       highlight = {
         enable = true,
+        disable = { "markdown" },  -- Performance-heavy filetypes
         additional_vim_regex_highlighting = false,
       },
 
