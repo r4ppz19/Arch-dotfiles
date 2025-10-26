@@ -1,5 +1,8 @@
 return {
   "lewis6991/gitsigns.nvim",
+  dependencies = {
+    "sindrets/diffview.nvim",
+  },
   event = "BufReadPost",
   opts = {
     signs = {
@@ -59,6 +62,12 @@ return {
         },
       }
     end, { desc = "Toggle LazyGit terminal (Telescope)" })
+
+    -- diff view
+    map("n", "<leader>dd", "<cmd>DiffviewOpen<cr>", { desc = "Open Diffview" })
+    map("n", "<leader>dx", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" })
+    map("n", "<leader>dh", "<cmd>DiffviewFileHistory<cr>", { desc = "Open repository history" })
+    map("n", "<leader>df", "<cmd>DiffviewFileHistory %<cr>", { desc = "Open current file history" })
 
     -- gitsign navigation
     map("n", "]h", function()
