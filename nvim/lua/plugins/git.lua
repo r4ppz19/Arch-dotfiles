@@ -2,8 +2,9 @@ return {
   "lewis6991/gitsigns.nvim",
   dependencies = {
     "sindrets/diffview.nvim",
+    event = "VeryLazy",
   },
-  event = "BufReadPost",
+  event = "VeryLazy",
   opts = {
     signs = {
       add = { text = "│" },
@@ -70,10 +71,10 @@ return {
     map("n", "<leader>df", "<cmd>DiffviewFileHistory %<cr>", { desc = "Open current file history" })
 
     -- gitsign navigation
-    map("n", "]h", function()
+    map("n", "]c", function()
       require("gitsigns").nav_hunk "next"
     end, { desc = "Next Git Hunk (GitSign)" })
-    map("n", "[h", function()
+    map("n", "[c", function()
       require("gitsigns").nav_hunk "prev"
     end, { desc = "Previous Git Hunk (GitSign)" })
 
@@ -111,32 +112,5 @@ return {
     map("n", "<leader>gD", function()
       require("gitsigns").diffthis "~"
     end, { desc = "Diff With HEAD (GitSign)" })
-
-    -- telescope
-    local tb = require "telescope.builtin"
-    map("n", "<leader>gf", "<cmd>Telescope git_files<CR>", { desc = "Git Files (Telescope)" })
-
-    -- commits
-    map("n", "<leader>gc", function()
-      require("telescope.builtin").git_bcommits {
-        use_file_path = true,
-      }
-    end, { desc = "Git Current BufferCommits (Telescope)" })
-
-    map("n", "<leader>gC", function()
-      tb.git_commits()
-    end, { desc = "Git Commits (Telescope)" })
-
-    map("n", "<leader>gB", function()
-      tb.git_branches()
-    end, { desc = "Git Branches (Telescope)" })
-
-    map("n", "<leader>gg", function()
-      tb.git_status()
-    end, { desc = "Git Status (Telescope)" })
-
-    map("n", "<leader>gh", function()
-      tb.git_stash()
-    end, { desc = "Git Stash (Telescope)" })
   end,
 }
