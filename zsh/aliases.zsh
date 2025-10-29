@@ -24,8 +24,8 @@ alias news='clx -n'
 # alias ssh='TERM=xterm-256color ssh'
 alias smb-start='sudo systemctl start smb.service nmb.service'
 alias smb-stop='sudo systemctl stop smb.service nmb.service'
-alias pmount='sshfs phone:/storage/emulated/0 ~/Phone'
-alias pumount='fusermount -u ~/Phone'
+alias pmount='mkdir -p ~/Phone && sshfs phone:/storage/emulated/0 ~/Phone'
+alias pumount='fusermount -u ~/Phone && rmdir ~/Phone'
 alias restore="gtrash r"
 
 # script
