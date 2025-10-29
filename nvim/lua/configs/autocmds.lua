@@ -56,23 +56,3 @@ autocmd("TextYankPost", {
     vim.hl.on_yank()
   end,
 })
-
-local exclude = {
-  markdown = true,
-  gitcommit = true,
-  txt = true,
-  text = true,
-  help = true,
-}
-local function remove_trailing_ws()
-  if exclude[vim.bo.filetype] then
-    return
-  end
-  local save_cursor = vim.fn.getpos "."
-  vim.cmd "keeppatterns %s/\\s\\+$//e"
-  vim.fn.setpos(".", save_cursor)
-end
-autocmd("BufWritePre", {
-  pattern = "*",
-  callback = remove_trailing_ws,
-})

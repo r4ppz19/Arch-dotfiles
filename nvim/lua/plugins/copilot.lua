@@ -11,7 +11,7 @@ return {
           panel = { enabled = false },
           settings = {
             telemetry = {
-              telemetryLevel = "none",
+              telemetryLevel = "",
             },
           },
         }
