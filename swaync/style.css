@@ -12,6 +12,9 @@
   --transition-standard: 0.15s ease-in-out;
 }
 
+/* 
+ * Base styles - These apply to all elements in the notification center 
+ */
 /* Base styles */
 * {
   outline: none;
@@ -22,6 +25,9 @@
   box-shadow: none;
 }
 
+/* 
+ * Scrollbar styles - Hides scrollbars for a cleaner look 
+ */
 /* Scrollbar */
 scrollbar,
 scrollbar slider {
@@ -31,10 +37,13 @@ scrollbar slider {
   background: transparent;
 }
 
+/* 
+ * Common button styles - Applied to any element that functions as a button 
+ */
 /* Common button styles */
 .close-button,
 .widget-title > button,
-.widget-dnd switch,
+.widget-dnd switch, /* Do Not Disturb switch button */
 .widget-menubar > .menu-button-bar > .widget-menubar-container button,
 .widget-menubar > revealer button,
 .widget-inhibitors > button {
@@ -44,6 +53,9 @@ scrollbar slider {
   transition: background var(--transition-standard);
 }
 
+/* 
+ * Close button styles - The X button that appears on notifications 
+ */
 /* Close button */
 .close-button {
   background: var(--bg-button);
@@ -61,6 +73,9 @@ scrollbar slider {
   background: var(--bg-button-hover);
 }
 
+/* 
+ * Notification rows - The container for each notification item 
+ */
 /* Notification rows */
 .notification-row {
   background: none;
@@ -75,6 +90,9 @@ scrollbar slider {
   margin: 0px -6px 0px 0px;
 }
 
+/* 
+ * Base notification styles - Applies to all notifications regardless of priority 
+ */
 /* Base notification styles */
 .notification-row .notification-background .notification {
   border-radius: 2px;
@@ -84,6 +102,9 @@ scrollbar slider {
   padding: 2px 4px;
 }
 
+/* 
+ * Priority-based notification styles - Different colors based on notification priority 
+ */
 /* Priority-based notification styles */
 .notification-row .notification-background .notification.low {
   border-left: 3px solid var(--priority-low);
@@ -97,6 +118,9 @@ scrollbar slider {
   border-left: 3px solid var(--priority-critical);
 }
 
+/* 
+ * Notification default action - The main notification content that can be clicked 
+ */
 /* Notification default action */
 .notification-default-action {
   padding: 4px;
@@ -119,6 +143,9 @@ scrollbar slider {
   border-bottom-right-radius: 0px;
 }
 
+/* 
+ * Notification content - Text and image content within notifications 
+ */
 /* Notification content */
 .notification-content {
   background: transparent;
@@ -144,6 +171,9 @@ scrollbar slider {
   filter: none;
 }
 
+/* 
+ * Text elements - Summary, time, and body text within notifications 
+ */
 /* Text elements */
 .notification-content .text-box .summary,
 .notification-content .text-box .time,
@@ -167,6 +197,9 @@ scrollbar slider {
   font-weight: normal;
 }
 
+/* 
+ * Progress bars and images - For notifications that include progress or images 
+ */
 /* Progress and images */
 .notification-content progressbar {
   margin-top: 4px;
@@ -178,6 +211,9 @@ scrollbar slider {
   -gtk-icon-filter: none;
 }
 
+/* 
+ * Inline reply - For notifications that support direct reply 
+ */
 /* Inline reply */
 .notification-content .inline-reply {
   margin-top: 4px;
@@ -210,6 +246,9 @@ scrollbar slider {
   background: var(--bg-primary);
 }
 
+/* 
+ * Alternative actions - Buttons within notifications (besides the default action) 
+ */
 /* Alternative actions */
 .notification-alt-actions {
   background: none;
@@ -230,6 +269,9 @@ scrollbar slider {
   padding: 1px;
 }
 
+/* 
+ * Notification groups - Styling for grouped notifications 
+ */
 /* Notification groups */
 .notification-group {
   transition: opacity 200ms ease-in-out;
@@ -292,6 +334,9 @@ scrollbar slider {
   background-color: var(--bg-primary);
 }
 
+/* 
+ * Control center - The main container for the notification control center 
+ */
 /* Control center */
 .control-center {
   background: var(--bg-primary);
@@ -324,6 +369,9 @@ scrollbar slider {
   background-color: var(--bg-primary);
 }
 
+/* 
+ * Floating notifications - The temporary pop-up notifications 
+ */
 /* Floating notifications */
 .blank-window,
 .floating-notifications {
@@ -334,7 +382,11 @@ scrollbar slider {
   box-shadow: none;
 }
 
-/* Widgets */
+/* 
+ * Widget styles - Controls for various widgets in the control center 
+ */
+
+/* Title widget - Shows the 'Notifications' title and 'Clear All' button */
 .widget-title > label {
   margin: 8px;
   font-weight: 700;
@@ -351,7 +403,7 @@ scrollbar slider {
   font-weight: 700;
 }
 
-/* Common widget styles */
+/* Common widget styles - Applied to most widget containers */
 .widget-dnd,
 .widget-label,
 .widget-volume,
@@ -366,23 +418,40 @@ scrollbar slider {
   font-size: 10px;
 }
 
+/* Do Not Disturb widget - The toggle switch for disabling notifications */
 .widget-dnd label {
   margin: 8px;
 }
 
+/* Do Not Disturb switch styling */
 .widget-dnd switch {
   margin: 8px;
+  background: var(--bg-button);
+  border-radius: 2px;
+  min-width: 35px;
+  min-height: 15px;
 }
 
+/* Do Not Disturb switch when checked (active) */
+.widget-dnd switch:checked {
+  background: var(--priority-normal);
+}
+
+/* Do Not Disturb switch slider styling */
 .widget-dnd switch slider {
+  min-width: 13px;
+  min-height: 13px;
+  margin: 2px;
   border-radius: 2px;
+  background: var(--text-primary);
+  border: 1px solid var(--border-color);
 }
 
 .widget-label {
   margin: 8px;
 }
 
-/* Mpris widget */
+/* Mpris widget - Media player controls */
 .widget-mpris {
   margin: 5px;
 }
@@ -439,7 +508,7 @@ scrollbar slider {
   color: var(--text-disabled);
 }
 
-/* Buttons widget */
+/* Buttons grid widget - For custom button layouts */
 .widget-buttons-grid {
   padding: 8px;
   margin: 8px;
@@ -450,7 +519,7 @@ scrollbar slider {
   border-radius: 2px;
 }
 
-/* Menubar widget */
+/* Menubar widget - For application menus */
 .widget-menubar > .menu-button-bar > .start {
   margin-left: 8px;
 }
@@ -472,7 +541,7 @@ scrollbar slider {
   margin-top: 0;
 }
 
-/* Volume widget */
+/* Volume widget - For system volume controls */
 .widget-volume {
   padding: 8px;
   border-radius: 2px;
@@ -489,7 +558,7 @@ scrollbar slider {
   border-radius: 2px;
 }
 
-/* Slider widget */
+/* Slider widget - For custom slider controls */
 .widget-slider {
   padding: 8px;
   border-radius: 2px;
@@ -499,13 +568,13 @@ scrollbar slider {
   font-size: inherit;
 }
 
-/* Backlight widget */
+/* Backlight widget - For screen brightness controls */
 .widget-backlight {
   padding: 8px;
   border-radius: 2px;
 }
 
-/* Inhibitors widget */
+/* Inhibitors widget - For display power management controls */
 .widget-inhibitors > label {
   margin: 8px;
   font-size: 10px;
