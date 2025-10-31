@@ -83,7 +83,6 @@ return {
       -- Default configurations for all servers
       vim.lsp.config("*", {
         capabilities = capabilities,
-        root_markers = { ".git" },
       })
 
       -- Server-specific configurations
