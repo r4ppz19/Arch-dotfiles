@@ -1,20 +1,26 @@
 :root {
-  --bg-primary: #282828;
-  --bg-secondary: #262626;
-  --bg-button: #4e4e4e;
-  --bg-button-hover: #5e5e5e;
-  --text-primary: #ebdbb2;
+  /* Colors */
+  --bg-1: #282828;
+  --bg-2: #262626;
+  --bg-btn: #4e4e4e;
+  --bg-btn-hover: #5e5e5e;
+  --text: #ebdbb2;
   --text-disabled: #5c554a;
-  --border-color: #504945;
-  --priority-low: #ebdbb2;
-  --priority-normal: #83a598;
-  --priority-critical: #fb4934;
-  --transition-standard: 0.15s ease-in-out;
+  --border: #504945;
+  --pri-low: #ebdbb2;
+  --pri-normal: #83a598;
+  --pri-critical: #fb4934;
+
+  /* Sizes */
+  --radius: 2px;
+  --border-width: 1px;
+  --btn-size: 20px;
+
+  /* Effects */
+  --transition: 0.15s ease-in-out;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
 }
 
-/* 
- * Base styles - These apply to all elements in the notification center 
- */
 /* Base styles */
 * {
   outline: none;
@@ -25,131 +31,101 @@
   box-shadow: none;
 }
 
-/* 
- * Scrollbar styles - Hides scrollbars for a cleaner look 
- */
 /* Scrollbar */
 scrollbar,
 scrollbar slider {
   opacity: 0;
-  min-width: 0px;
-  min-height: 0px;
+  min-width: 0;
+  min-height: 0;
   background: transparent;
 }
 
-/* 
- * Common button styles - Applied to any element that functions as a button 
- */
-/* Common button styles */
+/* Buttons */
 .close-button,
 .widget-title > button,
-.widget-dnd switch, /* Do Not Disturb switch button */
+.widget-dnd switch,
 .widget-menubar > .menu-button-bar > .widget-menubar-container button,
 .widget-menubar > revealer button,
 .widget-inhibitors > button {
-  border-radius: 2px;
+  border-radius: var(--radius);
   border: none;
   box-shadow: none;
-  transition: background var(--transition-standard);
+  transition: background var(--transition);
 }
 
-/* 
- * Close button styles - The X button that appears on notifications 
- */
-/* Close button */
 .close-button {
-  background: var(--bg-button);
-  color: var(--text-primary);
-  text-shadow: none;
+  background: var(--bg-btn);
+  color: var(--text);
   padding: 0;
   border-radius: 50%;
-  margin-top: 8px;
-  margin-right: 8px;
-  min-width: 20px;
-  min-height: 20px;
+  margin: 8px;
+  min-width: var(--btn-size);
+  min-height: var(--btn-size);
 }
 
 .close-button:hover {
-  background: var(--bg-button-hover);
+  background: var(--bg-btn-hover);
 }
 
-/* 
- * Notification rows - The container for each notification item 
- */
-/* Notification rows */
+/* Notifications */
 .notification-row {
   background: none;
 }
 
 .notification-row:focus,
 .notification-group:focus {
-  background: var(--bg-primary);
+  background: var(--bg-1);
 }
 
 .notification-row .notification-background {
-  margin: 0px -6px 0px 0px;
+  margin: 0 -6px 0 0;
 }
 
-/* 
- * Base notification styles - Applies to all notifications regardless of priority 
- */
-/* Base notification styles */
 .notification-row .notification-background .notification {
-  border-radius: 2px;
-  border: 1px solid var(--border-color);
-  transition: background var(--transition-standard);
-  background: var(--bg-primary);
+  border-radius: var(--radius);
+  border: var(--border-width) solid var(--border);
+  transition: background var(--transition);
+  background: var(--bg-1);
   padding: 2px 4px;
 }
 
-/* 
- * Priority-based notification styles - Different colors based on notification priority 
- */
-/* Priority-based notification styles */
 .notification-row .notification-background .notification.low {
-  border-left: 3px solid var(--priority-low);
+  border-left: 3px solid var(--pri-low);
 }
 
 .notification-row .notification-background .notification.normal {
-  border-left: 3px solid var(--priority-normal);
+  border-left: 3px solid var(--pri-normal);
 }
 
 .notification-row .notification-background .notification.critical {
-  border-left: 3px solid var(--priority-critical);
+  border-left: 3px solid var(--pri-critical);
 }
 
-/* 
- * Notification default action - The main notification content that can be clicked 
- */
-/* Notification default action */
 .notification-default-action {
   padding: 4px;
   margin: 0;
   box-shadow: none;
   background: transparent;
   border: none;
-  color: var(--text-primary);
-  transition: background var(--transition-standard);
-  border-radius: 2px;
+  color: var(--text);
+  transition: background var(--transition);
+  border-radius: var(--radius);
 }
 
 .notification-default-action:hover {
   -gtk-icon-filter: none;
-  background: var(--bg-primary);
+  background: var(--bg-1);
 }
 
 .notification-default-action:not(:only-child) {
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
-/* 
- * Notification content - Text and image content within notifications 
- */
-/* Notification content */
+/* Notification Content */
 .notification-content {
   background: transparent;
-  border-radius: 2px;
+  border-radius: var(--radius);
   padding: 0;
 }
 
@@ -157,7 +133,7 @@ scrollbar slider {
   -gtk-icon-filter: none;
   -gtk-icon-size: 30px;
   border-radius: 50px;
-  margin: 0px 7px 0px 0px;
+  margin: 0 7px 0 0;
 }
 
 .notification-content .app-icon {
@@ -171,16 +147,12 @@ scrollbar slider {
   filter: none;
 }
 
-/* 
- * Text elements - Summary, time, and body text within notifications 
- */
-/* Text elements */
 .notification-content .text-box .summary,
 .notification-content .text-box .time,
 .notification-content .text-box .body {
   font-size: 10px;
   background: transparent;
-  color: var(--text-primary);
+  color: var(--text);
   text-shadow: none;
 }
 
@@ -197,10 +169,6 @@ scrollbar slider {
   font-weight: normal;
 }
 
-/* 
- * Progress bars and images - For notifications that include progress or images 
- */
-/* Progress and images */
 .notification-content progressbar {
   margin-top: 4px;
 }
@@ -211,45 +179,39 @@ scrollbar slider {
   -gtk-icon-filter: none;
 }
 
-/* 
- * Inline reply - For notifications that support direct reply 
- */
-/* Inline reply */
+/* Inline Reply */
 .notification-content .inline-reply {
   margin-top: 4px;
 }
 
 .notification-content .inline-reply .inline-reply-entry {
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-  caret-color: var(--text-primary);
-  border: 1px solid var(--border-color);
-  border-radius: 2px;
+  background: var(--bg-2);
+  color: var(--text);
+  caret-color: var(--text);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
 }
 
 .notification-content .inline-reply .inline-reply-button {
   margin-left: 4px;
   background: rgb(48, 48, 48);
-  border: 1px solid var(--border-color);
-  border-radius: 2px;
-  color: var(--text-primary);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
 }
 
 .notification-content .inline-reply .inline-reply-button:disabled {
   background: initial;
   color: rgb(150, 150, 150);
-  border: 1px solid var(--border-color);
+  border: var(--border-width) solid var(--border);
   border-color: transparent;
 }
 
 .notification-content .inline-reply .inline-reply-button:hover {
-  background: var(--bg-primary);
+  background: var(--bg-1);
 }
 
-/* 
- * Alternative actions - Buttons within notifications (besides the default action) 
- */
-/* Alternative actions */
+/* Alternative Actions */
 .notification-alt-actions {
   background: none;
   border-bottom-left-radius: 12px;
@@ -264,15 +226,12 @@ scrollbar slider {
 }
 
 .notification-action > button {
-  border-radius: 2px;
+  border-radius: var(--radius);
   font-size: 10px;
   padding: 1px;
 }
 
-/* 
- * Notification groups - Styling for grouped notifications 
- */
-/* Notification groups */
+/* Notification Groups */
 .notification-group {
   transition: opacity 200ms ease-in-out;
 }
@@ -284,7 +243,7 @@ scrollbar slider {
 .notification-group .notification-group-buttons,
 .notification-group .notification-group-headers {
   margin: 0 16px;
-  color: var(--text-primary);
+  color: var(--text);
 }
 
 .notification-group .notification-group-headers {
@@ -294,17 +253,17 @@ scrollbar slider {
 }
 
 .notification-group .notification-group-headers .notification-group-icon {
-  color: var(--text-primary);
+  color: var(--text);
   -gtk-icon-size: 20px;
   font-size: 12px;
   font-weight: 700;
-  margin: 5px 5px 5px 0px;
+  margin: 5px 5px 5px 0;
 }
 
 .notification-group .notification-group-headers .notification-group-header {
   font-size: 12px;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--text);
 }
 
 .notification-group .notification-group-buttons {
@@ -316,7 +275,7 @@ scrollbar slider {
 }
 
 .notification-group.collapsed .notification-row .notification {
-  background-color: var(--bg-primary);
+  background-color: var(--bg-1);
 }
 
 .notification-group.collapsed
@@ -331,19 +290,16 @@ scrollbar slider {
 .notification-group.collapsed:hover
   .notification-row:not(:only-child)
   .notification {
-  background-color: var(--bg-primary);
+  background-color: var(--bg-1);
 }
 
-/* 
- * Control center - The main container for the notification control center 
- */
-/* Control center */
+/* Control Center */
 .control-center {
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  border-radius: 2px;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  background: var(--bg-1);
+  color: var(--text);
+  border-radius: var(--radius);
+  border: var(--border-width) solid var(--border);
+  box-shadow: var(--shadow);
 }
 
 .control-center .control-center-list-placeholder {
@@ -358,7 +314,7 @@ scrollbar slider {
 .control-center .control-center-list .notification .notification-action {
   transition:
     opacity 400ms ease-in-out,
-    background var(--transition-standard);
+    background var(--transition);
 }
 
 .control-center
@@ -366,13 +322,10 @@ scrollbar slider {
   .notification
   .notification-default-action:hover,
 .control-center .control-center-list .notification .notification-action:hover {
-  background-color: var(--bg-primary);
+  background-color: var(--bg-1);
 }
 
-/* 
- * Floating notifications - The temporary pop-up notifications 
- */
-/* Floating notifications */
+/* Floating Notifications */
 .blank-window,
 .floating-notifications {
   background: transparent;
@@ -382,11 +335,9 @@ scrollbar slider {
   box-shadow: none;
 }
 
-/* 
- * Widget styles - Controls for various widgets in the control center 
- */
+/* Widgets */
 
-/* Title widget - Shows the 'Notifications' title and 'Clear All' button */
+/* Title Widget */
 .widget-title > label {
   margin: 8px;
   font-weight: 700;
@@ -396,14 +347,14 @@ scrollbar slider {
 .widget-title > button {
   margin: 8px;
   font-size: 10px;
-  background: var(--bg-primary);
-  border: 1px solid var(--text-disabled);
+  background: var(--bg-1);
+  border: var(--border-width) solid var(--text-disabled);
   padding: 3px 10px;
-  color: var(--text-primary);
+  color: var(--text);
   font-weight: 700;
 }
 
-/* Common widget styles - Applied to most widget containers */
+/* Common Widget Styles */
 .widget-dnd,
 .widget-label,
 .widget-volume,
@@ -414,53 +365,50 @@ scrollbar slider {
 
 .widget-dnd label,
 .widget-label > label {
-  color: var(--text-primary);
+  color: var(--text);
   font-size: 10px;
 }
 
-/* Do Not Disturb widget - The toggle switch for disabling notifications */
+/* Do Not Disturb Widget */
 .widget-dnd label {
   margin: 8px;
 }
 
-/* Do Not Disturb switch styling */
 .widget-dnd switch {
   margin: 8px;
-  background: var(--bg-button);
-  border-radius: 2px;
+  background: var(--bg-btn);
+  border-radius: var(--radius);
   min-width: 35px;
   min-height: 15px;
 }
 
-/* Do Not Disturb switch when checked (active) */
 .widget-dnd switch:checked {
-  background: var(--priority-normal);
+  background: var(--pri-normal);
 }
 
-/* Do Not Disturb switch slider styling */
 .widget-dnd switch slider {
   min-width: 13px;
   min-height: 13px;
   margin: 2px;
-  border-radius: 2px;
-  background: var(--text-primary);
-  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  background: var(--text);
+  border: var(--border-width) solid var(--border);
 }
 
 .widget-label {
   margin: 8px;
 }
 
-/* Mpris widget - Media player controls */
+/* Mpris Widget */
 .widget-mpris {
   margin: 5px;
 }
 
 .widget-mpris .widget-mpris-player {
   margin: 10px 10px;
-  border-radius: 2px;
+  border-radius: var(--radius);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
-  border: 1px solid var(--border-color);
+  border: var(--border-width) solid var(--border);
 }
 
 .widget-mpris .widget-mpris-player .mpris-background {
@@ -473,11 +421,11 @@ scrollbar slider {
 }
 
 .widget-mpris .widget-mpris-player .mpris-overlay button:hover {
-  background: var(--bg-primary);
+  background: var(--bg-1);
 }
 
 .widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-album-art {
-  border-radius: 2px;
+  border-radius: var(--radius);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
   -gtk-icon-size: 50px;
 }
@@ -493,7 +441,7 @@ scrollbar slider {
 
 .widget-mpris .widget-mpris-player .mpris-overlay > box > button {
   margin: 2px;
-  color: var(--text-primary);
+  color: var(--text);
 }
 
 .widget-mpris .widget-mpris-player .mpris-overlay > box > button:hover {
@@ -501,25 +449,25 @@ scrollbar slider {
 }
 
 .widget-mpris > box > button {
-  color: var(--text-primary);
+  color: var(--text);
 }
 
 .widget-mpris > box > button:disabled {
   color: var(--text-disabled);
 }
 
-/* Buttons grid widget - For custom button layouts */
+/* Buttons Grid Widget */
 .widget-buttons-grid {
   padding: 8px;
   margin: 8px;
-  border-radius: 2px;
+  border-radius: var(--radius);
 }
 
 .widget-buttons-grid flowboxchild > button {
-  border-radius: 2px;
+  border-radius: var(--radius);
 }
 
-/* Menubar widget - For application menus */
+/* Menubar Widget */
 .widget-menubar > .menu-button-bar > .start {
   margin-left: 8px;
 }
@@ -541,10 +489,10 @@ scrollbar slider {
   margin-top: 0;
 }
 
-/* Volume widget - For system volume controls */
+/* Volume Widget */
 .widget-volume {
   padding: 8px;
-  border-radius: 2px;
+  border-radius: var(--radius);
 }
 
 .widget-volume row image {
@@ -552,29 +500,29 @@ scrollbar slider {
 }
 
 .per-app-volume {
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-2);
   padding: 4px 8px 8px 8px;
-  margin: 0px 8px 8px 8px;
-  border-radius: 2px;
+  margin: 0 8px 8px 8px;
+  border-radius: var(--radius);
 }
 
-/* Slider widget - For custom slider controls */
+/* Slider Widget */
 .widget-slider {
   padding: 8px;
-  border-radius: 2px;
+  border-radius: var(--radius);
 }
 
 .widget-slider label {
   font-size: inherit;
 }
 
-/* Backlight widget - For screen brightness controls */
+/* Backlight Widget */
 .widget-backlight {
   padding: 8px;
-  border-radius: 2px;
+  border-radius: var(--radius);
 }
 
-/* Inhibitors widget - For display power management controls */
+/* Inhibitors Widget */
 .widget-inhibitors > label {
   margin: 8px;
   font-size: 10px;
