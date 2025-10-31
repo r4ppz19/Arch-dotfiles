@@ -6,7 +6,6 @@ local servers = {
   "eslint",
   "vtsls",
   "jsonls",
-  "tailwindcss",
   "marksman",
   "lua_ls",
   "pyright",

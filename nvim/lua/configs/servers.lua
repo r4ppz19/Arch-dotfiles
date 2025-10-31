@@ -243,22 +243,6 @@ function M.setup(capabilities)
     filetypes = { "css", "scss", "sass", "less", "pcss", "typescriptreact", "javascriptreact" },
   })
 
-  -- Tailwind CSS
-  vim.lsp.config("tailwindcss", {
-    capabilities = capabilities,
-    root_markers = {
-      "tailwind.config.js",
-      "tailwind.config.cjs",
-      "tailwind.config.mjs",
-      "tailwind.config.ts",
-      "postcss.config.js",
-      "postcss.config.cjs",
-      "postcss.config.mjs",
-      "postcss.config.ts",
-      "package.json",
-    },
-  })
-
   -- Emmet
   vim.lsp.config("emmet_ls", {
     capabilities = capabilities,
@@ -348,10 +332,6 @@ function M.setup(capabilities)
           attributes = {
             enable = true,
           },
-        },
-        -- Limit memory usage
-        checkOnSave = {
-          command = "check",
         },
       },
     },
