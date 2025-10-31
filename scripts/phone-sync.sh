@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SOURCE_BASE="/mnt/SHARED"
-FOLDERS=("School" "Books" "Music pass")
+FOLDERS=("School" "Books" "Music" "pass")
 
 PHONE_MOUNT="$HOME/Phone"
 REMOTE="phone:/storage/emulated/0"
