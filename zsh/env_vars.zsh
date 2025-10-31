@@ -1,12 +1,9 @@
-#  ╭─────────────────────────────────────────────╮
-#  │           Environment Variables             │
-#  ╰─────────────────────────────────────────────╯
-
 # init
 source /usr/share/nvm/init-nvm.sh
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
+# environment variables
 export EDITOR='nvim'
 export VISUAL='nvim'
 export GOPATH="$HOME/.go"

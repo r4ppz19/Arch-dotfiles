@@ -1,7 +1,3 @@
-#  ╭─────────────────────────────────────────────╮
-#  │               Usefull Setopt                │
-#  ╰─────────────────────────────────────────────╯
-
 setopt append_history         # Append history instead of overwriting
 setopt inc_append_history     # Write history immediately, not just on exit
 setopt share_history          # Share history across all sessions
