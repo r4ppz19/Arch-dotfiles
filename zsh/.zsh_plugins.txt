@@ -6,4 +6,3 @@ zsh-users/zsh-history-substring-search
 zdharma-continuum/fast-syntax-highlighting
 MichaelAquilina/zsh-you-should-use
 paulirish/git-open
-hlissner/zsh-autopair
