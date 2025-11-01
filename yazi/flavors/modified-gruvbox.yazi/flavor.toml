@@ -2,7 +2,7 @@
 
 # : Manager {{{
 
-[manager]
+[mgr]
 cwd = { fg = "#83a598" }
 
 # Hovered
@@ -33,6 +33,13 @@ count_selected = { fg = "#282828", bg = "#fbf1c7" }
 # Border
 border_symbol = " "
 border_style = { fg = "#83A598" }
+
+# Tabs
+[tabs]
+active = { fg = "#282828", bg = "#83A598" }
+inactive = { fg = "#83A598", bg = "#282828" }
+sep_inner = { open = " ", close = " " }
+sep_outer = { open = " ", close = " " }
 
 # : }}}
 
@@ -128,6 +135,19 @@ title_error = { fg = "#d3869b" }
 
 # : }}}
 
+# : Confirmation {{{
+
+[confirm]
+border = { fg = "#83a598" }
+title = { fg = "#83a598" }
+content = { fg = "#fbf1c7" }
+list = { fg = "#ebdbb2" }
+btn_yes = { reversed = true, fg = "#83a598" }
+btn_no = {}
+btn_labels = ["  [Y]es  ", "  (N)o  "]
+
+# : }}}
+
 # : File-specific styles {{{
 
 [filetype]
@@ -152,3 +172,21 @@ rules = [
 
 # : }}}
 
+# : Spotlight {{{
+
+[spot]
+border = { fg = "#83a598" }
+title = { fg = "#83a598" }
+tbl_col = { fg = "#83a598", bold = true }
+tbl_cell = { fg = "#ebdbb2" }
+
+# : }}}
+
+# : Completion {{{
+
+[cmp]
+border = { fg = "#83a598" }
+active = { reversed = true, fg = "#83a598" }
+inactive = { fg = "#ebdbb2" }
+
+# : }}}
