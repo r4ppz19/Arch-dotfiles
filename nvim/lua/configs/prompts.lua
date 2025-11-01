@@ -49,7 +49,7 @@ local prompts = {
       - Explain what each construct does and why it’s used.
       - Clarify both intent and behavior precisely.
     ]],
-    description = "Explicate code syntax, semantics, and conventions in full detail",
+    description = "Explicate code syntax",
   },
 
   ExplainHighLevel = {
@@ -62,7 +62,7 @@ local prompts = {
       - Explain its design intent and how it fits into common architectural or usage patterns.
       - Avoid syntax-level details; focus on design, purpose, and interactions.
     ]],
-    description = "Explain code conceptually at an architectural level",
+    description = "Explain code conceptually",
   },
 
   Explain = {
@@ -75,7 +75,7 @@ local prompts = {
       - Highlight important syntax, patterns, and idioms without excessive granularity.
       - Clarify both **what** the code does and **how** it achieves that behavior.
     ]],
-    description = "Explain code at an intermediate, implementation-focused depth",
+    description = "Explain code at an intermediate",
   },
 
   ExplainLowLevel = {
@@ -88,7 +88,7 @@ local prompts = {
       - Discuss data types, structures, and their interactions in detail.
       - Highlight idioms, pitfalls, and low-level implementation effects.
     ]],
-    description = "Explain code line-by-line with detailed runtime semantics",
+    description = "Explain code line-by-line",
   },
 
   Review = {
@@ -101,7 +101,7 @@ local prompts = {
       - Evaluate correctness, safety, readability, and maintainability.
       - Suggest concrete fixes or improvements with brief explanations.
     ]],
-    description = "Perform a detailed, structured code review with severity levels",
+    description = "Perform a detailed review",
   },
 
   Fix = {
@@ -115,7 +115,7 @@ local prompts = {
       - Prioritize correctness, maintainability, and clarity.
       - If multiple solutions exist, choose the safest and most maintainable approach.
     ]],
-    description = "Find, explain, and fix code issues using idiomatic best practices",
+    description = "Find, explain, and fix code issues",
   },
 
   Optimize = {
@@ -127,7 +127,7 @@ local prompts = {
       - Provide before/after examples with trade-offs explained.
       - Ensure optimizations do not compromise readability or maintainability.
     ]],
-    description = "Optimize code for efficiency, clarity, and maintainability",
+    description = "Optimize code",
   },
 
   Docs = {
@@ -138,7 +138,7 @@ local prompts = {
       - Follow conventions of [language/framework].
       - Add concise examples or usage notes where relevant.
     ]],
-    description = "Generate concise, idiomatic documentation comments",
+    description = "Generate documentation comments",
   },
 
   Tests = {
@@ -150,7 +150,7 @@ local prompts = {
       - Ensure tests are maintainable, clear, and logically structured.
       - Include setup/teardown if necessary.
     ]],
-    description = "Generate idiomatic and maintainable tests for the selected code",
+    description = "Generate tests for the selected code",
   },
 
   Commit = {
@@ -164,7 +164,7 @@ local prompts = {
       - Reference issues or PRs when applicable.
       - If changes are unrelated, suggest splitting commits.
     ]],
-    description = "Generate structured, conventional commit messages",
+    description = "Generate commit messages",
   },
 
   Idiomatic = {
@@ -176,7 +176,7 @@ local prompts = {
       - Identify non-idiomatic constructs and suggest more conventional alternatives.
       - Explain briefly why each alternative is preferred.
     ]],
-    description = "Check and suggest idiomatic improvements based on best practices",
+    description = "Suggest idiomatic improvements",
   },
 
   Suggest = {
@@ -188,7 +188,7 @@ local prompts = {
       - Propose concrete alternative examples with short reasoning.
       - Discuss trade-offs and migration complexity when relevant.
     ]],
-    description = "Suggest alternative implementations with trade-off analysis",
+    description = "Suggest alternative implementations",
   },
 
   Diagnostic = {
@@ -201,7 +201,7 @@ local prompts = {
       - Show specific fixes and demonstrate corrected code.
       - Suggest preventive best practices to avoid similar issues.
     ]],
-    description = "Analyze diagnostic data, explain causes, and suggest precise fixes",
+    description = "Analyze diagnostic data",
   },
 
   Refactor = {
@@ -214,7 +214,7 @@ local prompts = {
       - Apply clean code principles and idiomatic patterns.
       - Ensure the refactored code is easier to read, test, and extend.
     ]],
-    description = "Refactor code for clarity, structure, and long-term maintainability",
+    description = "Refactor code",
   },
 }
 
