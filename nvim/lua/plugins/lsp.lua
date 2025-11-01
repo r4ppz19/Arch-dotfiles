@@ -16,6 +16,7 @@ local servers = {
   "hyprls",
   "clangd",
   "jdtls",
+  "taplo",
 }
 
 return {
