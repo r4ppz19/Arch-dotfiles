@@ -20,11 +20,6 @@ marker_cut = { fg = "#D3869B", bg = "#D3869B" }
 marker_marked = { fg = "#FD7F18", bg = "#FD7F18" }
 marker_selected = { fg = "#FABD2F", bg = "#FABD2F" }
 
-# Tab
-tab_active = { fg = "#282828", bg = "#83A598" }
-tab_inactive = { fg = "#D8C9A4", bg = "#3D3D3D" }
-tab_width = 1
-
 # Count
 count_copied = { fg = "#282828", bg = "#83A598" }
 count_cut = { fg = "#282828", bg = "#d3869b" }
@@ -37,7 +32,7 @@ border_style = { fg = "#83A598" }
 # Tabs
 [tabs]
 active = { fg = "#282828", bg = "#83A598" }
-inactive = { fg = "#83A598", bg = "#282828" }
+inactive = { fg = "#83A598", bg = "#3D3D3D" }
 sep_inner = { open = " ", close = " " }
 sep_outer = { open = " ", close = " " }
 
