@@ -4,11 +4,6 @@ rev = "8f1d971"
 hash = "3e023d31f29201efdac2a6ae35fedb78"
 
 [[plugin.deps]]
-use = "Lil-Dank/lazygit"
-rev = "8f37dc5"
-hash = "ee71543790f0ce3951161045a3787abd"
-
-[[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
 rev = "8f1d971"
 hash = "56fdabc96fc1f4d53c96eb884b02a5be"

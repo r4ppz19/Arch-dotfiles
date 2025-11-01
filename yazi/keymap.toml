@@ -4,28 +4,9 @@
 
 # Custom:
 [[mgr.prepend_keymap]]
-on = ["g", "i"]
-run = "plugin lazygit"
-desc = "run lazygit"
-
-[[mgr.prepend_keymap]]
-on = "M"
-run = "plugin mount"
-
-[[mgr.prepend_keymap]]
 on = "<Right>"
 run = "plugin smart-enter"
 desc = "Enter the child directory, or open the file"
-
-[[mgr.prepend_keymap]]
-on = "F"
-run = "plugin jump-to-char"
-desc = "Jump to char"
-
-[[mgr.prepend_keymap]]
-on = "2"
-run = "plugin smart-switch 1"
-desc = "Switch or create tab 2"
 
 [[mgr.prepend_keymap]]
 on = "y"
@@ -61,8 +42,8 @@ keymap = [
   { on = "<C-b>", run = "arrow -100%", desc = "Move cursor up one page" },
   { on = "<C-f>", run = "arrow 100%", desc = "Move cursor down one page" },
 
-  { on = "<S-PageUp>", run = "arrow -50%", desc = "Move cursor up half page" },
-  { on = "<S-PageDown>", run = "arrow 50%", desc = "Move cursor down half page" },
+  { on = "<S-Up>", run = "arrow -50%", desc = "Move cursor up half page" },
+  { on = "<S-Down>", run = "arrow 50%", desc = "Move cursor down half page" },
   { on = "<PageUp>", run = "arrow -100%", desc = "Move cursor up one page" },
   { on = "<PageDown>", run = "arrow 100%", desc = "Move cursor down one page" },
 
@@ -254,6 +235,18 @@ keymap = [
   ], run = "sort random --reverse=no", desc = "Sort randomly" },
 
   # Goto
+  { on = [
+    "g",
+    "s",
+  ], run = "cd ~/School", desc = "Go ~/School" },
+  { on = [
+    "g",
+    "b",
+  ], run = "cd ~/Books", desc = "Go ~/Books" },
+  { on = [
+    "g",
+    "a",
+  ], run = "cd ~/Arch-dotfiles", desc = "Go ~/Arch-dotfiles" },
   { on = [
     "g",
     "h",
