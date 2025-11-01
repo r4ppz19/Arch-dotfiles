@@ -5,5 +5,5 @@ zsh-users/zsh-completions
 zsh-users/zsh-history-substring-search
 zdharma-continuum/fast-syntax-highlighting
 MichaelAquilina/zsh-you-should-use
-hlissner/zsh-autopair
 paulirish/git-open
+hlissner/zsh-autopair

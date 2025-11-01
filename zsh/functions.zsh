@@ -62,40 +62,6 @@ ai() {
   esac | mdcat | less
 }
 
-# Fuzzy-find files using fd and fzf
-ff() {
-  local file
-  file=$(
-    fd --type f --hidden --no-ignore . |
-      fzf \
-        --preview 'bat --style=numbers --color=always {} || cat {}' \
-        --preview-window=right:60%:wrap \
-        --height=50% \
-        --layout=reverse \
-        --border \
-        --bind "ctrl-d:change-preview-window(down|50%)" \
-        --bind "ctrl-r:reload(fd --type f --hidden --no-ignore .)"
-  )
-  [[ -n "$file" ]] && ${EDITOR:-vim} "$file"
-}
-
-# Fuzzy search file contents with ripgrep and fzf
-gg() {
-  local sel file line
-  sel=$(
-    fzf --ansi --phony --query="$1" \
-      --bind "change:reload:rg --hidden --no-ignore --line-number --color=always --no-heading {q} . || true" \
-      --height=50% --layout=reverse --border \
-      --delimiter : --nth=1,2,3.. \
-      --no-multi
-  )
-  # sel is like: path:line:matchtext
-  file=${sel%%:*}
-  line=${sel#*:}
-  line=${line%%:*}
-  [[ -n "$file" ]] && ${EDITOR:-vim} +"${line}" "$file"
-}
-
 function extract() {
   if [ -f "$1" ]; then
     case "$1" in
