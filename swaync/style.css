@@ -248,8 +248,8 @@ scrollbar slider {
 
 .notification-group .notification-group-headers {
   font-size: 10px;
-  width: 10px;
-  height: 10px;
+  min-width: 10px;
+  min-height: 10px;
 }
 
 .notification-group .notification-group-headers .notification-group-icon {
