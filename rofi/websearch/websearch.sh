@@ -4,6 +4,7 @@ declare -A sites=(
   [fb]="https://www.facebook.com/messages"
   [gh]="https://github.com/r4ppz"
   [yt]="https://www.youtube.com"
+  [red]="https://www.reddit.com/"
   [pins]="https://www.pinterest.com"
   [mail]="https://mail.google.com/mail/u/0/#inbox"
   [movie]="https://hurawatchtv.tv/home"
