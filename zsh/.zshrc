@@ -1,16 +1,13 @@
 # symlinked to ~/.zshrc.
 
-# ───────────────────────────────────────────────────────────────────────────────────────
 if [[ $- == *i* ]]; then
 
   # Instant Prompt (Powerlevel10k)
-  # ─────────────────────────────────────────────────────────────────────────────────────
   if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
   fi
 
   # Plugin Management (Antidote)
-  # ─────────────────────────────────────────────────────────────────────────────────────
   autoload -Uz compinit
   compinit
 
@@ -24,7 +21,6 @@ if [[ $- == *i* ]]; then
   source ${zsh_plugins}.zsh
 
   # Source Configuration Files
-  # ─────────────────────────────────────────────────────────────────────────────────────
   local zsh_config_dir="$HOME/Arch-dotfiles/zsh/"
 
   if [[ -d "$zsh_config_dir" ]]; then
@@ -38,13 +34,10 @@ if [[ $- == *i* ]]; then
     echo "Warning: zsh config directory '$zsh_config_dir' not found."
   fi
 
-  # ────────────────────────────────────────────────────────────────────────────────────
   [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 fi
 
 # Any configuration that *must* run in non-interactive shells (e.g., basic PATH
 # adjustments for scripts) would go here, outside the 'if' block.
-
-# ──────────────────────────────────────────────────────────────────────────────────────
 
