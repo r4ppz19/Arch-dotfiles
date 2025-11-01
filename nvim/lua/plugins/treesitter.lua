@@ -24,7 +24,6 @@ return {
         "python",
         "yaml",
         "toml",
-        "dockerfile",
         "sql",
         "c",
         "cpp",
@@ -36,14 +35,14 @@ return {
 
       highlight = {
         enable = true,
-        disable = { "markdown" },  -- Performance-heavy filetypes
+        disable = { "markdown" },
         additional_vim_regex_highlighting = false,
       },
-
       indent = { enable = true },
     }
   end,
   config = function(_, opts)
     require("nvim-treesitter.configs").setup(opts)
+    vim.treesitter.language.register("bash", "zsh")
   end,
 }

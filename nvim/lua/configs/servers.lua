@@ -39,68 +39,16 @@ function M.setup(capabilities)
     root_markers = { "package.json", "tsconfig.json", "jsconfig.json" },
     capabilities = capabilities,
     settings = {
-      vtsls = {
-        enableMoveToFileCodeAction = true,
-        experimental = {
-          completion = {
-            enableServerSideFuzzyMatch = true,
-            entriesLimit = 128,
-          },
-        },
-      },
       typescript = {
         tsserver = {
           maxTsServerMemory = 2048,
         },
         format = { enable = false },
-        suggest = {
-          completions = {
-            completeFunctionCalls = true,
-          },
-        },
-        inlayHints = {
-          includeInlayParameterNameHints = false,
-          includeInlayFunctionParameterTypeHints = false,
-          includeInlayVariableTypeHints = false,
-          includeInlayPropertyDeclarationTypeHints = false,
-          includeInlayFunctionLikeReturnTypeHints = false,
-          includeInlayEnumMemberValueHints = false,
-        },
-        preferences = {
-          includeCompletionsForModuleExports = true,
-          includeCompletionsWithInsertText = true,
-          importModuleSpecifier = "relative",
-          includePackageJsonAutoImports = "auto",
-          quotePreference = "auto",
-        },
       },
       javascript = {
         format = { enable = false },
-        suggest = {
-          completions = {
-            completeFunctionCalls = true,
-          },
-        },
-        inlayHints = {
-          includeInlayParameterNameHints = false,
-          includeInlayFunctionParameterTypeHints = false,
-          includeInlayVariableTypeHints = false,
-          includeInlayPropertyDeclarationTypeHints = false,
-          includeInlayFunctionLikeReturnTypeHints = false,
-          includeInlayEnumMemberValueHints = false,
-        },
-        preferences = {
-          includeCompletionsForModuleExports = true,
-          includeCompletionsWithInsertText = true,
-          importModuleSpecifier = "relative",
-          includePackageJsonAutoImports = "auto",
-          quotePreference = "auto",
-        },
       },
     },
-    on_attach = function(client)
-      client.server_capabilities.documentFormattingProvider = false
-    end,
   })
 
   -- Java LSP
@@ -288,16 +236,18 @@ function M.setup(capabilities)
         },
       },
     },
-    on_attach = function(client, _)
-      -- Reduce diagnostics frequency for better performance
-      client.server_capabilities.documentFormattingProvider = false
-    end,
   })
 
   -- Hyprland LSP
   vim.lsp.config("hyprls", {
     capabilities = capabilities,
     root_markers = { "hyprland.conf" },
+    filetypes = { "hyprlang" },
+  })
+
+  vim.lsp.config("bashls", {
+    capabilities = capabilities,
+    filetypes = { "bash", "zsh", "sh" },
   })
 end
 
