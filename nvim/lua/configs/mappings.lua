@@ -95,6 +95,17 @@ map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear highlights" })
 
 map("t", "<C-q>", "<C-\\><C-N>", { desc = "Escape terminal mode" })
 
+local function minimize_terminal()
+  local win = vim.api.nvim_get_current_win()
+  local config = vim.api.nvim_win_get_config(win)
+  if config.relative ~= "" then
+    vim.api.nvim_win_close(win, true)
+  else
+    vim.cmd "stopinsert"
+  end
+end
+map("t", "<Esc>", minimize_terminal, { desc = "Minimize terminal" })
+
 -- Comment
 map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
 map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
