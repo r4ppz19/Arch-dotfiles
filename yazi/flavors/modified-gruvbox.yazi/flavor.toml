@@ -32,9 +32,9 @@ border_style = { fg = "#83A598" }
 # Tabs
 [tabs]
 active = { fg = "#282828", bg = "#83A598" }
-inactive = { fg = "#83A598", bg = "#3D3D3D" }
-sep_inner = { open = " ", close = " " }
-sep_outer = { open = " ", close = " " }
+inactive = { fg = "#fbf1c7", bg = "#282828" }
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
 
 # : }}}
 
