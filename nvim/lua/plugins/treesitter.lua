@@ -31,6 +31,7 @@ return {
         "xml",
         "hyprlang",
         "query",
+        "diff",
       },
 
       highlight = {
