@@ -1,5 +1,4 @@
 # init
-source /usr/share/nvm/init-nvm.sh
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
@@ -12,9 +11,14 @@ export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 
 export KEYTIMEOUT=1
 export HISTFILE=~/.zsh_history
-export HISTSIZE=50000
-export SAVEHIST=50000
+export HISTSIZE=10000
+export SAVEHIST=10000
 
+# ZSH Autosuggestions optimizations
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+# FZF-tab optimizations
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git --exclude node_modules --exclude .cache"
 export FZF_ALT_C_COMMAND="fd --type d --hidden --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

@@ -26,7 +26,6 @@ function pumount() {
 }
 
 # filter history
-setopt EXTENDED_HISTORY
 zshaddhistory() {
   emulate -L zsh
   # [[ $1 == *\'* || $1 == *\"* ]] && return 1
