@@ -66,6 +66,14 @@ return {
         end,
       },
 
+      enabled = function()
+        local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
+        if filetype == 'copilot-chat' then
+          return false
+        end
+        return true
+      end,
+
       mapping = {
         ["<C-Up>"] = cmp.mapping.select_prev_item(),
         ["<C-Down>"] = cmp.mapping.select_next_item(),
