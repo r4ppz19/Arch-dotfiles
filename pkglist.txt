@@ -1,6 +1,7 @@
 7zip
 acpi
 acpi_call
+auto-cpufreq
 base
 base-devel
 bashmount
@@ -20,10 +21,11 @@ dkms
 docker
 dosfstools
 downgrade
+dua-cli
 duf
 dunst
-dust
 efibootmgr
+epr-git
 epy-ereader-git
 evtest
 eza
@@ -97,6 +99,7 @@ linux-zen-headers
 linuxconsole
 lnav
 lua51
+lua51-jsregexp
 luajit-tiktoken-bin
 luarocks
 lynx
@@ -115,9 +118,10 @@ neovim
 network-manager-applet
 networkmanager
 networkmanager-openvpn
+nodejs
 noto-fonts-emoji
+npm
 ntfs-3g
-nvm
 nwg-look
 obs-studio
 okular
@@ -137,7 +141,6 @@ pipewire-pulse
 plasma-workspace
 polkit-kde-agent
 postgresql
-power-profiles-daemon
 python-pip
 python-pipx
 qbittorrent
@@ -149,6 +152,7 @@ qt6ct-kde
 reflector
 rmpc
 rofi
+rsync
 ruby
 rustup
 samba
