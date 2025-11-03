@@ -67,9 +67,12 @@ return {
       },
 
       enabled = function()
-        local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
-        if filetype == 'copilot-chat' then
-          return false
+        local disabled_filetypes = { 'copilot-chat', 'TelescopePrompt' }
+        local filetype = vim.bo.filetype
+        for _, disabled_ft in ipairs(disabled_filetypes) do
+          if filetype == disabled_ft then
+            return false
+          end
         end
         return true
       end,
