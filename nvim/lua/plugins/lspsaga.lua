@@ -7,6 +7,9 @@ return {
   },
   config = function()
     require("lspsaga").setup {
+      hover = {
+        max_width = 0.5,
+      },
       lightbulb = {
         enable = false,
         sign = true,
@@ -16,6 +19,7 @@ return {
       },
       ui = {
         code_action = " ",
+        border = "single",
       },
       finder = {
         default = "ref+def",

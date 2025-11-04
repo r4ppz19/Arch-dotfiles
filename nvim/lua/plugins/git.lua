@@ -44,9 +44,9 @@ return {
 
   config = function(_, opts)
     require("gitsigns").setup(opts)
+    local map = require "utils.map"
 
     -- nvchad terminal lazygit toggle
-    local map = require "utils.map"
     map({ "n", "t" }, "<A-g>", function()
       require("nvchad.term").toggle {
         id = "lazygit",
