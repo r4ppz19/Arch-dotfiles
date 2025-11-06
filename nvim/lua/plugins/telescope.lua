@@ -38,7 +38,7 @@ return {
         find_files = {
           hidden = true,
           follow_symlinks = false,
-          find_command = { "fd", "--type", "f", "--hidden", "--color", "never" },
+          find_command = { "fd", "--type", "f", "--hidden", "--exclude", ".git", "--color", "never" },
         },
       },
 
