@@ -3,6 +3,6 @@ Aloxaf/fzf-tab
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
 zsh-users/zsh-history-substring-search
-zdharma-continuum/fast-syntax-highlighting
+zsh-users/zsh-syntax-highlighting
 MichaelAquilina/zsh-you-should-use
 paulirish/git-open
