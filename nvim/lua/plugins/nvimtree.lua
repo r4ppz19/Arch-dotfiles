@@ -23,12 +23,12 @@ return {
       },
 
       git = {
-        enable = false,
+        enable = true,
       },
 
       renderer = {
         root_folder_label = false,
-        highlight_git = true,
+        highlight_git = "icon",
         indent_markers = { enable = true },
         icons = {
           glyphs = {
@@ -40,7 +40,15 @@ return {
               open = "",
               symlink = "",
             },
-            git = { unmerged = "" },
+            git = {
+              unstaged = "✗",
+              staged = "✓",
+              unmerged = "",
+              renamed = "➜",
+              untracked = "★",
+              deleted = "",
+              ignored = "",
+            },
           },
         },
       },

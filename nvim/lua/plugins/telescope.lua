@@ -38,28 +38,7 @@ return {
         find_files = {
           hidden = true,
           follow_symlinks = false,
-        },
-        live_grep = {
-          additional_args = function()
-            return {
-              "--smart-case",
-              "--hidden",
-              "--glob=!**/.git/*",
-              "--glob=!**/node_modules/*",
-              "--glob=!**/.cache/*",
-            }
-          end,
-        },
-        grep_string = {
-          additional_args = function()
-            return {
-              "--smart-case",
-              "--hidden",
-              "--glob=!**/.git/*",
-              "--glob=!**/node_modules/*",
-              "--glob=!**/.cache/*",
-            }
-          end,
+          find_command = { "fd", "--type", "f", "--hidden", "--color", "never" },
         },
       },
 
@@ -70,28 +49,6 @@ return {
         sorting_strategy = "ascending",
         initial_mode = "insert",
         path_display = { "truncate" },
-
-        file_ignore_patterns = {
-          "vendor/.*",
-          "%.git/.*",
-          "node_modules/.*",
-          "%.cache/.*",
-          "%.npm/.*",
-          "__pycache__/.*",
-          "%.pytest_cache/.*",
-          "%.tox/.*",
-          "%.coverage.*",
-          "coverage/.*",
-          "dist/.*",
-          "build/.*",
-          "target/.*",
-          "%.stack-work/.*",
-          "%.hg/.*",
-          "%.svn/.*",
-          "%.DS_Store",
-          "Thumbs%.db",
-          "tags",
-        },
 
         layout_config = {
           horizontal = {
@@ -109,19 +66,6 @@ return {
             width = 0.4,
             height = 0.4,
           },
-        },
-
-        -- Performance related settings
-        vimgrep_arguments = {
-          "rg",
-          "--color=never",
-          "--no-heading",
-          "--with-filename",
-          "--line-number",
-          "--column",
-          "--smart-case",
-          "--hidden",
-          "--glob=!**/.git/*",
         },
 
         preview = {
@@ -142,6 +86,19 @@ return {
             ["<S-Up>"] = require("telescope.actions").preview_scrolling_up,
           },
         },
+      },
+
+      vimgrep_arguments = {
+        "rg",
+        "--color=never",
+        "--no-heading",
+        "--with-filename",
+        "--line-number",
+        "--column",
+        "--smart-case",
+        "--hidden",
+        "--glob",
+        "!.git/**",
       },
 
       extensions_list = { "themes", "terms", "ui-select" },

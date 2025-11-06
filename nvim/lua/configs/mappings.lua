@@ -2,6 +2,12 @@
 
 local map = require "utils.map"
 
+map("n", "<A-t>", function()
+  vim.cmd "enew"
+  vim.cmd "terminal"
+  vim.cmd "startinsert"
+end, { desc = "New Terminal Buffer" })
+
 map("n", "<C-w><S-Left>", "<C-w>H", { desc = "Move split left" })
 map("n", "<C-w><S-Down>", "<C-w>J", { desc = "Move split down" })
 map("n", "<C-w><S-Up>", "<C-w>K", { desc = "Move split up" })
