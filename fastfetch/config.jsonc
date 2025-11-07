@@ -2,17 +2,17 @@
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
     "type": "auto",
-    "source": "./cat.txt",
+    "source": "~/.config/fastfetch/cat.txt",
     "color": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": "",
-      "5": "",
-      "6": "",
-      "7": "",
-      "8": "",
-      "9": ""
+      "1": "default",
+      "2": "default",
+      "3": "default",
+      "4": "default",
+      "5": "default",
+      "6": "default",
+      "7": "default",
+      "8": "default",
+      "9": "default"
     },
     "width": null,
     "height": null,
@@ -38,10 +38,10 @@
     "hideCursor": false,
     "separator": " ",
     "color": {
-      "keys": "",
-      "title": "",
-      "output": "",
-      "separator": ""
+      "keys": "default",
+      "title": "default",
+      "output": "default",
+      "separator": "default"
     },
     "brightColor": true,
     "duration": {
@@ -58,7 +58,7 @@
       "unit": "D",
       "ndigits": 1,
       "color": {
-        "green": "32",
+        "green": "97",
         "yellow": "93",
         "red": "91"
       },
@@ -71,7 +71,7 @@
       ],
       "ndigits": 0,
       "color": {
-        "green": "32",
+        "green": "97",
         "yellow": "93",
         "red": "91"
       },
@@ -124,42 +124,54 @@
       "key": "",
       "keyIcon": "",
       "fqdn": false,
+      "keyColor": "default",
+      "outputColor": "default",
       "color": {
-        "user": "",
-        "at": "",
-        "host": ""
+        "user": "default",
+        "at": "default",
+        "host": "default"
       }
     },
     {
       "type": "separator",
       "string": "-",
-      "outputColor": ""
+      "outputColor": null
       // "length": "2" /
     },
     {
       "type": "os",
       "key": " ",
-      "keyIcon": ""
+      "keyIcon": "",
+      "keyColor": "default",
+      "outputColor": "default"
     },
     {
       "type": "host",
       "key": "󰌢 ",
-      "keyIcon": "󰌢"
+      "keyIcon": "󰌢",
+      "keyColor": "default",
+      "outputColor": "default"
     },
     {
       "type": "kernel",
       "key": " ",
-      "keyIcon": ""
+      "keyIcon": "",
+      "keyColor": "default",
+      "outputColor": "default"
     },
     {
       "type": "uptime",
       "key": " ",
-      "keyIcon": ""
+      "keyIcon": "",
+      "keyColor": "default",
+      "outputColor": "default"
     },
     {
       "type": "packages",
       "key": "󰏖 ",
       "keyIcon": "󰏖",
+      "keyColor": "default",
+      "outputColor": "default",
       "disabled": [
         "apk"
       ],
@@ -168,12 +180,16 @@
     {
       "type": "shell",
       "key": " ",
-      "keyIcon": ""
+      "keyIcon": "",
+      "keyColor": "default",
+      "outputColor": "default"
     },
     {
       "type": "display",
       "key": "󰍹 ",
       "keyIcon": "󰍹",
+      "keyColor": "default",
+      "outputColor": "default",
       "compactType": "none",
       "preciseRefreshRate": false
     },
@@ -181,53 +197,73 @@
       "type": "de",
       "key": " ",
       "keyIcon": "",
+      "keyColor": "default",
+      "outputColor": "default",
       "slowVersionDetection": false
     },
     {
       "type": "wm",
       "key": " ",
       "keyIcon": "",
+      "keyColor": "default",
+      "outputColor": "default",
       "detectPlugin": false
     },
     {
       "type": "wmtheme",
       "key": "󰓸 ",
-      "keyIcon": "󰓸"
+      "keyIcon": "󰓸",
+      "keyColor": "default",
+      "outputColor": "default"
     },
     {
       "type": "theme",
       "key": "󰉼 ",
-      "keyIcon": "󰉼"
+      "keyIcon": "󰉼",
+      "keyColor": "default",
+      "outputColor": "default"
     },
     {
       "type": "icons",
       "key": " ",
-      "keyIcon": ""
+      "keyIcon": "",
+      "keyColor": "default",
+      "outputColor": "default"
     },
     {
       "type": "font",
       "key": " ",
-      "keyIcon": ""
+      "keyIcon": "",
+      "keyColor": "default",
+      "outputColor": "default"
     },
     {
       "type": "cursor",
       "key": "󰆿 ",
-      "keyIcon": "󰆿"
+      "keyIcon": "󰆿",
+      "keyColor": "default",
+      "outputColor": "default"
     },
     {
       "type": "terminal",
       "key": " ",
-      "keyIcon": ""
+      "keyIcon": "",
+      "keyColor": "default",
+      "outputColor": "default"
     },
     {
       "type": "terminalfont",
       "key": " ",
-      "keyIcon": ""
+      "keyIcon": "",
+      "keyColor": "default",
+      "outputColor": "default"
     },
     {
       "type": "cpu",
       "key": " ",
       "keyIcon": "",
+      "keyColor": "default",
+      "outputColor": "default",
       "temp": false,
       "showPeCoreCount": false
     },
@@ -235,6 +271,8 @@
       "type": "gpu",
       "key": "󰾲 ",
       "keyIcon": "󰾲",
+      "keyColor": "default",
+      "outputColor": "default",
       "driverSpecific": false,
       "detectionMethod": "pci",
       "temp": false,
@@ -249,6 +287,8 @@
       "type": "memory",
       "key": " ",
       "keyIcon": "",
+      "keyColor": "default",
+      "outputColor": "default",
       "percent": {
         "green": 50,
         "yellow": 80,
@@ -264,12 +304,16 @@
       },
       "key": "󰓡 ",
       "keyIcon": "󰓡",
+      "keyColor": "default",
+      "outputColor": "default",
       "separate": false
     },
     {
       "type": "disk",
       "key": " ",
       "keyIcon": "",
+      "keyColor": "default",
+      "outputColor": "default",
       "showRegular": true,
       "showExternal": true,
       "showHidden": false,
@@ -290,6 +334,8 @@
       "type": "localip",
       "key": "󰩟 ",
       "keyIcon": "󰩟",
+      "keyColor": "default",
+      "outputColor": "default",
       "showIpv4": true,
       "showIpv6": false,
       "showMac": false,
@@ -307,6 +353,8 @@
       "type": "battery",
       "key": " ",
       "keyIcon": "",
+      "keyColor": "default",
+      "outputColor": "default",
       "temp": false,
       "percent": {
         "green": 50,
@@ -317,18 +365,23 @@
     {
       "type": "poweradapter",
       "key": "󰚥 ",
-      "keyIcon": "󰚥"
+      "keyIcon": "󰚥",
+      "keyColor": "default",
+      "outputColor": "default"
     },
     {
       "type": "locale",
       "key": " ",
-      "keyIcon": ""
+      "keyIcon": "",
+      "keyColor": "default",
+      "outputColor": "default"
     },
     "break",
     {
       "type": "colors",
       "key": " ",
       "keyIcon": "",
+      "keyColor": "default",
       "symbol": "block",
       "paddingLeft": 0,
       "block": {
