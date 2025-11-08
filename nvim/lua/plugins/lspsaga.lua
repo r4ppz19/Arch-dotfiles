@@ -6,7 +6,7 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
-    require("lspsaga").setup {
+    require("lspsaga").setup({
       hover = {
         max_width = 0.5,
       },
@@ -46,13 +46,13 @@ return {
         extend_relatedInformation = true,
         show_layout = "normal",
       },
-    }
+    })
 
     -- Lspsaga keymaps setup in LspAttach autocmd
     vim.api.nvim_create_autocmd("LspAttach", {
       callback = function(args)
         local buffer = args.buf
-        local map = require "utils.map"
+        local map = require("utils.map")
 
         -- map("n", "gr", "<cmd>Lspsaga finder<CR>", {
         --   buffer = buffer,

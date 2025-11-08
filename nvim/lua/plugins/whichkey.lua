@@ -3,8 +3,8 @@ return {
   event = "VeryLazy",
   cmd = "WhichKey",
   opts = function()
-    local wk = require "which-key"
-    wk.add {
+    local wk = require("which-key")
+    wk.add({
       { "<leader>l", group = "LSP", icon = "󰒋" },
       { "<leader>g", group = "Git", icon = "󰊢" },
       { "<leader>c", group = "Copilot", icon = "" },
@@ -19,7 +19,7 @@ return {
 
       { "<C-n>", desc = "Toggle NvimTree", icon = "󰙅" },
       { "<leader>e", desc = "Focus NvimTree", icon = "󰉋" },
-    }
+    })
 
     return {
       icons = {

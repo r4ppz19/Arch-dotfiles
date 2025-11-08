@@ -2,7 +2,7 @@ return {
   "RRethy/vim-illuminate",
   event = { "BufReadPost", "BufNewFile" },
   config = function()
-    require("illuminate").configure {
+    require("illuminate").configure({
       providers = {
         "lsp",
         "treesitter",
@@ -33,9 +33,9 @@ return {
       },
       min_count_to_highlight = 2,
       under_cursor = true,
-    }
+    })
 
-    local map = require "utils.map"
+    local map = require("utils.map")
     map("n", "[r", function()
       require("illuminate").goto_prev_reference()
     end, { desc = "Prev reference" })

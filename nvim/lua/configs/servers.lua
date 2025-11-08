@@ -20,9 +20,9 @@ function M.setup(capabilities)
         },
         workspace = {
           library = {
-            vim.fn.expand "$VIMRUNTIME/lua",
-            vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
-            vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
+            vim.fn.expand("$VIMRUNTIME/lua"),
+            vim.fn.stdpath("data") .. "/lazy/ui/nvchad_types",
+            vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
             "${3rd}/luv/library",
           },
           maxPreload = 1000,
@@ -128,7 +128,7 @@ function M.setup(capabilities)
         format = {
           enabled = true,
           settings = {
-            url = vim.fn.stdpath "config" .. "/java-formatter.xml",
+            url = vim.fn.stdpath("config") .. "/java-formatter.xml",
             profile = "GoogleStyle",
           },
         },

@@ -54,7 +54,7 @@ return {
   },
 
   config = function()
-    local server_configs = require "configs.servers"
+    local server_configs = require("configs.servers")
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
     capabilities.textDocument.completion.completionItem =
       vim.tbl_deep_extend("force", capabilities.textDocument.completion.completionItem or {}, {

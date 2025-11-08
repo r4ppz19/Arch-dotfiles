@@ -23,7 +23,7 @@ autocmd("BufWinEnter", {
   pattern = "*.txt",
   callback = function()
     if vim.bo.buftype == "help" then
-      vim.cmd.wincmd "L"
+      vim.cmd.wincmd("L")
     end
   end,
 })

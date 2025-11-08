@@ -3,7 +3,7 @@ return {
   event = "BufReadPost",
   version = "*",
   config = function()
-    require("mini.surround").setup {
+    require("mini.surround").setup({
       mappings = {
         add = "<leader>sa", -- Add surrounding
         delete = "<leader>sd", -- Delete surrounding
@@ -15,6 +15,6 @@ return {
         suffix_last = "l", -- Suffix for "find previous"
         suffix_next = "n", -- Suffix for "find next"
       },
-    }
+    })
   end,
 }

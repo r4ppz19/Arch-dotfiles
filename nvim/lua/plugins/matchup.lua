@@ -8,10 +8,10 @@ return {
     vim.g.matchup_text_obj_enabled = 1
 
     pcall(function()
-      require("nvim-treesitter.configs").setup {
+      require("nvim-treesitter.configs").setup({
         highlight = { enable = true },
         matchup = { enable = true },
-      }
+      })
     end)
 
     vim.api.nvim_set_hl(0, "MatchParen", {
@@ -34,7 +34,7 @@ return {
       bg = "#444444",
     })
 
-    local map = require "utils.map"
+    local map = require("utils.map")
     map({ "n", "x", "o", "v" }, "~", "<Plug>(matchup-%)", { desc = "Jump to matching pair" })
   end,
 }

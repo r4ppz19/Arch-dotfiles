@@ -104,14 +104,14 @@ return {
       extensions_list = { "themes", "terms", "ui-select" },
       extensions = {
         ["ui-select"] = {
-          require("telescope.themes").get_dropdown {},
+          require("telescope.themes").get_dropdown({}),
         },
       },
     }
   end,
 
   config = function(_, opts)
-    local telescope = require "telescope"
+    local telescope = require("telescope")
     telescope.setup(opts)
 
     for _, ext in ipairs(opts.extensions_list or {}) do

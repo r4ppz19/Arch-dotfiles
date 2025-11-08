@@ -47,7 +47,7 @@ return {
     {
       "gr",
       function()
-        require("trouble").open { mode = "lsp_references" }
+        require("trouble").open({ mode = "lsp_references" })
       end,
       desc = "LSP References (Trouble)",
     },
@@ -55,45 +55,45 @@ return {
     {
       "<leader>ld",
       function()
-        require("trouble").toggle "diagnostics"
+        require("trouble").toggle("diagnostics")
       end,
       desc = "Diagnostics (Trouble)",
     },
     {
       "<leader>lD",
       function()
-        require("trouble").toggle {
+        require("trouble").toggle({
           mode = "diagnostics",
           workspace = true,
-        }
+        })
       end,
       desc = "Workspace Diagnostics (Trouble)",
     },
     {
       "<leader>lf",
       function()
-        require("trouble").toggle "qflist"
+        require("trouble").toggle("qflist")
       end,
       desc = "Quickfix List (Trouble)",
     },
     {
       "<leader>ll",
       function()
-        require("trouble").toggle "loclist"
+        require("trouble").toggle("loclist")
       end,
       desc = "Location List (Trouble)",
     },
     {
       "<leader>lq",
       function()
-        require("trouble").toggle "qflist"
+        require("trouble").toggle("qflist")
       end,
       desc = "Quickfix (Trouble)",
     },
     {
       "<leader>lt",
       function()
-        require("trouble").toggle "telescope"
+        require("trouble").toggle("telescope")
       end,
       desc = "Telescope Results (Trouble)",
     },

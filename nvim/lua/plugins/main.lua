@@ -12,7 +12,7 @@ return {
     "nvchad/ui",
     lazy = false,
     config = function()
-      require "nvchad"
+      require("nvchad")
     end,
   },
 
@@ -37,7 +37,7 @@ return {
         "<RightMouse>",
         function()
           require("menu.utils").delete_old_menus()
-          vim.cmd.normal { args = { "<RightMouse>" }, bang = true }
+          vim.cmd.normal({ args = { "<RightMouse>" }, bang = true })
           local winid = vim.fn.getmousepos().winid
           if winid == 0 then
             winid = vim.api.nvim_get_current_win()

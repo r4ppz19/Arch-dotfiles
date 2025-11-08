@@ -44,11 +44,11 @@ return {
 
   config = function(_, opts)
     require("gitsigns").setup(opts)
-    local map = require "utils.map"
+    local map = require("utils.map")
 
     -- nvchad terminal lazygit toggle
     map({ "n", "t" }, "<A-g>", function()
-      require("nvchad.term").toggle {
+      require("nvchad.term").toggle({
         id = "lazygit",
         pos = "float",
         cmd = "lazygit",
@@ -60,7 +60,7 @@ return {
           height = 0.8,
           border = "single",
         },
-      }
+      })
     end, { desc = "Toggle LazyGit terminal (Telescope)" })
 
     -- diff view
@@ -71,10 +71,10 @@ return {
 
     -- gitsign navigation
     map("n", "]c", function()
-      require("gitsigns").nav_hunk "next"
+      require("gitsigns").nav_hunk("next")
     end, { desc = "Next Git Hunk (GitSign)" })
     map("n", "[c", function()
-      require("gitsigns").nav_hunk "prev"
+      require("gitsigns").nav_hunk("prev")
     end, { desc = "Previous Git Hunk (GitSign)" })
 
     -- stage hunk/buffer
@@ -101,7 +101,7 @@ return {
       require("gitsigns").preview_hunk_inline()
     end, { desc = "Preview Hunk Inline (GitSign)" })
     map("n", "<leader>gb", function()
-      require("gitsigns").blame_line { full = true }
+      require("gitsigns").blame_line({ full = true })
     end, { desc = "Blame Line (GitSign)" })
 
     -- diff hunk/head
@@ -109,7 +109,7 @@ return {
       require("gitsigns").diffthis()
     end, { desc = "Diff Hunk GitSign (GitSign)" })
     map("n", "<leader>gD", function()
-      require("gitsigns").diffthis "~"
+      require("gitsigns").diffthis("~")
     end, { desc = "Diff With HEAD (GitSign)" })
   end,
 }

@@ -1,6 +1,6 @@
-local dedent = require "utils.dedent"
+local dedent = require("utils.dedent")
 
-local system_prompt = dedent [[
+local system_prompt = dedent([[
   You are Jarvis — a personal AI engineering assistant.
   Your purpose is to mentor and guide r4ppz toward becoming a professional software engineer.
 
@@ -62,22 +62,22 @@ local system_prompt = dedent [[
 
   When resources (like buffers, files, or diffs) change, their content in the chat history is
   replaced with the latest version rather than appended as new data.
-  ]]
+  ]])
 
 local prompts = {
   ExplainV2 = {
-    prompt = dedent [[
+    prompt = dedent([[
       #selection
       Provide a detailed explanation of the selected code.
       - Include syntax, semantics, conventions, and idioms.
       - Explain what each construct does and why it’s used.
       - Clarify both intent and behavior precisely.
-    ]],
+    ]]),
     description = "Explicate code syntax",
   },
 
   ExplainHighLevel = {
-    prompt = dedent [[
+    prompt = dedent([[
       #selection
       #buffer (additional context)
       Provide a **high-level conceptual explanation** of the selected code in [language/framework]:
@@ -85,12 +85,12 @@ local prompts = {
       - Describe the main logical flow and major components or modules.
       - Explain its design intent and how it fits into common architectural or usage patterns.
       - Avoid syntax-level details; focus on design, purpose, and interactions.
-    ]],
+    ]]),
     description = "Explain code conceptually",
   },
 
   Explain = {
-    prompt = dedent [[
+    prompt = dedent([[
       #selection
       #buffer (additional context)
       Provide a **mid-level explanation** of the selected code in [language/framework]:
@@ -98,12 +98,12 @@ local prompts = {
       - Explain how each major construct or function contributes to behavior.
       - Highlight important syntax, patterns, and idioms without excessive granularity.
       - Clarify both **what** the code does and **how** it achieves that behavior.
-    ]],
+    ]]),
     description = "Explain code at an intermediate",
   },
 
   ExplainLowLevel = {
-    prompt = dedent [[
+    prompt = dedent([[
       #selection
       #buffer (additional context)
       Provide a **low-level, technical explanation** of the selected code in [language/framework]:
@@ -111,12 +111,12 @@ local prompts = {
       - Explain semantics, runtime behavior, and evaluation order.
       - Discuss data types, structures, and their interactions in detail.
       - Highlight idioms, pitfalls, and low-level implementation effects.
-    ]],
+    ]]),
     description = "Explain code line-by-line",
   },
 
   Review = {
-    prompt = dedent [[
+    prompt = dedent([[
       #selection (preferred)
       #buffer (additional context)
       Perform a **comprehensive code review**:
@@ -124,12 +124,12 @@ local prompts = {
       - Categorize findings by severity (Critical / Warning / Suggestion).
       - Evaluate correctness, safety, readability, and maintainability.
       - Suggest concrete fixes or improvements with brief explanations.
-    ]],
+    ]]),
     description = "Perform a detailed review",
   },
 
   Fix = {
-    prompt = dedent [[
+    prompt = dedent([[
       #buffers
       #diagnostics:current
       Identify and fix all issues in the given code.
@@ -138,47 +138,47 @@ local prompts = {
       - Justify each fix concisely with technical reasoning.
       - Prioritize correctness, maintainability, and clarity.
       - If multiple solutions exist, choose the safest and most maintainable approach.
-    ]],
+    ]]),
     description = "Find, explain, and fix code issues",
   },
 
   Optimize = {
-    prompt = dedent [[
+    prompt = dedent([[
       #buffer
       Optimize the given code for performance and clarity.
       - Identify inefficiencies or redundant operations.
       - Suggest algorithmic or structural improvements.
       - Provide before/after examples with trade-offs explained.
       - Ensure optimizations do not compromise readability or maintainability.
-    ]],
+    ]]),
     description = "Optimize code",
   },
 
   Docs = {
-    prompt = dedent [[
+    prompt = dedent([[
       #selection
       Write documentation for the given code:
       - Explain its purpose, parameters, return values, and side effects.
       - Follow conventions of [language/framework].
       - Add concise examples or usage notes where relevant.
-    ]],
+    ]]),
     description = "Generate documentation comments",
   },
 
   Tests = {
-    prompt = dedent [[
+    prompt = dedent([[
       #selection
       Generate tests for the given code:
       - Cover normal, edge, and error cases.
       - Use the standard testing framework for [language/framework].
       - Ensure tests are maintainable, clear, and logically structured.
       - Include setup/teardown if necessary.
-    ]],
+    ]]),
     description = "Generate tests for the selected code",
   },
 
   Commit = {
-    prompt = dedent [[
+    prompt = dedent([[
       #gitstatus
       #gitdiff:staged
       Write a commit message following **Conventional Commit** conventions:
@@ -187,36 +187,36 @@ local prompts = {
       - Add an optional detailed body if necessary.
       - Reference issues or PRs when applicable.
       - If changes are unrelated, suggest splitting commits.
-    ]],
+    ]]),
     description = "Generate commit messages",
   },
 
   Idiomatic = {
-    prompt = dedent [[
+    prompt = dedent([[
       #selection (preferred)
       #buffer (additional context)
       Review the given code for idiomatic style and conventions:
       - Assess adherence to community standards and best practices.
       - Identify non-idiomatic constructs and suggest more conventional alternatives.
       - Explain briefly why each alternative is preferred.
-    ]],
+    ]]),
     description = "Suggest idiomatic improvements",
   },
 
   Suggest = {
-    prompt = dedent [[
+    prompt = dedent([[
       #selection (preferred)
       #buffer (additional context)
       Suggest alternative implementations or designs for the given code:
       - Consider readability, safety, maintainability, and performance.
       - Propose concrete alternative examples with short reasoning.
       - Discuss trade-offs and migration complexity when relevant.
-    ]],
+    ]]),
     description = "Suggest alternative implementations",
   },
 
   Diagnostic = {
-    prompt = dedent [[
+    prompt = dedent([[
       #diagnostics:current (preferred)
       #buffer (additional context)
       Analyze diagnostics and source code:
@@ -224,12 +224,12 @@ local prompts = {
       - Explain root causes and contributing factors.
       - Show specific fixes and demonstrate corrected code.
       - Suggest preventive best practices to avoid similar issues.
-    ]],
+    ]]),
     description = "Analyze diagnostic data",
   },
 
   Refactor = {
-    prompt = dedent [[
+    prompt = dedent([[
       #selection
       Refactor the given code for better structure and maintainability:
       - Improve naming, modularity, and organization.
@@ -237,7 +237,7 @@ local prompts = {
       - Preserve the original behavior and functionality.
       - Apply clean code principles and idiomatic patterns.
       - Ensure the refactored code is easier to read, test, and extend.
-    ]],
+    ]]),
     description = "Refactor code",
   },
 }

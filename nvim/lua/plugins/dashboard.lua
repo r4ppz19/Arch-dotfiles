@@ -45,7 +45,7 @@ return {
   lazy = false,
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
-    require("dashboard").setup {
+    require("dashboard").setup({
       theme = "hyper",
       hide = {
         tabline = true,
@@ -61,6 +61,6 @@ return {
         shortcut = {},
         footer = {},
       },
-    }
+    })
   end,
 }

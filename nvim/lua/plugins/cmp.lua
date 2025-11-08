@@ -11,13 +11,13 @@ return {
         require("luasnip").config.set_config(opts)
 
         -- vscode format
-        require("luasnip.loaders.from_vscode").lazy_load {
+        require("luasnip.loaders.from_vscode").lazy_load({
           exclude = vim.g.vscode_snippets_exclude or {},
-        }
+        })
         if vim.g.vscode_snippets_path and vim.g.vscode_snippets_path ~= "" then
-          require("luasnip.loaders.from_vscode").lazy_load {
+          require("luasnip.loaders.from_vscode").lazy_load({
             paths = vim.g.vscode_snippets_path,
-          }
+          })
         end
 
         -- snipmate format
@@ -39,7 +39,7 @@ return {
         require("nvim-autopairs").setup(opts)
 
         -- setup cmp for autopairs
-        local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
         require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
       end,
     },
@@ -55,7 +55,7 @@ return {
     },
   },
   opts = function()
-    local cmp = require "cmp"
+    local cmp = require("cmp")
 
     local options = {
       completion = { completeopt = "menu,menuone,noselect" },
@@ -67,7 +67,7 @@ return {
       },
 
       enabled = function()
-        local disabled_filetypes = { 'copilot-chat', 'TelescopePrompt' }
+        local disabled_filetypes = { "copilot-chat", "TelescopePrompt" }
         local filetype = vim.bo.filetype
         for _, disabled_ft in ipairs(disabled_filetypes) do
           if filetype == disabled_ft then
@@ -85,10 +85,10 @@ return {
         ["<C-S-Down>"] = cmp.mapping.complete(),
         ["<C-c>"] = cmp.mapping.close(),
 
-        ["<CR>"] = cmp.mapping.confirm {
+        ["<CR>"] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Insert,
           select = false,
-        },
+        }),
 
         -- NOTE: might need later? idk
         -- ["<fuckingannoyingpieceofshit>"] = cmp.mapping(function(fallback)
@@ -126,7 +126,7 @@ return {
       },
     }
 
-    options = vim.tbl_deep_extend("force", options, require "nvchad.cmp")
+    options = vim.tbl_deep_extend("force", options, require("nvchad.cmp"))
     cmp.setup(options)
   end,
 }
