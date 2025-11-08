@@ -1,0 +1,48 @@
+#!/bin/bash
+set -euo pipefail
+
+LOCKFILE="/tmp/screenshot.lock"
+SCREENSHOT_DIR="$HOME/Pictures/screenshot"
+TIMESTAMP="$(date +%Y-%m-%d_%H-%M-%S)"
+FILENAME="$SCREENSHOT_DIR/screenshot_${TIMESTAMP}.png"
+
+# Lock to prevent concurrent screenshots
+exec 200>"$LOCKFILE"
+flock -n 200 || {
+  notify-send -h boolean:transient:true \
+    "Screenshot Already Running" \
+    "Please wait for the current process to finish." \
+    -i dialog-warning
+  exit 1
+}
+
+# Ensure dependencies are available
+for cmd in grim; do
+  if ! command -v "$cmd" &>/dev/null; then
+    notify-send -h boolean:transient:true \
+      "Screenshot Failed" \
+      "Missing dependency: $cmd" \
+      -i dialog-error
+    exit 1
+  fi
+done
+
+mkdir -p "$SCREENSHOT_DIR"
+
+# Take the full screen screenshot
+grim "$FILENAME"
+
+# Validate result
+if [[ -s "$FILENAME" ]]; then
+  notify-send -h boolean:transient:true \
+    "Screenshot Taken" \
+    "Full screen saved to: $FILENAME" \
+    -i camera
+  exit 0
+else
+  notify-send -h boolean:transient:true \
+    "Screenshot Failed" \
+    "Could not save the screenshot." \
+    -i dialog-error
+  exit 1
+fi
