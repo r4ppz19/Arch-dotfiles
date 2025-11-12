@@ -44,8 +44,8 @@ map("n", "s", "<nop>", { desc = "Disable s to avoid accidental edits" })
 map("n", "q", "<Nop>", { desc = "Disable recording macro (q)" })
 map("n", "Q", "<Nop>", { desc = "Disable Ex mode (Q)" })
 
-map({ "n", "v" }, "<C-M-Left>", "^", { desc = "Jump to first non-blank character of the line" })
-map({ "n", "v" }, "<C-M-Right>", "g_", { desc = "Jump to last non-blank character of line" })
+map({ "n", "v" }, "!", "^", { desc = "Jump to first non-blank character of the line" })
+map({ "n", "v" }, "@", "g_", { desc = "Jump to last non-blank character of line" })
 
 -- map({ "n", "v" }, "<S-Left>", "B", { desc = "Move to the beginning of the word" })
 -- map({ "n", "v" }, "<S-Right>", "E", { desc = "Move to the end of the word" })
