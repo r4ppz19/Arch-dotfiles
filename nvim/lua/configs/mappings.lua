@@ -22,6 +22,8 @@ map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "Copy whole file" })
 
 map("n", "<leader><Up>", "O", { desc = "Insert above" })
 map("n", "<leader><Down>", "o", { desc = "Insert below" })
+map("n", "<C-M-Up>", "O", { desc = "Insert above" })
+map("n", "<C-M-Down>", "o", { desc = "Insert below" })
 
 map("n", "<leader>,", "u", { desc = "Undo" })
 map("n", "<leader>.", "<C-r>", { desc = "Redo" })
@@ -106,8 +108,8 @@ map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
 map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
 
 -- NVCHAD
-map("n", "<leader>nc", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
-map("n", "<leader>nt", function()
+map("n", "<leader>vc", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
+map("n", "<leader>vt", function()
   require("nvchad.themes").open()
 end, { desc = "telescope nvchad themes" })
 
@@ -126,13 +128,20 @@ for i, mark in ipairs(marks) do
 end
 
 -- Buffers (tabufline)
-map("n", "<leader>b", "<cmd>enew<CR>", { desc = "Buffer new" })
 
-map({ "n" }, "<S-Right>", function()
+map("n", "<leader>n", "<cmd>enew<CR>", { desc = "Buffer new" })
+
+map({ "n" }, "<leader><Right>", function()
   require("nvchad.tabufline").next()
 end, { desc = "Buffer goto next" })
+map({ "n" }, "<leader><Left>", function()
+  require("nvchad.tabufline").prev()
+end, { desc = "Buffer goto prev" })
 
-map({ "n" }, "<S-Left>", function()
+map({ "n" }, "<C-M-Right>", function()
+  require("nvchad.tabufline").next()
+end, { desc = "Buffer goto next" })
+map({ "n" }, "<C-M-Left>", function()
   require("nvchad.tabufline").prev()
 end, { desc = "Buffer goto prev" })
 

@@ -34,7 +34,7 @@ return {
   },
   keys = {
     {
-      "<leader>pf",
+      "<leader>of",
       function()
         require("conform").format({ lsp_fallback = true })
       end,

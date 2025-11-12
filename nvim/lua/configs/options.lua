@@ -50,7 +50,7 @@ o.timeoutlen = 400
 o.undofile = true
 
 -- performance
-o.updatetime = 250
+o.updatetime = 300
 o.lazyredraw = true
 o.ttyfast = true
 o.fdo = "search,tag,insert,undo"

@@ -9,13 +9,13 @@ return {
       { "<leader>g", group = "Git", icon = "󰊢" },
       { "<leader>c", group = "Copilot", icon = "" },
       { "<leader>f", group = "Telescope", icon = "󰭎" },
-      { "<leader>n", group = "NvChad", icon = "" },
-      { "<leader>p", group = "Others", icon = "󰏖" },
-      { "<leader>w", group = "WhichKey", icon = "󰘳" },
+      { "<leader>v", group = "NvChad", icon = "" },
+      { "<leader>o", group = "Others", icon = "󰏖" },
       { "<leader>t", group = "Tabs", icon = "" },
       { "<leader>F", group = "Grep", icon = "󰘳" },
       { "<leader>s", group = "Surround", icon = "" },
       { "<leader>d", group = "Diff", icon = "" },
+      { "<leader>b", group = "Buffer", icon = "" },
 
       { "<C-n>", desc = "Toggle NvimTree", icon = "󰙅" },
       { "<leader>e", desc = "Focus NvimTree", icon = "󰉋" },
@@ -43,6 +43,6 @@ return {
   end,
 
   keys = {
-    { "<leader>pw", "<cmd>WhichKey<CR>", desc = "whichkey all keymaps" },
+    { "<leader>ow", "<cmd>WhichKey<CR>", desc = "whichkey all keymaps" },
   },
 }

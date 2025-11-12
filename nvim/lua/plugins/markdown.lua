@@ -10,7 +10,7 @@ return {
     build = "cd app && yarn install",
     keys = {
       {
-        "<leader>pm",
+        "<leader>om",
         "<cmd>MarkdownPreview<cr>",
         desc = "Markdown preview",
       },
