@@ -11,6 +11,7 @@ create_tmux_session() {
   tmux new-window -t "$session:" -n "QWENF"
   tmux new-window -t "$session:" -n "BACK"
   tmux new-window -t "$session:" -n "QWENB"
+  tmux new-window -t "$session:" -n "CMD"
 
   tmux send-keys -t "$session:FRONT" "cd ${FRONTDIR}; nvim" C-m
   tmux send-keys -t "$session:QWENF" "cd ${FRONTDIR}; qwen" C-m
