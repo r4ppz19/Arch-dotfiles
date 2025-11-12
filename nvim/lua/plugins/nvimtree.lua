@@ -3,7 +3,11 @@ return {
   cmd = { "NvimTreeToggle", "NvimTreeFocus" },
   opts = function()
     return {
-      filters = { dotfiles = false },
+      filters = {
+        dotfiles = false,
+        git_ignored = false,
+        custom = {},
+      },
       disable_netrw = true,
       hijack_cursor = true,
       sync_root_with_cwd = true,
