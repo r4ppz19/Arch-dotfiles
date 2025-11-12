@@ -2,11 +2,22 @@
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
+
 # Custom:
 [[mgr.prepend_keymap]]
-on = "<Right>"
+on = "U"
+run = "plugin restore -- --interactive"
+desc = "Restore deleted files/folders (Interactive)"
+
+[[mgr.prepend_keymap]]
+on = "u"
+run = "plugin restore"
+desc = "Restore last deleted files/folders"
+
+[[mgr.prepend_keymap]]
+on = "<right>"
 run = "plugin smart-enter"
-desc = "Enter the child directory, or open the file"
+desc = "enter the child directory, or open the file"
 
 [[mgr.prepend_keymap]]
 on = "y"
