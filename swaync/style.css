@@ -86,7 +86,7 @@ scrollbar slider {
   border: var(--border-width) solid var(--border);
   transition: background var(--transition);
   background: var(--bg-1);
-  padding: 2px 4px;
+  padding: 2px;
 }
 
 .notification-row .notification-background .notification.low {
@@ -278,18 +278,12 @@ scrollbar slider {
   background-color: var(--bg-1);
 }
 
-.notification-group.collapsed
-  .notification-row:not(:last-child)
-  .notification-action,
-.notification-group.collapsed
-  .notification-row:not(:last-child)
-  .notification-default-action {
+.notification-group.collapsed .notification-row:not(:last-child) .notification-action,
+.notification-group.collapsed .notification-row:not(:last-child) .notification-default-action {
   opacity: 1;
 }
 
-.notification-group.collapsed:hover
-  .notification-row:not(:only-child)
-  .notification {
+.notification-group.collapsed:hover .notification-row:not(:only-child) .notification {
   background-color: var(--bg-1);
 }
 
@@ -317,10 +311,7 @@ scrollbar slider {
     background var(--transition);
 }
 
-.control-center
-  .control-center-list
-  .notification
-  .notification-default-action:hover,
+.control-center .control-center-list .notification .notification-default-action:hover,
 .control-center .control-center-list .notification .notification-action:hover {
   background-color: var(--bg-1);
 }
