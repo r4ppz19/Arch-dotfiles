@@ -144,7 +144,6 @@ function M.setup(capabilities)
       bundles = {},
     },
     on_attach = function(client)
-      require("jdtls").setup_dap({ hotcodereplace = "auto" })
       client.server_capabilities.semanticTokensProvider = nil
     end,
   })
