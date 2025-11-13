@@ -1,5 +1,10 @@
 local autocmd = vim.api.nvim_create_autocmd
 
+autocmd("FileType", {
+  pattern = { "copilot-chat", "NvimTree" },
+  command = "setlocal winfixwidth",
+})
+
 -- Indentation
 local four_space_langs = { "python", "java", "rust" }
 autocmd("FileType", {
