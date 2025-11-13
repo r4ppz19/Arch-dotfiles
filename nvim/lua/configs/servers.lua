@@ -56,24 +56,48 @@ function M.setup(capabilities)
   })
 
   -- Java LSP
-  local jdtls_capabilities = vim.deepcopy(capabilities)
-  jdtls_capabilities.textDocument.semanticTokens = vim.NIL
+  local function find_jdtls_cmd()
+    local path = vim.fn.exepath("jdtls") or ""
+    if path ~= "" and vim.loop.fs_stat(path) then
+      return { path }
+    end
+    local mason_bin = (vim.fn.stdpath("data") or "") .. "/mason/bin/jdtls"
+    if mason_bin ~= "" and vim.loop.fs_stat(mason_bin) then
+      return { mason_bin }
+    end
+    local mason_pkg_jdtls = (vim.fn.stdpath("data") or "") .. "/mason/packages/jdtls/extension/bin/jdtls"
+    if mason_pkg_jdtls ~= "" and vim.loop.fs_stat(mason_pkg_jdtls) then
+      return { mason_pkg_jdtls }
+    end
+    return { "jdtls" }
+  end
+
+  local function make_jdtls_workspace_dir()
+    local root_dir = vim.loop.cwd() or ""
+    local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
+    return (vim.fn.stdpath("data") or "") .. "/jdtls-workspace/" .. project_name
+  end
+
+  local jdtls_cmd = find_jdtls_cmd()
+  local workspace_dir = make_jdtls_workspace_dir()
+  if type(workspace_dir) ~= "string" then
+    workspace_dir = ""
+  end
+  vim.list_extend(jdtls_cmd, { "-data", workspace_dir })
+  local java_home = os.getenv("JAVA_HOME") or "/usr/lib/jvm/java-21-openjdk/"
 
   vim.lsp.config("jdtls", {
-    capabilities = jdtls_capabilities,
+    capabilities = capabilities,
+    cmd = jdtls_cmd,
     root_markers = { "pom.xml", "build.gradle", "build.gradle.kts", "settings.gradle", "gradlew", "mvnw" },
-    on_attach = function(client)
-      -- Forcefully disable semantic tokens if server ignores capability
-      client.server_capabilities.semanticTokensProvider = nil
-    end,
     settings = {
       java = {
-        home = "/usr/lib/jvm/java-21-openjdk/",
+        home = java_home,
         configuration = {
           runtimes = {
             {
               name = "JavaSE-21",
-              path = "/usr/lib/jvm/java-21-openjdk/",
+              path = java_home,
             },
           },
         },
@@ -131,10 +155,6 @@ function M.setup(capabilities)
         },
         format = {
           enabled = true,
-          settings = {
-            url = vim.fn.stdpath("config") .. "/java-formatter.xml",
-            profile = "GoogleStyle",
-          },
         },
         sources = {
           organizeImports = {
@@ -150,6 +170,12 @@ function M.setup(capabilities)
         },
       },
     },
+    init_options = {
+      bundles = {},
+    },
+    on_attach = function()
+      require("jdtls").setup_dap({ hotcodereplace = "auto" })
+    end,
   })
 
   -- CSS Modules
