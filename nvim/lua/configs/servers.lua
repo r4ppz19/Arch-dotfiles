@@ -56,39 +56,9 @@ function M.setup(capabilities)
   })
 
   -- Java LSP
-  local function find_jdtls_cmd()
-    local path = vim.fn.exepath("jdtls") or ""
-    if path ~= "" and vim.loop.fs_stat(path) then
-      return { path }
-    end
-    local mason_bin = (vim.fn.stdpath("data") or "") .. "/mason/bin/jdtls"
-    if mason_bin ~= "" and vim.loop.fs_stat(mason_bin) then
-      return { mason_bin }
-    end
-    local mason_pkg_jdtls = (vim.fn.stdpath("data") or "") .. "/mason/packages/jdtls/extension/bin/jdtls"
-    if mason_pkg_jdtls ~= "" and vim.loop.fs_stat(mason_pkg_jdtls) then
-      return { mason_pkg_jdtls }
-    end
-    return { "jdtls" }
-  end
-
-  local function make_jdtls_workspace_dir()
-    local root_dir = vim.loop.cwd() or ""
-    local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
-    return (vim.fn.stdpath("data") or "") .. "/jdtls-workspace/" .. project_name
-  end
-
-  local jdtls_cmd = find_jdtls_cmd()
-  local workspace_dir = make_jdtls_workspace_dir()
-  if type(workspace_dir) ~= "string" then
-    workspace_dir = ""
-  end
-  vim.list_extend(jdtls_cmd, { "-data", workspace_dir })
-  local java_home = os.getenv("JAVA_HOME") or "/usr/lib/jvm/java-21-openjdk/"
-
+  local java_home = os.getenv("JAVA_HOME")
   vim.lsp.config("jdtls", {
     capabilities = capabilities,
-    cmd = jdtls_cmd,
     root_markers = { "pom.xml", "build.gradle", "build.gradle.kts", "settings.gradle", "gradlew", "mvnw" },
     settings = {
       java = {
@@ -173,8 +143,9 @@ function M.setup(capabilities)
     init_options = {
       bundles = {},
     },
-    on_attach = function()
+    on_attach = function(client)
       require("jdtls").setup_dap({ hotcodereplace = "auto" })
+      client.server_capabilities.semanticTokensProvider = nil
     end,
   })
 
