@@ -44,13 +44,13 @@ return {
               symlink = "",
             },
             git = {
-              unstaged = "✗",
-              staged = "✓",
-              unmerged = "",
-              renamed = "➜",
-              untracked = "★",
-              deleted = "",
-              ignored = "◌",
+              unstaged = "",
+              staged = "󰸞",
+              unmerged = "",
+              renamed = "󰧆",
+              untracked = "󰓎",
+              deleted = "󰗨",
+              ignored = "",
             },
           },
         },
@@ -59,7 +59,7 @@ return {
   end,
 
   keys = {
-    { "<M-e>",     "<cmd>NvimTreeToggle<CR>", desc = "Toggle NvimTree " },
-    { "<leader>e", "<cmd>NvimTreeFocus<CR>",  desc = "Focus Nvimtree" },
+    { "<M-e>", "<cmd>NvimTreeToggle<CR>", desc = "Toggle NvimTree " },
+    { "<leader>e", "<cmd>NvimTreeFocus<CR>", desc = "Focus Nvimtree" },
   },
 }

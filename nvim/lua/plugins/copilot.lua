@@ -60,10 +60,10 @@ return {
 
   keys = {
     { "<leader>ci", "<cmd>CopilotChatIdiomatic<cr>", mode = { "n", "v" }, desc = "Check if code is idiomatic" },
-    { "<leader>ce", "<cmd>CopilotChatExplain<cr>",   mode = { "n", "v" }, desc = "Explain code" },
-    { "<leader>cs", "<cmd>CopilotChatSuggest<cr>",   mode = { "n", "v" }, desc = "Suggest alternatives" },
-    { "<M-c>",      "<cmd>CopilotChatToggle<cr>",    mode = { "n", "v" }, desc = "Toggle CopilotChat" },
-    { "<leader>cm", "<cmd>CopilotChatModels<cr>",    mode = { "n", "v" }, desc = "View/select available models" },
+    { "<leader>ce", "<cmd>CopilotChatExplain<cr>", mode = { "n", "v" }, desc = "Explain code" },
+    { "<leader>cs", "<cmd>CopilotChatSuggest<cr>", mode = { "n", "v" }, desc = "Suggest alternatives" },
+    { "<M-c>", "<cmd>CopilotChatToggle<cr>", mode = { "n", "v" }, desc = "Toggle CopilotChat" },
+    { "<leader>cm", "<cmd>CopilotChatModels<cr>", mode = { "n", "v" }, desc = "View/select available models" },
 
     {
       "<M-v>",

@@ -1,12 +1,12 @@
 local function map(mode, lhs, rhs, opts)
   if not mode then
-    error "map: 'mode' is required"
+    error("map: 'mode' is required")
   end
   if not lhs then
-    error "map: 'lhs' (key) is required"
+    error("map: 'lhs' (key) is required")
   end
   if not rhs then
-    error "map: 'rhs' (action) is required"
+    error("map: 'rhs' (action) is required")
   end
 
   opts = opts or {}
