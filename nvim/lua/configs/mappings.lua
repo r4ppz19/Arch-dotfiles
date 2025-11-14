@@ -113,6 +113,10 @@ map("n", "<leader>vt", function()
   require("nvchad.themes").open()
 end, { desc = "telescope nvchad themes" })
 
+-- UI
+map("n", "<leader>um", "<cmd>Mason<CR>", { desc = "Mason UI" })
+map("n", "<leader>ul", "<cmd>Lazy<CR>", { desc = "Lazy UI" })
+
 -- Tabs
 map("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "New tab" })
 map("n", "<leader>tX", "<cmd>tabonly<CR>", { desc = "Close all other tabs" })
