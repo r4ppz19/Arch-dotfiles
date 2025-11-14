@@ -13,6 +13,7 @@ declare -A sites=(
   [figma]="https://www.figma.com/"
   [olsis]="https://tsis.assumptiondavao.edu.ph/"
   [icon]="https://lucide.dev/icons/"
+  [read]="https://medium.com/"
 )
 
 query=$(rofi -dmenu -theme "$HOME/.config/rofi/websearch/main.rasi")
