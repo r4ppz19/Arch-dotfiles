@@ -59,7 +59,7 @@ return {
   end,
 
   keys = {
-    { "<M-e>", "<cmd>NvimTreeToggle<CR>", desc = "Toggle NvimTree " },
-    { "<leader>e", "<cmd>NvimTreeFocus<CR>", desc = "Focus Nvimtree" },
+    { "<M-e>",     "<cmd>NvimTreeToggle<CR>", desc = "Toggle NvimTree " },
+    { "<leader>e", "<cmd>NvimTreeFocus<CR>",  desc = "Focus Nvimtree" },
   },
 }
