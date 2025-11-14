@@ -38,7 +38,28 @@ return {
         find_files = {
           hidden = true,
           follow_symlinks = false,
-          find_command = { "fd", "--type", "f", "--hidden", "--exclude", ".git", "--color", "never" },
+          find_command = {
+            "fd",
+            "--type",
+            "f",
+            "--hidden",
+            "--exclude",
+            ".git",
+            "--exclude",
+            "node_modules",
+            "--exclude",
+            "target",
+            "--exclude",
+            "build",
+            "--exclude",
+            "dist",
+            "--exclude",
+            ".next",
+            "--exclude",
+            ".nuxt",
+            "--color",
+            "never",
+          },
         },
       },
 
@@ -99,12 +120,31 @@ return {
         "--hidden",
         "--glob",
         "!.git/**",
+        "--glob",
+        "!node_modules/**",
+        "--glob",
+        "!target/**",
+        "--glob",
+        "!build/**",
+        "--glob",
+        "!dist/**",
+        "--glob",
+        "!.next/**",
+        "--glob",
+        "!.nuxt/**",
       },
 
       extensions_list = { "themes", "terms", "ui-select" },
       extensions = {
         ["ui-select"] = {
           require("telescope.themes").get_dropdown({}),
+        },
+
+        fzf = {
+          fuzzy_matching = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = "smart_case",
         },
       },
     }
@@ -117,6 +157,7 @@ return {
     for _, ext in ipairs(opts.extensions_list or {}) do
       telescope.load_extension(ext)
     end
+    pcall(telescope.load_extension, "fzf")
   end,
 
   keys = {

@@ -2,8 +2,9 @@ return {
   "nvim-treesitter/nvim-treesitter",
   branch = "main",
   lazy = false,
-  opts = {
-    ensure_installed = {
+  config = function()
+    require("nvim-treesitter").setup()
+    local ensure_installed = {
       "luadoc",
       "printf",
       "vim",
@@ -41,23 +42,17 @@ return {
       "git_rebase",
       "gitignore",
       "gitattributes",
-    },
-  },
-  config = function(_, opts)
-    require('nvim-treesitter').setup()
+    }
 
-    local ensure_installed = opts.ensure_installed
-    if ensure_installed and #ensure_installed > 0 then
-      require('nvim-treesitter').install(ensure_installed)
-    end
+    require("nvim-treesitter").install(ensure_installed)
 
-    vim.api.nvim_create_autocmd('FileType', {
-      group = vim.api.nvim_create_augroup('TreesitterEnable', { clear = true }),
-      pattern = opts.ensure_installed,
+    vim.api.nvim_create_autocmd("FileType", {
+      group = vim.api.nvim_create_augroup("TreesitterEnable", { clear = true }),
+      pattern = ensure_installed,
       callback = function()
         local bufnr = 0
         pcall(vim.treesitter.start, bufnr)
-        if vim.bo[bufnr].indentkeys == '' then
+        if vim.bo[bufnr].indentkeys == "" then
           vim.bo[bufnr].indentexpr = 'v:lua.require"nvim-treesitter".indentexpr()'
         end
       end,
