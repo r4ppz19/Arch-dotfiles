@@ -2,6 +2,9 @@ local opt = vim.opt
 local o = vim.o
 local g = vim.g
 
+---@diagnostic disable-next-line: duplicate-set-field
+vim.deprecate = function(_, _, _) end
+
 o.autoread = true
 
 o.relativenumber = false
