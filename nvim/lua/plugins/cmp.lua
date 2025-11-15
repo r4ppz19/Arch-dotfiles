@@ -122,7 +122,6 @@ return {
         { name = "buffer" },
         { name = "nvim_lua" },
         { name = "async_path" },
-        { name = "treesitter" },
       },
     }
 
