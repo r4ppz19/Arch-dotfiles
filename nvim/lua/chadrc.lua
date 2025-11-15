@@ -55,7 +55,7 @@ M.term = {
 }
 
 M.lsp = {
-  signature = true,
+  signature = false,
 }
 
 M.colorify = {
