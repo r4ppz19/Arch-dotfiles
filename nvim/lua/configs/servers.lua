@@ -37,23 +37,24 @@ function M.setup(capabilities)
     },
   })
 
+  -- NOTE: I use typescript-tools now
   -- VTS LSP
-  vim.lsp.config("vtsls", {
-    filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
-    root_markers = { "package.json", "tsconfig.json", "jsconfig.json" },
-    capabilities = capabilities,
-    settings = {
-      typescript = {
-        tsserver = {
-          maxTsServerMemory = 2048,
-        },
-        format = { enable = false },
-      },
-      javascript = {
-        format = { enable = false },
-      },
-    },
-  })
+  -- vim.lsp.config("vtsls", {
+  --   filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+  --   root_markers = { "package.json", "tsconfig.json", "jsconfig.json" },
+  --   capabilities = capabilities,
+  --   settings = {
+  --     typescript = {
+  --       tsserver = {
+  --         maxTsServerMemory = 2048,
+  --       },
+  --       format = { enable = false },
+  --     },
+  --     javascript = {
+  --       format = { enable = false },
+  --     },
+  --   },
+  -- })
 
   -- Java LSP
   local java_home = os.getenv("JAVA_HOME")
@@ -222,9 +223,6 @@ function M.setup(capabilities)
         useFlatConfig = true,
       },
       format = false,
-    },
-    flags = {
-      debounce_text_changes = 500,
     },
   })
 
