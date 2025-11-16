@@ -157,10 +157,8 @@ local prompts = {
   Docs = {
     prompt = dedent([[
       #selection
-      Write documentation for the given code:
-      - Explain its purpose, parameters, return values, and side effects.
+      Write short and accurate documentation for the given code:
       - Follow conventions of [language/framework].
-      - Add concise examples or usage notes where relevant.
     ]]),
     description = "Generate documentation comments",
   },
