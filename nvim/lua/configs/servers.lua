@@ -63,7 +63,19 @@ function M.setup(capabilities)
     root_markers = { "pom.xml", "build.gradle", "build.gradle.kts", "settings.gradle", "gradlew", "mvnw" },
     settings = {
       java = {
-        home = java_home,
+        autobuild = {
+          enabled = true,
+        },
+        completion = {
+          favoriteStaticMembers = {
+            "org.junit.jupiter.api.Assertions.*",
+            "org.mockito.Mockito.*",
+            "org.hamcrest.MatcherAssert.assertThat",
+            "org.hamcrest.Matchers.*",
+          },
+          filteredTypes = { "com.sun.*", "java.awt.*", "jdk.*", "sun.*" },
+          importOrder = { "java", "javax", "com", "org", "lombok" },
+        },
         configuration = {
           runtimes = {
             {
@@ -72,27 +84,28 @@ function M.setup(capabilities)
             },
           },
         },
-        completion = {
-          importOrder = { "java", "javax", "com", "org", "lombok" },
-          favoriteStaticMembers = {
-            "org.junit.jupiter.api.Assertions.*",
-            "org.mockito.Mockito.*",
-            "org.hamcrest.MatcherAssert.assertThat",
-            "org.hamcrest.Matchers.*",
-          },
-          filteredTypes = {
-            "com.sun.*",
-            "java.awt.*",
-            "jdk.*",
-            "sun.*",
+        contentProvider = {
+          preferred = "fernflower",
+        },
+        format = {
+          enabled = true,
+        },
+        gradle = {
+          offline = true,
+          version = "8.5",
+          wrapper = {
+            enabled = true,
           },
         },
-        project = {
-          referencedLibraries = {
-            "lib/**/*.jar",
-            "./out/**/*.jar",
+        home = "/usr/lib/jvm/java-21-openjdk",
+        import = {
+          externalAnnotation = {
+            enabled = true,
           },
-          importPrompt = {
+          gradle = {
+            enabled = true,
+          },
+          maven = {
             enabled = true,
           },
         },
@@ -100,32 +113,14 @@ function M.setup(capabilities)
           downloadSources = true,
           updateSnapshots = true,
         },
-        gradle = {
-          version = "8.5",
-          wrapper = {
+        project = {
+          importPrompt = {
             enabled = true,
           },
-          offline = true,
-        },
-        autobuild = {
-          enabled = true,
-        },
-        import = {
-          maven = {
-            enabled = true,
-          },
-          gradle = {
-            enabled = true,
-          },
-          externalAnnotation = {
-            enabled = true,
-          },
+          referencedLibraries = { "lib/**/*.jar", "./out/**/*.jar" },
         },
         saveActions = {
           organizeImports = true,
-        },
-        format = {
-          enabled = true,
         },
         sources = {
           organizeImports = {
@@ -136,13 +131,7 @@ function M.setup(capabilities)
         typeHierarchy = {
           multipleInheritance = true,
         },
-        contentProvider = {
-          preferred = "fernflower",
-        },
       },
-    },
-    init_options = {
-      bundles = {},
     },
     on_attach = function(client)
       client.server_capabilities.semanticTokensProvider = nil
