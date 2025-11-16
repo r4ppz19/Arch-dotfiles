@@ -2,9 +2,6 @@ local opt = vim.opt
 local o = vim.o
 local g = vim.g
 
----@diagnostic disable-next-line: duplicate-set-field
-vim.deprecate = function(_, _, _) end
-
 o.autoread = true
 
 o.relativenumber = false
@@ -49,7 +46,7 @@ opt.shortmess:append("sI")
 o.signcolumn = "yes"
 o.splitbelow = true
 o.splitright = true
-o.timeoutlen = 400
+o.timeoutlen = 300
 o.undofile = true
 
 -- performance
