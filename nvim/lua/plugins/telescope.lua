@@ -2,9 +2,7 @@ return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "nvim-treesitter/nvim-treesitter",
     "nvim-telescope/telescope-ui-select.nvim",
-    "nvim-telescope/telescope-file-browser.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
   cmd = "Telescope",
@@ -38,6 +36,8 @@ return {
         find_files = {
           hidden = true,
           follow_symlinks = false,
+          limit = 1000,
+          no_ignore = true,
           find_command = {
             "fd",
             "--type",
@@ -65,23 +65,24 @@ return {
 
       defaults = {
         prompt_prefix = "   ",
-        selection_caret = " ",
+        selection_caret = " ",
         entry_prefix = " ",
         sorting_strategy = "ascending",
         initial_mode = "insert",
         path_display = { "truncate" },
 
+        layout_strategy = "horizontal",
         layout_config = {
           horizontal = {
             prompt_position = "top",
             preview_width = 0.55,
-            width = 0.87,
-            height = 0.80,
+            width = 0.50,
+            height = 0.75,
           },
           vertical = {
             mirror = false,
-            width = 0.95,
-            height = 0.95,
+            width = 0.50,
+            height = 0.50,
           },
           center = {
             width = 0.4,
@@ -89,14 +90,16 @@ return {
           },
         },
 
-        preview = {
-          timeout = 100,
-          delay = 0,
-          check_mime_type = true,
-        },
+        -- NOTE: disable preview cause its so slow
+        preview = false,
+        -- preview = {
+        --   timeout = 50,
+        --   delay = 0,
+        --   check_mime_type = true,
+        -- },
 
         git = {
-          max_count = 10000,
+          max_count = 1000,
         },
 
         mappings = {
@@ -134,14 +137,14 @@ return {
         "!.nuxt/**",
       },
 
-      extensions_list = { "themes", "terms", "ui-select" },
+      extensions_list = { "ui-select" },
       extensions = {
         ["ui-select"] = {
           require("telescope.themes").get_dropdown({}),
         },
 
         fzf = {
-          fuzzy_matching = true,
+          fuzzy = true,
           override_generic_sorter = true,
           override_file_sorter = true,
           case_mode = "smart_case",
@@ -178,6 +181,5 @@ return {
     { "<leader>fs", "<cmd>Telescope spell_suggest<CR>", desc = "Spell Suggest" },
     { "<leader>fq", "<cmd>Telescope quickfix<CR>", desc = "Quickfix List" },
     { "<leader>fl", "<cmd>Telescope loclist<CR>", desc = "Location List" },
-    { "<leader>fb", "<cmd>Telescope file_browser<CR>", desc = "File Browser" },
   },
 }
