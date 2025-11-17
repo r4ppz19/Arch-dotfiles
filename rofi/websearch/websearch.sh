@@ -14,6 +14,7 @@ declare -A sites=(
   [olsis]="https://tsis.assumptiondavao.edu.ph/"
   [icon]="https://lucide.dev/icons/"
   [read]="https://medium.com/"
+  [framer]="https://framer.com/projects/"
 )
 
 query=$(rofi -dmenu -theme "$HOME/.config/rofi/websearch/main.rasi")
