@@ -9,7 +9,7 @@ return {
     auto_preview = true,
     warn_no_results = false,
     open_no_results = false,
-    win = { position = "bottom", type = "split", size = 0.4 },
+    win = { position = "right", type = "split", size = 0.4 },
 
     preview = {
       type = "main",
@@ -18,6 +18,7 @@ return {
 
     modes = {
       diagnostics = {
+        win = { position = "bottom", type = "split", size = 0.4 },
         groups = {
           { "filename", format = "{file_icon} {basename:Title} {count}" },
         },
@@ -30,8 +31,8 @@ return {
         preview = {
           type = "split",
           relative = "win",
-          position = "right",
-          size = 0.5,
+          position = "bottom",
+          size = 0.4,
         },
       },
     },

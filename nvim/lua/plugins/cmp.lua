@@ -33,7 +33,7 @@ return {
       "windwp/nvim-autopairs",
       opts = {
         fast_wrap = {},
-        disable_filetype = { "TelescopePrompt", "vim" },
+        disable_filetype = { "TelescopePrompt", "vim", "copilot-chat" },
       },
       config = function(_, opts)
         require("nvim-autopairs").setup(opts)
@@ -67,14 +67,8 @@ return {
       },
 
       enabled = function()
-        local disabled_filetypes = { "copilot-chat", "TelescopePrompt" }
-        local filetype = vim.bo.filetype
-        for _, disabled_ft in ipairs(disabled_filetypes) do
-          if filetype == disabled_ft then
-            return false
-          end
-        end
-        return true
+        local ft = vim.bo.filetype
+        return ft ~= "copilot-chat" and ft ~= "TelescopePrompt"
       end,
 
       mapping = {

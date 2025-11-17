@@ -28,13 +28,13 @@ return {
         keys = {
           vsplit = "v",
           split = "s",
-          toggle_or_open = "<leader><Down>",
+          toggle_or_open = "<M-Down>",
           shuttle = "<S-Right>",
         },
       },
       definition = {
         keys = {
-          edit = "<leader><Down>",
+          edit = "<M-Down>",
           vsplit = "v",
           split = "s",
         },

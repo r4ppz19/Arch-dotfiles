@@ -16,6 +16,7 @@ return {
       { "<leader>s", group = "Surround", icon = "" },
       { "<leader>d", group = "Diff", icon = "" },
       { "<leader>b", group = "Buffer", icon = "" },
+      { "<leader>u", group = "UI", icon = "󰍹" },
 
       { "<C-n>", desc = "Toggle NvimTree", icon = "󰙅" },
       { "<leader>e", desc = "Focus NvimTree", icon = "󰉋" },

@@ -149,11 +149,19 @@ map({ "n" }, "<M-Left>", function()
   require("nvchad.tabufline").prev()
 end, { desc = "Buffer goto prev" })
 
+map("n", "<M-x>", function()
+  require("nvchad.tabufline").close_buffer()
+end, { desc = "Buffer close" })
+
 map("n", "<leader>x", function()
   require("nvchad.tabufline").close_buffer()
 end, { desc = "Buffer close" })
 
 map("n", "<leader>X", function()
+  require("nvchad.tabufline").closeAllBufs(false)
+end, { desc = "Close all buffers except current" })
+
+map("n", "<S-M-X>", function()
   require("nvchad.tabufline").closeAllBufs(false)
 end, { desc = "Close all buffers except current" })
 
