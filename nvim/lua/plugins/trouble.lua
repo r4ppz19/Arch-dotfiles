@@ -45,13 +45,13 @@ return {
   },
 
   keys = {
-    {
-      "gr",
-      function()
-        require("trouble").open({ mode = "lsp_references" })
-      end,
-      desc = "LSP References (Trouble)",
-    },
+    -- {
+    --   "gr",
+    --   function()
+    --     require("trouble").open({ mode = "lsp_references" })
+    --   end,
+    --   desc = "LSP References (Trouble)",
+    -- },
 
     {
       "<leader>ld",

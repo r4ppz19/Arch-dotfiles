@@ -18,17 +18,26 @@ return {
         sign_priority = 40,
       },
       ui = {
-        code_action = " ",
+        code_action = "",
         border = "single",
+        title = true,
+        expand = "",
+        collapse = "",
+        actionfix = " ",
+        lines = { "", "", "│", "", "" },
+        imp_sign = "󰳛 ",
       },
       finder = {
-        default = "ref+def",
-        layout = "float",
+        max_height = 0.4,
+        default = "ref+def+imp",
+        layout = "normal",
         silent = true,
+        right_width = 0.5,
+        left_width = 0.5,
         keys = {
           vsplit = "v",
           split = "s",
-          toggle_or_open = "<M-Down>",
+          toggle_or_open = "<CR>",
           shuttle = "<S-Right>",
         },
       },
@@ -45,6 +54,10 @@ return {
       diagnostic = {
         extend_relatedInformation = true,
         show_layout = "normal",
+        keys = {
+          quit = "<ESC>",
+          toggle_or_jump = "<CR>",
+        },
       },
     })
 
@@ -54,10 +67,10 @@ return {
         local buffer = args.buf
         local map = require("utils.map")
 
-        -- map("n", "gr", "<cmd>Lspsaga finder<CR>", {
-        --   buffer = buffer,
-        --   desc = "Find References",
-        -- })
+        map("n", "gr", "<cmd>Lspsaga finder<CR>", {
+          buffer = buffer,
+          desc = "Find References",
+        })
 
         map("n", "gd", "<cmd>Lspsaga goto_definition<CR>", {
           buffer = buffer,
@@ -105,7 +118,7 @@ return {
           desc = "Next Diagnostic",
         })
 
-        -- map("n", "<leader>ld", "<cmd>Lspsaga show_buf_diagnostics<CR>", {
+        -- map("n", "<leader>ld", "<cmd>Lspsaga show_buf_diagnostics ++unfocus<CR>", {
         --   buffer = buffer,
         --   desc = "Show Line Diagnostics",
         -- })
