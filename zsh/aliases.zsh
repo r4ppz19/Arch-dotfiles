@@ -20,6 +20,7 @@ alias news='clx -n'
 alias smb-start='sudo systemctl start smb.service nmb.service'
 alias smb-stop='sudo systemctl stop smb.service nmb.service'
 alias restore="gtrash r"
+alias q="qwen -p"
 
 # script
 alias of='~/Arch-dotfiles/scripts/open-file.sh'
