@@ -39,6 +39,7 @@ return {
           split = "s",
           toggle_or_open = "<CR>",
           shuttle = "<S-Right>",
+          quit = "q",
         },
       },
       definition = {
@@ -50,12 +51,13 @@ return {
       },
       rename = {
         in_select = false,
+        quit = "<ESC>",
       },
       diagnostic = {
         extend_relatedInformation = true,
         show_layout = "normal",
         keys = {
-          quit = "<ESC>",
+          quit = "q",
           toggle_or_jump = "<CR>",
         },
       },

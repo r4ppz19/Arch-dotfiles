@@ -7,6 +7,8 @@ return {
   },
   cmd = "Telescope",
   opts = function()
+    vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "NONE", fg = "NONE" })
+
     return {
       pickers = {
         spell_suggest = {
