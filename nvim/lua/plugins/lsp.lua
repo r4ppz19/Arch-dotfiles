@@ -3,9 +3,6 @@ local servers = {
   "cssls",
   "cssmodules_ls",
   "css_variables",
-  "eslint",
-  -- "vtsls",
-  -- "ts_ls",
   "jsonls",
   "marksman",
   "lua_ls",
@@ -18,6 +15,10 @@ local servers = {
   "clangd",
   "jdtls",
   "taplo",
+  -- old:
+  -- "eslint",
+  -- "vtsls",
+  -- "ts_ls",
 }
 
 return {
