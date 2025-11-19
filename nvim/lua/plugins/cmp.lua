@@ -51,7 +51,6 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "https://codeberg.org/FelipeLema/cmp-async-path.git",
-      "ray-x/cmp-treesitter",
     },
   },
   opts = function()
@@ -110,17 +109,20 @@ return {
         end, { "i", "s" }),
       },
 
-      sources = {
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "nvim_lua" },
-        { name = "async_path" },
-        { name = "treesitter" },
+      sources = cmp.config.sources({
+        { name = "nvim_lsp", priority = 10 },
+        { name = "luasnip", priority = 9 },
+        { name = "buffer", keyword_length = 3, max_item_count = 10 },
+        { name = "nvim_lua", priority = 7 },
+        { name = "async_path", priority = 6 },
+      }),
+
+      experimental = {
+        ghost_text = false,
       },
     }
 
-    options = vim.tbl_deep_extend("force", options, require("nvchad.cmp"))
+    options = vim.tbl_deep_extend("force", require("nvchad.cmp"), options)
     cmp.setup(options)
   end,
 }
