@@ -7,7 +7,7 @@ return {
   },
   cmd = "Telescope",
   opts = function()
-    vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "NONE", fg = "NONE" })
+    vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "#343434", fg = "NONE" })
 
     return {
       pickers = {
@@ -67,7 +67,7 @@ return {
 
       defaults = {
         prompt_prefix = "   ",
-        selection_caret = " ",
+        selection_caret = " ",
         entry_prefix = " ",
         sorting_strategy = "ascending",
         initial_mode = "insert",

@@ -76,6 +76,7 @@ function M.setup(capabilities)
           filteredTypes = { "com.sun.*", "java.awt.*", "jdk.*", "sun.*" },
           importOrder = { "java", "javax", "com", "org", "lombok" },
         },
+        home = java_home,
         configuration = {
           runtimes = {
             {
@@ -97,7 +98,6 @@ function M.setup(capabilities)
             enabled = true,
           },
         },
-        home = "/usr/lib/jvm/java-21-openjdk",
         import = {
           externalAnnotation = {
             enabled = true,
