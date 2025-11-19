@@ -8,7 +8,7 @@ return {
       { "<leader>l", group = "LSP", icon = "󰒋" },
       { "<leader>g", group = "Git", icon = "󰊢" },
       { "<leader>c", group = "Copilot", icon = "" },
-      { "<leader>f", group = "Telescope", icon = "󰭎" },
+      { "<leader>f", group = "Picker", icon = "󰭎" },
       { "<leader>v", group = "NvChad", icon = "" },
       { "<leader>o", group = "Others", icon = "󰏖" },
       { "<leader>t", group = "Tabs", icon = "" },

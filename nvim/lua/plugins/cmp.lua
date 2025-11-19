@@ -1,3 +1,4 @@
+-- This plugin is slow :(
 return {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
@@ -33,7 +34,7 @@ return {
       "windwp/nvim-autopairs",
       opts = {
         fast_wrap = {},
-        disable_filetype = { "TelescopePrompt", "vim", "copilot-chat" },
+        disable_filetype = { "TelescopePrompt", "vim" },
       },
       config = function(_, opts)
         require("nvim-autopairs").setup(opts)
@@ -55,6 +56,11 @@ return {
   },
   opts = function()
     local cmp = require("cmp")
+    local disabled_ft = {
+      ["TelescopePrompt"] = true,
+      ["snacks_picker_input"] = true,
+      ["copilot-chat"] = true,
+    }
 
     local options = {
       completion = { completeopt = "menu,menuone,noselect" },
@@ -66,8 +72,7 @@ return {
       },
 
       enabled = function()
-        local ft = vim.bo.filetype
-        return ft ~= "copilot-chat" and ft ~= "TelescopePrompt"
+        return not disabled_ft[vim.bo.filetype]
       end,
 
       mapping = {

@@ -49,6 +49,5 @@ return {
       end,
       desc = "Previous todo comment",
     },
-    { "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "Find TODOs" },
   },
 }

@@ -4,7 +4,6 @@ return {
   build = "make tiktoken",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope.nvim",
   },
 
   opts = function()
@@ -101,45 +100,6 @@ return {
       end,
       mode = { "n", "v" },
       desc = "Open chat with all buffers",
-    },
-
-    -- Pick files with Telescope and feed them as #file: paths
-    {
-      "<leader>cf",
-      function()
-        local builtin = require("telescope.builtin")
-        local actions = require("telescope.actions")
-        local action_state = require("telescope.actions.state")
-        local chat = require("CopilotChat")
-
-        builtin.find_files({
-          attach_mappings = function(prompt_bufnr, map)
-            local run = function()
-              local picker = action_state.get_current_picker(prompt_bufnr)
-              local multi = picker:get_multi_selection()
-              if #multi == 0 then
-                local entry = action_state.get_selected_entry()
-                multi = { entry }
-              end
-              local lines = {}
-              for _, entry in ipairs(multi) do
-                table.insert(lines, "#file:" .. entry.path)
-              end
-              actions.close(prompt_bufnr)
-              chat.open()
-              chat.chat:add_message({
-                role = "user",
-                content = table.concat(lines, "\n") .. "\n\n",
-              }, true)
-            end
-
-            map("i", "<CR>", run)
-            map("n", "<CR>", run)
-            return true
-          end,
-        })
-      end,
-      desc = "Pick files with Telescope",
     },
   },
 }
