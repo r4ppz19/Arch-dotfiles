@@ -5,6 +5,10 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
+    lazygit = {
+      enabled = true,
+    },
+
     picker = {
       enabled = true,
       win = {
@@ -40,6 +44,14 @@ return {
         Snacks.picker.grep()
       end,
       desc = "Grep (snacks)",
+    },
+
+    {
+      "<leader>fG",
+      function()
+        Snacks.picker.grep_buffers()
+      end,
+      desc = "Grep Buffers (snacks)",
     },
 
     {
@@ -80,6 +92,14 @@ return {
         Snacks.picker.buffers()
       end,
       desc = "Buffers (snacks)",
+    },
+
+    {
+      "<M-g>",
+      function()
+        Snacks.lazygit.open()
+      end,
+      desc = "Lazygit (snacks)",
     },
   },
 }

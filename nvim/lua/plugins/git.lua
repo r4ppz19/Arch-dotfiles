@@ -46,23 +46,6 @@ return {
     require("gitsigns").setup(opts)
     local map = require("utils.map")
 
-    -- nvchad terminal lazygit toggle
-    map({ "n", "t" }, "<A-g>", function()
-      require("nvchad.term").toggle({
-        id = "lazygit",
-        pos = "float",
-        cmd = "lazygit",
-        float_opts = {
-          relative = "editor",
-          row = 0.05,
-          col = 0.05,
-          width = 0.9,
-          height = 0.8,
-          border = "single",
-        },
-      })
-    end, { desc = "Toggle LazyGit terminal (Telescope)" })
-
     -- diff view
     map("n", "<leader>dd", "<cmd>DiffviewOpen<cr>", { desc = "Open Diffview" })
     map("n", "<leader>dx", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" })
