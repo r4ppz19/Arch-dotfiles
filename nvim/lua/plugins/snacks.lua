@@ -5,10 +5,6 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
-    lazygit = {
-      enabled = true,
-    },
-
     picker = {
       enabled = true,
       win = {
@@ -28,14 +24,14 @@ return {
       function()
         Snacks.picker.files()
       end,
-      desc = "Find Files (snacks)",
+      desc = "Find Files (Snacks)",
     },
     {
       "<leader>ff",
       function()
         Snacks.picker.smart()
       end,
-      desc = "Smart Find Files (snacks)",
+      desc = "Smart Find Files (Snacks)",
     },
 
     {
@@ -43,7 +39,7 @@ return {
       function()
         Snacks.picker.grep()
       end,
-      desc = "Grep (snacks)",
+      desc = "Grep (Snacks)",
     },
 
     {
@@ -51,7 +47,7 @@ return {
       function()
         Snacks.picker.grep_buffers()
       end,
-      desc = "Grep Buffers (snacks)",
+      desc = "Grep Buffers (Snacks)",
     },
 
     {
@@ -59,7 +55,7 @@ return {
       function()
         Snacks.picker.todo_comments()
       end,
-      desc = "Todo (snacks)",
+      desc = "Todo (Snacks)",
     },
 
     {
@@ -67,7 +63,7 @@ return {
       function()
         Snacks.picker.actions.help()
       end,
-      desc = "Help tags (snacks)",
+      desc = "Help tags (Snacks)",
     },
 
     {
@@ -75,7 +71,7 @@ return {
       function()
         Snacks.picker.man()
       end,
-      desc = "Man Pages (snacks)",
+      desc = "Man Pages (Snacks)",
     },
 
     {
@@ -83,7 +79,7 @@ return {
       function()
         Snacks.picker.lines()
       end,
-      desc = "Buffer Lines (snacks)",
+      desc = "Buffer Lines (Snacks)",
     },
 
     {
@@ -91,7 +87,7 @@ return {
       function()
         Snacks.picker.buffers()
       end,
-      desc = "Buffers (snacks)",
+      desc = "Buffers (Snacks)",
     },
 
     {
@@ -99,7 +95,7 @@ return {
       function()
         Snacks.lazygit.open()
       end,
-      desc = "Lazygit (snacks)",
+      desc = "Lazygit (Snacks)",
     },
   },
 }
