@@ -1,61 +1,61 @@
--- This plugin is slow :(
 return {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
   dependencies = {
     {
-      -- snippet plugin
       "L3MON4D3/LuaSnip",
+      event = "InsertEnter",
       dependencies = "rafamadriz/friendly-snippets",
-      opts = { history = true, updateevents = "TextChanged,TextChangedI" },
+
+      opts = {
+        history = true,
+        updateevents = "TextChanged,TextChangedI",
+      },
+
       config = function(_, opts)
-        require("luasnip").config.set_config(opts)
+        local ls = require("luasnip")
+        ls.config.set_config(opts)
 
-        -- vscode format
-        require("luasnip.loaders.from_vscode").lazy_load({
-          exclude = vim.g.vscode_snippets_exclude or {},
-        })
-        if vim.g.vscode_snippets_path and vim.g.vscode_snippets_path ~= "" then
-          require("luasnip.loaders.from_vscode").lazy_load({
-            paths = vim.g.vscode_snippets_path,
-          })
-        end
-
-        -- snipmate format
+        require("luasnip.loaders.from_vscode").lazy_load()
         require("luasnip.loaders.from_snipmate").lazy_load()
-
-        -- lua format
         require("luasnip.loaders.from_lua").lazy_load()
       end,
     },
 
-    -- autopairing of (){}[] etc
     {
       "windwp/nvim-autopairs",
+      event = "InsertEnter",
+
       opts = {
         fast_wrap = {},
         disable_filetype = { "TelescopePrompt", "vim" },
       },
-      config = function(_, opts)
-        require("nvim-autopairs").setup(opts)
 
-        -- setup cmp for autopairs
-        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-        require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+      config = function(_, opts)
+        local npairs = require("nvim-autopairs")
+        npairs.setup(opts)
+
+        -- Delay cmp integration so cmp doesn't load early
+        vim.defer_fn(function()
+          local ok_cmp, cmp = pcall(require, "cmp")
+          if ok_cmp then
+            local cmp_ap = require("nvim-autopairs.completion.cmp")
+            cmp.event:on("confirm_done", cmp_ap.on_confirm_done())
+          end
+        end, 50)
       end,
     },
 
-    -- cmp sources plugins
-    {
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "https://codeberg.org/FelipeLema/cmp-async-path.git",
-    },
+    { "hrsh7th/cmp-nvim-lsp", lazy = true },
+    { "hrsh7th/cmp-nvim-lua", ft = "lua" },
+    { "saadparwaiz1/cmp_luasnip", event = "InsertEnter" },
+    { "hrsh7th/cmp-buffer", event = "InsertEnter" },
+    { "https://codeberg.org/FelipeLema/cmp-async-path.git", event = "InsertEnter" },
   },
+
   opts = function()
     local cmp = require("cmp")
+
     local disabled_ft = {
       ["TelescopePrompt"] = true,
       ["snacks_picker_input"] = true,
@@ -65,15 +65,15 @@ return {
     local options = {
       completion = { completeopt = "menu,menuone,noselect" },
 
+      enabled = function()
+        return not disabled_ft[vim.bo.filetype]
+      end,
+
       snippet = {
         expand = function(args)
           require("luasnip").lsp_expand(args.body)
         end,
       },
-
-      enabled = function()
-        return not disabled_ft[vim.bo.filetype]
-      end,
 
       mapping = {
         ["<C-Up>"] = cmp.mapping.select_prev_item(),

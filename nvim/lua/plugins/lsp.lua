@@ -23,7 +23,7 @@ local servers = {
 
 return {
   "neovim/nvim-lspconfig",
-  event = { "BufReadPre", "BufNewFile" },
+  event = "FileType",
   dependencies = {
     {
       "mason-org/mason.nvim",
