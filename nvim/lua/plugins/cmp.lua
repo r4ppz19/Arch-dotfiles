@@ -35,14 +35,11 @@ return {
         local npairs = require("nvim-autopairs")
         npairs.setup(opts)
 
-        -- Delay cmp integration so cmp doesn't load early
-        vim.defer_fn(function()
-          local ok_cmp, cmp = pcall(require, "cmp")
-          if ok_cmp then
-            local cmp_ap = require("nvim-autopairs.completion.cmp")
-            cmp.event:on("confirm_done", cmp_ap.on_confirm_done())
-          end
-        end, 50)
+        local cmp_ok, cmp = pcall(require, "cmp")
+        if cmp_ok then
+          local cmp_ap = require("nvim-autopairs.completion.cmp")
+          cmp.event:on("confirm_done", cmp_ap.on_confirm_done())
+        end
       end,
     },
 
