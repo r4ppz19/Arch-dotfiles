@@ -18,12 +18,14 @@ declare -A sites=(
 )
 
 query=$(rofi -dmenu -theme "$HOME/.config/rofi/websearch/main.rasi")
+
 [ -z "$query" ] && exit
 
 url=${sites[$query]}
+
 if [ -n "$url" ]; then
   xdg-open "$url"
 else
-  encoded_query=$(echo "$query" | jq -s -R -r @uri)
-  xdg-open "https://www.google.com/search?q=${encoded_query}"
+  encoded_query=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote_plus(sys.argv[1]))" "$query")
+  xdg-open "https://search.brave.com/search?q=${encoded_query}"
 fi
