@@ -87,10 +87,10 @@ map(
   { desc = "Highlight selection (no jump)" }
 )
 
-map("n", "<S-j>", ":resize +2<CR>", { desc = "Increase window height" })
-map("n", "<S-k>", ":resize -2<CR>", { desc = "Decrease window height" })
-map("n", "<S-h>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
-map("n", "<S-l>", ":vertical resize +2<CR>", { desc = "Increase window width" })
+map("n", "<C-M-Down>", ":resize +2<CR>", { desc = "Increase window height" })
+map("n", "<C-M-Up>", ":resize -2<CR>", { desc = "Decrease window height" })
+map("n", "<C-M-Right>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
+map("n", "<C-M-Left>", ":vertical resize +2<CR>", { desc = "Increase window width" })
 
 map("v", "<", "<gv", { desc = "Indent left and reselect" })
 map("v", ">", ">gv", { desc = "Indent right and reselect" })
