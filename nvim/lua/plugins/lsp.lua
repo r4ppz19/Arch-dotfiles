@@ -15,6 +15,7 @@ local servers = {
   "clangd",
   "jdtls",
   "taplo",
+  "yamlls",
   -- old:
   -- "eslint",
   -- "vtsls",

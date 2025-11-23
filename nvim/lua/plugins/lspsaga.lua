@@ -28,12 +28,12 @@ return {
         imp_sign = "󰳛 ",
       },
       finder = {
-        max_height = 0.4,
-        default = "ref+def+imp",
-        layout = "normal",
-        silent = true,
-        right_width = 0.5,
+        max_height = 0.5,
         left_width = 0.5,
+        right_width = 0.5,
+        default = "ref+def+imp",
+        layout = "float",
+        silent = true,
         keys = {
           vsplit = "v",
           split = "s",
