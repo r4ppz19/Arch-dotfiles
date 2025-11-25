@@ -159,29 +159,21 @@ map("n", "<S-M-X>", function()
   require("nvchad.tabufline").closeAllBufs(false)
 end, { desc = "Close all buffers except current" })
 
--- Toggleable terminal
+local term_utils = require("utils.terminal")
+-- Floating Terminal (Now Tab-Scoped)
 map({ "n", "t" }, "<A-d>", function()
-  require("nvchad.term").toggle({
-    pos = "float",
-    id = "generic",
-  })
-end, { desc = "Toggle generic terminal" })
+  term_utils.toggle_tab_terminal({ pos = "float" })
+end, { desc = "Toggle tab-scoped floating terminal" })
 
+-- Horizontal Split Terminal (Now Tab-Scoped)
 map({ "n", "t" }, "<A-s>", function()
-  require("nvchad.term").toggle({
-    pos = "sp",
-    size = 0.5,
-    id = "horizontal",
-  })
-end, { desc = "Toggle generic terminal" })
+  term_utils.toggle_tab_terminal({ pos = "sp", size = 0.4 })
+end, { desc = "Toggle tab-scoped horizontal terminal" })
 
+-- Vertical Split Terminal (Now Tab-Scoped)
 map({ "n", "t" }, "<A-v>", function()
-  require("nvchad.term").toggle({
-    pos = "vsp",
-    size = 0.5,
-    id = "vertical",
-  })
-end, { desc = "Toggle generic terminal" })
+  term_utils.toggle_tab_terminal({ pos = "vsp", size = 0.4 })
+end, { desc = "Toggle tab-scoped vertical terminal" })
 
 map("n", "<A-t>", function()
   vim.cmd("enew")

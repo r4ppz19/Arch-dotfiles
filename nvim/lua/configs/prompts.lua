@@ -130,8 +130,7 @@ local prompts = {
 
   Fix = {
     prompt = dedent([[
-      #buffers
-      #diagnostics:current
+      #buffer:active
       Identify and fix all issues in the given code.
       - List each issue clearly and explain why it’s a problem.
       - Provide corrected code with modern, idiomatic improvements.
@@ -215,8 +214,7 @@ local prompts = {
 
   Diagnostic = {
     prompt = dedent([[
-      #diagnostics:current (preferred)
-      #buffer (additional context)
+      #buffers:active
       Analyze diagnostics and source code:
       - List issues by severity.
       - Explain root causes and contributing factors.
