@@ -2,22 +2,22 @@
 set -euo pipefail
 
 SESSION="${1:-dev}"
+PROJECTDIR='/home/r4ppz/Project/'
+
 FRONTDIR='/home/r4ppz/Project/research-repository/'
 BACKDIR='/home/r4ppz/Project/backend-research-repository/'
+DOCSDIR='/home/r4ppz/Project/research-repo-docs/'
 
 create_tmux_session() {
   local session="$1"
-  tmux new-session -d -s "$session" -n "FRONT"
-  tmux new-window -t "$session:" -n "FRONTAI"
-  tmux new-window -t "$session:" -n "BACK"
-  tmux new-window -t "$session:" -n "BACKAI"
+  tmux new-session -d -s "$session" -n "FULLS"
+  tmux new-window -t "$session:" -n "DOCS"
   tmux new-window -t "$session:" -n "CMD"
 
-  tmux send-keys -t "$session:FRONT" "cd ${FRONTDIR}; nvim" C-m
-  tmux send-keys -t "$session:FRONTAI" "cd ${FRONTDIR}; qwen" C-m
-  tmux send-keys -t "$session:BACK" "cd ${BACKDIR}; nvim" C-m
-  tmux send-keys -t "$session:BACKAI" "cd ${BACKDIR}; qwen" C-m
-  tmux send-keys -t "$session:CMD" "sudo systemctl start postgresql.service" C-m
+  tmux send-keys -t "$session:FULLS" "nvim -c 'tcd ${FRONTDIR}' -c 'edit ${FRONTDIR}/README.md' -c 'tabnew' -c 'tcd ${BACKDIR}' -c 'edit ${BACKDIR}/README.md'" C-m
+
+  tmux send-keys -t "$session:DOCS" "cd ${DOCSDIR}; v" C-m
+  tmux send-keys -t "$session:CMD" "cd ${PROJECTDIR}" C-m
 
   tmux select-window -t "$session:0"
 }
