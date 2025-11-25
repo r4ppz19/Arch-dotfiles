@@ -25,8 +25,14 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     opts = {
-      anti_conceal = { enabled = false },
+      anti_conceal = {
+        enabled = false,
+      },
+      code = {
+        sign = false,
+      },
+      debounce = 50,
     },
-    ft = { "copilot-chat" },
+    ft = { "copilot-chat", "markdown" },
   },
 }

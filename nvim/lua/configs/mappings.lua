@@ -13,8 +13,6 @@ map("n", "<C-w><S-Down>", "<C-w>J", { desc = "Move split down" })
 map("n", "<C-w><S-Up>", "<C-w>K", { desc = "Move split up" })
 map("n", "<C-w><S-Right>", "<C-w>L", { desc = "Move split right" })
 
-map("n", "<Tab>", "nzz", { desc = "Next search result centered" })
-map("n", "<S-Tab>", "Nzz", { desc = "Previous search result centered" })
 map("n", "n", "nzz", { desc = "Next search result centered" })
 map("n", "N", "Nzz", { desc = "Previous search result centered" })
 
@@ -123,6 +121,8 @@ map("n", "<leader>tX", "<cmd>tabonly<CR>", { desc = "Close all other tabs" })
 map("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close tab" })
 map("n", "<leader>t<Right>", "<cmd>tabnext<CR>", { desc = "Next tab" })
 map("n", "<leader>t<Left>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
+map("n", "<Tab>", "<cmd>tabnext<CR>", { desc = "Next tab" })
+map("n", "<S-Tab>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
 
 -- Marks
 local marks = { "A", "B", "C", "D", "E" }
