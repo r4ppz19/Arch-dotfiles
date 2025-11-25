@@ -48,26 +48,6 @@ return {
     { "<leader>cm", "<cmd>CopilotChatModels<cr>", mode = { "n", "v" }, desc = "View/select available models" },
 
     {
-      "<M-v>",
-      function()
-        local chat = require("CopilotChat")
-        chat.toggle({
-          window = {
-            layout = "float",
-            width = 120,
-            height = 28,
-            border = "single",
-            title = "",
-            zindex = 100,
-          },
-          auto_fold = true,
-        })
-      end,
-      mode = { "n", "v" },
-      desc = "Open copilot in floating window",
-    },
-
-    {
       "<leader>cp",
       function()
         local chat = require("CopilotChat")
