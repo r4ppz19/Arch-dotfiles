@@ -31,7 +31,6 @@ return {
       code = {
         sign = false,
       },
-      debounce = 50,
     },
     ft = { "copilot-chat", "markdown" },
   },

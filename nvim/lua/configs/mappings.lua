@@ -167,12 +167,12 @@ end, { desc = "Toggle tab-scoped floating terminal" })
 
 -- Horizontal Split Terminal (Now Tab-Scoped)
 map({ "n", "t" }, "<A-s>", function()
-  term_utils.toggle_tab_terminal({ pos = "sp", size = 0.4 })
+  term_utils.toggle_tab_terminal({ pos = "sp", size = 0.6 })
 end, { desc = "Toggle tab-scoped horizontal terminal" })
 
 -- Vertical Split Terminal (Now Tab-Scoped)
 map({ "n", "t" }, "<A-v>", function()
-  term_utils.toggle_tab_terminal({ pos = "vsp", size = 0.4 })
+  term_utils.toggle_tab_terminal({ pos = "vsp", size = 0.6 })
 end, { desc = "Toggle tab-scoped vertical terminal" })
 
 map("n", "<A-t>", function()
