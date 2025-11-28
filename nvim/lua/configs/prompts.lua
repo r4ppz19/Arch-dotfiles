@@ -258,7 +258,7 @@ local prompts = {
 
   Diagnostic = {
     prompt = dedent([[
-      #buffers:active
+      #buffer:active
       Analyze diagnostics and source code.
 
       Requirements:
