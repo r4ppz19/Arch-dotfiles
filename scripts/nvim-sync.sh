@@ -8,7 +8,6 @@ EXCLUDES=(
   'README.md'
 )
 
-# Check if destination n source exists
 if [[ ! -d "$SOURCE" ]]; then
   echo "Source directory $SOURCE does not exist."
   exit 1

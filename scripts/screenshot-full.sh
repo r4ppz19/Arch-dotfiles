@@ -6,7 +6,6 @@ SCREENSHOT_DIR="$HOME/Pictures/screenshot"
 TIMESTAMP="$(date +%Y-%m-%d_%H-%M-%S)"
 FILENAME="$SCREENSHOT_DIR/screenshot_${TIMESTAMP}.png"
 
-# Lock to prevent concurrent screenshots
 exec 200>"$LOCKFILE"
 flock -n 200 || {
   notify-send -h boolean:transient:true \
@@ -16,7 +15,6 @@ flock -n 200 || {
   exit 1
 }
 
-# Ensure dependencies are available
 for cmd in grim; do
   if ! command -v "$cmd" &>/dev/null; then
     notify-send -h boolean:transient:true \
@@ -29,10 +27,8 @@ done
 
 mkdir -p "$SCREENSHOT_DIR"
 
-# Take the full screen screenshot
 grim "$FILENAME"
 
-# Validate result
 if [[ -s "$FILENAME" ]]; then
   notify-send -h boolean:transient:true \
     "Screenshot Taken" \
@@ -46,3 +42,4 @@ else
     -i dialog-error
   exit 1
 fi
+

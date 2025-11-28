@@ -7,28 +7,28 @@ volume-up)
   vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf "%.0f%%", $2 * 100}')
   notify-send -h string:x-canonical-private-synchronous:volume \
     -h boolean:transient:true \
-    "Volume" -t 700 "$vol" -i audio-volume-high-symbolic
+    "Volume" -t 1000 "$vol" -i audio-volume-high-symbolic
   ;;
 volume-down)
   wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
   vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf "%.0f%%", $2 * 100}')
   notify-send -h string:x-canonical-private-synchronous:volume \
     -h boolean:transient:true \
-    "Volume" -t 700 "$vol" -i audio-volume-low-symbolic
+    "Volume" -t 1000 "$vol" -i audio-volume-low-symbolic
   ;;
 mute)
   wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
   state=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{if ($3 == "[MUTED]") print "Muted"; else print "Unmuted"}')
   notify-send -h string:x-canonical-private-synchronous:audio \
     -h boolean:transient:true \
-    "Audio" -t 700 "$state" -i audio-volume-muted-symbolic
+    "Audio" -t 1000 "$state" -i audio-volume-muted-symbolic
   ;;
 mic-mute)
   wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
   state=$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{if ($3 == "[MUTED]") print "Muted"; else print "Unmuted"}')
   notify-send -h string:x-canonical-private-synchronous:mic \
     -h boolean:transient:true \
-    "Microphone" -t 700 "$state" -i microphone-off-symbolic
+    "Microphone" -t 1000 "$state" -i microphone-off-symbolic
   ;;
 brightness-up)
   brightnessctl set 5%+
@@ -37,7 +37,7 @@ brightness-up)
   percentage=$(awk -v c="$current" -v m="$max" 'BEGIN {printf "%.0f", (c / m) * 100}')
   notify-send -h string:x-canonical-private-synchronous:brightness \
     -h boolean:transient:true \
-    "Brightness" -t 700 "${percentage}%" -i display-brightness-high-symbolic
+    "Brightness" -t 1000 "${percentage}%" -i display-brightness-high-symbolic
   ;;
 brightness-down)
   brightnessctl set 5%-
@@ -46,6 +46,6 @@ brightness-down)
   percentage=$(awk -v c="$current" -v m="$max" 'BEGIN {printf "%.0f", (c / m) * 100}')
   notify-send -h string:x-canonical-private-synchronous:brightness \
     -h boolean:transient:true \
-    "Brightness" -t 700 "${percentage}%" -i display-brightness-low-symbolic
+    "Brightness" -t 1000 "${percentage}%" -i display-brightness-low-symbolic
   ;;
 esac
