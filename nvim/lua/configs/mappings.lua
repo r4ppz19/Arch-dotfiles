@@ -161,7 +161,7 @@ end, { desc = "Close all buffers except current" })
 
 local term_utils = require("utils.terminal")
 -- Floating Terminal (Now Tab-Scoped)
-map({ "n", "t" }, "<A-d>", function()
+map({ "n", "t" }, "<A-w>", function()
   term_utils.toggle_tab_terminal({ pos = "float" })
 end, { desc = "Toggle tab-scoped floating terminal" })
 
