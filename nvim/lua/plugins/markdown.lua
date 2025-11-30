@@ -29,6 +29,9 @@ return {
         atx = false,
         icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " },
       },
+      bullet = {
+        icons = { "-", "-", "-", "-" },
+      },
       code = {
         conceal_delimiters = true,
       },

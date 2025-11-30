@@ -16,9 +16,11 @@ map("n", "<M-Up>", "O", { desc = "Insert above" })
 map("n", "<M-Down>", "o", { desc = "Insert below" })
 
 map("n", "<M-a>", "u", { desc = "Undo" })
+map("i", "<M-a>", "<C-o>u", { desc = "Undo (Insert)" })
+map("v", "<M-a>", "u", { desc = "Undo (Visual)" })
 map("n", "<M-d>", "<C-r>", { desc = "Redo" })
-map("n", "<leader>,", "u", { desc = "Undo" })
-map("n", "<leader>.", "<C-r>", { desc = "Redo" })
+map("i", "<M-d>", "<C-o><C-r>", { desc = "Redo (Insert)" })
+map("v", "<M-d>", "<C-r>", { desc = "Redo (Visual)" })
 
 map("i", ",", ",<C-g>u", { desc = "Insert ',' and break undo sequence" })
 map("i", ".", ".<C-g>u", { desc = "Insert '.' and break undo sequence" })
