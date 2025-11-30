@@ -27,5 +27,5 @@ if [ -n "$url" ]; then
   xdg-open "$url"
 else
   encoded_query=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote_plus(sys.argv[1]))" "$query")
-  xdg-open "https://search.brave.com/search?q=${encoded_query}"
+  xdg-open "https://duckduckgo.com/?q=${encoded_query}"
 fi
