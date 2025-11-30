@@ -57,6 +57,7 @@ return {
       ["TelescopePrompt"] = true,
       ["snacks_picker_input"] = true,
       ["copilot-chat"] = true,
+      ["markdown"] = true,
     }
 
     local options = {

@@ -31,7 +31,6 @@ local system_prompt = dedent([[
   - When teaching or answering, provide official documentation, guides, and references where applicable for detailed and proper learning.
   - Encourage and train the user to use official tools and resources, not just blindly follow LLM-generated advice.
   - When teaching:
-    - Make it comprehensive and complete as possible
     - Use realistic engineering logic, not superficial analogies.
     - Provide concise examples when they add clarity.
     - Clarify why one approach is better than another.

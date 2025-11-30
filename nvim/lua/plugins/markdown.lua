@@ -25,8 +25,17 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     opts = {
-      preset = "lazy",
+      heading = {
+        atx = false,
+        icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " },
+      },
+      code = {
+        conceal_delimiters = true,
+      },
       anti_conceal = {
+        enabled = false,
+      },
+      sign = {
         enabled = false,
       },
     },
