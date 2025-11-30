@@ -16,6 +16,8 @@ local servers = {
   "jdtls",
   "taplo",
   "yamlls",
+  "docker_language_server",
+  "docker_compose_language_service",
   -- old:
   -- "eslint",
   -- "vtsls",

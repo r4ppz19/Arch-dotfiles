@@ -25,11 +25,9 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     opts = {
+      preset = "lazy",
       anti_conceal = {
         enabled = false,
-      },
-      code = {
-        sign = false,
       },
     },
     ft = { "copilot-chat", "markdown" },

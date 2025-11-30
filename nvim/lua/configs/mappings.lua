@@ -12,11 +12,11 @@ map("n", "N", "Nzz", { desc = "Previous search result centered" })
 
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "Copy whole file" })
 
-map("n", "<leader><Up>", "O", { desc = "Insert above" })
-map("n", "<leader><Down>", "o", { desc = "Insert below" })
 map("n", "<M-Up>", "O", { desc = "Insert above" })
 map("n", "<M-Down>", "o", { desc = "Insert below" })
 
+map("n", "<M-a>", "u", { desc = "Undo" })
+map("n", "<M-d>", "<C-r>", { desc = "Redo" })
 map("n", "<leader>,", "u", { desc = "Undo" })
 map("n", "<leader>.", "<C-r>", { desc = "Redo" })
 
@@ -79,10 +79,10 @@ map(
   { desc = "Highlight selection (no jump)" }
 )
 
-map("n", "<C-M-Down>", ":resize +2<CR>", { desc = "Increase window height" })
-map("n", "<C-M-Up>", ":resize -2<CR>", { desc = "Decrease window height" })
-map("n", "<C-M-Right>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
-map("n", "<C-M-Left>", ":vertical resize +2<CR>", { desc = "Increase window width" })
+map("n", "<S-M-Down>", ":resize +2<CR>", { desc = "Increase window height" })
+map("n", "<S-M-Up>", ":resize -2<CR>", { desc = "Decrease window height" })
+map("n", "<S-M-Right>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
+map("n", "<S-M-Left>", ":vertical resize +2<CR>", { desc = "Increase window width" })
 
 map("v", "<", "<gv", { desc = "Indent left and reselect" })
 map("v", ">", ">gv", { desc = "Indent right and reselect" })
@@ -113,8 +113,6 @@ map("n", "<leader>ul", "<cmd>Lazy<CR>", { desc = "Lazy UI" })
 map("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "New tab" })
 map("n", "<leader>tX", "<cmd>tabonly<CR>", { desc = "Close all other tabs" })
 map("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close tab" })
-map("n", "<leader>t<Right>", "<cmd>tabnext<CR>", { desc = "Next tab" })
-map("n", "<leader>t<Left>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
 map("n", "<Tab>", "<cmd>tabnext<CR>", { desc = "Next tab" })
 map("n", "<S-Tab>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
 
@@ -129,13 +127,7 @@ end
 
 map("n", "<leader>n", "<cmd>enew<CR>", { desc = "Buffer new" })
 
-map({ "n" }, "<leader><Right>", function()
-  require("nvchad.tabufline").next()
-end, { desc = "Buffer goto next" })
-map({ "n" }, "<leader><Left>", function()
-  require("nvchad.tabufline").prev()
-end, { desc = "Buffer goto prev" })
-
+-- change buffer
 map({ "n" }, "<M-Right>", function()
   require("nvchad.tabufline").next()
 end, { desc = "Buffer goto next" })
@@ -143,18 +135,18 @@ map({ "n" }, "<M-Left>", function()
   require("nvchad.tabufline").prev()
 end, { desc = "Buffer goto prev" })
 
+-- move buffer
+map({ "n" }, "<C-M-Right>", function()
+  require("nvchad.tabufline").move_buf(1)
+end, { desc = "move buffer to the right" })
+map({ "n" }, "<C-M-Left>", function()
+  require("nvchad.tabufline").move_buf(-1)
+end, { desc = "move buffer to the left" })
+
+-- close buffer
 map("n", "<M-x>", function()
   require("nvchad.tabufline").close_buffer()
 end, { desc = "Buffer close" })
-
-map("n", "<leader>x", function()
-  require("nvchad.tabufline").close_buffer()
-end, { desc = "Buffer close" })
-
-map("n", "<leader>X", function()
-  require("nvchad.tabufline").closeAllBufs(false)
-end, { desc = "Close all buffers except current" })
-
 map("n", "<S-M-X>", function()
   require("nvchad.tabufline").closeAllBufs(false)
 end, { desc = "Close all buffers except current" })
