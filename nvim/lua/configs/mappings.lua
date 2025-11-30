@@ -127,44 +127,6 @@ end
 
 -- Buffers management
 
--- Custom buffer close function that prevents tab closure
-local function safe_close_buffer()
-  local tabpage = vim.api.nvim_get_current_tabpage()
-  local wins = vim.api.nvim_tabpage_list_wins(tabpage)
-  local buf_set = {}
-  for _, win in ipairs(wins) do
-    local buf = vim.api.nvim_win_get_buf(win)
-    if vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_get_option_value("buflisted", { buf = buf }) then
-      buf_set[buf] = true
-    end
-  end
-
-  local buf_count = 0
-  for _ in pairs(buf_set) do
-    buf_count = buf_count + 1
-  end
-
-  local current_buf = vim.api.nvim_get_current_buf()
-
-  if buf_count <= 1 then
-    local new_buf = vim.api.nvim_create_buf(true, false)
-    if new_buf == 0 then
-      print("Error: Failed to create new buffer")
-      return
-    end
-
-    vim.cmd("vsplit")
-    vim.api.nvim_win_set_buf(0, new_buf)
-
-    vim.api.nvim_set_current_buf(current_buf)
-    require("nvchad.tabufline").close_buffer()
-
-    vim.api.nvim_set_current_buf(new_buf)
-  else
-    require("nvchad.tabufline").close_buffer()
-  end
-end
-
 map("n", "<leader>n", "<cmd>enew<CR>", { desc = "Buffer new" })
 
 -- change buffer
@@ -184,7 +146,9 @@ map({ "n" }, "<C-M-Left>", function()
 end, { desc = "move buffer to the left" })
 
 -- close buffer
-map("n", "<M-x>", safe_close_buffer, { desc = "Buffer close" })
+map("n", "<M-x>", function()
+  require("nvchad.tabufline").close_buffer()
+end, { desc = "Buffer close" })
 map("n", "<S-M-X>", function()
   require("nvchad.tabufline").closeAllBufs(false)
 end, { desc = "Close all buffers except current" })
