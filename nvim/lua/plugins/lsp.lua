@@ -18,6 +18,7 @@ local servers = {
   "yamlls",
   "docker_language_server",
   "docker_compose_language_service",
+  "postgres_lsp",
   -- old:
   -- "eslint",
   -- "vtsls",
