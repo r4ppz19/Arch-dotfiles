@@ -20,6 +20,7 @@ clang
 cpio
 dkms
 docker
+docker-buildx
 docker-compose
 dosfstools
 downgrade
@@ -43,7 +44,6 @@ git-delta
 github-cli
 gnome-keyring
 go
-google-chrome
 gptfdisk
 grim
 grub
