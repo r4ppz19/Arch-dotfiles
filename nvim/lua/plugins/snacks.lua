@@ -7,6 +7,10 @@ return {
   opts = {
     picker = {
       enabled = true,
+      sources = {
+        files = { hidden = true, ignored = false },
+        grep = { hidden = true },
+      },
       win = {
         input = {
           keys = {
@@ -67,7 +71,7 @@ return {
     },
 
     {
-      "<leader>sm",
+      "<leader>fm",
       function()
         Snacks.picker.man()
       end,

@@ -14,6 +14,7 @@ alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
 alias r='ranger --choosedir="$HOME/.rangerdir"; LASTDIR=$(cat "$HOME/.rangerdir"); cd "$LASTDIR"'
 alias v='nvim'
 alias lg='lazygit'
+alias ld='lazydocker'
 alias top='btop'
 alias news='clx -n'
 # alias ssh='TERM=xterm-256color ssh'

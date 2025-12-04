@@ -37,6 +37,7 @@ return {
       auto_follow_cursor = false,
       show_help = false,
       clear_chat_on_new_prompt = false,
+      remember_as_sticky = false,
     }
   end,
 
