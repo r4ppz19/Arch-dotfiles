@@ -71,16 +71,19 @@ return {
       desc = "Open chat with current buffer",
     },
 
-    -- Open chat with all buffers
     {
-      "<leader>ca",
+      "<leader>cf",
       function()
         local chat = require("CopilotChat")
         chat.open()
-        chat.chat:add_message({ role = "user", content = "#buffer:listed\n" }, true)
+        vim.schedule(function()
+          -- Insert the #file: prefix and let the auto-picker handle the rest
+          vim.api.nvim_put({ "#file:" }, "c", false, true)
+          vim.cmd("startinsert")
+        end)
       end,
       mode = { "n", "v" },
-      desc = "Open chat with all buffers",
+      desc = "Add files to CopilotChat context",
     },
   },
 }

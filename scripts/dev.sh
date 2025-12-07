@@ -9,13 +9,12 @@ DOCSDIR='/home/r4ppz/Project/research-repo-docs/'
 
 create_tmux_session() {
   local session="$1"
-  tmux new-session -d -s "$session" -n "FULLS"
-  tmux new-window -t "$session:" -n "DOCS"
+  tmux new-session -d -s "$session" -n "FRONT"
+  tmux new-window -t "$session:" -n "BACK"
   tmux new-window -t "$session:" -n "DOCKER"
 
-  tmux send-keys -t "$session:FULLS" "nvim -c 'tcd ${FRONTDIR}' -c 'edit ${FRONTDIR}/README.md' -c 'tabnew' -c 'tcd ${BACKDIR}' -c 'edit ${BACKDIR}/README.md'" C-m
-
-  tmux send-keys -t "$session:DOCS" "cd ${DOCSDIR}; v" C-m
+  tmux send-keys -t "$session:FRONT" "cd ${FRONTDIR}; v" C-m
+  tmux send-keys -t "$session:BACK" "cd ${BACKDIR}; v" C-m
   tmux send-keys -t "$session:DOCKER" "cd ${BACKDIR}; lazydocker" C-m
 
   tmux select-window -t "$session:0"

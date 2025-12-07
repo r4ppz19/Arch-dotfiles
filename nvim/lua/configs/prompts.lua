@@ -13,7 +13,7 @@ local system_prompt = dedent([[
   - Uses Neovim as primary editor
 
   Non-negotiable constraints
-  - Only provide links or references if they are official, current, and authoritative. If none exist, do not provide any.
+  - Only provide links or references if they are official, current, authoritative, community/industry standard. If none exist, do not provide any.
   - Do not provide incorrect information or fabricate answers.
 
   Personality & Mentorship Style
@@ -45,29 +45,32 @@ local system_prompt = dedent([[
     - Explain why it happened.
     - Propose a correct and maintainable fix.
   - If asked “Who are you?” → reply: “I am Jarvis, your personal AI engineering assistant.”
+  - When a problem/task/implementation is getting complex or requires significant boilerplate,
+    recommend a widely used, well-maintained, official, or industry-standard library or framework
 
   Your mission: Make r4ppz a better engineer every day.
   Act like a real programming partner. Think critically. Teach with purpose.
   ]])
 
 local prompts = {
-  ExplainHighLevel = {
+  Concepts = {
     prompt = dedent([[
       #selection
-      #buffer:active (additional context)
-      Provide a **high-level conceptual explanation** of the selected code in [language/framework].
+      Identify and list **all technical concepts** required to fully understand the selected code in [language/framework].
 
       Requirements:
-      • Explain the code’s purpose, responsibilities, and role in the broader system **based only on visible context**.
-      • Summarize the main logical flow and major interacting components.
-      • Describe design intent and how it relates to common architectural or usage patterns.
-      • Avoid syntax-level or token-level details.
+      • List only concepts that are explicitly present in the snippet or strictly required to interpret it.
+      • For each concept, provide a simple and short but technically accurate explanation.
+      • Keep the explanation brief and factual.
+      • At the end, recommend a site/book/docs/etc on where to actually learn those concepts.
 
-      Constraints:
-      • Do not invent context not inferable from the snippet.
-      • Do not restate the code.
+      Output structure:
+      • `Concept`: Explanation
+      <space>
+      • `Concept`: Explanation
+      ...
     ]]),
-    description = "Explain code conceptually",
+    description = "List Technical Concept",
   },
 
   Explain = {
@@ -76,30 +79,74 @@ local prompts = {
       Provide a **short, simple, and direct explanation** of the selected code in [language/framework].
 
       Requirements:
-      • Explain the syntax and the purpose.
+      • Explain the syntax, purpose and flow.
       • Keep the explanation brief and factual.
     ]]),
     description = "Explain code, short and simple",
+  },
+
+  ExplainHighLevel = {
+    prompt = dedent([[
+      #selection
+      #buffer:active (additional context)
+
+      Provide a **high-level conceptual explanation** of the selected code.
+
+      Requirements:
+      • Describe the code’s purpose, responsibilities, and its role implied by surrounding context.
+      • Summarize the main logical flow and the major components or abstractions present in the snippet.
+      • Infer design intent only when supported by common usage patterns or identifiable structural cues.
+      • Reference specific syntax only when necessary to clarify high-level behavior.
+
+      Constraints:
+      • Do not invent architectural details, data flows, or intent not directly inferable from the snippet.
+      • Do not restate, paraphrase, or walk through the code line by line.
+    ]]),
+    description = "Explain code conceptually at a high level",
+  },
+
+  ExplainBalanced = {
+    prompt = dedent([[
+      #selection
+      #buffer:active (additional context)
+
+      Provide a **functional technical explanation** of the selected code, balancing implementation details with logical purpose.
+
+      Requirements:
+      • **Logical Flow:** Trace the critical path of execution, grouping related statements into logical blocks rather than line-by-line analysis.
+      • **Data Transformation:** Explain how inputs are manipulated to produce specific outputs or state changes, noting key variables only when they drive the logic.
+      • **Mechanism & Intent:** Connect specific implementation choices (e.g., algorithms, patterns, control structures) directly to the immediate functional goal of the snippet.
+      • **Contextual Relevance:** Briefly mention how this snippet interacts with the immediate surrounding scope provided in the context.
+
+      Constraints:
+      • Skip explanation of basic language syntax (e.g., do not explain what a `for` loop is, explain what *this* loop achieves).
+      • Avoid broad architectural speculation not visible in the code.
+      • Do not summarize the code so briefly that the mechanical steps are lost.
+    ]]),
+    description = "Balanced explanation focusing on logic and implementation.",
   },
 
   ExplainLowLevel = {
     prompt = dedent([[
       #selection
       #buffer:active (additional context)
-      Provide a **low-level, technical explanation** of the selected code.
+
+      Provide a **low-level, strictly technical explanation** of the selected code.
+      Focus only on semantics that can be directly inferred from the snippet.
 
       Requirements:
-      • Break down each line’s syntax, operators, expressions, and control-flow constructs.
-      • Explain semantics, evaluation order, and runtime behavior strictly based on the code.
-      • Identify data types, memory usage patterns, and how values flow between statements.
-      • Note idioms, edge cases, and pitfalls visible in the snippet.
+      • Decompose every statement and subexpression, identifying syntax elements, operators, and control-flow constructs.
+      • Describe evaluation order, expression semantics, and any guaranteed runtime effects.
+      • Identify data types or type categories (static, inferred, dynamic, or runtime-determined) and trace how values propagate through variables, expressions, and control paths.
+      • Specify all observable state changes (assignment, mutation, creation, destruction, reassignment).
+      • Highlight language-visible idioms, edge cases, and pitfalls inherently detectable from the snippet.
 
       Constraints:
-      • No speculation about compilers, VMs, or runtime environments beyond what is inferable.
-      • No examples, rewrites, or improvements unless the snippet contains an objective error.
-      • Do not restate the code.
+      • Base all reasoning solely on the snippet and language-level guarantees; do not infer compiler, interpreter, or environment behavior not implied by the code.
+      • Do not propose alternatives, rewrites, or improvements unless the snippet contains a clear, objectively verifiable error.
+      • Do not restate or paraphrase the code itself.
     ]]),
-    description = "Explain code line-by-line at a low-level",
+    description = "Low-level and technical explanation of the code.",
   },
 
   Review = {

@@ -15,6 +15,7 @@ declare -A sites=(
   [icon]="https://lucide.dev/icons/"
   [read]="https://medium.com/"
   [framer]="https://framer.com/projects/"
+  [dev]="https://devdocs.io/"
 )
 
 search_engine="https://duckduckgo.com/?q="
