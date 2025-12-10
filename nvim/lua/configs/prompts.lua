@@ -149,6 +149,19 @@ local prompts = {
     description = "Low-level and technical explanation of the code.",
   },
 
+  Log = {
+    prompt = dedent([[
+      #selection
+      Add logging statements to the selected code to aid in debugging and monitoring.
+
+      Requirements:
+      • Insert log statements at key points such as function entry, exit, and critical decision points.
+      • Use appropriate log levels (e.g., debug, info, warn, error).
+      • Ensure logs provide meaningful context without exposing sensitive information.
+    ]]),
+    description = "Add logging to selected code",
+  },
+
   Review = {
     prompt = dedent([[
       #selection (preferred)

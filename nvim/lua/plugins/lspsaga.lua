@@ -87,6 +87,14 @@ return {
           desc = "Go to Type Definition",
         })
 
+        map("n", "gD", "<cmd>Lspsaga peek_definition<CR>", {
+          buffer = buffer,
+          desc = "Peek Definition",
+        })
+        map("n", "gT", "<cmd>Lspsaga peek_type_definition<CR>", {
+          buffer = buffer,
+          desc = "Peek Type Definition",
+        })
         map("n", "<C-d>", "<cmd>Lspsaga peek_definition<CR>", {
           buffer = buffer,
           desc = "Peek Definition",
