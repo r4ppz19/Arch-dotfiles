@@ -44,7 +44,7 @@ return {
       },
       definition = {
         keys = {
-          edit = "<M-Down>",
+          edit = "<CR>",
           vsplit = "v",
           split = "s",
         },
@@ -95,13 +95,9 @@ return {
           buffer = buffer,
           desc = "Peek Type Definition",
         })
-        map("n", "<C-d>", "<cmd>Lspsaga peek_definition<CR>", {
+        map("n", "<S-C-Down>", "<cmd>Lspsaga peek_definition<CR>", {
           buffer = buffer,
           desc = "Peek Definition",
-        })
-        map("n", "<C-t>", "<cmd>Lspsaga peek_type_definition<CR>", {
-          buffer = buffer,
-          desc = "Peek Type Definition",
         })
 
         map({ "n", "v" }, "<leader>la", "<cmd>Lspsaga code_action<CR>", {

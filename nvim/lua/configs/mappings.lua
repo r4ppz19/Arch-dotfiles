@@ -2,13 +2,11 @@
 
 local map = require("utils.map")
 
-map("n", "<C-w><S-Left>", "<C-w>H", { desc = "Move split left" })
-map("n", "<C-w><S-Down>", "<C-w>J", { desc = "Move split down" })
-map("n", "<C-w><S-Up>", "<C-w>K", { desc = "Move split up" })
-map("n", "<C-w><S-Right>", "<C-w>L", { desc = "Move split right" })
-
-map("n", "n", "nzz", { desc = "Next search result centered" })
-map("n", "N", "Nzz", { desc = "Previous search result centered" })
+----------------------------------------
+-- Personal?
+----------------------------------------
+map({ "n", "v" }, "<S-Right>", "W", { desc = "Move Right like E" })
+map({ "n", "v" }, "<S-Left>", "B", { desc = "Move Left like B" })
 
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "Copy whole file" })
 
@@ -22,64 +20,23 @@ map("n", "<M-d>", "<C-r>", { desc = "Redo" })
 map("i", "<M-d>", "<C-o><C-r>", { desc = "Redo (Insert)" })
 map("v", "<M-d>", "<C-r>", { desc = "Redo (Visual)" })
 
-map("i", ",", ",<C-g>u", { desc = "Insert ',' and break undo sequence" })
-map("i", ".", ".<C-g>u", { desc = "Insert '.' and break undo sequence" })
-map("i", ";", ";<C-g>u", { desc = "Insert ';' and break undo sequence" })
-
-map("v", "p", '"_dP', { desc = "Paste without yanking replaced text" })
-map("n", "x", '"_x', { desc = "Delete character without yanking" })
-map("n", "c", '"_c', { desc = "Change text without yanking" })
--- map("n", "d", '"_d', { desc = "Delete text without yanking" })
-
-map("n", "<C-z>", "<nop>", { desc = "Disable suspend" })
-map("n", "ZZ", "<nop>", { desc = "Disable accidental save and quit (ZZ)" })
-map("n", "ZQ", "<nop>", { desc = "Disable accidental quit (ZQ)" })
-
-map("n", "s", "<nop>", { desc = "Disable s to avoid accidental edits" })
-
-map("n", "q", "<Nop>", { desc = "Disable recording macro (q)" })
-map("n", "Q", "<Nop>", { desc = "Disable Ex mode (Q)" })
-
-map({ "n", "v" }, "!", "^", { desc = "Jump to first non-blank character of the line" })
-map({ "n", "v" }, "@", "g_", { desc = "Jump to last non-blank character of line" })
-
--- map({ "n", "v" }, "<S-Left>", "B", { desc = "Move to the beginning of the word" })
--- map({ "n", "v" }, "<S-Right>", "E", { desc = "Move to the end of the word" })
--- map("i", "<S-Left>", "<C-o>B", { desc = "Move to the beginning of the word in insert mode" })
--- map("i", "<S-Right>", "<C-o>E", { desc = "Move to the end of the word in insert mode" })
+map("n", "<S-Up>", "<C-u>zz", { desc = "Scroll half a page up and center" })
+map("n", "<S-Down>", "<C-d>zz", { desc = "Scroll half a page down and center" })
+map("i", "<S-Up>", "<C-o><C-u><C-o>zz", { desc = "Scroll half a page up and center in insert mode" })
+map("i", "<S-Down>", "<C-o><C-d><C-o>zz", { desc = "Scroll half a page down and center in insert mode" })
 
 map({ "n", "v" }, "<C-Left>", "b", { desc = "Move to the beginning of the word" })
 map({ "n", "v" }, "<C-Right>", "e", { desc = "Move to the end of the word" })
 map("i", "<C-Left>", "<C-o>b", { desc = "Move to the beginning of the word in insert mode" })
 map("i", "<C-Right>", "<C-o>e", { desc = "Move to the end of the word in insert mode" })
 
-map("v", "<S-Up>", "{zz", { desc = "Jump to previous paragraph (centered)" })
-map("v", "<S-Down>", "}zz", { desc = "Jump to next paragraph (centered)" })
-
-map("n", "<S-Up>", "<C-u>zz", { desc = "Scroll half a page up and center" })
-map("n", "<S-Down>", "<C-d>zz", { desc = "Scroll half a page down and center" })
-map("i", "<S-Up>", "<C-o><C-u><C-o>zz", { desc = "Scroll half a page up and center in insert mode" })
-map("i", "<S-Down>", "<C-o><C-d><C-o>zz", { desc = "Scroll half a page down and center in insert mode" })
+map("v", "<S-Up>", "{", { desc = "Jump to previous paragraph" })
+map("v", "<S-Down>", "}", { desc = "Jump to next paragraph" })
 
 map({ "n", "v" }, "<C-Down>", "<C-e>", { desc = "Scroll window down one line" })
 map({ "n", "v" }, "<C-Up>", "<C-y>", { desc = "Scroll window up one line" })
 map("i", "<C-Down>", "<C-o><C-e>", { desc = "Scroll window down one line in insert mode" })
 map("i", "<C-Up>", "<C-o><C-y>", { desc = "Scroll window up one line in insert mode" })
-
-map("n", "*", [[<Cmd>let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>]], { desc = "Highlight word (no jump)" })
-map("n", "#", [[<Cmd>let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>]], { desc = "Highlight word (no jump)" })
-map(
-  "v",
-  "*",
-  [[y<Cmd>let @/ = '\<' . escape(@", '/\') . '\>'<CR>:set hlsearch<CR>]],
-  { desc = "Highlight selection (no jump)" }
-)
-map(
-  "v",
-  "#",
-  [[y<Cmd>let @/ = '\V' . escape(@", '/\')<CR>:set hlsearch<CR>]],
-  { desc = "Highlight selection (no jump)" }
-)
 
 map("n", "<S-M-Down>", ":resize +2<CR>", { desc = "Increase window height" })
 map("n", "<S-M-Up>", ":resize -2<CR>", { desc = "Decrease window height" })
@@ -97,85 +54,46 @@ map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear highlights" })
 
 map("t", "<C-q>", "<C-\\><C-N>", { desc = "Escape terminal mode" })
 
--- Comment
-map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
-map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
+map("n", "<leader>/", "gcc", { desc = "toggle comment" })
+map("v", "<leader>/", "gc", { desc = "toggle comment" })
 
--- NVCHAD
-map("n", "<leader>vc", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
-map("n", "<leader>vt", function()
-  require("nvchad.themes").open()
-end, { desc = "telescope nvchad themes" })
+--------------------------------------------------
+-- Disabled/Change defaults cause why not
+--------------------------------------------------
+map("n", "<C-z>", "<nop>", { desc = "Disable suspend" })
+map("n", "ZZ", "<nop>", { desc = "Disable accidental save and quit (ZZ)" })
+map("n", "ZQ", "<nop>", { desc = "Disable accidental quit (ZQ)" })
 
--- UI
-map("n", "<leader>um", "<cmd>Mason<CR>", { desc = "Mason UI" })
-map("n", "<leader>ul", "<cmd>Lazy<CR>", { desc = "Lazy UI" })
+map("n", "s", "<nop>", { desc = "Disable s to avoid accidental edits" })
 
--- Tabs
-map("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "New tab" })
-map("n", "<leader>tX", "<cmd>tabonly<CR>", { desc = "Close all other tabs" })
-map("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close tab" })
-map("n", "<Tab>", "<cmd>tabnext<CR>", { desc = "Next tab" })
-map("n", "<S-Tab>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
+map("n", "q", "<Nop>", { desc = "Disable recording macro (q)" })
+map("n", "Q", "<Nop>", { desc = "Disable Ex mode (Q)" })
 
--- Marks
+map("v", "p", '"_dP', { desc = "Paste without yanking replaced text" })
+map({ "n", "v" }, "x", '"_x', { desc = "Delete character without yanking" })
+map("n", "c", '"_c', { desc = "Change text without yanking" })
+-- map("n", "d", '"_d', { desc = "Delete text without yanking" })
+
+map({ "n", "v" }, "!", "^", { desc = "Jump to first non-blank character of the line" })
+map({ "n", "v" }, "@", "g_", { desc = "Jump to last non-blank character of line" })
+
+map("n", "#", [[<Cmd>let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>]], { desc = "Highlight word (no jump)" })
+map(
+  "v",
+  "#",
+  [[y<Cmd>let @/ = '\V' . escape(@", '/\')<CR>:set hlsearch<CR>]],
+  { desc = "Highlight selection (no jump)" }
+)
+
+-- I dont even know why I have this...
 local marks = { "A", "B", "C", "D", "E" }
 for i, mark in ipairs(marks) do
   map("n", "m" .. i, "m" .. mark, { desc = "Set global mark " .. mark })
   map("n", "g" .. i, "`" .. mark, { desc = "Exact jump to global mark " .. mark })
 end
 
--- Buffers management
-
-map("n", "<leader>n", "<cmd>enew<CR>", { desc = "Buffer new" })
-
--- change buffer
-map({ "n" }, "<M-Right>", function()
-  require("nvchad.tabufline").next()
-end, { desc = "Buffer goto next" })
-map({ "n" }, "<M-Left>", function()
-  require("nvchad.tabufline").prev()
-end, { desc = "Buffer goto prev" })
-
--- move buffer
-map({ "n" }, "<C-M-Right>", function()
-  require("nvchad.tabufline").move_buf(1)
-end, { desc = "move buffer to the right" })
-map({ "n" }, "<C-M-Left>", function()
-  require("nvchad.tabufline").move_buf(-1)
-end, { desc = "move buffer to the left" })
-
--- close buffer
-map("n", "<M-x>", function()
-  require("nvchad.tabufline").close_buffer()
-end, { desc = "Buffer close" })
-map("n", "<S-M-X>", function()
-  require("nvchad.tabufline").closeAllBufs(false)
-end, { desc = "Close all buffers except current" })
-
-local term_utils = require("utils.terminal")
--- Floating Terminal (Now Tab-Scoped)
-map({ "n", "t" }, "<A-w>", function()
-  term_utils.toggle_tab_terminal({ pos = "float" })
-end, { desc = "Toggle tab-scoped floating terminal" })
-
--- Horizontal Split Terminal (Now Tab-Scoped)
-map({ "n", "t" }, "<A-s>", function()
-  term_utils.toggle_tab_terminal({ pos = "sp", size = 0.6 })
-end, { desc = "Toggle tab-scoped horizontal terminal" })
-
--- Vertical Split Terminal (Now Tab-Scoped)
-map({ "n", "t" }, "<A-v>", function()
-  term_utils.toggle_tab_terminal({ pos = "vsp", size = 0.8 })
-end, { desc = "Toggle tab-scoped vertical terminal" })
-
-map("n", "<A-t>", function()
-  vim.cmd("enew")
-  vim.cmd("terminal")
-  vim.cmd("startinsert")
-end, { desc = "New Terminal Buffer" })
-
 -- Open selected text as URL (portable)
+-- (do I need this? idk)
 local function create_open_url_function()
   local is_mac = vim.fn.has("mac") == 1
   local is_win = vim.fn.has("win32") == 1
@@ -205,8 +123,73 @@ map("v", "gx", function()
   open_url_portable(url)
 end, { desc = "Open selected text as URL" })
 
--- Just in case I use vim properly (unlikely)
+-------------------------------------------------------------
+-- Plugins? (other keybinds are in the plugins lua files)
+-------------------------------------------------------------
+-- NVCHAD
+map("n", "<leader>vc", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
+map("n", "<leader>vt", function()
+  require("nvchad.themes").open()
+end, { desc = "telescope nvchad themes" })
 
+-- UI
+map("n", "<leader>um", "<cmd>Mason<CR>", { desc = "Mason UI" })
+map("n", "<leader>ul", "<cmd>Lazy<CR>", { desc = "Lazy UI" })
+
+-- Tabs
+map("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "New tab" })
+map("n", "<leader>tX", "<cmd>tabonly<CR>", { desc = "Close all other tabs" })
+map("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close tab" })
+map("n", "<Tab>", "<cmd>tabnext<CR>", { desc = "Next tab" })
+map("n", "<S-Tab>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
+
+-- Buffers management
+map("n", "<leader>n", "<cmd>enew<CR>", { desc = "Buffer new" })
+-- change buffer
+map({ "n" }, "<M-Right>", function()
+  require("nvchad.tabufline").next()
+end, { desc = "Buffer goto next" })
+map({ "n" }, "<M-Left>", function()
+  require("nvchad.tabufline").prev()
+end, { desc = "Buffer goto prev" })
+-- move buffer
+map({ "n" }, "<C-M-Right>", function()
+  require("nvchad.tabufline").move_buf(1)
+end, { desc = "move buffer to the right" })
+map({ "n" }, "<C-M-Left>", function()
+  require("nvchad.tabufline").move_buf(-1)
+end, { desc = "move buffer to the left" })
+-- close buffer
+map("n", "<M-x>", function()
+  require("nvchad.tabufline").close_buffer()
+end, { desc = "Buffer close" })
+map("n", "<S-M-X>", function()
+  require("nvchad.tabufline").closeAllBufs(false)
+end, { desc = "Close all buffers except current" })
+
+-- Terminal
+local term_utils = require("utils.terminal")
+-- Floating Terminal
+map({ "n", "t" }, "<A-w>", function()
+  term_utils.toggle_tab_terminal({ pos = "float" })
+end, { desc = "Toggle tab-scoped floating terminal" })
+-- Horizontal Split Terminal
+map({ "n", "t" }, "<A-s>", function()
+  term_utils.toggle_tab_terminal({ pos = "sp", size = 0.6 })
+end, { desc = "Toggle tab-scoped horizontal terminal" })
+-- Vertical Split Terminal
+map({ "n", "t" }, "<A-v>", function()
+  term_utils.toggle_tab_terminal({ pos = "vsp", size = 0.8 })
+end, { desc = "Toggle tab-scoped vertical terminal" })
+map("n", "<A-t>", function()
+  vim.cmd("enew")
+  vim.cmd("terminal")
+  vim.cmd("startinsert")
+end, { desc = "New Terminal Buffer" })
+
+--------------------------------------------------------------------------
+-- Ill put the proper binds here once I learned proper vim key bindings
+-- ( Very unlikely )
 map("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
 map("n", "<C-j>", "<C-w>j", { desc = "Move to below window" })
 map("n", "<C-k>", "<C-w>k", { desc = "Move to above window" })
