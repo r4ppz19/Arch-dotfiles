@@ -77,7 +77,7 @@ map(
 map(
   "v",
   "#",
-  [[y<Cmd>let @/ = '\<' . escape(@", '/\') . '\>'<CR>:set hlsearch<CR>]],
+  [[y<Cmd>let @/ = '\V' . escape(@", '/\')<CR>:set hlsearch<CR>]],
   { desc = "Highlight selection (no jump)" }
 )
 
@@ -166,7 +166,7 @@ end, { desc = "Toggle tab-scoped horizontal terminal" })
 
 -- Vertical Split Terminal (Now Tab-Scoped)
 map({ "n", "t" }, "<A-v>", function()
-  term_utils.toggle_tab_terminal({ pos = "vsp", size = 0.6 })
+  term_utils.toggle_tab_terminal({ pos = "vsp", size = 0.8 })
 end, { desc = "Toggle tab-scoped vertical terminal" })
 
 map("n", "<A-t>", function()

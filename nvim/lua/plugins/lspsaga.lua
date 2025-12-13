@@ -32,7 +32,7 @@ return {
         left_width = 0.5,
         right_width = 0.5,
         default = "ref+def+imp",
-        layout = "float",
+        layout = "normal",
         silent = true,
         keys = {
           vsplit = "v",
@@ -128,14 +128,14 @@ return {
           desc = "Next Diagnostic",
         })
 
-        -- map("n", "<leader>ld", "<cmd>Lspsaga show_buf_diagnostics ++unfocus<CR>", {
-        --   buffer = buffer,
-        --   desc = "Show Line Diagnostics",
-        -- })
-        -- map("n", "<leader>lD", "<cmd>Lspsaga show_workspace_diagnostics<CR>", {
-        --   buffer = buffer,
-        --   desc = "Show Cursor Diagnostics",
-        -- })
+        map("n", "<leader>ld", "<cmd>Lspsaga show_buf_diagnostics ++unfocus<CR>", {
+          buffer = buffer,
+          desc = "Show Line Diagnostics",
+        })
+        map("n", "<leader>lD", "<cmd>Lspsaga show_workspace_diagnostics<CR>", {
+          buffer = buffer,
+          desc = "Show Cursor Diagnostics",
+        })
 
         map("n", "<leader>ls", "<cmd>Lspsaga outline<CR>", {
           buffer = buffer,
