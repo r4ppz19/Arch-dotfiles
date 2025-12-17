@@ -5,7 +5,6 @@ SOURCE="/home/r4ppz/Arch-dotfiles/nvim/"
 DESTINATION="/home/r4ppz/Repositories/rnvim/"
 EXCLUDES=(
   '.git/'
-  'README.md'
 )
 
 if [[ ! -d "$SOURCE" ]]; then

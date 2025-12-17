@@ -9,11 +9,11 @@ REMOTE="phone:/storage/emulated/0"
 
 [ -d "$PHONE_MOUNT" ] || mkdir -p "$PHONE_MOUNT"
 
-echo "Mounting phone"
+printf "Mounting phone\n"
 if ! mountpoint -q "$PHONE_MOUNT"; then
   sshfs "$REMOTE" "$PHONE_MOUNT"
 else
-  echo "Already mounted"
+  printf "Already mounted\n"
 fi
 
 sync_folder() {
@@ -21,8 +21,10 @@ sync_folder() {
   local src="$SOURCE_BASE/$folder/"
   local dest="$PHONE_MOUNT/$folder/"
 
-  echo "Syncing $folder..."
-  echo ""
+  printf "\n-------------------------------------\n"
+  printf "Syncing $folder..."
+  printf "\n-------------------------------------\n"
+
   rsync -av --delete --inplace --no-perms --no-owner --no-group --mkpath "$src" "$dest" || true
 }
 
@@ -30,15 +32,14 @@ for folder in "${FOLDERS[@]}"; do
   sync_folder "$folder"
 done
 
-echo ""
-echo "Unmounting..."
+printf "\nUnmounting...\n"
 if fusermount -uz "$PHONE_MOUNT"; then
-  echo "Unmount successful"
-  echo "Cleaning up..."
-  rmdir "$PHONE_MOUNT" || echo "Could not remove mount directory (idk bro)"
+  printf "Unmount successful\n"
+  printf "Cleaning up...\n"
+  rmdir "$PHONE_MOUNT" || printf "Could not remove mount directory\n"
 else
-  echo "Unmount failed"
-  echo "idk why :("
+  printf "Unmount failed\n"
+  printf "idk why :(\n"
 fi
 
-echo "Done ;)"
+printf "Done ;)\n"

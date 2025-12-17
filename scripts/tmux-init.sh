@@ -6,10 +6,10 @@ SESSION="${1:-main}"
 create_tmux_session() {
   local session="$1"
   tmux new-session -d -s "$session" -n "R4PPZ"
-  tmux new-window -t "$session:" -n "MUSIC"
+  tmux new-window -t "$session:" -n "CMD"
   tmux new-window -t "$session:" -n "TASK"
-  tmux send-keys -t "$session:MUSIC" 'kew' C-m
-  tmux send-keys -t "$session:TASK" 'btop' C-m
+  tmux send-keys -t "$session:CMD" 'y' C-m
+  tmux send-keys -t "$session:TASK" 'top' C-m
   tmux select-window -t "$session:0"
 }
 
