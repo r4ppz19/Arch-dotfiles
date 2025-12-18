@@ -54,8 +54,8 @@ map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear highlights" })
 
 map("t", "<C-q>", "<C-\\><C-N>", { desc = "Escape terminal mode" })
 
-map("n", "<leader>/", "gcc", { desc = "toggle comment" })
-map("v", "<leader>/", "gc", { desc = "toggle comment" })
+map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
+map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
 
 --------------------------------------------------
 -- Disabled/Change defaults cause why not
