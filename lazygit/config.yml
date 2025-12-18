@@ -6,3 +6,5 @@ gui:
     activeBorderColor:
       - blue
       - bold
+git:
+  overrideGpg: true
