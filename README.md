@@ -27,6 +27,8 @@ These files fit _my_ workflow and _my_ taste. Look through, take ideas, build yo
 
 ![Screenshot](screenshot/screenshot_2025-06-02_20-29-16.png)
 
+![Screenshot](screenshot/screenshot_2025-12-20_07-56-06.png)
+
 <details>
 <summary>Click to see more screenshots</summary>
 
@@ -35,8 +37,6 @@ These files fit _my_ workflow and _my_ taste. Look through, take ideas, build yo
 ![Screenshot](screenshot/screenshot_2025-07-21_20-14-17.png)
 
 ![Screenshot](screenshot/screenshot_2025-05-17_19-29-13.png)
-
-![Screenshot](screenshot/screenshot_2025-05-17_19-17-34.png)
 
 ![Screenshot](screenshot/screenshot_2025-05-17_19-51-35.png)
 
