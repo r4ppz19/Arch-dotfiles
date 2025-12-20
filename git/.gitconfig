@@ -31,6 +31,9 @@
 [branch]
     autosetuprebase = always
 
+[fetch]
+	prune = true
+
 [diff]
   tool = nvimdiff
 

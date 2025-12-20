@@ -3,7 +3,6 @@ return {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
-  ---@type snacks.Config
   opts = {
     picker = {
       enabled = true,
@@ -15,14 +14,22 @@ return {
         input = {
           keys = {
             ["<Esc>"] = { "close", mode = { "n", "i" } },
-            ["<S-Up>"] = { "preview_scroll_up", mode = { "i", "n" } },
-            ["<S-Down>"] = { "preview_scroll_down", mode = { "i", "n" } },
+            ["<C-Up>"] = { "preview_scroll_up", mode = { "i", "n" } },
+            ["<C-Down>"] = { "preview_scroll_down", mode = { "i", "n" } },
           },
         },
       },
     },
   },
   keys = {
+    {
+      "<leader>fH",
+      function()
+        Snacks.picker.files({ dirs = { os.getenv("HOME") } })
+      end,
+      desc = "Fuzzy Find from Home (Snacks)",
+    },
+
     {
       "<M-f>",
       function()
@@ -65,7 +72,7 @@ return {
     {
       "<leader>fh",
       function()
-        Snacks.picker.actions.help()
+        Snacks.picker.help()
       end,
       desc = "Help tags (Snacks)",
     },
@@ -92,14 +99,6 @@ return {
         Snacks.picker.buffers()
       end,
       desc = "Buffers (Snacks)",
-    },
-
-    {
-      "<M-g>",
-      function()
-        Snacks.lazygit.open()
-      end,
-      desc = "Lazygit (Snacks)",
     },
   },
 }

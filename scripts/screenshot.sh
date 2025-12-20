@@ -11,16 +11,14 @@ flock -n 200 || {
   notify-send -h boolean:transient:true \
     "Screenshot Already Running" \
     "Please wait for the current process to finish." \
-    -i dialog-warning
+    -i dialog-warning \
+    -t 1400
   exit 1
 }
 
-for cmd in grim slurp; do
+for cmd in grim slurp notify-send; do
   if ! command -v "$cmd" &>/dev/null; then
-    notify-send -h boolean:transient:true \
-      "Screenshot Failed" \
-      "Missing dependency: $cmd" \
-      -i dialog-error
+    printf "Missing required command: %s\n" "$cmd" >&2
     exit 1
   fi
 done
@@ -33,7 +31,8 @@ if [[ -z "$REGION" ]]; then
   notify-send -h boolean:transient:true \
     "Screenshot Canceled" \
     "No region selected." \
-    -i dialog-warning
+    -i dialog-warning \
+    -t 1400
   exit 1
 fi
 
@@ -46,12 +45,14 @@ if [[ -s "$FILENAME" ]]; then
   notify-send -h boolean:transient:true \
     "Screenshot Taken" \
     "Saved to: $FILENAME\nRegion: $REGION" \
-    -i camera
+    -i camera \
+    -t 1400
   exit 0
 else
   notify-send -h boolean:transient:true \
     "Screenshot Failed" \
     "Could not save the screenshot." \
-    -i dialog-error
+    -i dialog-error \
+    -t 1400
   exit 1
 fi

@@ -38,10 +38,15 @@ map({ "n", "v" }, "<C-Up>", "<C-y>", { desc = "Scroll window up one line" })
 map("i", "<C-Down>", "<C-o><C-e>", { desc = "Scroll window down one line in insert mode" })
 map("i", "<C-Up>", "<C-o><C-y>", { desc = "Scroll window up one line in insert mode" })
 
-map("n", "<S-M-Down>", ":resize +2<CR>", { desc = "Increase window height" })
-map("n", "<S-M-Up>", ":resize -2<CR>", { desc = "Decrease window height" })
-map("n", "<S-M-Right>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
-map("n", "<S-M-Left>", ":vertical resize +2<CR>", { desc = "Increase window width" })
+map({ "n", "v" }, "<S-M-Down>", "<Cmd>wincmd j<CR>", { desc = "Move to window down" })
+map({ "n", "v" }, "<S-M-Up>", "<Cmd>wincmd k<CR>", { desc = "Move to window up" })
+map({ "n", "v" }, "<S-M-Right>", "<Cmd>wincmd l<CR>", { desc = "Move to window right" })
+map({ "n", "v" }, "<S-M-Left>", "<Cmd>wincmd h<CR>", { desc = "Move to window left" })
+
+map({ "n", "v" }, "<S-C-M-Down>", ":resize +2<CR>", { desc = "Increase window height" })
+map({ "n", "v" }, "<S-C-M-Up>", ":resize -2<CR>", { desc = "Decrease window height" })
+map({ "n", "v" }, "<S-C-M-Right>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
+map({ "n", "v" }, "<S-C-M-Left>", ":vertical resize +2<CR>", { desc = "Increase window width" })
 
 map("v", "<", "<gv", { desc = "Indent left and reselect" })
 map("v", ">", ">gv", { desc = "Indent right and reselect" })
@@ -65,6 +70,8 @@ map("n", "ZZ", "<nop>", { desc = "Disable accidental save and quit (ZZ)" })
 map("n", "ZQ", "<nop>", { desc = "Disable accidental quit (ZQ)" })
 
 map("n", "s", "<nop>", { desc = "Disable s to avoid accidental edits" })
+map("v", "s", '"_s', { desc = "Substitute without yanking (visual)" })
+map("n", "S", '"_S', { desc = "Substitute line without yanking (normal)" })
 
 map("n", "q", "<Nop>", { desc = "Disable recording macro (q)" })
 map("n", "Q", "<Nop>", { desc = "Disable Ex mode (Q)" })
@@ -142,6 +149,8 @@ map("n", "<leader>tX", "<cmd>tabonly<CR>", { desc = "Close all other tabs" })
 map("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close tab" })
 map("n", "<Tab>", "<cmd>tabnext<CR>", { desc = "Next tab" })
 map("n", "<S-Tab>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
+map("n", "<leader>t<Right>", "<cmd>tabnext<CR>", { desc = "Next tab" })
+map("n", "<leader>t<Left>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
 
 -- Buffers management
 map("n", "<leader>n", "<cmd>enew<CR>", { desc = "Buffer new" })

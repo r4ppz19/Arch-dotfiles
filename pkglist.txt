@@ -1,6 +1,7 @@
 7zip
 acpi
 acpi_call
+apache
 auto-cpufreq
 base
 base-devel
@@ -15,6 +16,7 @@ brave-bin
 brightnessctl
 btop
 cava
+chromium
 circumflex
 clang
 cpio
@@ -26,11 +28,11 @@ dosfstools
 downgrade
 dua-cli
 duf
-dunst
 efibootmgr
 epr-git
 epy-ereader-git
 evtest
+exfatprogs
 eza
 f3
 fastfetch
@@ -61,7 +63,6 @@ hyprland
 hyprpaper
 hyprpicker
 hyprpolkitagent
-hyprshot
 hyprsunset
 imagemagick
 imv
@@ -79,7 +80,6 @@ keepassxc
 kew
 keyd
 kitty
-krita
 kvantum
 kvantum-qt5
 lazydocker
@@ -111,13 +111,10 @@ man-db
 maven
 mdcat
 meson
-mpd
 mtpfs
 mupdf-tools
 nano
 ncdu
-ncmpcpp
-neofetch-git
 neovim
 network-manager-applet
 networkmanager
@@ -134,10 +131,10 @@ onlyoffice-bin
 ookla-speedtest-bin
 openbsd-netcat
 os-prober
-pacseek-bin
+pacseek
 partitionmanager
 perl-image-exiftool
-pgcli
+pgadmin4-web
 pipewire
 pipewire-alsa
 pipewire-jack
@@ -154,7 +151,6 @@ qt6-virtualkeyboard
 qt6-wayland
 qt6ct-kde
 reflector
-rmpc
 rofi
 rsync
 ruby
@@ -205,10 +201,8 @@ wget
 wireless_tools
 wireplumber
 wireshark-cli
-wireshark-qt
 wl-clip-persist
 wl-clipboard
-wofi
 xarchiver
 xdg-dbus-proxy
 xdg-desktop-portal-hyprland

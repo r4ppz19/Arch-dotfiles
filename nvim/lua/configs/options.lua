@@ -3,6 +3,7 @@ local o = vim.o
 local g = vim.g
 
 o.autoread = true
+o.confirm = false
 
 o.relativenumber = false
 o.scrolloff = 8

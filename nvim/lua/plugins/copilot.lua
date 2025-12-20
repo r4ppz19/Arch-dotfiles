@@ -12,10 +12,13 @@ return {
       prompts = require("configs.prompts").prompts,
 
       resources = "selection",
+      selection = "visual",
+
       temperature = 0.1,
-      model = "gpt-4.1",
+      -- model = "gpt-4.1",
       -- model = "grok-code-fast-1",
       -- model = "gpt-5-mini",
+      model = "gpt-4o", -- most compatible (?)
 
       window = {
         layout = "vertical",
@@ -35,6 +38,7 @@ return {
       show_folds = true,
       auto_insert_mode = false,
       auto_follow_cursor = false,
+      insert_at_end = false,
       show_help = false,
       clear_chat_on_new_prompt = false,
       remember_as_sticky = false,

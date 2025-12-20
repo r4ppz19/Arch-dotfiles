@@ -68,97 +68,94 @@ local prompts = {
   Concepts = {
     prompt = dedent([[
       #selection
-      Identify and list **all technical concepts** required to fully understand the selected code in [language/framework].
+      Identify **all foundational concepts** required to understand this code snippet.
 
       Requirements:
-      • List only concepts that are explicitly present in the snippet or strictly required to interpret it.
-      • For each concept, provide a simple and short but technically accurate explanation.
-      • Keep the explanation brief and factual.
-      • At the end, recommend a site/book/docs/etc on where to actually learn those concepts.
+      • List only concepts explicitly demonstrated or strictly required by the syntax and structure present.
+      • For each concept, provide a concise, technically accurate explanation focused on its role in this snippet.
+      • At the end, recommend one authoritative resource (official docs, specification, or canonical reference) for learning these concepts.
 
       Output structure:
-      • `Concept`: Explanation
+      • `Concept name`: Explanation tied directly to its usage in this snippet
       <space>
-      • `Concept`: Explanation
+      • `Concept name`: Explanation tied directly to its usage in this snippet
       ...
     ]]),
-    description = "List Technical Concept",
+    description = "List foundational concepts",
   },
 
   Explain = {
     prompt = dedent([[
       #selection
-      Provide a **short, simple, and direct explanation** of the selected code in [language/framework].
+      Provide a **concise, factual description** of what this code snippet accomplishes.
 
       Requirements:
-      • Explain the syntax, purpose and flow.
-      • Keep the explanation brief and factual.
+      • Describe its observable behavior and purpose using neutral terminology.
+      • Explain structural elements only when they directly impact functionality.
+      • Keep explanation brief and directly tied to the snippet's content.
     ]]),
-    description = "Explain code, short and simple",
+    description = "Concise factual description of code behavior",
+  },
+
+  ExplainDetailed = {
+    prompt = dedent([[
+      #selection
+
+      Provide a **comprehensive, detailed explanation** of this code snippet.
+
+      Requirements:
+      • Explain how each syntactic element contributes to the overall behavior.
+      • Describe data flow, control flow, and key interactions between components.
+      • Highlight subtle behaviors or implications that may not be immediately obvious.
+      • Maintain clarity: avoid overly verbose language, but do not omit important details.
+      • Include relevant language-specific nuances or rules when they affect behavior.
+    ]]),
+    description = "Detailed explanation connecting structure, behavior, and subtle implications",
   },
 
   ExplainHighLevel = {
     prompt = dedent([[
-      #selection
-      #buffer:active (additional context)
+        #selection
 
-      Provide a **high-level conceptual explanation** of the selected code.
+        Provide a **conceptual overview** of this code's role and purpose.
 
-      Requirements:
-      • Describe the code’s purpose, responsibilities, and its role implied by surrounding context.
-      • Summarize the main logical flow and the major components or abstractions present in the snippet.
-      • Infer design intent only when supported by common usage patterns or identifiable structural cues.
-      • Reference specific syntax only when necessary to clarify high-level behavior.
-
-      Constraints:
-      • Do not invent architectural details, data flows, or intent not directly inferable from the snippet.
-      • Do not restate, paraphrase, or walk through the code line by line.
-    ]]),
-    description = "Explain code conceptually at a high level",
+        Requirements:
+        • Describe its functional responsibility within the broader context.
+        • Identify the primary data transformations or relationships it establishes.
+        • Explain design patterns or architectural roles only when explicitly evident in structure.
+        • Reference syntax only when necessary to clarify conceptual behavior.
+      ]]),
+    description = "Conceptual overview of code's role and purpose",
   },
 
   ExplainBalanced = {
     prompt = dedent([[
       #selection
-      #buffer:active (additional context)
 
-      Provide a **functional technical explanation** of the selected code, balancing implementation details with logical purpose.
+      Provide a **structured analysis** that connects form to function.
 
       Requirements:
-      • **Logical Flow:** Trace the critical path of execution, grouping related statements into logical blocks rather than line-by-line analysis.
-      • **Data Transformation:** Explain how inputs are manipulated to produce specific outputs or state changes, noting key variables only when they drive the logic.
-      • **Mechanism & Intent:** Connect specific implementation choices (e.g., algorithms, patterns, control structures) directly to the immediate functional goal of the snippet.
-      • **Contextual Relevance:** Briefly mention how this snippet interacts with the immediate surrounding scope provided in the context.
-
-      Constraints:
-      • Skip explanation of basic language syntax (e.g., do not explain what a `for` loop is, explain what *this* loop achieves).
-      • Avoid broad architectural speculation not visible in the code.
-      • Do not summarize the code so briefly that the mechanical steps are lost.
+      • Structure-Function Mapping:** Explain how syntactic elements work together to achieve the snippet's purpose.
+      • Data Relationships: Trace how inputs, variables, or declarations transform to produce outputs or establish relationships.
+      • Context Integration: Explain how this snippet interacts with its immediate surroundings when context is provided.
+      • Behavioral Clarity: Clarify non-obvious behaviors that are syntactically evident but not self-explanatory.
     ]]),
-    description = "Balanced explanation focusing on logic and implementation.",
+    description = "Analysis connecting code structure to functionality",
   },
 
   ExplainLowLevel = {
     prompt = dedent([[
       #selection
-      #buffer:active (additional context)
 
-      Provide a **low-level, strictly technical explanation** of the selected code.
-      Focus only on semantics that can be directly inferred from the snippet.
+      Provide a **strictly syntactic and semantic analysis** based solely on observable elements.
 
       Requirements:
-      • Decompose every statement and subexpression, identifying syntax elements, operators, and control-flow constructs.
-      • Describe evaluation order, expression semantics, and any guaranteed runtime effects.
-      • Identify data types or type categories (static, inferred, dynamic, or runtime-determined) and trace how values propagate through variables, expressions, and control paths.
-      • Specify all observable state changes (assignment, mutation, creation, destruction, reassignment).
-      • Highlight language-visible idioms, edge cases, and pitfalls inherently detectable from the snippet.
-
-      Constraints:
-      • Base all reasoning solely on the snippet and language-level guarantees; do not infer compiler, interpreter, or environment behavior not implied by the code.
-      • Do not propose alternatives, rewrites, or improvements unless the snippet contains a clear, objectively verifiable error.
-      • Do not restate or paraphrase the code itself.
+      • Decompose all expressions, declarations, and structural elements into fundamental components.
+      • Map explicit relationships: data flow, control dependencies, and scope interactions visible in syntax.
+      • Document all explicit state changes, side effects, or mutations directly present in the code.
+      • Identify language-specific behaviors that are syntactically mandated (evaluation rules, precedence, binding).
     ]]),
-    description = "Low-level and technical explanation of the code.",
+    description = "Syntactic and semantic analysis of explicit behaviors",
   },
 
   Log = {
@@ -185,10 +182,6 @@ local prompts = {
       • Categorize findings by severity: Critical / Warning / Suggestion.
       • Evaluate correctness, safety, readability, maintainability, and style.
       • Provide concrete fixes or improvements with concise technical explanations.
-
-      Constraints:
-      • Base all analysis strictly on visible code.
-      • Do not restate the code.
     ]]),
     description = "Perform a detailed review",
   },
@@ -221,9 +214,6 @@ local prompts = {
       • Suggest algorithmic or structural improvements.
       • Provide before/after examples and explain trade-offs.
       • Ensure optimizations do not harm readability or maintainability.
-
-      Constraints:
-      • Base recommendations strictly on visible code.
     ]]),
     description = "Optimize code",
   },
@@ -231,12 +221,18 @@ local prompts = {
   Docs = {
     prompt = dedent([[
       #selection
-      Write short, accurate documentation for the given code following conventions of [language/framework].
+      Generate concise, accurate documentation comments for the selected code.
 
-      Constraints:
-      • Do not restate the code; describe its behavior and contract.
+      Requirements:
+      - Use the standard documentation format for the detected language or framework.
+        - Java → JavaDoc
+        - JavaScript / TypeScript → JSDoc
+        - Python → docstrings (PEP 257)
+        - C/C++ → Doxygen-style comments
+        - Other languages → their most widely accepted documentation convention
+      - Output only the documentation comments, formatted exactly as they would appear in source code.
     ]]),
-    description = "Generate documentation comments",
+    description = "Generate documentation comments for selected code",
   },
 
   Tests = {
@@ -312,9 +308,6 @@ local prompts = {
       • Explain root causes and contributing factors.
       • Provide fixes and corrected code.
       • Suggest practices to prevent similar issues.
-
-      Constraints:
-      • Base analysis on diagnostic output and visible code only.
     ]]),
     description = "Analyze diagnostic data",
   },

@@ -1,5 +1,13 @@
 local autocmd = vim.api.nvim_create_autocmd
 
+autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  callback = function()
+    if vim.fn.mode() ~= "c" then
+      vim.cmd("checktime")
+    end
+  end,
+})
+
 autocmd("FileType", {
   pattern = { "copilot-chat", "NvimTree" },
   command = "setlocal winfixwidth",
@@ -40,7 +48,7 @@ autocmd("BufEnter", {
     vim.opt_local.relativenumber = false
     vim.opt_local.number = false
     vim.opt_local.conceallevel = 0
-    vim.bo.filetype = "markdown"
+    vim.bo.filetype = "markdown" -- expensive
   end,
 })
 

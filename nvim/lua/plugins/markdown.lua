@@ -43,5 +43,14 @@ return {
       },
     },
     ft = { "copilot-chat", "markdown" },
+    keys = {
+      {
+        "<leader>or",
+        function()
+          require("render-markdown").toggle()
+        end,
+        desc = "Toggle render-markdown",
+      },
+    },
   },
 }
