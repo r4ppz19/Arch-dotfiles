@@ -124,7 +124,7 @@ return {
     map("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Open Diffview" })
     map("n", "<leader>gh", "<cmd>DiffviewFileHistory<cr>", { desc = "Open Diffview History (Diffview)" })
     map("n", "<leader>gf", "<cmd>DiffviewFileHistory %<cr>", { desc = "Open Diffview Current File History Diffview" })
-    map("n", "<leader>gD", function()
+    map("n", "<leader>gb", function()
       Snacks.picker.git_branches({
         confirm = function(picker, item)
           picker:close()
@@ -198,6 +198,6 @@ return {
           vim.cmd(cmd)
         end,
       })
-    end, { desc = "Diff: HEAD (left) .. picked-branch (right)" })
+    end, { desc = "Compare HEAD..Branch (Diffview + Snacks)" })
   end,
 }

@@ -1,10 +1,8 @@
 local autocmd = vim.api.nvim_create_autocmd
 
-autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+autocmd("FocusGained", {
   callback = function()
-    if vim.fn.mode() ~= "c" then
-      vim.cmd("checktime")
-    end
+    vim.cmd("checktime")
   end,
 })
 
