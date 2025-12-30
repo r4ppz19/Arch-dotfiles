@@ -73,9 +73,17 @@ return {
         end,
       },
 
+      performance = {
+        debounce = 100,
+        throttle = 50,
+      },
+
       mapping = {
-        ["<C-Up>"] = cmp.mapping.select_prev_item(),
-        ["<C-Down>"] = cmp.mapping.select_next_item(),
+        ["<C-Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+        ["<C-Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+
+        -- ["<C-Up>"] = cmp.mapping.select_prev_item(),
+        -- ["<C-Down>"] = cmp.mapping.select_next_item(),
         ["<S-Up>"] = cmp.mapping.scroll_docs(-4),
         ["<S-Down>"] = cmp.mapping.scroll_docs(4),
         ["<C-S-Down>"] = cmp.mapping.complete(),
@@ -113,9 +121,9 @@ return {
       },
 
       sources = cmp.config.sources({
-        { name = "nvim_lsp", priority = 10 },
-        { name = "luasnip", priority = 9 },
-        { name = "buffer", keyword_length = 3, max_item_count = 10 },
+        { name = "nvim_lsp", priority = 10, max_item_count = 20 },
+        { name = "luasnip", priority = 9, max_item_count = 10 },
+        { name = "buffer", keyword_length = 3, max_item_count = 5 },
         { name = "nvim_lua", priority = 7 },
         { name = "async_path", priority = 6 },
       }),

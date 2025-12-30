@@ -78,7 +78,6 @@ jre8-openjdk
 jre8-openjdk-headless
 keepassxc
 kew
-keyd
 kitty
 kvantum
 kvantum-qt5
@@ -189,6 +188,7 @@ ttf-roboto
 ttf-roboto-mono-nerd
 udiskie
 uwsm
+ventoy-bin
 vim
 virtualbox
 virtualbox-host-dkms

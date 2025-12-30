@@ -16,7 +16,7 @@ return {
         update_root = false,
       },
       view = {
-        width = 30,
+        width = 45,
       },
 
       actions = {
@@ -27,13 +27,29 @@ return {
 
       git = {
         enable = true,
+        show_on_dirs = true,
+      },
+
+      diagnostics = {
+        enable = false,
+        show_on_dirs = true,
+        show_on_open_dirs = true,
+        icons = {
+          hint = "",
+          info = "",
+          warning = "",
+          error = "",
+        },
       },
 
       renderer = {
+        group_empty = true,
         root_folder_label = false,
         highlight_git = "icon",
         indent_markers = { enable = true },
         icons = {
+          git_placement = "after",
+
           glyphs = {
             default = "󰈚",
             folder = {

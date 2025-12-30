@@ -1,8 +1,15 @@
 local autocmd = vim.api.nvim_create_autocmd
 
-autocmd("FocusGained", {
+autocmd({
+  "BufEnter",
+  "CursorHold",
+  "CursorHoldI",
+  "FocusGained",
+}, {
   callback = function()
-    vim.cmd("checktime")
+    if vim.fn.getcmdwintype() == "" then
+      vim.cmd("checktime")
+    end
   end,
 })
 

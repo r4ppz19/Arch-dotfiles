@@ -7,9 +7,18 @@ return {
   },
   config = function()
     require("lspsaga").setup({
-
       symbol_in_winbar = {
         enable = true,
+      },
+      outline = {
+        win_position = "right",
+        win_width = 50,
+        max_height = 0.3,
+        left_width = 0.3,
+        keys = {
+          toggle_or_jump = "<CR>",
+          jump = "e",
+        },
       },
       hover = {
         max_width = 0.5,
@@ -35,7 +44,7 @@ return {
         max_height = 0.5,
         left_width = 0.5,
         right_width = 0.5,
-        default = "ref+def+imp",
+        default = "ref",
         layout = "normal",
         silent = true,
         keys = {
@@ -73,6 +82,10 @@ return {
         local buffer = args.buf
         local map = require("utils.map")
 
+        map("n", "gR", "<cmd>Lspsaga finder ref+def+imp<CR>", {
+          buffer = buffer,
+          desc = "Find References (including def and imp)",
+        })
         map("n", "gr", "<cmd>Lspsaga finder<CR>", {
           buffer = buffer,
           desc = "Find References",

@@ -15,10 +15,10 @@ return {
       selection = "visual",
 
       temperature = 0.1,
-      -- model = "gpt-4.1",
+      model = "gpt-4.1",
       -- model = "grok-code-fast-1",
       -- model = "gpt-5-mini",
-      model = "gpt-4o", -- most compatible (?)
+      -- model = "gpt-4o",
 
       window = {
         layout = "vertical",

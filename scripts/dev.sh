@@ -5,7 +5,6 @@ SESSION="${1:-dev}"
 
 FRONTDIR='/home/r4ppz/Project/research-repository-frontend/'
 BACKDIR='/home/r4ppz/Project/research-repository-backend/'
-DOCSDIR='/home/r4ppz/Project/research-repo-docs/'
 
 create_tmux_session() {
   local session="$1"

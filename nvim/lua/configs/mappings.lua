@@ -5,7 +5,7 @@ local map = require("utils.map")
 ----------------------------------------
 -- Personal?
 ----------------------------------------
-map({ "n", "v" }, "<S-Right>", "W", { desc = "Move Right like E" })
+map({ "n", "v" }, "<S-Right>", "E", { desc = "Move Right like E" })
 map({ "n", "v" }, "<S-Left>", "B", { desc = "Move Left like B" })
 
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "Copy whole file" })

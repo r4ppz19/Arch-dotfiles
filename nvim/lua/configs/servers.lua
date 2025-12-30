@@ -6,6 +6,7 @@ local function make_lua_library()
   lib[vim.fn.stdpath("data") .. "/lazy/ui/nvchad_types"] = true
   lib[vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy"] = true
   lib["${3rd}/luv/library"] = true
+  lib["~/Arch-dotfiles/nvim"] = true
   return lib
 end
 

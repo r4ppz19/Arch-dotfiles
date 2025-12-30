@@ -2,9 +2,9 @@
 set -euo pipefail
 
 STATE="$HOME/.cache/hypr-zen-mode"
-
 MONITOR="eDP-1"
 
+# Configuration
 NORMAL_GAPS_OUTER=15
 NORMAL_GAPS_INNER=8
 NORMAL_BORDER_SIZE=2
@@ -19,6 +19,7 @@ ZEN_ROUNDING=0
 ZEN_ROUNDING_POWER=0
 ZEN_WALLPAPER="$HOME/Arch-dotfiles/wallpaper/plain-wallpaper.png"
 
+# Functions
 set_hyprland() {
   hyprctl --batch "keyword general:gaps_out $1; \
                    keyword general:gaps_in $2; \
@@ -29,16 +30,17 @@ set_hyprland() {
 
 set_wallpaper() {
   local WALLPAPER="$1"
-  hyprctl hyprpaper preload "$WALLPAPER"
-  hyprctl hyprpaper wallpaper "$MONITOR,$WALLPAPER"
+  hyprctl hyprpaper wallpaper "$MONITOR, $WALLPAPER, cover"
 }
 
 if [[ -f "$STATE" ]]; then
+  # Switch to NORMAL
   set_hyprland "$NORMAL_GAPS_OUTER" "$NORMAL_GAPS_INNER" "$NORMAL_BORDER_SIZE" "$NORMAL_ROUNDING" "$NORMAL_ROUNDING_POWER"
   set_wallpaper "$NORMAL_WALLPAPER"
   systemctl --user start waybar.service
   rm -f "$STATE"
 else
+  # Switch to ZEN
   set_hyprland "$ZEN_GAPS_OUTER" "$ZEN_GAPS_INNER" "$ZEN_BORDER_SIZE" "$ZEN_ROUNDING" "$ZEN_ROUNDING_POWER"
   set_wallpaper "$ZEN_WALLPAPER"
   systemctl --user stop waybar.service

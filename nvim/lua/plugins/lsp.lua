@@ -16,9 +16,9 @@ local servers = {
   "jdtls",
   "taplo",
   "yamlls",
-  "docker_language_server",
   "docker_compose_language_service",
-  "postgres_lsp",
+  -- "docker_language_server",
+  -- "postgres_lsp",
   -- old:
   -- "eslint",
   -- "vtsls",
@@ -90,6 +90,7 @@ return {
       -- Default configurations for all servers
       vim.lsp.config("*", {
         capabilities = capabilities,
+        root_markers = { ".git" },
       })
 
       -- Server-specific configurations
