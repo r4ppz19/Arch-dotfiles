@@ -4,7 +4,12 @@ return {
   ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
   opts = {
     settings = {
-      jsx_close_tag = { enable = false, filetypes = { "javascriptreact", "typescriptreact" } },
+      separate_diagnostic_server = true,
+      publish_diagnostic_on = "insert_leave",
+      tsserver_max_memory = "auto",
+      complete_function_calls = true,
+      include_completions_with_insert_text = true,
+      disable_member_code_lens = false,
     },
   },
 }

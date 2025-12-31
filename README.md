@@ -1,6 +1,6 @@
 ## My personal dotfiles for Arch Linux + Hyprland.
 
-This is my setup's **backup** in case I mess something up, a living **reference** of how I've configured things, and a place to keep track of stuff I've **learned** using Linux.
+This is my setup's **backup** in case I mess something up and a living **reference** of how I've configured things.
 
 These files fit _my_ workflow and _my_ taste. Look through, take ideas, build your own ;)
 
@@ -9,7 +9,7 @@ These files fit _my_ workflow and _my_ taste. Look through, take ideas, build yo
 - **OS:** Arch Linux
 - **WM:** [Hyprland](https://hyprland.org/)
 - **Terminal:** [Kitty](https://github.com/kovidgoyal/kitty)
-- **Shell:** Zsh + [Antidote](https://antidote.sh/) ([Plugins](zsh/zsh_plugins.txt))
+- **Shell:** Zsh + [Antidote](https://antidote.sh/) ([Plugins](zsh/.zsh_plugins.txt))
 - **Font:** JetBrainsMono Nerd Font
 - **Theme:** Gruvbox
   - GTK: [Gruvbox-Material-Dark](https://github.com/TheGreatMcPain/gruvbox-material-gtk)
@@ -22,28 +22,14 @@ These files fit _my_ workflow and _my_ taste. Look through, take ideas, build yo
 - **Launcher:** [Rofi](https://github.com/davatorium/rofi)
 - **File Managers:** Thunar (GUI), [Yazi](https://yazi-rs.github.io/) (TUI)
 - **Music Player:** [kew](https://github.com/ravachol/kew)
+- **Editor(IDE):** [Neovim](nvim/)
 
-![Screenshot](screenshot/screenshot_2025-06-02_20-42-26.png)
+![Screenshot](screenshot/screenshot_2025-11-29_15-04-43.png)
 
-![Screenshot](screenshot/screenshot_2025-06-02_20-29-16.png)
-
-![Screenshot](screenshot/screenshot_2025-12-20_07-56-06.png)
-
-<details>
-<summary>Click to see more screenshots</summary>
-
-![Screenshot](screenshot/screenshot_2025-06-02_20-39-54.png)
-
-![Screenshot](screenshot/screenshot_2025-07-21_20-14-17.png)
-
-![Screenshot](screenshot/screenshot_2025-05-17_19-29-13.png)
-
-![Screenshot](screenshot/screenshot_2025-05-17_19-51-35.png)
-
-![Screenshot](screenshot/screenshot_2025-05-17_19-19-04.png)
-
-![Screenshot](screenshot/screenshot_2025-06-02_21-31-26.png)
-
-![Screenshot](screenshot/screenshot_2025-06-02_21-31-50.png)
-
-## </details>
+|                                                              |                                                              |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![Screenshot](screenshot/screenshot_2025-12-31_09-03-10.png) | ![Screenshot](screenshot/screenshot_2025-07-21_20-14-17.png) |
+| ![Screenshot](screenshot/screenshot_2025-06-02_20-29-16.png) | ![Screenshot](screenshot/screenshot_2025-06-02_20-42-26.png) |
+| ![Screenshot](screenshot/screenshot_2025-12-20_07-56-06.png) | ![Screenshot](screenshot/screenshot_2025-05-17_19-29-13.png) |
+| ![Screenshot](screenshot/screenshot_2025-05-17_19-51-35.png) | ![Screenshot](screenshot/screenshot_2025-12-31_08-53-07.png) |
+| ![Screenshot](screenshot/screenshot_2025-12-31_08-48-26.png) | ![Screenshot](screenshot/screenshot_2025-06-02_21-31-50.png) |
