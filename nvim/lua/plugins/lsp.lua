@@ -1,28 +1,32 @@
 local servers = {
+  -- FRONTEND
   "html",
   "cssls",
-  "cssmodules_ls",
-  "css_variables",
   "jsonls",
-  "marksman",
+  "yamlls",
+  -- "markdown_oxide",
+  -- "marksman",
+  -- "eslint",
+  -- "ts_ls",
+  -- "vtsls",
+  -- "cssmodules_ls",
+  -- "css_variables",
+  -- "emmet_ls",
+
+  -- BACKEND
+  "jdtls",
+  "docker_compose_language_service",
+  "lemminx",
+  -- "docker_language_server",
+  -- "postgres_lsp",
+
+  "taplo",
   "lua_ls",
   "pyright",
   "bashls",
   "rust_analyzer",
-  "emmet_ls",
-  "lemminx",
   "hyprls",
   "clangd",
-  "jdtls",
-  "taplo",
-  "yamlls",
-  "docker_compose_language_service",
-  -- "docker_language_server",
-  -- "postgres_lsp",
-  -- old:
-  -- "eslint",
-  -- "vtsls",
-  -- "ts_ls",
 }
 
 return {

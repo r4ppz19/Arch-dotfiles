@@ -2,9 +2,8 @@ return {
   "nvim-treesitter/nvim-treesitter",
   branch = "main",
   lazy = false,
-  config = function()
-    require("nvim-treesitter").setup()
-    local ensure_installed = {
+  build = function()
+    local languages = {
       "luadoc",
       "printf",
       "vim",
@@ -32,8 +31,6 @@ return {
       "css",
       "javascript",
       "typescript",
-      "typescriptreact",
-      "javascriptreact",
       "tsx",
 
       "diff",
@@ -43,17 +40,23 @@ return {
       "gitignore",
       "gitattributes",
     }
-
-    require("nvim-treesitter").install(ensure_installed)
-
+    require("nvim-treesitter").install(languages)
+  end,
+  config = function()
+    -- Enable highlighting automatically for all buffers where a parser exists
     vim.api.nvim_create_autocmd("FileType", {
-      group = vim.api.nvim_create_augroup("TreesitterEnable", { clear = true }),
-      pattern = ensure_installed,
-      callback = function()
-        local bufnr = 0
-        pcall(vim.treesitter.start, bufnr)
-        if vim.bo[bufnr].indentkeys == "" then
-          vim.bo[bufnr].indentexpr = 'v:lua.require"nvim-treesitter".indentexpr()'
+      group = vim.api.nvim_create_augroup("TreesitterSetup", { clear = true }),
+      callback = function(args)
+        local buf = args.buf
+        -- Check if we have a parser for the current filetype
+        local lang = vim.treesitter.language.get_lang(vim.bo[buf].filetype) or vim.bo[buf].filetype
+
+        -- Try to start highlighting
+        local ok, _ = pcall(vim.treesitter.start, buf, lang)
+
+        -- If highlighting started successfully, set up indentation
+        if ok then
+          vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end
       end,
     })

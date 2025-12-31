@@ -28,6 +28,7 @@ return {
             { "n", "R", "<cmd>DiffviewRefresh<cr>", { desc = "Refresh" } },
           },
           file_history_panel = {
+            { "n", "q", "<cmd>DiffviewClose<cr>", { desc = "Close Diffview" } },
             { "n", "<tab>", false },
             { "n", "<s-tab>", false },
           },

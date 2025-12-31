@@ -152,8 +152,9 @@ map("n", "<S-Tab>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
 map("n", "<leader>t<Right>", "<cmd>tabnext<CR>", { desc = "Next tab" })
 map("n", "<leader>t<Left>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
 
--- Buffers management
+-- BUFFERS MANAGEMENT
 map("n", "<leader>n", "<cmd>enew<CR>", { desc = "Buffer new" })
+
 -- change buffer
 map({ "n" }, "<M-Right>", function()
   require("nvchad.tabufline").next()
@@ -161,6 +162,7 @@ end, { desc = "Buffer goto next" })
 map({ "n" }, "<M-Left>", function()
   require("nvchad.tabufline").prev()
 end, { desc = "Buffer goto prev" })
+
 -- move buffer
 map({ "n" }, "<C-M-Right>", function()
   require("nvchad.tabufline").move_buf(1)
@@ -168,6 +170,7 @@ end, { desc = "move buffer to the right" })
 map({ "n" }, "<C-M-Left>", function()
   require("nvchad.tabufline").move_buf(-1)
 end, { desc = "move buffer to the left" })
+
 -- close buffer
 map("n", "<M-x>", function()
   require("nvchad.tabufline").close_buffer()
@@ -176,20 +179,22 @@ map("n", "<S-M-X>", function()
   require("nvchad.tabufline").closeAllBufs(false)
 end, { desc = "Close all buffers except current" })
 
--- Terminal
-local term_utils = require("utils.terminal")
+-- TERMINAL MANAGEMENT
 -- Floating Terminal
 map({ "n", "t" }, "<A-w>", function()
-  term_utils.toggle_tab_terminal({ pos = "float" })
-end, { desc = "Toggle tab-scoped floating terminal" })
+  require("nvchad.term").toggle({ pos = "float", id = "float_term", size = 0.5 })
+end, { desc = "Toggle Floating Terminal" })
+
 -- Horizontal Split Terminal
 map({ "n", "t" }, "<A-s>", function()
-  term_utils.toggle_tab_terminal({ pos = "sp", size = 0.6 })
-end, { desc = "Toggle tab-scoped horizontal terminal" })
+  require("nvchad.term").toggle({ pos = "sp", id = "horizontal_term", size = 0.6 })
+end, { desc = "Toggle Horizontal Terminal" })
+
 -- Vertical Split Terminal
 map({ "n", "t" }, "<A-v>", function()
-  term_utils.toggle_tab_terminal({ pos = "vsp", size = 0.8 })
-end, { desc = "Toggle tab-scoped vertical terminal" })
+  require("nvchad.term").toggle({ pos = "vsp", id = "vertical_term", size = 0.8 })
+end, { desc = "Toggle Vertical Terminal" })
+
 map("n", "<A-t>", function()
   vim.cmd("enew")
   vim.cmd("terminal")
