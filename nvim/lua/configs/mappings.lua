@@ -5,6 +5,11 @@ local map = require("utils.map")
 ----------------------------------------
 -- Personal?
 ----------------------------------------
+
+map("n", "<leader>ow", function()
+  vim.wo.wrap = not vim.wo.wrap
+end, { desc = "Toggle line wrapping" })
+
 map({ "n", "v" }, "<S-Right>", "E", { desc = "Move Right like E" })
 map({ "n", "v" }, "<S-Left>", "B", { desc = "Move Left like B" })
 

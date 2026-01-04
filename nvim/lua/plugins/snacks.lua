@@ -4,6 +4,13 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
+    notifier = {
+      enabled = true,
+      level = vim.log.levels.TRACE,
+      top_down = true,
+      margin = { top = 1, right = 1, bottom = 0 },
+    },
+
     picker = {
       enabled = true,
       sources = {

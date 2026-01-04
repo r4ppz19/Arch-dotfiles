@@ -2,6 +2,10 @@
 
 # Custom:
 [[mgr.prepend_keymap]]
+on = "M"
+run = "plugin mount"
+
+[[mgr.prepend_keymap]]
 on = "U"
 run = "plugin restore -- --interactive"
 desc = "Restore deleted files/folders (Interactive)"
@@ -246,6 +250,10 @@ keymap = [
   { on = [
     "g",
     "m",
+  ], run = "cd /run/media/r4ppz/", desc = "Go /media" },
+  { on = [
+    "g",
+    "M",
   ], run = "cd /mnt", desc = "Go /mnt" },
   { on = [
     "g",

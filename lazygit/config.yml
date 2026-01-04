@@ -6,8 +6,12 @@ gui:
     activeBorderColor:
       - blue
       - bold
+
 git:
   overrideGpg: true
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never --hyperlinks --file-style="omit"
 
 os:
   edit: '[ -z "$NVIM" ] && (nvim -- {{filename}}) || (nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote {{filename}})'

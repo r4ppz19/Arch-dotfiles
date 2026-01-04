@@ -157,30 +157,30 @@ function M.setup(capabilities)
   })
 
   -- CSS Modules
-  -- vim.lsp.config("cssmodules_ls", {
-  --   capabilities = capabilities,
-  --   filetypes = { "typescriptreact", "javascriptreact" },
-  --   settings = {
-  --     css = {
-  --       validate = true,
-  --       lint = {
-  --         unknownAtRules = "ignore",
-  --       },
-  --     },
-  --     scss = {
-  --       validate = true,
-  --       lint = {
-  --         unknownAtRules = "ignore",
-  --       },
-  --     },
-  --     less = {
-  --       validate = true,
-  --       lint = {
-  --         unknownAtRules = "ignore",
-  --       },
-  --     },
-  --   },
-  -- })
+  vim.lsp.config("cssmodules_ls", {
+    capabilities = capabilities,
+    filetypes = { "typescriptreact", "javascriptreact" },
+    settings = {
+      css = {
+        validate = true,
+        lint = {
+          unknownAtRules = "ignore",
+        },
+      },
+      scss = {
+        validate = true,
+        lint = {
+          unknownAtRules = "ignore",
+        },
+      },
+      less = {
+        validate = true,
+        lint = {
+          unknownAtRules = "ignore",
+        },
+      },
+    },
+  })
 
   -- CSS LSP
   vim.lsp.config("cssls", {
@@ -194,21 +194,21 @@ function M.setup(capabilities)
   })
 
   -- CSS Variables
-  -- vim.lsp.config("css_variables", {
-  --   capabilities = capabilities,
-  --   filetypes = { "css", "scss", "sass", "less", "typescriptreact", "javascriptreact" },
-  -- })
+  vim.lsp.config("css_variables", {
+    capabilities = capabilities,
+    filetypes = { "css", "scss", "sass", "less", "typescriptreact", "javascriptreact" },
+  })
 
   -- Emmet
-  -- vim.lsp.config("emmet_ls", {
-  --   capabilities = capabilities,
-  --   filetypes = {
-  --     "html",
-  --     "javascriptreact",
-  --     "typescriptreact",
-  --     "css",
-  --   },
-  -- })
+  vim.lsp.config("emmet_ls", {
+    capabilities = capabilities,
+    filetypes = {
+      "html",
+      "javascriptreact",
+      "typescriptreact",
+      "css",
+    },
+  })
 
   -- Hyprland LSP
   vim.lsp.config("hyprls", {

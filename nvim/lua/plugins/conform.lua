@@ -16,10 +16,10 @@ return {
       lua = { "stylua" },
       css = { "prettier" },
       html = { "prettier" },
-      javascript = { "prettier" },
-      javascriptreact = { "prettier" },
-      typescript = { "prettier" },
-      typescriptreact = { "prettier" },
+      javascript = { "eslint_d", "prettier" },
+      javascriptreact = { "eslint_d", "prettier" },
+      typescript = { "eslint_d", "prettier" },
+      typescriptreact = { "eslint_d", "prettier" },
       json = { "prettier" },
       markdown = { "prettier" },
       yaml = { "prettier" },
@@ -27,15 +27,21 @@ return {
       python = { "black" },
       rust = { "rustfmt" },
     },
-    format_on_save = false,
+
+    format_after_save = {
+      lsp_format = "fallback",
+    },
   },
   keys = {
     {
       "<leader>of",
       function()
-        require("conform").format({ lsp_fallback = true })
+        require("conform").format({
+          lsp_fallback = true,
+          async = true,
+        })
       end,
-      desc = "Formal File",
+      desc = "Format & Autofix File",
     },
   },
 }

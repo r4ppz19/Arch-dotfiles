@@ -33,6 +33,8 @@ alias sm='~/Arch-dotfiles/scripts/tmux-session-manager.py'
 # alias sm='. ~/Arch-dotfiles/zsh/session-manager.zsh'
 alias dev='~/Arch-dotfiles/scripts/dev.sh'
 alias dev2='~/Arch-dotfiles/scripts/dev2.sh'
+alias vo='~/Arch-dotfiles/scripts/vault.sh open'
+alias vc='~/Arch-dotfiles/scripts/vault.sh close'
 
 # AI
 alias ex='gh copilot explain'

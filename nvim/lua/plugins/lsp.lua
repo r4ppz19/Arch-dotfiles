@@ -4,11 +4,11 @@ local servers = {
   "cssls",
   "jsonls",
   "yamlls",
-  -- "markdown_oxide",
+  -- "markdown_oxide"
   -- "marksman",
   -- "eslint",
   -- "ts_ls",
-  -- "vtsls",
+  "vtsls",
   -- "cssmodules_ls",
   -- "css_variables",
   -- "emmet_ls",

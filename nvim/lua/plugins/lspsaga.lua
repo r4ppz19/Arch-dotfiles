@@ -46,10 +46,10 @@ return {
       },
       finder = {
         max_height = 0.5,
-        left_width = 0.5,
-        right_width = 0.5,
+        left_width = 0.4,
+        right_width = 0.6,
         default = "ref",
-        layout = "normal",
+        layout = "float",
         silent = true,
         keys = {
           vsplit = "v",
@@ -120,9 +120,15 @@ return {
       desc = "Rename Symbol",
     })
 
-    map("n", "<S-C-Up>", "<cmd>Lspsaga hover_doc<CR>", {
-      desc = "Hover Documentation",
-    })
+    -- map("n", "<S-C-Up>", "<cmd>Lspsaga hover_doc<CR>", {
+    --   desc = "Hover Documentation (lspsaga)",
+    -- })
+
+    -- map("n", "<S-C-Up>", function()
+    --   require("pretty_hover").hover()
+    -- end, {
+    --   desc = "Hover Documentation (pretty hover)",
+    -- })
 
     -- Diagnostic Show
     map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", {

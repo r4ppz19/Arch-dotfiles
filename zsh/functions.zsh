@@ -1,5 +1,44 @@
+# Set the filesystem label of a block device.
+fslabel() {
+  local dev=$1
+  local name=$2
+
+  # Check if device exists
+  if [ ! -b "$dev" ]; then
+    echo "Error: $dev is not a valid block device."
+    return 1
+  fi
+
+  # Detect the filesystem type
+  local fstype=$(lsblk -no FSTYPE "$dev")
+
+  case "$fstype" in
+  vfat)
+    sudo fatlabel "$dev" "$name"
+    ;;
+  exfat)
+    sudo exfatlabel "$dev" "$name"
+    ;;
+  ext2 | ext3 | ext4)
+    sudo e2label "$dev" "$name"
+    ;;
+  ntfs)
+    sudo ntfslabel "$dev" "$name"
+    ;;
+  btrfs)
+    sudo btrfs filesystem label "$dev" "$name"
+    ;;
+  *)
+    echo "Error: Filesystem '$fstype' not supported by this script."
+    return 1
+    ;;
+  esac
+
+  echo "Successfully labeled $dev as '$name' ($fstype)"
+}
+
 # Phone mount
-function pmount() {
+pmount() {
   local mnt=~/Phone
   [[ -d $mnt ]] || mkdir "$mnt"
   mountpoint -q "$mnt" && {
@@ -13,7 +52,7 @@ function pmount() {
 }
 
 # Phone unmount
-function pumount() {
+pumount() {
   local mnt=~/Phone
   mountpoint -q "$mnt" || {
     echo "Not mounted."
@@ -35,7 +74,7 @@ zshaddhistory() {
 }
 
 # yazi
-function y() {
+y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
   yazi "$@" --cwd-file="$tmp"
   if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
@@ -61,7 +100,7 @@ ai() {
   esac | mdcat | less
 }
 
-function extract() {
+extract() {
   if [ -f "$1" ]; then
     case "$1" in
     *.tar.bz2) tar xjf "$1" ;;
@@ -87,7 +126,7 @@ function extract() {
   fi
 }
 
-function compress() {
+compress() {
   if [ $# -lt 2 ]; then
     echo "Usage: compress <archive_name> <file_or_dir> [file_or_dir...]"
     return 1
