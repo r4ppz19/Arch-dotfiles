@@ -2,8 +2,7 @@ local function clean_markdown_links(lines)
   local out = {}
   for _, line in ipairs(lines) do
     local cleaned = line:gsub("%[([^%]]+)%]%([^%)]+%)", "%1")
-    cleaned = cleaned:gsub("%s+", " ")
-    cleaned = cleaned:gsub("^%s*(.-)%s*$", "%1")
+    cleaned = cleaned:gsub("%s+$", "")
     table.insert(out, cleaned)
   end
   return out
@@ -25,6 +24,10 @@ local function trim_empty_lines(lines)
 end
 
 local function pad_lines(lines)
+  if #lines == 0 then
+    return {}
+  end
+
   local out = { "" }
   for _, l in ipairs(lines) do
     table.insert(out, "  " .. l)
@@ -36,8 +39,9 @@ end
 return {
   name = "Hover Docs",
   priority = 1000,
-  enabled = function(_)
-    return true
+  enabled = function(bufnr)
+    -- Only enable if there is an active LSP client
+    return #vim.lsp.get_clients({ bufnr = bufnr }) > 0
   end,
   execute = function(_, done)
     vim.lsp.buf_request(
