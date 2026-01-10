@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 return {
   "nvimdev/lspsaga.nvim",
   event = "LspAttach",
@@ -88,19 +89,44 @@ return {
     map("n", "gR", "<cmd>Lspsaga finder ref+def+imp<CR>", {
       desc = "Find References (including def and imp)",
     })
-    map("n", "gr", "<cmd>Lspsaga finder<CR>", {
-      desc = "Find References",
-    })
+    -- map("n", "gr", "<cmd>Lspsaga finder<CR>", {
+    --   desc = "Find References",
+    -- })
+    map("n", "gr", function()
+      Snacks.picker.lsp_references({
+        auto_confirm = false,
+        title = "References",
+        layout = {
+          preset = "ivy",
+        },
+      })
+    end, { desc = "LSP References (Snacks)" })
 
-    map("n", "gd", "<cmd>Lspsaga goto_definition<CR>", {
-      desc = "Go to Definition",
-    })
-    map("n", "gi", "<cmd>Lspsaga finder imp<CR>", {
-      desc = "Go to Implementation",
-    })
-    map("n", "gy", "<cmd>Lspsaga goto_type_definition<CR>", {
-      desc = "Go to Type Definition",
-    })
+    map("n", "gd", function()
+      Snacks.picker.lsp_definitions()
+    end, { desc = "Goto [d]efinition (Snacks)" })
+
+    map("n", "gI", function()
+      Snacks.picker.lsp_implementations()
+    end, { desc = "Goto [I]mplementation (Snacks)" })
+
+    map("n", "gy", function()
+      Snacks.picker.lsp_type_definitions()
+    end, { desc = "Goto T[y]pe Definition (Snacks)" })
+
+    map("n", "ge", function()
+      Snacks.picker.lsp_declarations()
+    end, { desc = "Goto D[e]claration (Snacks)" })
+
+    -- map("n", "gd", "<cmd>Lspsaga goto_definition<CR>", {
+    --   desc = "Go to Definition",
+    -- })
+    -- map("n", "gi", "<cmd>Lspsaga finder imp<CR>", {
+    --   desc = "Go to Implementation",
+    -- })
+    -- map("n", "gy", "<cmd>Lspsaga goto_type_definition<CR>", {
+    --   desc = "Go to Type Definition",
+    -- })
 
     map("n", "gD", "<cmd>Lspsaga peek_definition<CR>", {
       desc = "Peek Definition",
@@ -148,9 +174,13 @@ return {
       desc = "Show Workspace Diagnostics",
     })
 
+    map("n", "<leader>lS", function()
+      Snacks.picker.lsp_symbols()
+    end, { desc = "LSP Symbols (Snacks)" })
     map("n", "<leader>ls", "<cmd>Lspsaga outline<CR>", {
       desc = "Outline/Symbols Browser",
     })
+
     map("n", "<leader>li", "<cmd>Lspsaga incoming_calls<CR>", {
       desc = "Incoming Calls",
     })

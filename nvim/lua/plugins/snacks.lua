@@ -5,7 +5,7 @@ return {
   lazy = false,
   opts = {
     notifier = {
-      enabled = true,
+      enabled = false,
       level = vim.log.levels.TRACE,
       top_down = true,
       margin = { top = 1, right = 1, bottom = 0 },

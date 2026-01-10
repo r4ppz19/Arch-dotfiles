@@ -2,25 +2,15 @@ return {
   "stevearc/conform.nvim",
   event = "BufReadPre",
   opts = {
-    formatters = {
-      prettier = {
-        command = "prettier",
-        prefer_local = "node_modules/.bin",
-        args = {
-          "--stdin-filepath",
-          "$FILENAME",
-        },
-      },
-    },
     formatters_by_ft = {
       lua = { "stylua" },
-      css = { "prettier" },
-      html = { "prettier" },
-      javascript = { "eslint_d", "prettier" },
-      javascriptreact = { "eslint_d", "prettier" },
-      typescript = { "eslint_d", "prettier" },
-      typescriptreact = { "eslint_d", "prettier" },
-      json = { "prettier" },
+      css = { "biome" },
+      html = { "biome" },
+      javascript = { "biome" },
+      javascriptreact = { "biome" },
+      typescript = { "biome" },
+      typescriptreact = { "biome" },
+      json = { "biome" },
       markdown = { "prettier" },
       yaml = { "prettier" },
       sh = { "shfmt" },
