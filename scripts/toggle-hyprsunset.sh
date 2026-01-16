@@ -11,7 +11,17 @@ read -r MODE <"$STATE_FILE"
 
 case "$MODE" in
 day)
-  hyprctl hyprsunset temperature 3800
+  # Transition to Afternoon: Slightly warmer
+  hyprctl hyprsunset temperature 4500
+  hyprctl hyprsunset gamma 100
+  notify-send -t 1000 -h boolean:transient:true \
+    -a "Toggle HyprSunset" "AFTERNOON MODE" -i dialog-information
+  echo "afternoon" >"$STATE_FILE"
+  ;;
+
+afternoon)
+  # Transition to Night: Warmest/Yellowest
+  hyprctl hyprsunset temperature 3500
   hyprctl hyprsunset gamma 90
   notify-send -t 1000 -h boolean:transient:true \
     -a "Toggle HyprSunset" "NIGHT MODE" -i dialog-information
@@ -19,6 +29,7 @@ day)
   ;;
 
 night)
+  # Transition to Reading: High contrast, neutral temp
   hyprctl hyprsunset temperature 4500
   hyprctl hyprsunset gamma 100
   notify-send -t 1000 -h boolean:transient:true \
@@ -27,7 +38,8 @@ night)
   ;;
 
 reading)
-  hyprctl hyprsunset temperature 5000
+  # Transition to Day: Standard daylight
+  hyprctl hyprsunset temperature 6000
   hyprctl hyprsunset gamma 100
   notify-send -t 1000 -h boolean:transient:true \
     -a "Toggle HyprSunset" "DAY MODE" -i dialog-information
@@ -35,8 +47,9 @@ reading)
   ;;
 
 *)
+  # Reset to Day on error
   echo "Unknown mode: '$MODE'. Resetting state to 'day'."
-  hyprctl hyprsunset temperature 5000
+  hyprctl hyprsunset temperature 6000
   hyprctl hyprsunset gamma 100
   echo "day" >"$STATE_FILE"
   ;;

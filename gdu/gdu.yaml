@@ -1,0 +1,61 @@
+style:
+  footer:
+    text-color: "#2C2C2C"
+    background-color: "#82A497"
+    number-color: "#232526"
+  selected-row:
+    text-color: "#2C2C2C"
+    background-color: "#82A497"
+  result-row:
+    number-color: "#478487"
+    directory-color: "#478487"
+  header:
+    text-color: "#2C2C2C"
+    background-color: "#82A497"
+    hidden: true
+  progress-modal:
+    current-item-path-max-len: 0
+  use-old-size-bar: true
+sorting:
+  by: "size"
+  order: "desc"
+log-file: /dev/null
+input-file: ""
+output-file: ""
+ignore-from-file: ""
+storage-path: /tmp/badger
+ignore-dirs:
+  - /proc
+  - /dev
+  - /sys
+  - /run
+ignore-dir-patterns: []
+max-cores: 8
+top: 0
+sequential-scanning: false
+show-apparent-size: false
+show-relative-size: false
+show-annexed-size: false
+show-item-count: false
+show-mtime: false
+no-color: false
+mouse: false
+non-interactive: false
+no-progress: false
+no-unicode: false
+no-cross: false
+no-hidden: false
+no-delete: false
+no-spawn-shell: false
+follow-symlinks: false
+profiling: false
+const-gc: false
+use-storage: false
+read-from-storage: false
+summarize: false
+use-si-prefix: false
+no-prefix: false
+reverse-sort: false
+change-cwd: false
+delete-in-background: false
+delete-in-parallel: false

@@ -21,6 +21,7 @@ CONFIG_ITEMS=(
   uwsm
   fastfetch
   pacseek
+  gdu
 )
 
 for item in "${CONFIG_ITEMS[@]}"; do

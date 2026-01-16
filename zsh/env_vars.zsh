@@ -3,6 +3,9 @@ source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
 # environment variables
+export BUN_INSTALL="$HOME/.bun"
+export BUN_INSTALL_CACHE_DIR="$BUN_INSTALL/install/cache"
+
 export EDITOR='nvim'
 export VISUAL='nvim'
 export GOPATH="$HOME/.go"

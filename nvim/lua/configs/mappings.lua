@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-global
+
 -- I use arrow keys not hjkl cause I am a fucking weirdo
 
 local map = require("utils.map")
@@ -66,6 +68,165 @@ map("t", "<C-q>", "<C-\\><C-N>", { desc = "Escape terminal mode" })
 
 map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
 map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
+
+--------------------------------------------------
+-- LSP related
+--------------------------------------------------
+
+-- map("n", "gR", "<cmd>Lspsaga finder ref+def+imp<CR>", {
+--   desc = "Find References (including def and imp)",
+-- })
+-- map("n", "gr", "<cmd>Lspsaga finder<CR>", {
+--   desc = "Find References",
+-- })
+
+-- map("n", "gr", function()
+--   Snacks.picker.lsp_references({
+--     auto_confirm = false,
+--     title = "References",
+--     layout = {
+--       preview = "main",
+--       layout = {
+--         backdrop = false,
+--         width = 40,
+--         min_width = 40,
+--         height = 0,
+--         position = "right",
+--         border = "none",
+--         box = "vertical",
+--         { win = "list", border = "none" },
+--         { win = "preview", title = "{preview}", height = 0.4, border = "top" },
+--       },
+--     },
+--   })
+-- end, { desc = "LSP References (Snacks)" })
+--
+map("n", "gr", function()
+  Snacks.picker.lsp_references({
+    auto_confirm = false,
+    title = "References",
+    layout = {
+      layout = {
+        box = "vertical",
+        row = -1,
+        width = 0,
+        height = 0.4,
+        border = "top",
+        {
+          box = "horizontal",
+          {
+            win = "list",
+            border = "none",
+          },
+          {
+            win = "preview",
+            title = "{preview}",
+            width = 0.5,
+            border = "left",
+          },
+        },
+      },
+    },
+  })
+end, { desc = "LSP References (Snacks)" })
+
+map("n", "gd", function()
+  Snacks.picker.lsp_definitions()
+end, { desc = "Goto [d]efinition (Snacks)" })
+
+map("n", "gI", function()
+  Snacks.picker.lsp_implementations()
+end, { desc = "Goto [I]mplementation (Snacks)" })
+
+map("n", "gy", function()
+  Snacks.picker.lsp_type_definitions()
+end, { desc = "Goto T[y]pe Definition (Snacks)" })
+
+map("n", "ge", function()
+  Snacks.picker.lsp_declarations()
+end, { desc = "Goto D[e]claration (Snacks)" })
+
+map("n", "gD", "<cmd>Lspsaga peek_definition<CR>", {
+  desc = "Peek Definition",
+})
+map("n", "gT", "<cmd>Lspsaga peek_type_definition<CR>", {
+  desc = "Peek Type Definition",
+})
+map("n", "<S-C-Down>", "<cmd>Lspsaga peek_definition<CR>", {
+  desc = "Peek Definition",
+})
+
+map({ "n", "v" }, "<leader>la", "<cmd>Lspsaga code_action<CR>", {
+  desc = "Code Actions",
+})
+
+map("n", "<leader>lr", "<cmd>Lspsaga rename<CR>", {
+  desc = "Rename Symbol",
+})
+
+-- Diagnostic Show
+map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", {
+  desc = "Previous Diagnostic",
+})
+map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", {
+  desc = "Next Diagnostic",
+})
+
+map("n", "<leader>lD", "<cmd>Lspsaga show_line_diagnostics<CR>", {
+  desc = "Show Line Diagnostics",
+})
+map("n", "<leader>ld", "<cmd>Lspsaga show_buf_diagnostics<CR>", {
+  desc = "Show Buffer Diagnostics",
+})
+map("n", "<leader>lw", "<cmd>Lspsaga show_workspace_diagnostics<CR>", {
+  desc = "Show Workspace Diagnostics",
+})
+
+map("n", "<leader>li", function()
+  Snacks.picker.lsp_incoming_calls({
+    auto_confirm = false,
+    title = "References",
+    layout = {
+      preview = "main",
+      layout = {
+        backdrop = false,
+        width = 40,
+        min_width = 40,
+        height = 0,
+        position = "right",
+        border = "none",
+        box = "vertical",
+        { win = "list", border = "none" },
+        { win = "preview", title = "{preview}", height = 0.4, border = "top" },
+      },
+    },
+  })
+end, {
+  desc = "Incoming Calls",
+})
+
+map("n", "<leader>lo", function()
+  Snacks.picker.lsp_outgoing_calls({
+    auto_confirm = false,
+    title = "References",
+    layout = {
+      preview = "main",
+      layout = {
+        backdrop = false,
+        width = 40,
+        min_width = 40,
+        height = 0,
+        position = "right",
+        border = "none",
+        box = "vertical",
+        { win = "list", border = "none" },
+        { win = "preview", title = "{preview}", height = 0.4, border = "top" },
+      },
+    },
+  })
+end, {
+  desc = "Outgoing Calls",
+})
 
 --------------------------------------------------
 -- Disabled/Change defaults cause why not
@@ -158,23 +319,57 @@ map("n", "<leader>t<Right>", "<cmd>tabnext<CR>", { desc = "Next tab" })
 map("n", "<leader>t<Left>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
 
 -- BUFFERS MANAGEMENT
+-- Helper function to safely execute buffer commands
+local function safe_buf_action(action)
+  return function()
+    if vim.wo.winfixbuf then
+      return
+    end
+    local is_floating = vim.api.nvim_win_get_config(0).relative ~= ""
+    if is_floating then
+      return
+    end
+    pcall(action)
+  end
+end
+
 map("n", "<leader>n", "<cmd>enew<CR>", { desc = "Buffer new" })
 
--- change buffer
-map({ "n" }, "<M-Right>", function()
-  require("nvchad.tabufline").next()
-end, { desc = "Buffer goto next" })
-map({ "n" }, "<M-Left>", function()
-  require("nvchad.tabufline").prev()
-end, { desc = "Buffer goto prev" })
+-- change buffer (Protected)
+map(
+  { "n" },
+  "<M-Right>",
+  safe_buf_action(function()
+    require("nvchad.tabufline").next()
+  end),
+  { desc = "Buffer goto next" }
+)
+map(
+  { "n" },
+  "<M-Left>",
+  safe_buf_action(function()
+    require("nvchad.tabufline").prev()
+  end),
+  { desc = "Buffer goto prev" }
+)
 
--- move buffer
-map({ "n" }, "<C-M-Right>", function()
-  require("nvchad.tabufline").move_buf(1)
-end, { desc = "move buffer to the right" })
-map({ "n" }, "<C-M-Left>", function()
-  require("nvchad.tabufline").move_buf(-1)
-end, { desc = "move buffer to the left" })
+-- move buffer (Protected)
+map(
+  { "n" },
+  "<C-M-Right>",
+  safe_buf_action(function()
+    require("nvchad.tabufline").move_buf(1)
+  end),
+  { desc = "move buffer to the right" }
+)
+map(
+  { "n" },
+  "<C-M-Left>",
+  safe_buf_action(function()
+    require("nvchad.tabufline").move_buf(-1)
+  end),
+  { desc = "move buffer to the left" }
+)
 
 -- close buffer
 map("n", "<M-x>", function()
