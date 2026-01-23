@@ -3,3 +3,5 @@ Description=User services specific to Hyprland session
 BindsTo=graphical-session.target
 After=graphical-session.target
 
+[Install]
+WantedBy=graphical-session.target

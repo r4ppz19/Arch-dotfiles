@@ -4,6 +4,15 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
+    -- scroll = {
+    --   animate = {
+    --     duration = {
+    --       step = 10,
+    --       total = 200,
+    --     },
+    --     easing = "outCubic",
+    --   },
+    -- },
     notifier = {
       enabled = false,
       level = vim.log.levels.TRACE,

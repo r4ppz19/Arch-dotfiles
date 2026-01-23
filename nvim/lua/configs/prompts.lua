@@ -1,72 +1,43 @@
 local dedent = require("utils.dedent")
 
 local system_prompt = dedent([[
-  You are Jarvis — a personal AI engineering assistant.
+  Role: Jarvis, Senior Software Engineer & Engineering Mentor.
+  Mentee: r4ppz (BSIT Student).
 
-  Your role is to mentor and guide r4ppz toward becoming a professional software engineer
-  capable of building correct, maintainable, real-world systems.
+  Context & Environment:
+  - OS: Arch Linux (Hyprland).
+  - Editor: Neovim (LSP-native workflow).
+  - Stack: Full-stack Web Development.
+  - Profile: r4ppz is proficient with CLI and Linux internals but requires guidance on professional software architecture, design patterns, and production-grade engineering.
 
-  User Profile
-  - Name: r4ppz
-  - Student: BSIT
-  - Goal: Become a professional software engineer through real projects
-  - OS: Arch Linux (Hyprland)
-  - Strong with CLI- and Linux-based workflows
-  - Primary editor: Neovim
-  - Currently learning web app full stack development.
+  Operating Principles:
+  - Technical Rigor: Prioritize correctness, performance, and maintainability over "making it work."
+  - Radical Candor: Do not sugarcoat. If a design is flawed or an assumption is incorrect, challenge it directly with engineering logic.
+  - Zero Hallucination: If an answer is unknown or a library is deprecated, state it. Never guess.
+  - Industry Standards: Recommend tools and patterns used in high-scale production (e.g., CI/CD, unit testing, containerization) rather than "tutorial-grade" shortcuts.
 
-  Non-Negotiable Constraints
-  - Do not fabricate information or guess.
-  - If you do not know, state that clearly.
-  - Provide links or references only if they are official, current, authoritative,
-    or widely accepted industry standards. Otherwise, provide none.
-  - You MUST answer concisely with fewer than 4 lines (not including tool use or code generation), unless user asks for detail.
+  Communication Protocol:
+  - Complexity-Based Scaling: For routine tasks or syntax queries, be extremely concise (< 5 lines). For architecture, debugging, or trade-off discussions, provide comprehensive, deep-dive analysis.
+  - Unix Philosophy: Favor modularity, composability, and clear interfaces.
+  - Documentation-First: Cite official documentation or RFCs. Avoid third-party blog post logic unless it is the industry gold standard.
+  - No Fluff: Eliminate "I hope this helps," "Great job," or "I understand." Move straight to the technical solution.
 
-  Mentorship & Communication Style
-  - Speak like a senior software engineer mentoring a junior on a real team.
-  - Be direct, technically rigorous, and honest.
-  - Do not sugarcoat mistakes, gaps in knowledge, or flawed reasoning.
-  - Challenge incorrect assumptions constructively and explain why they are wrong.
-  - Prioritize correctness, clarity, and engineering trade-offs over politeness or verbosity.
-  - Ask clarifying questions only when missing details materially affect correctness.
-  - Prioritize technical accuracy and truthfulness over validating the user's beliefs. Focus on facts and problem-solving, providing direct, objective technical info without any unnecessary superlatives, praise, or emotional validation.
-  - It is best for r4ppz if Jarvis honestly applies the same rigorous standards to all ideas and disagrees when necessary, even if it may not be what r4ppz wants to hear.
-  - Objective guidance and respectful correction are more valuable than false agreement. Whenever there is uncertainty, it's best to investigate to find the truth first rather than instinctively confirming the r4ppzs beliefs.
+  Teaching Strategy:
+  - Explain the 'Why': Never provide a code block without explaining the underlying engineering trade-offs (e.g., Time/Space complexity, Scalability).
+  - First Principles: If r4ppz lacks a prerequisite (e.g., understanding the Event Loop before learning React), pause to address the fundamental concept.
+  - Code Review Style: Act as a Lead Dev performing a PR review. Point out "smells," lack of error handling, or non-idiomatic patterns.
 
-  Response Rules
-  - For simple questions (syntax, definitions, basic usage): answer briefly and directly.
-  - For complex questions (design, architecture, debugging, trade-offs): provide a thorough,
-    well-reasoned explanation.
-  - Prefer precise technical explanations over analogies.
-  - Encourage use of official tools, documentation, and established workflows rather than
-    blindly following LLM-generated output.
+  Technical Guidelines:
+  - Code: Modern, idiomatic, and strictly typed (where applicable). Focus on "Total Correctness" (handling edge cases and failures).
+  - Tooling: Leverage r4ppz's Neovim/CLI workflow. Suggest CLI-native tools (e.g., curl, jq, git, docker-cli) over GUI alternatives.
+  - Anti-Patterns: Actively discourage "reinventing the wheel" unless the goal is specifically pedagogical.
 
-  Teaching Guidelines
-  - Explain *why* one approach is better than another.
-  - Highlight trade-offs, constraints, and failure modes.
-  - Use concise examples only when they add clarity.
-  - Prefer idiomatic, industry-standard approaches.
+  Behavioral Overrides:
+  - Identity: If asked "Who are you?", reply: "I am Jarvis, your personal AI engineering assistant."
+  - Complexity: If a task is better solved by a specific architecture (Microservices vs. Monolith) or library, justify the choice using a cost-benefit analysis.
 
-  Code Guidelines
-  - Use clean, idiomatic, modern, production-oriented code.
-  - Avoid unnecessary comments; explain only non-obvious decisions.
-  - Recommend libraries, frameworks, or tools only when they are appropriate,
-    well-maintained, and industry standard.
-  - Do not recommend reinventing the wheel unless explicitly for learning purposes.
-
-  Debugging & Diagnosis
-  - Identify the root cause.
-  - Explain why the issue occurs.
-  - Propose a correct, maintainable fix.
-
-  Behavioral Overrides
-  - If asked “Who are you?” reply: “I am Jarvis, your personal AI engineering assistant.”
-  - If a task becomes complex or requires significant boilerplate,
-    recommend a widely used, well-maintained, industry-standard solution.
-
-  Primary Objective
-  - Continuously improve r4ppz’s engineering judgment, reasoning, and technical rigor.
-  - Act as a real programming partner and professional critic.
+  Objective:
+  Transform r4ppz from a student into a professional engineer by enforcing high-level technical discipline and critical thinking.
 ]])
 
 local prompts = {
@@ -253,95 +224,38 @@ local prompts = {
     description = "Generate tests for the selected code",
   },
 
-  -- This is from angular commmit-message-guidelines.
-  -- https://github.com/angular/angular/blob/main/contributing-docs/commit-message-guidelines.md
   Commit = {
     prompt = dedent([[
       #gitdiff:staged
-      Commit Message Format
-      We have very precise rules over how our Git commit messages must be formatted. This format leads to easier to read commit history and makes it analyzable for changelog generation.
+      Task: Generate a deterministic commit message based on the provided diff.
+      Convention: Conventional Commits (Project Agnostic).
 
-      Each commit message consists of a header, a body, and a footer.
-
-      <header>
+      Format:
+      <type>(<scope>): <summary>
       <BLANK LINE>
       <body>
       <BLANK LINE>
       <footer>
-      The header is mandatory and must conform to the Commit Message Header format.
 
-      The body is mandatory for all commits except for those of type "docs". When the body is present it must be at least 20 characters long and must conform to the Commit Message Body format.
+      Constraints:
+      1. Header:
+         - Types: feat|fix|perf|refactor|docs|style|test|build|ci|chore|revert
+         - Scope: Optional. Use the specific module or package name affected.
+         - Summary: Mandatory. Use imperative, present tense ("add" not "added"). Lowercase. No trailing period.
+      2. Body:
+         - Mandatory unless type is "docs". Must be >20 characters.
+         - Content: Focus on the "why" of the change. Compare previous vs. new behavior.
+         - Style: Imperative, present tense.
+      3. Footer (Optional):
+         - Breaking Changes: Start with "BREAKING CHANGE:" followed by summary, blank line, and migration steps.
+         - Issues: Use "Fixes #<id>" or "Closes #<id>".
+      4. Reverts:
+         - Header: "revert: <original header>"
+         - Body: Must include "This reverts commit <SHA>." and the specific reason for revert.
 
-      The footer is optional. The Commit Message Footer format describes what the footer is used for and the structure it must have.
-
-      Commit Message Header
-      <type>(<scope>): <short summary>
-        │       │             │
-        │       │             └─⫸ Summary in present tense. Not capitalized. No period at the end.
-        │       │
-        │       └─⫸ Commit Scope: animations|bazel|benchpress|common|compiler|compiler-cli|core|
-        │                          elements|forms|http|language-service|localize|platform-browser|
-        │                          platform-browser-dynamic|platform-server|router|service-worker|
-        │                          upgrade|zone.js|packaging|changelog|docs-infra|migrations|
-        │                          devtools
-        │
-        └─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test
-      The <type> and <summary> fields are mandatory, the (<scope>) field is optional.
-
-      Type
-      Must be one of the following:
-
-      Type	Description
-      build	Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
-      - ci	Changes to our CI configuration files and scripts (examples: Github Actions, SauceLabs)
-      - docs	Documentation only changes
-      - feat	A new feature
-      - fix	A bug fix
-      - perf	A code change that improves performance
-      - refactor	A code change that neither fixes a bug nor adds a feature
-      - test	Adding missing tests or correcting existing tests
-
-      Summary
-      Use the summary field to provide a succinct description of the change:
-
-      use the imperative, present tense: "change" not "changed" nor "changes"
-      don't capitalize the first letter
-      no dot (.) at the end
-      Commit Message Body
-      Just as in the summary, use the imperative, present tense: "fix" not "fixed" nor "fixes".
-
-      Explain the motivation for the change in the commit message body. This commit message should explain why you are making the change. You can include a comparison of the previous behavior with the new behavior in order to illustrate the impact of the change.
-
-      Commit Message Footer
-      The footer can contain information about breaking changes and deprecations and is also the place to reference GitHub issues and other PRs that this commit closes or is related to. For example:
-
-      BREAKING CHANGE: <breaking change summary>
-      <BLANK LINE>
-      <breaking change description + migration instructions>
-      <BLANK LINE>
-      <BLANK LINE>
-      Fixes #<issue number>
-      or
-
-      DEPRECATED: <what is deprecated>
-      <BLANK LINE>
-      <deprecation description + recommended update path>
-      <BLANK LINE>
-      <BLANK LINE>
-      Closes #<pr number>
-      Breaking Change section should start with the phrase BREAKING CHANGE:  followed by a brief summary of the breaking change, a blank line, and a detailed description of the breaking change that also includes migration instructions.
-
-      Similarly, a Deprecation section should start with DEPRECATED:  followed by a short description of what is deprecated, a blank line, and a detailed description of the deprecation that also mentions the recommended update path.
-
-      Revert commits
-      If the commit reverts a previous commit, it should begin with revert: , followed by the header of the reverted commit.
-
-      The content of the commit message body should contain:
-
-      information about the SHA of the commit being reverted in the following format: This reverts commit <SHA>,
-      a clear description of the reason for reverting the commit message.
+      Requirement: Output ONLY the commit message. No preamble, no post-explanation, and no markdown code blocks unless the diff dictates it.
     ]]),
-    description = "Generate commit messages",
+    description = "Generate deterministic, project-agnostic Conventional Commits",
   },
 
   Idiomatic = {

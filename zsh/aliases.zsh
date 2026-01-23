@@ -25,6 +25,7 @@ alias q="qwen -p"
 alias bm="bashmount"
 alias rcopy='rsync -avh --info=progress2 --partial --inplace'
 alias rmirror='rsync -avh --delete --info=progress2 --partial --inplace'
+alias op='opencode'
 
 # script
 alias of='~/Arch-dotfiles/scripts/open-file.sh'

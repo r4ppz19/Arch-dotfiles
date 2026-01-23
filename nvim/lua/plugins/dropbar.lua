@@ -4,7 +4,7 @@ return {
   opts = {
     bar = {
       truncate = false,
-      padding = { left = 2, right = 1 },
+      padding = { left = 2, right = 5 },
       enable = function(buf, win, _)
         if
           not vim.api.nvim_buf_is_valid(buf)

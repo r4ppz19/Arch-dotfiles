@@ -7,6 +7,13 @@ local map = require("utils.map")
 ----------------------------------------
 -- Personal?
 ----------------------------------------
+map("n", "<C-W>q", function()
+  if vim.fn.winnr("$") > 1 then
+    vim.cmd("q")
+  else
+    vim.notify("Cannot close the last window", vim.log.levels.WARN)
+  end
+end, { desc = "Close window safely" })
 
 map("n", "<leader>ow", function()
   vim.wo.wrap = not vim.wo.wrap
@@ -27,6 +34,12 @@ map("n", "<M-d>", "<C-r>", { desc = "Redo" })
 map("i", "<M-d>", "<C-o><C-r>", { desc = "Redo (Insert)" })
 map("v", "<M-d>", "<C-r>", { desc = "Redo (Visual)" })
 
+map("n", "<S-Up>", "<C-u>", { desc = "Scroll half a page up and center" })
+map("n", "<S-Down>", "<C-d>", { desc = "Scroll half a page down and center" })
+map("i", "<S-Up>", "<C-o><C-u><C-o>", { desc = "Scroll half a page up and center in insert mode" })
+map("i", "<S-Down>", "<C-o><C-d><C-o>", { desc = "Scroll half a page down and center in insert mode" })
+
+-- These gets weird once animation scroll (from Snacks) is enabled
 map("n", "<S-Up>", "<C-u>zz", { desc = "Scroll half a page up and center" })
 map("n", "<S-Down>", "<C-d>zz", { desc = "Scroll half a page down and center" })
 map("i", "<S-Up>", "<C-o><C-u><C-o>zz", { desc = "Scroll half a page up and center in insert mode" })
@@ -265,36 +278,15 @@ for i, mark in ipairs(marks) do
   map("n", "g" .. i, "`" .. mark, { desc = "Exact jump to global mark " .. mark })
 end
 
--- Open selected text as URL (portable)
--- (do I need this? idk)
-local function create_open_url_function()
-  local is_mac = vim.fn.has("mac") == 1
-  local is_win = vim.fn.has("win32") == 1
-
-  return function(url)
-    url = vim.fn.trim(url or "")
-    if url == "" then
-      vim.notify("No URL selected", vim.log.levels.WARN)
-      return
-    end
-    local cmd
-    if is_mac then
-      cmd = { "open", url }
-    elseif is_win then
-      cmd = { "cmd.exe", "/c", "start", "", url }
-    else
-      cmd = { "xdg-open", url }
-    end
-    vim.fn.jobstart(cmd, { detach = true })
+-- Neovim 0.10+ has a built-in provider for this
+vim.keymap.set("n", "gx", function()
+  local url = vim.fn.expand("<cfile>")
+  if url:match("https?://") then
+    vim.ui.open(url)
+  else
+    vim.notify("Not a valid URL under cursor", vim.log.levels.ERROR)
   end
-end
-
-local open_url_portable = create_open_url_function()
-map("v", "gx", function()
-  vim.cmd([[normal! "vy]])
-  local url = vim.fn.getreg('"')
-  open_url_portable(url)
-end, { desc = "Open selected text as URL" })
+end, { desc = "Open URL under cursor" })
 
 -------------------------------------------------------------
 -- Plugins? (other keybinds are in the plugins lua files)
@@ -392,7 +384,7 @@ end, { desc = "Toggle Horizontal Terminal" })
 
 -- Vertical Split Terminal
 map({ "n", "t" }, "<A-v>", function()
-  require("nvchad.term").toggle({ pos = "vsp", id = "vertical_term", size = 0.8 })
+  require("nvchad.term").toggle({ pos = "vsp", id = "vertical_term", size = 0.5 })
 end, { desc = "Toggle Vertical Terminal" })
 
 map("n", "<A-t>", function()

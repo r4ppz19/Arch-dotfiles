@@ -10,7 +10,7 @@ local servers = {
   -- "ts_ls",
   -- "vtsls",
   -- "biome",
-  "tsgo",
+  -- "tsgo",
   "cssmodules_ls",
   "css_variables",
   -- "emmet_ls",

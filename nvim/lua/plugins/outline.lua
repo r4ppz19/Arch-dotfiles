@@ -5,6 +5,10 @@ return {
     local map = require("utils.map")
     map("n", "<leader>ls", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
     require("outline").setup({
+      symbol_folding = {
+        autofold_depth = false,
+      },
+
       outline_window = {
         -- Percentage or integer of columns
         width = 30,

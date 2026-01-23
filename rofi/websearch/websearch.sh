@@ -16,6 +16,8 @@ declare -A sites=(
   [read]="https://medium.com/"
   [framer]="https://framer.com/projects/"
   [dev]="https://devdocs.io/"
+  [wifi]="http://192.168.1.254/"
+  [docs]="https://r4ppz.github.io/research-repo-docs/"
 )
 
 search_engine="https://duckduckgo.com/?q="
