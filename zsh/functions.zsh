@@ -83,23 +83,6 @@ y() {
   rm -f -- "$tmp"
 }
 
-# tgpt
-ai() {
-  case "$1" in
-  -p)
-    shift
-    tgpt -q -w --provider pollinations "$@"
-    ;;
-  -o)
-    shift
-    tgpt -q -w --provider ollama --model gemma3 "$@"
-    ;;
-  *)
-    tgpt -q -w "$@"
-    ;;
-  esac | mdcat | less
-}
-
 extract() {
   if [ -f "$1" ]; then
     case "$1" in

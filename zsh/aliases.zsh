@@ -36,9 +36,3 @@ alias dev='~/Arch-dotfiles/scripts/dev.sh'
 alias dev2='~/Arch-dotfiles/scripts/dev2.sh'
 alias vo='~/Arch-dotfiles/scripts/vault.sh open'
 alias vc='~/Arch-dotfiles/scripts/vault.sh close'
-
-# AI
-alias ex='gh copilot explain'
-alias sug='gh copilot suggest'
-alias gemma='tgpt --provider ollama --model gemma3'
-alias poll='tgpt --provider pollinations'

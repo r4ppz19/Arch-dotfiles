@@ -132,6 +132,7 @@ ollama
 onlyoffice-bin
 ookla-speedtest-bin
 openbsd-netcat
+opencode
 os-prober
 pacseek
 partitionmanager
@@ -165,6 +166,7 @@ sleuthkit
 slurp
 smartmontools
 sof-firmware
+spotdl
 sshfs
 steghide
 swaylock-effects-git
@@ -175,7 +177,6 @@ tealdeer
 tesseract
 tesseract-data-eng
 testdisk
-tgpt
 thermald
 thunar
 thunar-archive-plugin
