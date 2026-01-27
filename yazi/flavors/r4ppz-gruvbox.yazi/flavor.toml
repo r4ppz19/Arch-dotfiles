@@ -149,10 +149,10 @@ rules = [
   { mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "#fb4934" },
 
   # Documents
-  { mime = "application/{pdf,doc,rtf,vnd.*}", fg = "#83a598" },
+  { mime = "application/{pdf,doc,rtf,vnd.*}", fg = "#82A497" },
 
   # Fallback
-  { url = "*/", fg = "#83a598" },
+  { url = "*/", fg = "#82A497" },
   { url = "*", fg = "#ebdbb2" },
 ]
 
@@ -172,3 +172,16 @@ inactive = { fg = "#ebdbb2" }
 icon_file = ""
 icon_folder = ""
 icon_command = ""
+
+[icon]
+dirs = []
+prepend_conds = [{ if = "dir", text = "", fg = "#82A497" }]
+prepend_dirs = [
+  { name = "Desktop", text = "", fg = "#82A497" },
+  { name = "Downloads", text = "", fg = "#82A497" },
+  { name = "Documents", text = "", fg = "#82A497" },
+  { name = "Music", text = "", fg = "#82A497" },
+  { name = "Pictures", text = "", fg = "#82A497" },
+  { name = "Videos", text = "", fg = "#82A497" },
+  { name = "Books", text = "", fg = "#82A497" },
+]
