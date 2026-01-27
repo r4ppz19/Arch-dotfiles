@@ -18,6 +18,8 @@ declare -A sites=(
   [dev]="https://devdocs.io/"
   [wifi]="http://192.168.1.254/"
   [docs]="https://r4ppz.github.io/research-repo-docs/"
+  [drive]="https://drive.google.com/drive/my-drive"
+  [dhub]="https://hub.docker.com/repositories/r4ppzf"
 )
 
 search_engine="https://duckduckgo.com/?q="
