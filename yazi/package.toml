@@ -1,22 +1,22 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:no-status"
-rev = "8f1d971"
+rev = "6f50636"
 hash = "3e023d31f29201efdac2a6ae35fedb78"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "8f1d971"
+rev = "6f50636"
 hash = "56fdabc96fc1f4d53c96eb884b02a5be"
 
 [[plugin.deps]]
 use = "boydaihungst/restore"
-rev = "2161735"
-hash = "901741afba1979739b4650324265162e"
+rev = "4eda0bf"
+hash = "778941e7f1ebbacd60f4e254bb3c51de"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "4e55902"
-hash = "e2d4bfccf31e5ab05f46fee4797c5215"
+rev = "6f50636"
+hash = "563e4068979d1466d3dfc2e70a296947"
 
 [flavor]
 deps = []

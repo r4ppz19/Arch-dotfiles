@@ -60,7 +60,7 @@ local File_Type = {
 --- Get current working directory
 ---@return string
 local get_cwd_raw = ya.sync(function()
-	return tostring(cx.active.current.cwd)
+	return tostring(cx.active.current.cwd.path or cx.active.current.cwd)
 end)
 
 --- Quote path for shell command
