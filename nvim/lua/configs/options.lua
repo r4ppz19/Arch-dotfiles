@@ -6,7 +6,7 @@ o.autoread = true
 o.confirm = false
 
 o.relativenumber = false
-o.scrolloff = 6
+o.scrolloff = 5
 o.sidescroll = 1
 o.sidescrolloff = 8
 o.wrap = false

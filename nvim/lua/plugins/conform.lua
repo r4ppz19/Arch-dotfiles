@@ -20,6 +20,8 @@ return {
 
     format_after_save = {
       lsp_format = "fallback",
+      timeout_ms = 1000,
+      async = true,
     },
   },
   keys = {
@@ -27,6 +29,7 @@ return {
       "<leader>of",
       function()
         require("conform").format({
+          timeout_ms = 1000,
           lsp_fallback = true,
           async = true,
         })
