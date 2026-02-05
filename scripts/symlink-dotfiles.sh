@@ -18,7 +18,6 @@ CONFIG_ITEMS=(
   systemd
   waybar
   yazi
-  uwsm
   fastfetch
   pacseek
   gdu
