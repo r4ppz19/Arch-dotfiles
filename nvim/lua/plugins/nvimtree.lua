@@ -1,6 +1,9 @@
 return {
   "nvim-tree/nvim-tree.lua",
   cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+  dependencies = {
+    "antosha417/nvim-lsp-file-operations",
+  },
   opts = function()
     return {
       filters = {
@@ -55,6 +58,12 @@ return {
           },
         },
       },
+
+      on_attach = function(bufnr)
+        local nvim_tree_copilot = require("utils/nvim-tree-copilot")
+        require("nvim-tree.api").config.mappings.default_on_attach(bufnr)
+        nvim_tree_copilot.on_attach(bufnr)
+      end,
     }
   end,
 

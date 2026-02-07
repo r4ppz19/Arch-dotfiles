@@ -1,5 +1,14 @@
 local autocmd = vim.api.nvim_create_autocmd
 
+-- This is better then annoying error msg when closing it
+autocmd("WinEnter", {
+  callback = function()
+    if vim.bo.filetype == "copilot-chat" and #vim.api.nvim_list_wins() == 1 then
+      vim.cmd("quit")
+    end
+  end,
+})
+
 autocmd({
   "BufEnter",
   "CursorHold",
@@ -53,7 +62,7 @@ autocmd("BufEnter", {
     vim.opt_local.relativenumber = false
     vim.opt_local.number = false
     vim.opt_local.conceallevel = 0
-    vim.wo.winfixbuf = true
+    vim.opt_local.winfixbuf = true
   end,
 })
 

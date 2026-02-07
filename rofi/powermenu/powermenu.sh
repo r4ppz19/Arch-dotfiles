@@ -50,16 +50,8 @@ run_cmd() {
     case "$1" in
     '--shutdown') systemctl poweroff ;;
     '--reboot') systemctl reboot ;;
-    '--suspend')
-      mpc -q pause
-      amixer set Master mute
-      systemctl suspend
-      ;;
-    '--hibernate')
-      mpc -q pause
-      amixer set Master mute
-      systemctl hibernate
-      ;;
+    '--suspend') systemctl suspend ;;
+    '--hibernate') systemctl hibernate ;;
     esac
   else
     exit 0

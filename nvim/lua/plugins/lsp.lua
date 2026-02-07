@@ -35,6 +35,7 @@ return {
   "neovim/nvim-lspconfig",
   event = "FileType",
   dependencies = {
+    "antosha417/nvim-lsp-file-operations",
     {
       "mason-org/mason.nvim",
       opts = function()
@@ -91,6 +92,9 @@ return {
           },
         },
       })
+
+    -- This tells the lsp that nvim can handle file renaming/moving
+    capabilities = require("lsp-file-operations").default_capabilities(capabilities)
 
     local function setup()
       -- Default configurations for all servers

@@ -3,11 +3,15 @@ source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
 # environment variables
+export PNPM_HOME="/home/r4ppz/.local/share/pnpm"
+
 export BUN_INSTALL="$HOME/.bun"
 export BUN_INSTALL_CACHE_DIR="$BUN_INSTALL/install/cache"
 
 export EDITOR='nvim'
 export VISUAL='nvim'
+export SYSTEMD_EDITOR='nvim'
+
 export GOPATH="$HOME/.go"
 export MANPAGER="nvim +Man!"
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk

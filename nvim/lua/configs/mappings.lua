@@ -364,6 +364,13 @@ map(
 )
 
 -- close buffer
+map("n", "<M-q>", function()
+  require("nvchad.tabufline").close_buffer()
+end, { desc = "Buffer close" })
+map("n", "<S-M-Q>", function()
+  require("nvchad.tabufline").closeAllBufs(false)
+end, { desc = "Close all buffers except current" })
+
 map("n", "<M-x>", function()
   require("nvchad.tabufline").close_buffer()
 end, { desc = "Buffer close" })

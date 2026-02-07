@@ -1,4 +1,4 @@
-local function map(mode, lhs, rhs, opts)
+local function map(mode, lhs, rhs, opts, bufnr)
   if not mode then
     error("map: 'mode' is required")
   end
@@ -12,6 +12,10 @@ local function map(mode, lhs, rhs, opts)
   opts = opts or {}
   opts.noremap = true
   opts.silent = true
+
+  if bufnr then
+    opts.buffer = bufnr
+  end
 
   vim.keymap.set(mode, lhs, rhs, opts)
 end

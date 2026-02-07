@@ -17,6 +17,7 @@ return {
       temperature = 0.1,
       -- model = "gpt-4.1",
       model = "grok-code-fast-1",
+      -- model = "gemini-3-flash-preview",
       -- model = "gpt-5-mini",
       -- model = "gpt-4o",
 
@@ -84,6 +85,39 @@ return {
       end,
       mode = { "n", "v" },
       desc = "Open chat with all buffers",
+    },
+
+    {
+      "<leader>cf",
+      function()
+        local snacks = require("snacks")
+        snacks.picker.files({
+          confirm = function(picker, item)
+            local items = picker:selected()
+            if #items == 0 then
+              items = { item }
+            end
+
+            picker:close()
+
+            local lines = {}
+            for _, sel in ipairs(items) do
+              local path = vim.fn.fnamemodify(sel.file, ":.")
+              table.insert(lines, "#file:" .. path)
+            end
+
+            local chat = require("CopilotChat")
+            chat.open()
+
+            vim.schedule(function()
+              vim.api.nvim_put(lines, "l", true, true)
+              vim.cmd("normal! G")
+            end)
+          end,
+        })
+      end,
+      desc = "Add files to CopilotChat",
+      mode = { "n", "v" },
     },
   },
 }

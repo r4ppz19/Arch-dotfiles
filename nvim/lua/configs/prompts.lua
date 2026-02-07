@@ -182,7 +182,6 @@ local prompts = {
   Optimize = {
     prompt = dedent([[
       #selection
-      #buffer:active
       Optimize the given code for performance and clarity.
 
       Requirements:
