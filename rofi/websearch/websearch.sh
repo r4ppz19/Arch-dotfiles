@@ -5,7 +5,7 @@ declare -A sites=(
   [gh]="https://github.com/r4ppz"
   [yt]="https://www.youtube.com"
   [red]="https://www.reddit.com/"
-  [pins]="https://www.pinterest.com"
+  [pin]="https://www.pinterest.com"
   [mail]="https://mail.google.com/mail/u/0/#inbox"
   [movie]="https://movielair.cc/"
   [book]="https://annas-archive.se/"
@@ -20,6 +20,7 @@ declare -A sites=(
   [docs]="https://r4ppz.github.io/research-repo-docs/"
   [drive]="https://drive.google.com/drive/my-drive"
   [dhub]="https://hub.docker.com/repositories/r4ppzf"
+  [canva]="https://www.canva.com/"
 )
 
 search_engine="https://duckduckgo.com/?q="
