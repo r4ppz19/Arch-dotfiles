@@ -91,14 +91,28 @@ return {
             format_color.lsp(entry, item, (not (atom_styled or cmp_ui.icons_left) and kind) or "")
           end
 
-          if #item.abbr > cmp_ui.abbr_maxwidth then
-            item.abbr = string.sub(item.abbr, 1, cmp_ui.abbr_maxwidth) .. "…"
+          local abbr_maxwidth = 30
+          if #item.abbr > abbr_maxwidth then
+            item.abbr = string.sub(item.abbr, 1, abbr_maxwidth) .. "…"
           end
 
           return item
         end,
 
         fields = fields,
+      },
+
+      sorting = {
+        comparators = {
+          cmp.config.compare.offset,
+          cmp.config.compare.exact,
+          cmp.config.compare.score,
+          cmp.config.compare.recently_used,
+          cmp.config.compare.kind,
+          cmp.config.compare.sort_text,
+          cmp.config.compare.length,
+          cmp.config.compare.order,
+        },
       },
 
       window = {
@@ -112,6 +126,8 @@ return {
         documentation = {
           border = "single",
           winhighlight = "Normal:CmpDoc,FloatBorder:CmpDocBorder",
+          max_width = 80,
+          max_height = 20,
         },
       },
 

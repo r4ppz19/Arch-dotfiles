@@ -87,7 +87,7 @@ end
 
 function M.on_attach(bufnr)
   local map = require("utils.map")
-  map("n", "<leader>a", M.send_to_copilotchat, { desc = "Add marked file to the CopilotChat as context" }, bufnr)
+  map("n", "<C-a>", M.send_to_copilotchat, { desc = "Add marked file to the CopilotChat as context" }, bufnr)
 end
 
 return M

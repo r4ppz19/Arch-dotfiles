@@ -70,7 +70,7 @@ return {
       function()
         local chat = require("CopilotChat")
         chat.open()
-        chat.chat:add_message({ role = "user", content = "#buffer:active\n" }, true)
+        chat.chat:add_message({ role = "user", content = "#buffer:active\n" })
       end,
       mode = { "n", "v" },
       desc = "Open chat with current buffer",
@@ -81,7 +81,7 @@ return {
       function()
         local chat = require("CopilotChat")
         chat.open()
-        chat.chat:add_message({ role = "user", content = "#buffer:listed\n" }, true)
+        chat.chat:add_message({ role = "user", content = "#buffer:listed\n" })
       end,
       mode = { "n", "v" },
       desc = "Open chat with all buffers",
