@@ -1,5 +1,29 @@
 local autocmd = vim.api.nvim_create_autocmd
 
+autocmd("BufReadPost", {
+  pattern = { "*.png", "*.jpg", "*.jpeg", "*.webp", "*.gif", "*.bmp" },
+  callback = function(args)
+    vim.fn.jobstart({ "imv", args.file }, { detach = true })
+
+    vim.schedule(function()
+      if vim.api.nvim_buf_is_valid(args.buf) then
+        vim.api.nvim_buf_delete(args.buf, { force = true })
+      end
+    end)
+  end,
+})
+autocmd("BufReadPost", {
+  pattern = { "*.pdf", "*.epub" },
+  callback = function(args)
+    vim.fn.jobstart({ "okular", args.file }, { detach = true })
+    vim.schedule(function()
+      if vim.api.nvim_buf_is_valid(args.buf) then
+        vim.api.nvim_buf_delete(args.buf, { force = true })
+      end
+    end)
+  end,
+})
+
 -- This is better then annoying error msg when closing it
 autocmd("WinEnter", {
   callback = function()
@@ -22,9 +46,12 @@ autocmd({
   end,
 })
 
-autocmd("FileType", {
-  pattern = { "copilot-chat", "NvimTree" },
-  command = "setlocal winfixwidth",
+autocmd("WinEnter", {
+  callback = function()
+    if vim.bo.filetype == "copilot-chat" then
+      vim.wo.winfixwidth = true
+    end
+  end,
 })
 
 -- Indentation
@@ -62,7 +89,6 @@ autocmd("BufEnter", {
     vim.opt_local.relativenumber = false
     vim.opt_local.number = false
     vim.opt_local.conceallevel = 0
-    vim.opt_local.winfixbuf = true
   end,
 })
 

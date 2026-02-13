@@ -26,6 +26,8 @@ alias bm="bashmount"
 alias rcopy='rsync -avh --info=progress2 --partial --inplace'
 alias rmirror='rsync -avh --delete --info=progress2 --partial --inplace'
 alias op='opencode'
+alias dockeron='sudo systemctl start docker.service docker.socket && echo "Docker started"'
+alias dockeroff='sudo systemctl stop docker.service docker.socket && echo "Docker stopped"'
 
 # script
 alias of='~/Arch-dotfiles/scripts/open-file.sh'

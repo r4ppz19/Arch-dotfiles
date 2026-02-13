@@ -4,6 +4,7 @@ local g = vim.g
 
 o.autoread = true
 o.confirm = false
+o.equalalways = false
 
 o.relativenumber = false
 o.scrolloff = 5

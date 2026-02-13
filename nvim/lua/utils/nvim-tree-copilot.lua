@@ -83,6 +83,8 @@ function M.send_to_copilotchat()
   api.marks.clear()
 
   vim.notify(string.format("Added %d file(s) to CopilotChat", #lines), vim.log.levels.INFO)
+
+  api.tree.close()
 end
 
 function M.on_attach(bufnr)

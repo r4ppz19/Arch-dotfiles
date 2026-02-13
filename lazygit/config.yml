@@ -1,3 +1,5 @@
+notARepository: skip
+
 gui:
   showIcons: true
   nerdFontsVersion: "3"

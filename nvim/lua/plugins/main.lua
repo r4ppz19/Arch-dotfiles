@@ -22,9 +22,4 @@ return {
     "nvzone/menu",
     dependencies = { "nvzone/volt" },
   },
-
-  {
-    "nvzone/minty",
-    cmd = { "Shades", "Huefy" },
-  },
 }

@@ -1,11 +1,12 @@
 return {
   "mfussenegger/nvim-lint",
-  enabled = true,
+  enabled = false,
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     local lint = require("lint")
 
     vim.env.ESLINT_D_PPID = vim.fn.getpid()
+    lint.linters.eslint_d.args = { "--no-warn-ignored" }
 
     lint.linters_by_ft = {
       javascript = { "eslint_d" },

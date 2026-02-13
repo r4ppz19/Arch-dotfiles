@@ -26,6 +26,8 @@ map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "Copy whole file" })
 
 map("n", "<M-Up>", "O", { desc = "Insert above" })
 map("n", "<M-Down>", "o", { desc = "Insert below" })
+map("i", "<M-Up>", "<C-o>O", { desc = "Insert above" })
+map("i", "<M-Down>", "<C-o>o", { desc = "Insert below" })
 
 map("n", "<M-a>", "u", { desc = "Undo" })
 map("i", "<M-a>", "<C-o>u", { desc = "Undo (Insert)" })

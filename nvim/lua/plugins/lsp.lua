@@ -6,7 +6,7 @@ local servers = {
   "yamlls",
   -- "markdown_oxide",
   "marksman",
-  -- "eslint",
+  "eslint",
   -- "ts_ls",
   -- "vtsls",
   -- "biome",
