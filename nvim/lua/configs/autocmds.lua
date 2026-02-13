@@ -1,7 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 
 autocmd("BufReadPost", {
-  pattern = { "*.png", "*.jpg", "*.jpeg", "*.webp", "*.gif", "*.bmp" },
+  pattern = { "*.png", "*.jpg", "*.jpeg", "*.webp", "*.gif", "*.bmp", "*.svg" },
   callback = function(args)
     vim.fn.jobstart({ "imv", args.file }, { detach = true })
 
@@ -46,14 +46,6 @@ autocmd({
   end,
 })
 
-autocmd("WinEnter", {
-  callback = function()
-    if vim.bo.filetype == "copilot-chat" then
-      vim.wo.winfixwidth = true
-    end
-  end,
-})
-
 -- Indentation
 local four_space_langs = { "python", "java", "rust" }
 autocmd("FileType", {
@@ -86,9 +78,11 @@ autocmd("BufWinEnter", {
 autocmd("BufEnter", {
   pattern = "copilot-*",
   callback = function()
-    vim.opt_local.relativenumber = false
-    vim.opt_local.number = false
-    vim.opt_local.conceallevel = 0
+    vim.wo.relativenumber = false
+    vim.wo.number = false
+    vim.wo.conceallevel = 0
+    vim.wo.winfixwidth = true
+    vim.wo.winfixbuf = true
   end,
 })
 

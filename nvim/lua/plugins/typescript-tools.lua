@@ -16,4 +16,13 @@ return {
       disable_member_code_lens = false,
     },
   },
+
+  keys = {
+    {
+      "<leader>lO",
+      "<cmd>TSToolsOrganizeImports<CR>",
+      mode = { "n", "v" },
+      desc = "TSTools Organize Imports",
+    },
+  },
 }

@@ -20,6 +20,8 @@ return {
       },
       view = {
         width = 45,
+        side = "left",
+        preserve_window_proportions = true,
       },
 
       actions = {

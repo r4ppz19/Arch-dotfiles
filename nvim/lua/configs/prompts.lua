@@ -41,6 +41,41 @@ local system_prompt = dedent([[
 ]])
 
 local prompts = {
+  BetterDocs = {
+    prompt = dedent([[
+      Rewrite this hover documentation in a clearer and more readable way,
+      but DO NOT remove or hide the original type signature.
+
+      Use this exact structure:
+
+      ## Type Signature
+      (paste the full original type exactly as-is use (md code block))
+
+      ## Type Breakdown
+      Explain what each part of the type means.
+      Explain generics, constraints, unions, overloads, etc.
+
+      ## What it does
+      Plain English explanation of the behavior.
+
+      ## When to use it
+      Real-world usage scenarios.
+
+      ## Parameters
+      - `name` (type): practical explanation
+
+      ## Returns
+      - `name` (type): explain what is returned and what it means in practice
+
+      ## Example
+      A realistic/practical example showing input and output.
+
+      Docs to improve:
+
+    ]]),
+    description = "Beginner friendly docs",
+  },
+
   Concepts = {
     prompt = dedent([[
       #selection

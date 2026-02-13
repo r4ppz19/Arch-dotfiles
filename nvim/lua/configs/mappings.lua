@@ -381,36 +381,36 @@ map("n", "<S-M-X>", function()
 end, { desc = "Close all buffers except current" })
 
 -- TERMINAL MANAGEMENT
-local excluded = { "NvimTree", "copilot-chat", "neo-tree", "Outline" }
-
--- Helper: Find a valid "main" window
-local function focus_main_window()
-  local current_buf = vim.api.nvim_get_current_buf()
-  local is_sidebar = vim.tbl_contains(excluded, vim.bo[current_buf].filetype)
-  local is_term = vim.bo[current_buf].buftype == "terminal"
-
-  -- Only redirect focus if we are in a restricted area
-  if is_sidebar or is_term then
-    local wins = vim.api.nvim_tabpage_list_wins(0)
-    for _, w in ipairs(wins) do
-      local b = vim.api.nvim_win_get_buf(w)
-      local ft = vim.bo[b].filetype
-      local bt = vim.bo[b].buftype
-
-      -- Check if this window is a valid "code" window
-      if not vim.tbl_contains(excluded, ft) and bt ~= "terminal" and bt ~= "nofile" then
-        vim.api.nvim_set_current_win(w)
-        return
-      end
-    end
-  end
-end
+local focus_main_window = require("utils.focus-main-window")
 
 -- Keymaps
 map({ "n", "t" }, "<A-w>", function()
   focus_main_window()
-  require("nvchad.term").toggle({ pos = "float", id = "float_term", size = 0.5 })
+  require("nvchad.term").toggle({ pos = "float", id = "float_term" })
 end, { desc = "Toggle Floating Terminal" })
+
+map({ "n", "t" }, "<M-S-d>", function()
+  focus_main_window()
+  local term = require("nvchad.term")
+  term.toggle({
+    pos = "float",
+    id = "lazydocker_float",
+    float_opts = {
+      row = 0.05,
+      col = 0.05,
+      width = 0.9,
+      height = 0.8,
+      border = "single",
+    },
+    cmd = "lazydocker",
+  })
+
+  -- map q to close/toggle the terminal (not LazyDocker)
+  local buf = vim.api.nvim_get_current_buf()
+  map("t", "q", function()
+    term.toggle({ id = "lazydocker_float" })
+  end, { buffer = buf })
+end, { desc = "Toggle LazyDocker" })
 
 map({ "n", "t" }, "<A-s>", function()
   focus_main_window()

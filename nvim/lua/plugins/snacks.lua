@@ -13,6 +13,8 @@ return {
     --     easing = "outCubic",
     --   },
     -- },
+    image = {},
+
     notifier = {
       enabled = false,
       level = vim.log.levels.TRACE,

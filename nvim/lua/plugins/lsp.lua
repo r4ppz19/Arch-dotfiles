@@ -19,8 +19,8 @@ local servers = {
   "jdtls",
   "docker_compose_language_service",
   "lemminx",
-  -- "docker_language_server",
-  -- "postgres_lsp",
+  "docker_language_server",
+  "postgres_lsp",
 
   "taplo",
   "lua_ls",

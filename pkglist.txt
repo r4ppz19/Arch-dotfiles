@@ -33,6 +33,7 @@ downgrade
 dua-cli
 duf
 dust
+ebook-tools
 efibootmgr
 epr-git
 epy-ereader-git
@@ -120,6 +121,7 @@ neovim
 network-manager-applet
 networkmanager
 networkmanager-openvpn
+nginx
 nodejs-lts-krypton
 noto-fonts-emoji
 npm
@@ -134,6 +136,7 @@ openbsd-netcat
 opencode
 os-prober
 pacseek
+pandoc-cli
 partitionmanager
 perl-image-exiftool
 pipewire
@@ -153,6 +156,7 @@ reflector
 rofi
 rsync
 ruby
+rustnet
 rustup
 samba
 scrcpy
@@ -160,6 +164,7 @@ sddm
 sleuthkit
 slurp
 smartmontools
+snitch-bin
 sof-firmware
 spotdl
 sshfs

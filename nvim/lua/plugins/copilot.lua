@@ -4,6 +4,7 @@ return {
   build = "make tiktoken",
   dependencies = {
     "nvim-lua/plenary.nvim",
+    "zbirenbaum/copilot.lua",
   },
 
   opts = function()
@@ -43,6 +44,10 @@ return {
       show_help = false,
       clear_chat_on_new_prompt = false,
       remember_as_sticky = false,
+
+      instruction_files = {
+        -- I am not goint to vibe code using this plugin lol
+      },
     }
   end,
 
@@ -117,6 +122,50 @@ return {
         })
       end,
       desc = "Add files to CopilotChat",
+      mode = { "n", "v" },
+    },
+
+    {
+      "<C-S-M-Up>",
+      function()
+        local params = vim.lsp.util.make_position_params(nil, "utf-16")
+        local responses = vim.lsp.buf_request_sync(0, "textDocument/hover", params, 500)
+        if not responses or vim.tbl_isempty(responses) then
+          vim.notify("No hover information available", vim.log.levels.WARN)
+          return
+        end
+
+        local parts = {}
+        for _, resp in pairs(responses) do
+          if resp and resp.result and resp.result.contents then
+            local md = vim.lsp.util.convert_input_to_markdown_lines(resp.result.contents) or {}
+            for _, line in ipairs(md) do
+              if line and line ~= "" then
+                parts[#parts + 1] = line
+              end
+            end
+          end
+        end
+
+        if #parts == 0 then
+          vim.notify("No hover text found", vim.log.levels.WARN)
+          return
+        end
+
+        local hover_text = table.concat(parts, "\n")
+        local chat_ok, chat = pcall(require, "CopilotChat")
+        if not chat_ok or not chat then
+          vim.notify("CopilotChat.nvim not available", vim.log.levels.ERROR)
+          return
+        end
+
+        chat.open()
+
+        local prompts = require("configs.prompts")
+
+        chat.ask(prompts.prompts.BetterDocs.prompt .. "\n\n" .. hover_text, { clear_chat_on_new_prompt = true })
+      end,
+      desc = "Explain hover with Copilot",
       mode = { "n", "v" },
     },
   },

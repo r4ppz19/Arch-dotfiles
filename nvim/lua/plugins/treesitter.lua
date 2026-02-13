@@ -39,6 +39,7 @@ return {
       "git_rebase",
       "gitignore",
       "gitattributes",
+      "regex",
     }
     require("nvim-treesitter").install(languages)
   end,
