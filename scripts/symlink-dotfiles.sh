@@ -21,6 +21,7 @@ CONFIG_ITEMS=(
   fastfetch
   pacseek
   gdu
+  lazydocker
 )
 
 for item in "${CONFIG_ITEMS[@]}"; do
