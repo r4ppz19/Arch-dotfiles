@@ -381,7 +381,7 @@ map("n", "<S-M-X>", function()
 end, { desc = "Close all buffers except current" })
 
 -- TERMINAL MANAGEMENT
-local focus_main_window = require("utils.focus-main-window")
+local focus_main_window = require("utils.focus_main_window")
 
 -- Keymaps
 map({ "n", "t" }, "<A-w>", function()

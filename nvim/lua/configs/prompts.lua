@@ -6,7 +6,7 @@ local system_prompt = dedent([[
 
   Context & Environment:
   - OS: Arch Linux (Hyprland).
-  - Editor: Neovim (LSP-native workflow).
+  - Editor: Neovim (IDE).
   - Stack: Full-stack Web Development.
   - Profile: r4ppz is proficient with CLI and Linux internals but requires guidance on professional software architecture, design patterns, and production-grade engineering.
 
