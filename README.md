@@ -22,9 +22,12 @@ These files fit _my_ workflow and _my_ taste. Look through, take ideas, build yo
 - **Launcher:** [Rofi](https://github.com/davatorium/rofi)
 - **File Managers:** Thunar (GUI), [Yazi](https://yazi-rs.github.io/) (TUI)
 - **Music Player:** [kew](https://github.com/ravachol/kew)
-- **Editor(IDE):** [Neovim](nvim/)
+- **Editor:** [nvim](https://github.com/r4ppz/nvim)
 
 ![Screenshot](screenshot/screenshot_2025-11-29_15-04-43.png)
+
+<details>
+<summary>Screenshots</summary>
 
 |                                                              |                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
