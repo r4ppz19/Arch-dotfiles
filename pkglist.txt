@@ -95,7 +95,7 @@ lazydocker
 lazygit
 less
 libpulse
-libva-intel-driver
+libva-utils
 linux
 linux-firmware
 linux-hardened
@@ -109,6 +109,7 @@ lua51
 lua51-jsregexp
 luajit-tiktoken-bin
 luarocks
+lynx
 man-db
 maven
 mdcat
@@ -118,6 +119,7 @@ mupdf-tools
 nano
 ncdu
 neovim
+neovim-remote
 network-manager-applet
 networkmanager
 networkmanager-openvpn
@@ -183,7 +185,6 @@ tmux
 torbrowser-launcher
 trash-cli
 tree-sitter
-tree-sitter-cli
 ttf-dejavu
 ttf-hack-nerd
 ttf-jetbrains-mono

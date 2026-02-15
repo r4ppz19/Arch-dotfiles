@@ -68,5 +68,5 @@ customCommands:
   services:
     - name: "Open Logs"
       attach: false
-      command: "tmux new-window -n 'LOGS' '~/Arch-dotfiles/scripts/dclog.sh {{ .Service.Name }} | lnav'"
+      command: "tmux new-window -n 'LOGS' '~/Arch-dotfiles/scripts/docker-log.sh {{ .Service.Name }} | lnav'"
       serviceNames: []

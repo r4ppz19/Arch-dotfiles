@@ -10,6 +10,7 @@ alias mkdir='mkdir -pv'
 alias ..='cd ..'
 alias open='xdg-open'
 alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
+alias sudo='sudo -E'
 
 alias r='ranger --choosedir="$HOME/.rangerdir"; LASTDIR=$(cat "$HOME/.rangerdir"); cd "$LASTDIR"'
 alias v='nvim'
