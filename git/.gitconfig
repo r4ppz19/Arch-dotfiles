@@ -72,3 +72,5 @@
   undo = reset --soft HEAD~1
   amend = commit --amend
 
+[credential]
+	helper = store
