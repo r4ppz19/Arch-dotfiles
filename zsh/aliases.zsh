@@ -10,9 +10,7 @@ alias mkdir='mkdir -pv'
 alias ..='cd ..'
 alias open='xdg-open'
 alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
-alias sudo='sudo -E'
 
-alias r='ranger --choosedir="$HOME/.rangerdir"; LASTDIR=$(cat "$HOME/.rangerdir"); cd "$LASTDIR"'
 alias v='nvim'
 alias lg='lazygit'
 alias ld='lazydocker'
@@ -27,8 +25,8 @@ alias bm="bashmount"
 alias rcopy='rsync -avh --info=progress2 --partial --inplace'
 alias rmirror='rsync -avh --delete --info=progress2 --partial --inplace'
 alias op='opencode'
-alias dockeron='command sudo systemctl start docker.service docker.socket && echo "Docker started"'
-alias dockeroff='command sudo systemctl stop docker.service docker.socket && echo "Docker stopped"'
+alias dockeron='sudo systemctl start docker.service docker.socket && echo "Docker started"'
+alias dockeroff='sudo systemctl stop docker.service docker.socket && echo "Docker stopped"'
 
 # script
 alias of='~/Arch-dotfiles/scripts/open-file.sh'
