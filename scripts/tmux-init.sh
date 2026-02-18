@@ -5,8 +5,8 @@ SESSION="${1:-main}"
 
 create_tmux_session() {
   local session="$1"
-  tmux new-session -d -s "$session" -n "R4PPZ"
-  tmux send-keys -t "$session:R4PPZ" "y" C-m
+  tmux new-session -d -s "$session" -n "CMD"
+  tmux send-keys -t "$session:CMD" "y" C-m
 }
 
 if tmux has-session -t "$SESSION" 2>/dev/null; then
