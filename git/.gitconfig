@@ -58,19 +58,11 @@
   side-by-side = false
   hyperlinks = true
 
-[alias]
-  s = status -sb
-  st = status
-  c = commit
-  cm = commit -m
-  d = diff
-  dc = diff --cached
-  l = log --oneline --graph --decorate
-  la = log --oneline --graph --decorate --all
-  save = stash push
-  pop = stash pop
-  undo = reset --soft HEAD~1
-  amend = commit --amend
-
 [credential]
 	helper = store
+
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
