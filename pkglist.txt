@@ -53,6 +53,7 @@ gdu-bin
 git
 git-delta
 git-filter-repo
+git-lfs
 github-cli
 gnome-keyring
 go
@@ -78,7 +79,6 @@ imv
 intel-media-driver
 intel-ucode
 iwd
-jdk-openjdk
 jdk17-openjdk
 jdk21-openjdk
 jdk8-openjdk
@@ -98,7 +98,6 @@ libpulse
 libva-utils
 linux
 linux-firmware
-linux-hardened
 linux-headers
 linux-lts
 linux-zen
@@ -196,7 +195,6 @@ udiskie
 ufw
 uwsm
 vim
-virtualbox
 virtualbox-host-dkms
 visual-studio-code-bin
 vlc
