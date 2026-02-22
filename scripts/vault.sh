@@ -13,7 +13,11 @@ lock_vault() {
       rmdir "$MOUNT_POINT"
       echo "Vault locked and mount point removed."
     else
-      echo "Error: Could not unmount. Is a file or terminal still open in the vault?"
+      fusermount -uz "$MOUNT_POINT"
+      echo "Vault locked and mount point removed (lazy)."
+      if [ $? -eq 0 ]; then
+        echo "Error: Could not unmount. Is a file or terminal still open in the vault?"
+      fi
       exit 1
     fi
   else
@@ -22,7 +26,7 @@ lock_vault() {
 }
 
 unlock_vault() {
-  if [ ! -d "$CIPHER_DIR" ]; then
+  if [[ ! -d "$CIPHER_DIR" ]]; then
     echo "Error: Ciphertext directory $CIPHER_DIR does not exist."
     exit 1
   fi
