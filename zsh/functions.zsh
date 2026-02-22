@@ -1,3 +1,20 @@
+# Encrypt a file or folder using AES-256 ZIP
+ezip() {
+  if [[ -z "$1" ]]; then
+      echo "Usage: ezip <input_file_or_dir>"
+      return 1
+  fi
+
+  local input=$1
+  local output="${input%/}.zip"
+
+  # a: add to archive
+  # -tzip: use ZIP format
+  # -mem=AES256: use 256-bit AES encryption
+  # -p: prompt for password (securely)
+  7z a -tzip -mem=AES256 -p "$output" "$input"
+}
+
 # Set the filesystem label of a block device.
 fslabel() {
   local dev=$1
@@ -74,6 +91,14 @@ zshaddhistory() {
 }
 
 # yazi
+f() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
 y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
   yazi "$@" --cwd-file="$tmp"
