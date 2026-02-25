@@ -22,6 +22,8 @@ CONFIG_ITEMS=(
   pacseek
   gdu
   lazydocker
+  opencode
+  pgcli
 )
 
 for item in "${CONFIG_ITEMS[@]}"; do
