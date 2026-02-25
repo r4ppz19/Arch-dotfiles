@@ -70,3 +70,11 @@ customCommands:
       attach: false
       command: "tmux new-window -n 'LOGS' '~/Arch-dotfiles/scripts/docker-log.sh {{ .Service.Name }} | lnav'"
       serviceNames: []
+
+    - name: "Open pgcli for db service"
+      attach: false
+      command: 'tmux new-window -n ''DB'' ''~/Arch-dotfiles/scripts/local-pgcli.sh {{ .Service.Name }}; echo "Process exited. Press enter to close..."; read'''
+      serviceNames:
+        - "db"
+        - "postgres"
+        - "database"
