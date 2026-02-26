@@ -4,6 +4,8 @@ This is my setup's **backup** in case I mess something up and a living **referen
 
 These files fit _my_ workflow and _my_ taste. Look through, take ideas, build your own ;)
 
+> I don’t have a full installation script because I hate the idea of blindly running something to replicate a setup from scratch. There is a symlink script to link some of the dotfiles, but it’s just for convenience — it won’t recreate the whole system.
+
 ### Setup
 
 - **OS:** Arch Linux
@@ -23,6 +25,8 @@ These files fit _my_ workflow and _my_ taste. Look through, take ideas, build yo
 - **File Managers:** Thunar (GUI), [Yazi](https://yazi-rs.github.io/) (TUI)
 - **Music Player:** [kew](https://github.com/ravachol/kew)
 - **Editor:** [nvim](https://github.com/r4ppz/nvim)
+
+> _I love the terminal ❤︎_
 
 ![Screenshot](screenshot/screenshot_2025-11-29_15-04-43.png)
 
