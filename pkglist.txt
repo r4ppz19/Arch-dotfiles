@@ -112,6 +112,7 @@ lynx
 man-db
 maven
 mdcat
+mediainfo
 meson
 mtpfs
 mupdf-tools
@@ -192,7 +193,6 @@ ttf-ms-win11-auto
 ttf-roboto
 ttf-roboto-mono-nerd
 udiskie
-ufw
 uwsm
 vim
 virtualbox-host-dkms
