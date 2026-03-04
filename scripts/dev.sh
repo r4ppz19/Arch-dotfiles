@@ -14,15 +14,9 @@ create_tmux_session() {
   tmux new-window -t "$session:" -n "DOCS"
 
   tmux send-keys -t "$session:FRONT" "cd ${FRONTDIR}; v" C-m
+  tmux send-keys -t "$session:BACK" "cd ${BACKDIR}; v" C-m
   tmux send-keys -t "$session:DOCS" "cd ${DOCSDIR}; v" C-m
 
-  local back_cmd="cd ${BACKDIR}; "
-  if ! systemctl is-active --quiet docker.service || ! test -S /var/run/docker.sock; then
-    back_cmd+="dockeron; "
-  fi
-  back_cmd+="v"
-
-  tmux send-keys -t "$session:BACK" "$back_cmd" C-m
   tmux select-window -t "$session:0"
 }
 
