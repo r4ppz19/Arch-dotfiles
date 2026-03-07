@@ -66,14 +66,14 @@ stats:
 
 customCommands:
   services:
-    - name: "Open Logs"
+    - name: "Open logs"
       attach: false
       command: "tmux new-window -n 'LOGS' '~/Arch-dotfiles/scripts/docker-log.sh {{ .Service.Name }} | lnav'"
       serviceNames: []
 
-    - name: "Open pgcli for db service"
+    - name: "Open pgcli"
       attach: false
-      command: 'tmux new-window -n ''DB'' ''~/Arch-dotfiles/scripts/local-pgcli.sh {{ .Service.Name }}; echo "Process exited. Press enter to close..."; read'''
+      command: "tmux new-window -n 'DB' '~/Arch-dotfiles/scripts/local-pgcli.sh {{ .Service.Name }}'"
       serviceNames:
         - "db"
         - "postgres"
