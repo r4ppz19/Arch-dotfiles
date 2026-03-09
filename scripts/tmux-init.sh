@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SESSION="${1:-main}"
-FIRST_WINDOW_NAME="FILES"
+FIRST_WINDOW_NAME="CMD"
 
 create_tmux_session() {
   local session="$1"

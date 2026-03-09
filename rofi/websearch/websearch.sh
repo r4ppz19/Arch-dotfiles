@@ -21,6 +21,7 @@ declare -A sites=(
   [drive]="https://drive.google.com/drive/my-drive"
   [dhub]="https://hub.docker.com/repositories/r4ppzf"
   [canva]="https://www.canva.com/"
+  [ghg]="https://gist.github.com/r4ppz"
 )
 
 search_engine="https://duckduckgo.com/?q="
