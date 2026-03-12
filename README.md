@@ -33,6 +33,8 @@ These files fit _my_ workflow and _my_ taste. Look through, take ideas, build yo
 <details>
 <summary>Screenshots</summary>
 
+> _outdated\*_
+
 |                                                              |                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ![Screenshot](screenshot/screenshot_2025-12-31_09-03-10.png) | ![Screenshot](screenshot/screenshot_2025-07-21_20-14-17.png) |

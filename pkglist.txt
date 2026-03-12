@@ -23,6 +23,7 @@ chromium
 circumflex
 clang
 cliphist
+cloudflared
 cpio
 dkms
 docker
@@ -51,6 +52,7 @@ gamemode
 gamescope
 gdu-bin
 git
+git-crypt
 git-delta
 git-filter-repo
 git-lfs
@@ -58,6 +60,7 @@ github-cli
 gnome-keyring
 go
 gocryptfs
+google-java-format
 gptfdisk
 grim
 grub
@@ -168,7 +171,6 @@ slurp
 smartmontools
 snitch-bin
 sof-firmware
-spotdl
 sshfs
 steghide
 swaylock-effects-git
@@ -177,6 +179,7 @@ tailscale
 tealdeer
 tesseract
 tesseract-data-eng
+tgpt
 thermald
 thunar
 thunar-archive-plugin
@@ -193,6 +196,7 @@ ttf-ms-win11-auto
 ttf-roboto
 ttf-roboto-mono-nerd
 udiskie
+ufw
 uwsm
 vim
 virtualbox-host-dkms
@@ -218,6 +222,7 @@ yarn
 yay
 yazi
 ydotool
+yt-dlp
 zathura
 zathura-pdf-poppler
 zbar
