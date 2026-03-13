@@ -24,7 +24,7 @@ These files fit _my_ workflow and _my_ taste. Look through, take ideas, build yo
 - **Launcher:** [Rofi](https://github.com/davatorium/rofi)
 - **File Managers:** Thunar (GUI), [Yazi](https://yazi-rs.github.io/) (TUI)
 - **Music Player:** [kew](https://github.com/ravachol/kew)
-- **Editor:** [nvim](https://github.com/r4ppz/nvim)
+- **Editor:** [nvim](https://github.com/r4ppz/nvZzz)
 
 > _I love the terminal ❤︎_
 
