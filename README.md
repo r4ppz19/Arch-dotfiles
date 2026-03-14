@@ -1,8 +1,8 @@
 ## My personal dotfiles for Arch Linux + Hyprland.
 
-This is my setup's **backup** in case I mess something up and a living **reference** of how I've configured things.
+This is my setup's backup in case I mess something up and a living reference of how I've configured things.
 
-These files fit _my_ workflow and _my_ taste. Look through, take ideas, build your own ;)
+These files fit my workflow and my taste. Look through, take ideas, build your own ;)
 
 > I don’t have a full installation script because I hate the idea of blindly running something to replicate a setup from scratch. There is a symlink script to link some of the dotfiles, but it’s just for convenience — it won’t recreate the whole system.
 
