@@ -286,7 +286,7 @@ keymap = [
   { on = [
     "g",
     "d",
-  ], run = "cd ~/Downloads", desc = "Go ~/Downloads" },
+  ], run = "cd ~/Documents", desc = "Go ~/Documents" },
   { on = [
     "g",
     "<Space>",
