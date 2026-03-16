@@ -29,6 +29,7 @@ These files fit my workflow and my taste. Look through, take ideas, build your o
 > _I love the terminal ❤︎_
 
 ![Screenshot](screenshot/screenshot_2025-11-29_15-04-43.png)
+![Screenshot](screenshot/highlight2.png)
 
 <details>
 <summary>Screenshots</summary>
