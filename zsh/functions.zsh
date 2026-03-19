@@ -64,6 +64,7 @@ pmount() {
   }
   sshfs phone:/storage/emulated/0 "$mnt" && echo "Phone mounted at $mnt" || {
     echo "Mount failed."
+    rmdir "$mnt"
     return 1
   }
 }
