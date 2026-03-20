@@ -38,19 +38,21 @@ _click the link to open their configuration_
 
 > This is mostly CLI/TUI configurations, not GUI. I have set up GTK and QT but they are unmaintained — still usable though.
 
-[Hyprland](hypr/)
+[Hyprland](hypr/),
 [Neovim](https://github.com/r4ppz/nvZzz),
 [Kitty](kitty/),
 [Tmux](tmux/),
 [Waybar](waybar/),
 [Zsh](zsh/),
 
-|                                                                                                                                                                                                          |                                                                                                                                        |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| <img src="screenshots/new/screenshot_2026-03-20_09-21-57.png" /><br><sub>[SwayNC](swaync/), [FastFetch](fastfetch)</sub>                                                                                 | <img src="screenshots/new/screenshot_2026-03-20_09-25-27.png" /><br><sub>[OpenCode](opencode/), [Pacseek](pacseek/)</sub>              |
-| <img src="screenshots/new/screenshot_2026-03-20_09-29-21.png" /><br><sub>[Yazi](yazi/), Kew</sub>                                                                                                        | <img src="screenshots/new/screenshot_2026-03-20_10-11-34.png" /><br><sub>[pgcli](pgcli/)</sub>                                         |
-| <img src="screenshots/new/screenshot_2026-03-20_09-34-48.png" /><br><sub>Rofi ([PowerMenu](rofi/powermenu/))</sub>                                                                                       | <img src="screenshots/new/screenshot_2026-03-20_09-34-54.png" /><br><sub>Rofi ([App Launcher](rofi/launcher))</sub>                    |
-| <img src="screenshots/new/screenshot_2026-03-20_11-19-18.png" /><br><sub>[GTK](https://github.com/TheGreatMcPain/gruvbox-material-gtk) and [QT](https://github.com/sachnr/gruvbox-kvantum-themes) </sub> | <img src="screenshots/new/screenshot_2026-03-20_10-25-57.png" /><br><sub>GTK and QT ([pickers](hypr/appearance/windowrule.conf))</sub> |
+|                                                                                                                                                                                                                                                                        |                                                                                                                                               |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| <img src="screenshots/new/screenshot_2026-03-20_09-21-57.png" /><br><sub>[SwayNC](swaync/), [FastFetch](fastfetch)</sub>                                                                                                                                               | <img src="screenshots/new/screenshot_2026-03-20_09-25-27.png" /><br><sub>[OpenCode](opencode/), [Pacseek](pacseek/)</sub>                     |
+| <img src="screenshots/new/screenshot_2026-03-20_09-29-21.png" /><br><sub>[Yazi](yazi/), Kew</sub>                                                                                                                                                                      | <img src="screenshots/new/screenshot_2026-03-20_10-11-34.png" /><br><sub>[pgcli](pgcli/)</sub>                                                |
+| <img src="screenshots/new/screenshot_2026-03-20_09-34-48.png" /><br><sub>Rofi ([PowerMenu](rofi/powermenu/))</sub>                                                                                                                                                     | <img src="screenshots/new/screenshot_2026-03-20_09-34-54.png" /><br><sub>Rofi ([App Launcher](rofi/launcher))</sub>                           |
+| <img src="screenshots/new/screenshot_2026-03-20_11-19-18.png" /><br><sub>[GTK](https://github.com/TheGreatMcPain/gruvbox-material-gtk), [QT](https://github.com/sachnr/gruvbox-kvantum-themes) and [Icons](https://github.com/SylEleuth/gruvbox-plus-icon-pack) </sub> | <img src="screenshots/new/screenshot_2026-03-20_10-25-57.png" /><br><sub>GTK and QT ([floating rules](hypr/appearance/windowrule.conf))</sub> |
+| <img src="screenshots/new/screenshot_2026-03-20_11-54-36.png" /><br><sub>[LazyGit](lazygit/)</sub>                                                                                                                                                                     | <img src="screenshots/new/screenshot_2026-03-20_11-54-48.png" /><br><sub>[LazyDocker](lazydocker) ([custom script](scripts/))</sub>           |
+| <img src="screenshots/new/screenshot_2026-03-20_12-27-14.png" /><br><sub>[gdu](gdu/), [Yazi](yazi/), [Btop](btop/)</sub>                                                                                                                                               |                                                                                                                                               |
 
 </details>
 
@@ -58,4 +60,4 @@ _click the link to open their configuration_
 
 <br>
 
-_This repo is my current setup and gets updated almost daily._
+_This repo is my current setup so it gets updated almost daily._
