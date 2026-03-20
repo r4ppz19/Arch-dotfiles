@@ -3,22 +3,29 @@ style:
     text-color: "#2C2C2C"
     background-color: "#82A497"
     number-color: "#232526"
+
   selected-row:
     text-color: "#2C2C2C"
     background-color: "#82A497"
+
   result-row:
     number-color: "#478487"
     directory-color: "#478487"
+
   header:
     text-color: "#2C2C2C"
     background-color: "#82A497"
     hidden: true
+
   progress-modal:
     current-item-path-max-len: 0
+
   use-old-size-bar: true
+
 sorting:
   by: "size"
   order: "desc"
+
 log-file: /dev/null
 input-file: ""
 output-file: ""
@@ -56,6 +63,6 @@ summarize: false
 use-si-prefix: false
 no-prefix: false
 reverse-sort: false
-change-cwd: false
+change-cwd: true
 delete-in-background: false
 delete-in-parallel: false

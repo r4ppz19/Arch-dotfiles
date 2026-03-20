@@ -198,26 +198,39 @@ use_local_timezone = True
 
 # Custom colors for the completion menu, toolbar, etc.
 [colors]
-completion-menu.completion.current = 'bg:#fabd2f #282828'
-completion-menu.completion = 'bg:#3c3836 #ebdbb2'
-completion-menu.meta.completion.current = 'bg:#458588 #282828'
-completion-menu.meta.completion = 'bg:#8EC07C #282828'
-completion-menu.multi-column-meta = 'bg:#83a598 #282828'
-scrollbar.arrow = 'bg:#3c3836'
-scrollbar = 'bg:#3c3836'
-selected = '#ebdbb2 bg:#458588'
-search = '#ebdbb2 bg:#b16286'
-search.current = '#ebdbb2 bg:#b8bb26'
-bottom-toolbar = 'bg:#282828 #a89984'
-bottom-toolbar.off = 'bg:#282828 #a89984'
-bottom-toolbar.on = 'bg:#282828 #83a598'
-search-toolbar = 'noinherit bold'
-search-toolbar.text = 'nobold'
-system-toolbar = 'noinherit bold'
-arg-toolbar = 'noinherit bold'
-arg-toolbar.text = 'nobold'
-bottom-toolbar.transaction.valid = 'bg:#282828 #b8bb26 bold'
-bottom-toolbar.transaction.failed = 'bg:#282828 #fb4934 bold'
+Token.Menu.Completions.Completion.Current = 'bg:#ebdbb2 #282828'
+Token.Menu.Completions.Completion = 'bg:#3c3836 #ebdbb2'
+
+Token.Menu.Completions.Meta.Current = 'bg:#83a598 #282828'
+Token.Menu.Completions.Meta = 'bg:#458588 #282828'
+
+Token.Menu.Completions.MultiColumnMeta = 'bg:#458588 #282828'
+
+Token.Menu.Completions.ProgressButton = 'bg:#fabd2f'
+Token.Menu.Completions.ProgressBar = 'bg:#83a598'
+
+Token.SelectedText = '#ebdbb2 bg:#b16286'
+Token.SearchMatch = '#ebdbb2 bg:#b16286'
+Token.SearchMatch.Current = '#ebdbb2 bg:#b8bb26'
+
+Token.Toolbar = 'bg:#282828 #aaaaaa'
+Token.Toolbar.Off = 'bg:#282828 #888888'
+Token.Toolbar.On = 'bg:#282828 #ebdbb2'
+
+Token.Toolbar.Search = 'noinherit bold'
+Token.Toolbar.Search.Text = 'nobold'
+Token.Toolbar.System = 'noinherit bold'
+Token.Toolbar.Arg = 'noinherit bold'
+Token.Toolbar.Arg.Text = 'nobold'
+
+Token.Toolbar.Transaction.Valid = 'bg:#282828 #b8bb26 bold'
+Token.Toolbar.Transaction.Failed = 'bg:#282828 #fb4934 bold'
+
+# color of table
+# you can use token or custom colors
+Token.Output.Header = "#fabd2f bold"
+Token.Output.OddRow = ""
+Token.Output.EvenRow = ""
 
 # These three values can be used to further refine the syntax highlighting.
 # They are commented out by default, since they have priority over the theme set
@@ -225,12 +238,6 @@ bottom-toolbar.transaction.failed = 'bg:#282828 #fb4934 bold'
 literal.string = '#b8bb26'
 literal.number = '#d3869b'
 keyword = 'bold #fabd2f'
-
-# style classes for colored table output
-output.header = "#fabd2f bold"
-output.odd-row = ""
-output.even-row = ""
-output.null = "#a89984"
 
 # Named queries are queries you can execute by name.
 [named queries]
