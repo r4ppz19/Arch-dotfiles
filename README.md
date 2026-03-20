@@ -24,22 +24,28 @@ These files fit my workflow and my taste. Look through, take ideas, build your o
 - **Launcher:** [Rofi](https://github.com/davatorium/rofi)
 - **File Managers:** Thunar (GUI), [Yazi](https://yazi-rs.github.io/) (TUI)
 - **Music Player:** [kew](https://github.com/ravachol/kew)
-- **Editor:** [nvim](https://github.com/r4ppz/nvZzz)
+- **Editor:** [nvim](https://github.com/neovim/neovim)
 
 > _I love the terminal ❤︎_
 
-![Screenshot](screenshot/screenshot_2025-11-29_15-04-43.png)
-![Screenshot](screenshot/highlight2.png)
+![Screenshot](screenshots/new/screenshot_2026-03-20_09-38-14.png)
+
+![Screenshot](screenshots/new/neovim.png)
+
+![Screenshot](screenshots/new/screenshot_2026-03-20_10-44-34.png)
 
 <details>
-<summary>Screenshots</summary>
+<summary>Screenshots with configs</summary>
 
-> _outdated\*_
+[Neovim](https://github.com/r4ppz/nvZzz),
+[Kitty](kitty/kitty.conf),
+[Tmux](tmux/tmux.conf),
+[Waybar](waybar.config.jsonc) ,
+[Zsh](zsh/.zshrc),
 
-|                                                              |                                                              |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![Screenshot](screenshot/screenshot_2025-12-31_09-03-10.png) | ![Screenshot](screenshot/screenshot_2025-07-21_20-14-17.png) |
-| ![Screenshot](screenshot/screenshot_2025-06-02_20-29-16.png) | ![Screenshot](screenshot/screenshot_2025-06-02_20-42-26.png) |
-| ![Screenshot](screenshot/screenshot_2025-12-20_07-56-06.png) | ![Screenshot](screenshot/screenshot_2025-05-17_19-29-13.png) |
-| ![Screenshot](screenshot/screenshot_2025-05-17_19-51-35.png) | ![Screenshot](screenshot/screenshot_2025-12-31_08-53-07.png) |
-| ![Screenshot](screenshot/screenshot_2025-12-31_08-48-26.png) | ![Screenshot](screenshot/screenshot_2025-06-02_21-31-50.png) |
+|                                                                                                                          |                                                                                                                           |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
+| <img src="screenshots/new/screenshot_2026-03-20_09-21-57.png" /><br><sub>[SwayNC](swaync/), [FastFetch](fastfetch)</sub> | <img src="screenshots/new/screenshot_2026-03-20_09-25-27.png" /><br><sub>[OpenCode](opencode/), [Pacseek](pacseek/)</sub> |
+| <img src="screenshots/new/screenshot_2026-03-20_09-29-21.png" /><br><sub>[Yazi](yazi/), Kew</sub>                        | <img src="screenshots/new/screenshot_2026-03-20_10-11-34.png" /><br><sub>[pgcli](pgcli/)</sub>                            |
+| <img src="screenshots/new/screenshot_2026-03-20_09-34-48.png" /><br><sub>Rofi ([PowerMenu](rofi/powermenu/))</sub>       | <img src="screenshots/new/screenshot_2026-03-20_09-34-54.png" /><br><sub>Rofi ([App Launcher](rofi/launcher))</sub>       |
+| <img src="screenshots/new/screenshot_2026-03-20_10-22-15.png" /><br><sub>GTK and QT</sub>                                | <img src="screenshots/new/screenshot_2026-03-20_10-25-57.png" /><br><sub>GTK and QT (pickers)</sub>                       |
