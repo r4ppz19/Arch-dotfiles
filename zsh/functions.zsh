@@ -1,8 +1,78 @@
+sshumount() {
+  local mount_name="$1"
+  local mount_base_dir="${HOME}/Mount"
+  local mount_dir="${mount_base_dir}/${mount_name}"
+
+  _remove_empty_dir() {
+    local dir="$1"
+    if [[ -d "$dir" ]]; then
+      if rmdir "$dir"; then
+        echo "Removed directory $dir"
+      else
+        echo "Warning: Failed to remove directory $dir (not empty or in use)"
+      fi
+    fi
+  }
+
+  if [[ -z "$mount_name" ]]; then
+    echo "Usage: sshunmount <mount_name>"
+    return 1
+  fi
+
+  if mountpoint -q "$mount_dir"; then
+    if fusermount -u "$mount_dir"; then
+      echo "Unmounted $mount_dir"
+      _remove_empty_dir "$mount_dir"
+      _remove_empty_dir "$mount_base_dir"
+    else
+      echo "Error: Failed to unmount $mount_dir"
+      return 1
+    fi
+  else
+    echo "No mount found at $mount_dir"
+    _remove_empty_dir "$mount_dir"
+    _remove_empty_dir "$mount_base_dir"
+  fi
+}
+
+sshmount() {
+  local remote_host="${1}"
+  local remote_path="${2:-/}"
+  local mount_name="${3:-$1}"
+  local mount_base="${HOME}/Mount"
+  local mount="${mount_base}/${mount_name}"
+
+  if [[ -z "$remote_host" ]]; then
+    echo "Usage: sshmount <ssh_alias/ip> [remote_path] [local_name]"
+    echo "\nExample:"
+    echo "sshmount john@192.168.1.52"
+    return 1
+  fi
+
+  [[ -d "$mount_base" ]] || mkdir -p "$mount_base"
+  [[ -d "$mount" ]] || mkdir -p "$mount"
+
+  if mountpoint -q "$mount"; then
+    echo "Target '$mount' is already a mountpoint."
+    return 1
+  fi
+
+  echo "Attempting to mount ${remote_host}:${remote_path} to ${mount}..."
+
+  if sshfs "${remote_host}:${remote_path}" "$mount" -o reconnect,ConnectTimeout=5,ServerAliveInterval=15,idmap=user; then
+    echo "Successfully mounted at $mount"
+  else
+    echo "Mount failed."
+    rmdir "$mount" 2>/dev/null
+    return 1
+  fi
+}
+
 # Encrypt a file or folder using AES-256 ZIP
 ezip() {
   if [[ -z "$1" ]]; then
-      echo "Usage: ezip <input_file_or_dir>"
-      return 1
+    echo "Usage: ezip <input_file_or_dir>"
+    return 1
   fi
 
   local input=$1
@@ -52,34 +122,6 @@ fslabel() {
   esac
 
   echo "Successfully labeled $dev as '$name' ($fstype)"
-}
-
-# Phone mount
-pmount() {
-  local mnt=~/Phone
-  [[ -d $mnt ]] || mkdir "$mnt"
-  mountpoint -q "$mnt" && {
-    echo "Already mounted."
-    return 1
-  }
-  sshfs phone:/storage/emulated/0 "$mnt" && echo "Phone mounted at $mnt" || {
-    echo "Mount failed."
-    rmdir "$mnt"
-    return 1
-  }
-}
-
-# Phone unmount
-pumount() {
-  local mnt=~/Phone
-  mountpoint -q "$mnt" || {
-    echo "Not mounted."
-    return 1
-  }
-  fusermount3 -u "$mnt" && {
-    echo "Phone unmounted."
-    rmdir "$mnt" && echo "Mount point removed."
-  } || echo "Unmount failed."
 }
 
 # filter history
