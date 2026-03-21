@@ -1,3 +1,9 @@
 [submodule "nvim"]
 	path = nvim
-	url = git@github.com:r4ppz/nvZzz.git
+  ; url = https://github.com/r4ppz/nvZzz.git
+	url = git@github.com:r4ppz/r4nvim.git
+
+; Use HTTPS of you're not me :>
+
+; To initialize the submodule after cloning:
+; > git submodule update --init --recursive
