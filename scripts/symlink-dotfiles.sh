@@ -41,6 +41,7 @@ done
 [[ -e "$DOTFILES/.editorconfig" ]] && ln -sfT "$DOTFILES/.editorconfig" "$HOME/.editorconfig"
 [[ -e "$DOTFILES/tmux/.tmux.conf" ]] && ln -sfT "$DOTFILES/tmux/.tmux.conf" "$HOME/.tmux.conf"
 [[ -e "$DOTFILES/zsh/.zshrc" ]] && ln -sfT "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
+[[ -e "$DOTFILES/zsh/.p10k.zsh" ]] && ln -sfT "$DOTFILES/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
 [[ -e "$DOTFILES/zsh/.zprofile" ]] && ln -sfT "$DOTFILES/zsh/.zprofile" "$HOME/.zprofile"
 [[ -e "$DOTFILES/zsh/.zsh_plugins.txt" ]] && ln -sfT "$DOTFILES/zsh/.zsh_plugins.txt" "$HOME/.zsh_plugins.txt"
 [[ -e "$DOTFILES/git/.gitconfig" ]] && ln -sfT "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
