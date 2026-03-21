@@ -1,7 +1,6 @@
 7zip
 acpi
 acpi_call
-apache
 archlinux-xdg-menu
 auto-cpufreq
 base
@@ -13,6 +12,7 @@ bind
 binwalk
 bitwarden
 blueman
+bluetuith
 bluez-utils
 brave-bin
 brightnessctl
@@ -148,7 +148,6 @@ pipewire
 pipewire-alsa
 pipewire-jack
 pipewire-pulse
-pnpm
 polkit-kde-agent
 postgresql
 python-pipx
