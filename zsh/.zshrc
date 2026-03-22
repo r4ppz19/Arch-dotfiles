@@ -29,7 +29,7 @@ if [[ $- == *i* ]]; then
   source ${zsh_plugins}.zsh
 
   # Source Configuration Files
-  local zsh_config_dir="$HOME/Arch-dotfiles/zsh/"
+  local zsh_config_dir="$DOTFILES/zsh/"
 
   if [[ -d "$zsh_config_dir" ]]; then
     source "$zsh_config_dir/path.zsh"

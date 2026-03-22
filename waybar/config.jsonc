@@ -115,7 +115,7 @@
     "format-critical": "   {temperatureC}°C"
   },
   "custom/cputemp": {
-    "exec": "~/Arch-dotfiles/scripts/cputemp.sh",
+    "exec": "$DOTFILES/scripts/cputemp.sh",
     "interval": 2,
     "format": "  {}",
     "return-type": "json",
@@ -136,7 +136,7 @@
     ],
     "on-scroll-up": "brightnessctl set +1%",
     "on-scroll-down": "brightnessctl set 1%-",
-    "on-click": "$HOME/Arch-dotfiles/scripts/toggle-hyprsunset.sh",
+    "on-click": "$DOTFILES/scripts/toggle-hyprsunset.sh",
     "smooth-scrolling-threshold": 1,
     "tooltip": false,
     "tooltip-format": "Brightness: {percent}%"

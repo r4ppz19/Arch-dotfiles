@@ -31,11 +31,10 @@ alias dockeron='sudo systemctl start docker.service docker.socket && echo "Docke
 alias dockeroff='sudo systemctl stop docker.service docker.socket && echo "Docker stopped"'
 
 # script
-alias of='~/Arch-dotfiles/scripts/open-file.sh'
-alias ti='~/Arch-dotfiles/scripts/tmux-init.sh'
-alias sm='~/Arch-dotfiles/scripts/tmux-session-manager.py'
-# alias sm='. ~/Arch-dotfiles/zsh/session-manager.zsh'
-alias dev='~/Arch-dotfiles/scripts/dev.sh'
-alias dev2='~/Arch-dotfiles/scripts/dev2.sh'
-alias vo='~/Arch-dotfiles/scripts/vault.sh open'
-alias vc='~/Arch-dotfiles/scripts/vault.sh close'
+alias t="$DOTFILES/scripts/tmux-init.sh"
+alias of="$DOTFILES/scripts/open-file.sh"
+alias sm="$DOTFILES/scripts/tmux-session-manager.py"
+alias dev="$DOTFILES/scripts/dev.sh"
+alias dev2="$DOTFILES/scripts/dev2.sh"
+alias vo="$DOTFILES/scripts/vault.sh open"
+alias vc="$DOTFILES/scripts/vault.sh close"
