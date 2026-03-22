@@ -16,13 +16,13 @@ alias lg='lazygit'
 alias ld='lazydocker'
 alias top='btop'
 alias news='clx -n'
-# alias ssh='TERM=xterm-256color ssh'
 alias restore="gtrash r"
 alias q="qwen -p"
 alias bm="bashmount"
 alias rcopy='rsync -avh --info=progress2 --partial --inplace'
 alias rmirror='rsync -avh --delete --info=progress2 --partial --inplace'
 alias op='opencode'
+alias md='mdcat'
 
 # services
 alias smbon='sudo systemctl start smb.service nmb.service'

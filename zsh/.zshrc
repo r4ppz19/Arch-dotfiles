@@ -26,10 +26,10 @@ if [[ $- == *i* ]]; then
   if [[ -d "$zsh_config_dir" ]]; then
     source "$zsh_config_dir/path.zsh"
     source "$zsh_config_dir/setopt.zsh"
-    source "$zsh_config_dir/env_vars.zsh"
-    source "$zsh_config_dir/aliases.zsh"
-    source "$zsh_config_dir/keybindings.zsh"
-    source "$zsh_config_dir/functions.zsh"
+    source "$zsh_config_dir/environment.zsh"
+    source "$zsh_config_dir/alias.zsh"
+    source "$zsh_config_dir/keybinding.zsh"
+    source "$zsh_config_dir/function.zsh"
   else
     echo "Warning: zsh config directory '$zsh_config_dir' not found."
   fi

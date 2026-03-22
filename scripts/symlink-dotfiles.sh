@@ -1,12 +1,12 @@
 #!/bin/bash
 set -euo pipefail
 
-DOTFILES="$HOME/Arch-dotfiles"
+DOTFILES_DIR="$HOME/Arch-dotfiles"
 CONFIG_DIR="$HOME/.config"
 
 mkdir -p "$CONFIG_DIR"
 
-CONFIG_ITEMS=(
+CONFIG_LINKS=(
   btop
   hypr
   kitty
@@ -26,22 +26,25 @@ CONFIG_ITEMS=(
   pgcli
 )
 
-for item in "${CONFIG_ITEMS[@]}"; do
-  src="$DOTFILES/$item"
-  dest="$CONFIG_DIR/$item"
-
+link_item() {
+  local src="$1"
+  local dest="$2"
   if [[ -e "$src" ]]; then
     echo "Linking $src to $dest"
     ln -sfT "$src" "$dest"
   else
     echo "Skipping missing item: $src" >&2
   fi
+}
+
+for item in "${CONFIG_LINKS[@]}"; do
+  link_item "$DOTFILES_DIR/$item" "$CONFIG_DIR/$item"
 done
 
-[[ -e "$DOTFILES/.editorconfig" ]] && ln -sfT "$DOTFILES/.editorconfig" "$HOME/.editorconfig"
-[[ -e "$DOTFILES/tmux/.tmux.conf" ]] && ln -sfT "$DOTFILES/tmux/.tmux.conf" "$HOME/.tmux.conf"
-[[ -e "$DOTFILES/zsh/.zshrc" ]] && ln -sfT "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
-[[ -e "$DOTFILES/zsh/.p10k.zsh" ]] && ln -sfT "$DOTFILES/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
-[[ -e "$DOTFILES/zsh/.zprofile" ]] && ln -sfT "$DOTFILES/zsh/.zprofile" "$HOME/.zprofile"
-[[ -e "$DOTFILES/zsh/.zsh_plugins.txt" ]] && ln -sfT "$DOTFILES/zsh/.zsh_plugins.txt" "$HOME/.zsh_plugins.txt"
-[[ -e "$DOTFILES/git/.gitconfig" ]] && ln -sfT "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
+link_item "$DOTFILES_DIR/.editorconfig" "$HOME/.editorconfig"
+link_item "$DOTFILES_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
+link_item "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc"
+link_item "$DOTFILES_DIR/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
+link_item "$DOTFILES_DIR/zsh/.zprofile" "$HOME/.zprofile"
+link_item "$DOTFILES_DIR/zsh/.zsh_plugins.txt" "$HOME/.zsh_plugins.txt"
+link_item "$DOTFILES_DIR/git/.gitconfig" "$HOME/.gitconfig"
