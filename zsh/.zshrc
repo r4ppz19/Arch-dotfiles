@@ -1,6 +1,14 @@
 # symlinked to ~/.zshrc.
 
 if [[ $- == *i* ]]; then
+  # Auto-attach tmux for the first intance of kitty window
+  if [[ "$TERM" == "xterm-kitty" && -z "$TMUX" && -n "$HYPRLAND_INSTANCE_SIGNATURE" ]]; then
+    if [[ $(hyprctl clients | grep -c "class: kitty") -eq 1 ]]; then
+      if [[ -d "$DOTFILES/scripts" ]]; then
+        exec "$DOTFILES/scripts/tmux-init.sh"
+      fi
+    fi
+  fi
 
   # Instant Prompt (Powerlevel10k)
   if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -35,5 +43,4 @@ if [[ $- == *i* ]]; then
   fi
 
   [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 fi
