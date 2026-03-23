@@ -1,10 +1,10 @@
 ## My Personal Dotfiles
 
-This repository contains all my configurations, including `etc/` (encrypted). It’s meant as a reference for how I set up my environment.
-
-I don’t have a full installation script because I hate the idea of blindly running something to replicate a setup from scratch. There is a symlink script to link some of the dotfiles, but it’s just for convenience — it won’t recreate the whole system.
+This repository contains all my configurations. It’s meant as a reference for how I set up my environment.
 
 These files reflect my workflow and personal taste. Browse through, grab ideas, and build your own setup ;)
+
+> I don’t have a full installation script because I hate the idea of blindly running something to replicate a setup from scratch. There is a symlink script to link some of the dotfiles, but it’s just for convenience — it won’t recreate the whole system.
 
 ### Setup
 
@@ -12,7 +12,7 @@ These files reflect my workflow and personal taste. Browse through, grab ideas, 
 - **WM:** [Hyprland](https://hyprland.org/)
 - **Terminal:** [Kitty](https://github.com/kovidgoyal/kitty)
 - **Shell:** [Zsh](https://github.com/zsh-users/zsh) + [Antidote](https://antidote.sh/) ([Plugins](zsh/.zsh_plugins.txt))
-- **Font:** [JetBrainsMono](https://github.com/SylEleuth/gruvbox-plus-icon-pack)
+- **Font:** [JetBrainsMono](https://www.jetbrains.com/lp/mono/)
 - **Theme:** [Gruvbox](https://github.com/morhetz/gruvbox)
 - **Cursor:** [Hackeyed](https://www.gnome-look.org/p/999998)
 - **Display Manager:** [SDDM](https://github.com/sddm/sddm) ([config](https://github.com/Keyitdev/sddm-astronaut-theme))
