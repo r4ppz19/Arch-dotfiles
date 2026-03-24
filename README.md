@@ -36,7 +36,7 @@ These files reflect my workflow and personal taste. Browse through, grab ideas, 
 
 _click the link to open their configuration_
 
-> This is mostly CLI/TUI configurations, not GUI. I have set up GTK and QT but they are unmaintained — still usable though.
+> This is mostly CLI/TUI configurations, not GUI. I have set up GTK and QT but they are unmaintained.
 
 [Hyprland](hypr/),
 [Neovim](https://github.com/r4ppz/nvZzz),

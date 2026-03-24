@@ -251,46 +251,62 @@ keymap = [
     "g",
     "r",
   ], run = "cd ~/Repositories", desc = "Go ~/Repositories" },
+
   { on = [
     "g",
     "m",
   ], run = "cd /run/media/r4ppz/", desc = "Go /media" },
+
   { on = [
     "g",
     "M",
   ], run = "cd /mnt", desc = "Go /mnt" },
+
   { on = [
     "g",
     "p",
   ], run = "cd ~/Project", desc = "Go ~/Project" },
+
   { on = [
     "g",
     "s",
   ], run = "cd ~/School", desc = "Go ~/School" },
+
   { on = [
     "g",
     "b",
   ], run = "cd ~/Books", desc = "Go ~/Books" },
+
   { on = [
     "g",
     "a",
   ], run = "cd ~/Arch-dotfiles", desc = "Go ~/Arch-dotfiles" },
+
   { on = [
     "g",
     "h",
   ], run = "cd ~", desc = "Go home" },
+
   { on = [
     "g",
     "c",
   ], run = "cd ~/.config", desc = "Go ~/.config" },
+
+  { on = [
+    "g",
+    "D",
+  ], run = "cd ~/Downloads", desc = "Go ~/Downloads" },
+
   { on = [
     "g",
     "d",
   ], run = "cd ~/Documents", desc = "Go ~/Documents" },
+
   { on = [
     "g",
     "<Space>",
   ], run = "cd --interactive", desc = "Jump interactively" },
+
   { on = [
     "g",
     "f",
