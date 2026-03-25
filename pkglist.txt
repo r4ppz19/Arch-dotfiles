@@ -57,13 +57,13 @@ git-delta
 git-filter-repo
 git-lfs
 github-cli
+glow
 gnome-keyring
 go
 gocryptfs
 google-java-format
 gptfdisk
 grim
-grub
 gsimplecal
 gst-plugin-pipewire
 gtk-engine-murrine
@@ -114,7 +114,6 @@ luarocks
 lynx
 man-db
 maven
-mdcat
 mediainfo
 meson
 mtpfs

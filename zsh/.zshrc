@@ -1,19 +1,12 @@
 # symlinked to ~/.zshrc.
 
 if [[ $- == *i* ]]; then
-  # Auto-attach tmux for the first intance of kitty window
-  if [[ "$TERM" == "xterm-kitty" && -z "$TMUX" && -n "$HYPRLAND_INSTANCE_SIGNATURE" ]]; then
-    if [[ $(hyprctl clients | grep -c "class: kitty") -eq 1 ]]; then
-      if [[ -d "$DOTFILES/scripts" ]]; then
-        exec "$DOTFILES/scripts/tmux-init.sh"
-      fi
-    fi
-  fi
-
   # Instant Prompt (Powerlevel10k)
+  typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
   if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
   fi
+
 
   # Plugin Management (Antidote)
   autoload -Uz compinit
@@ -38,9 +31,17 @@ if [[ $- == *i* ]]; then
     source "$zsh_config_dir/alias.zsh"
     source "$zsh_config_dir/keybinding.zsh"
     source "$zsh_config_dir/function.zsh"
+    source "$zsh_config_dir/.p10k.zsh"
   else
     echo "Warning: zsh config directory '$zsh_config_dir' not found."
   fi
 
-  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+  # Auto-attach tmux for the first intance of kitty
+  if [[ "$TERM" == "xterm-kitty" && -z "$TMUX" && -n "$HYPRLAND_INSTANCE_SIGNATURE" ]]; then
+    if [[ $(hyprctl clients | grep -c "class: kitty") -eq 1 ]]; then
+      if [[ -d "$DOTFILES/scripts" ]]; then
+        $DOTFILES/scripts/tmux-init.sh
+      fi
+    fi
+  fi
 fi

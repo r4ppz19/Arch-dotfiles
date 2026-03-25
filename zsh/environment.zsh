@@ -1,7 +1,3 @@
-# init
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
-
 # environment variables
 export PNPM_HOME="/home/r4ppz/.local/share/pnpm"
 export BUN_INSTALL="$HOME/.bun"
@@ -25,6 +21,8 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=1
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # FZF-tab optimizations
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git --exclude node_modules --exclude .cache"
 export FZF_ALT_C_COMMAND="fd --type d --hidden --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

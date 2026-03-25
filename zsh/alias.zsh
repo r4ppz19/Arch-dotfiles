@@ -22,7 +22,9 @@ alias bm="bashmount"
 alias rcopy='rsync -avh --info=progress2 --partial --inplace'
 alias rmirror='rsync -avh --delete --info=progress2 --partial --inplace'
 alias op='opencode'
-alias md='mdcat'
+alias md='glow'
+alias pac='pacseek'
+alias copy='wl-copy'
 
 # services
 alias smbon='sudo systemctl start smb.service nmb.service'

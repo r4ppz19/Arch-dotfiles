@@ -22,6 +22,7 @@ declare -A sites=(
   [dhub]="https://hub.docker.com/repositories/r4ppzf"
   [canva]="https://www.canva.com/"
   [ghg]="https://gist.github.com/r4ppz"
+  [speed]="https://www.speedtest.net/"
 )
 
 search_engine="https://duckduckgo.com/?q="
@@ -29,6 +30,10 @@ search_engine="https://duckduckgo.com/?q="
 query=$(rofi -dmenu -theme "$HOME/.config/rofi/websearch/main.rasi")
 
 [ -z "$query" ] && exit
+
+# Trim leading and trailing whitespace
+query="${query#"${query%%[![:space:]]*}"}"
+query="${query%"${query##*[![:space:]]}"}"
 
 url=${sites[$query]}
 
