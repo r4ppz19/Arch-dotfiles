@@ -10,7 +10,6 @@ CONFIG_LINKS=(
   lazygit
   nvim
   rofi
-  swaylock
   swaync
   systemd
   waybar

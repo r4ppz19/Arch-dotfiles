@@ -73,6 +73,7 @@ gvfs-mtp
 htop
 hypridle
 hyprland
+hyprlock
 hyprpaper
 hyprpicker
 hyprpolkitagent
@@ -171,7 +172,6 @@ snitch-bin
 sof-firmware
 sshfs
 steghide
-swaylock-effects-git
 swaync
 tailscale
 tealdeer

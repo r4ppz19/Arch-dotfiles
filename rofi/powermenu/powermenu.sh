@@ -63,7 +63,7 @@ chosen="$(run_rofi)"
 case "$chosen" in
 "$shutdown") run_cmd --shutdown ;;
 "$reboot") run_cmd --reboot ;;
-"$lock") sleep 0.5 && swaylock ;;
+"$lock") sleep 0.5 && hyprlock ;;
 "$suspend") run_cmd --suspend ;;
 "$hibernate") run_cmd --hibernate ;;
 esac

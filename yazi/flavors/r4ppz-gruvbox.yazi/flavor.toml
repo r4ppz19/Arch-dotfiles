@@ -179,12 +179,10 @@ prepend_conds = [{ if = "dir", text = "", fg = "#82A497" }]
 prepend_dirs = [
   { name = "Desktop", text = "", fg = "#82A497" },
   { name = "Downloads", text = "", fg = "#82A497" },
-  { name = "Documents", text = "󰲂", fg = "#82A497" },
+  { name = "Documents", text = "", fg = "#82A497" },
   { name = "Music", text = "", fg = "#82A497" },
   { name = "Pictures", text = "", fg = "#82A497" },
   { name = "Videos", text = "", fg = "#82A497" },
   { name = "Books", text = "", fg = "#82A497" },
   { name = "Arch-dotfiles", text = "", fg = "#82A497" },
-  { name = "Project", text = "", fg = "#82A497" },
-
 ]
