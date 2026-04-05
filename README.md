@@ -1,4 +1,6 @@
-## My Personal Dotfiles
+# Dot(.)files
+
+_My dialy driver since ~February 2025_
 
 This repository contains all my configurations. It’s meant as a reference for how I set up my environment.
 
@@ -6,7 +8,7 @@ These files reflect my workflow and personal taste. Browse through, grab ideas, 
 
 > I don’t have a full installation script because I hate the idea of blindly running something to replicate a setup from scratch. There is a symlink script to link some of the dotfiles, but it’s just for convenience — it won’t recreate the whole system.
 
-### Setup
+## Setup
 
 - **OS:** [Arch Linux](https://archlinux.org/)
 - **WM:** [Hyprland](https://hyprland.org/)
@@ -36,7 +38,7 @@ These files reflect my workflow and personal taste. Browse through, grab ideas, 
 
 _click the link to open their configuration_
 
-> This is mostly CLI/TUI configurations, not GUI. I have set up GTK and QT but they are unmaintained.
+> This is mostly CLI/TUI configurations.
 
 [Hyprland](hypr/),
 [Neovim](https://github.com/r4ppz/nvZzz),
@@ -55,9 +57,3 @@ _click the link to open their configuration_
 | <img src="screenshots/screenshot_2026-03-20_12-27-14.png" /><br><sub>[gdu](gdu/), [Yazi](yazi/), [Btop](btop/)</sub>                                                                                                                                               |                                                                                                                                           |
 
 </details>
-
----
-
-<br>
-
-_This repo gets updated almost daily because it’s my daily driver._

@@ -68,12 +68,12 @@ customCommands:
   services:
     - name: "Open logs"
       attach: false
-      command: "tmux new-window -n 'LOGS' '~/Arch-dotfiles/scripts/docker-log.sh {{ .Service.Name }} | lnav'"
+      command: "tmux new-window -n 'LOGS' '$DOTFILES/scripts/docker-log.sh {{ .Service.Name }} | lnav'"
       serviceNames: []
 
     - name: "Open pgcli"
       attach: false
-      command: "tmux new-window -n 'DB' '~/Arch-dotfiles/scripts/local-pgcli.sh {{ .Service.Name }}'"
+      command: "tmux new-window -n 'DB' '$DOTFILES/scripts/local-pgcli.sh {{ .Service.Name }}'"
       serviceNames:
         - "db"
         - "postgres"
