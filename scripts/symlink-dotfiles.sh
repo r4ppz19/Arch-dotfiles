@@ -1,6 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
+DOTFILES="${DOTFILES:-"$HOME/Arch-dotfiles")}"
 CONFIG_DIR="$HOME/.config"
 
 CONFIG_LINKS=(
@@ -40,7 +41,6 @@ done
 link_item "$DOTFILES/.editorconfig" "$HOME/.editorconfig"
 link_item "$DOTFILES/tmux/.tmux.conf" "$HOME/.tmux.conf"
 link_item "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
-link_item "$DOTFILES/zsh/.zshenv" "$HOME/.zshenv"
 link_item "$DOTFILES/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
 link_item "$DOTFILES/zsh/.zprofile" "$HOME/.zprofile"
 link_item "$DOTFILES/zsh/.zsh_plugins.txt" "$HOME/.zsh_plugins.txt"
