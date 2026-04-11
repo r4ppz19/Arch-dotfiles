@@ -10,8 +10,10 @@ alias mkdir='mkdir -pv'
 alias ..='cd ..'
 alias open='xdg-open'
 alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
+alias net="nmtui"
 
 alias v='nvim'
+alias nv='nvim'
 alias lg='lazygit'
 alias ld='lazydocker'
 alias top='btop'

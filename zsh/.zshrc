@@ -7,7 +7,6 @@ if [[ $- == *i* ]]; then
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
   fi
 
-
   # Plugin Management (Antidote)
   autoload -Uz compinit
   compinit
@@ -31,6 +30,7 @@ if [[ $- == *i* ]]; then
     source "$zsh_config_dir/alias.zsh"
     source "$zsh_config_dir/keybinding.zsh"
     source "$zsh_config_dir/function.zsh"
+    source "$zsh_config_dir/tmux_rename.zsh"
     source "$zsh_config_dir/.p10k.zsh"
   else
     echo "Warning: zsh config directory '$zsh_config_dir' not found."
