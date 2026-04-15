@@ -14,9 +14,10 @@ typeset -A PROC_MAP=(
   lnav LOGS
   bluetuith BT
   net NET
-  yay UPDATE
   lg GIT
   ld DOCKER
+  yay UPDATE
+  npm update -g UPDATE
 )
 
 typeset -A DIR_MAP=(
@@ -33,22 +34,29 @@ typeset -A DIR_MAP=(
   $HOME/Books BOOKS
   $HOME/School SCHOOL
   $HOME/Music MUSIC
-  $HOME/Documents DOCS
-  $HOME/Downloads DL
+  $HOME/Documents DOCUMENTS
+  $HOME/Downloads DOWNLOADS
   $HOME/Games GAMES
   $HOME/Pictures PICS
   $HOME/Repositories REPOS
   $HOME/Vault VAULT
   $HOME/Videos VIDS
 
-  $HOME/Project PROJECT
-  $HOME/Project/research-repository-backend BACK
-  $HOME/Project/research-repository-frontend FRONT
-  $HOME/Project/research-repo-docs DOCS
+  $HOME/Projects PROJECTS
+  $HOME/Projects/r4ppz.github.io PWEB
+  $HOME/Projects/research-repository RESEARCH
+  $HOME/Projects/research-repository/docs DOCS
+  $HOME/Projects/research-repository/backend BACK
+  $HOME/Projects/research-repository/frontend FRONT
 )
 
 _tmux_should_skip() {
-  [[ -z $TMUX || -n $NVIM || -n ${_TMUX_SETUP_SKIP:-} ]]
+  [[ -z $TMUX || -n $NVIM ]] && return 0
+
+  # Skip if there is more than 1 pane in the current window
+  local panes
+  panes=$(tmux display-message -p '#{window_panes}' 2>/dev/null)
+  [[ ${panes:-1} -gt 1 ]]
 }
 
 _tmux_rename_preexec() {
@@ -64,19 +72,22 @@ _tmux_rename_preexec() {
   [[ -z $cmd || $cmd == (zsh|bash|sh) ]] && return 0
 
   local name=$PROC_MAP[$cmd]
-  [[ -n $name ]] && tmux rename-window -t : "$name" 2>/dev/null
+  [[ -n $name ]] && tmux rename-window -t "$TMUX_PANE" "$name" 2>/dev/null
 }
 
 _tmux_rename_precmd() {
   _tmux_should_skip && return 0
 
+  # Clean PWD of trailing slash (except if it's strictly root '/')
+  local clean_pwd="${PWD%/}"
+  [[ -z $clean_pwd ]] && clean_pwd="/"
+
   # Priority: dir name → CMD fallback
-  local dir_name="${DIR_MAP[$PWD]:-CMD}"
+  local dir_name="${DIR_MAP[$clean_pwd]:-CMD}"
 
-  # Debug: uncomment to troubleshoot
-  # echo "DEBUG PRECMD: PWD='$PWD' -> dir_name='$dir_name'" >&2
+  # echo "DEBUG PRECMD: PWD='$clean_pwd' -> dir_name='$dir_name'" >&2
 
-  tmux rename-window -t : "$dir_name" 2>/dev/null
+  tmux rename-window -t "$TMUX_PANE" "$dir_name" 2>/dev/null
   # echo "DEBUG: Renamed window to '$dir_name'" >&2
 }
 
