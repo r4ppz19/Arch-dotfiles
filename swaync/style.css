@@ -19,6 +19,8 @@
   /* Effects */
   --transition: 0.15s ease-in-out;
   --shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+
+  font-family: "JetBrains Mono", monospace;
 }
 
 /* Base styles */
