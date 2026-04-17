@@ -12,12 +12,12 @@ typeset -A PROC_MAP=(
   pac PAC
   pgcli DB
   lnav LOGS
-  bluetuith BT
+  bluetuith BLUET
   net NET
   lg GIT
   ld DOCKER
   yay UPDATE
-  npm update -g UPDATE
+  npm NPM
 )
 
 typeset -A DIR_MAP=(
