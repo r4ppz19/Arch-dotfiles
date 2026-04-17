@@ -23,9 +23,9 @@
     "session_rename": "none",
     "session_share": "none",
     "session_unshare": "none",
-    "session_child_cycle": "none",
-    "session_child_cycle_reverse": "none",
-    "session_parent": "none",
+    "session_child_cycle": "<leader>right",
+    "session_child_cycle_reverse": "<leader>left",
+    "session_parent": "<leader>up",
 
     "messages_copy": "<leader>y",
     "messages_line_up": "ctrl+alt+up",

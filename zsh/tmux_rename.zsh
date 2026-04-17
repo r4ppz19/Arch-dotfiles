@@ -1,7 +1,6 @@
-# Tmux window auto-rename
-# Fallback to CMD default name
+# Tmux auto-rename
 
-typeset -A PROC_MAP=(
+typeset -gA PROC_MAP=(
   q LLM
   f FILE
   nv EDIT
@@ -16,79 +15,83 @@ typeset -A PROC_MAP=(
   net NET
   lg GIT
   ld DOCKER
-  yay UPDATE
+  yay YAY
   npm NPM
+  late LATE
+  ssh SSH
+  tetro-tui TETRIS
+  kew MUSIC
 )
 
-typeset -A DIR_MAP=(
-  / ROOT
-  /etc ETC
-  /mnt/SHARED SHARED
-  /run/media MOUNT
-  /tmp TEMP
-  $HOME HOME
-  $HOME/Arch-dotfiles DOTS
-  $HOME/Arch-dotfiles/nvim VDOTS
-  $HOME/.config DOTS
-  $HOME/.local LOCAL
-  $HOME/Books BOOKS
-  $HOME/School SCHOOL
-  $HOME/Music MUSIC
-  $HOME/Documents DOCUMENTS
-  $HOME/Downloads DOWNLOADS
-  $HOME/Games GAMES
-  $HOME/Pictures PICS
-  $HOME/Repositories REPOS
-  $HOME/Vault VAULT
-  $HOME/Videos VIDS
+typeset -gA DIR_MAP=(
+  "/" ROOT
+  "/etc" ETC
+  "/mnt/SHARED" SHARED
+  "/run/media" MOUNT
+  "/tmp" TEMP
 
-  $HOME/Projects PROJECTS
-  $HOME/Projects/r4ppz.github.io PWEB
-  $HOME/Projects/research-repository RESEARCH
-  $HOME/Projects/research-repository/docs DOCS
-  $HOME/Projects/research-repository/backend BACK
-  $HOME/Projects/research-repository/frontend FRONT
+  "$HOME" HOME
+  "$HOME/Arch-dotfiles" DOTS
+  "$HOME/Arch-dotfiles/nvim" VDOTS
+  "$HOME/.config" DOTS
+  "$HOME/.local" LOCAL
+  "$HOME/Books" BOOKS
+  "$HOME/School" SCHOOL
+  "$HOME/Music" MUSIC
+  "$HOME/Documents" DOCUMENTS
+  "$HOME/Downloads" DOWNLOADS
+  "$HOME/Games" GAMES
+  "$HOME/Pictures" PICS
+  "$HOME/Repositories" REPOS
+  "$HOME/Vault" VAULT
+  "$HOME/Videos" VIDS
+
+  "$HOME/Projects" PROJECTS
+  "$HOME/Projects/r4ppz.github.io" PWEB
+  "$HOME/Projects/research-repository" RESEARCH
+  "$HOME/Projects/research-repository/docs" DOCS
+  "$HOME/Projects/research-repository/backend" BACK
+  "$HOME/Projects/research-repository/frontend" FRONT
 )
 
-_tmux_should_skip() {
-  [[ -z $TMUX || -n $NVIM ]] && return 0
+_tmux_is_renamable() {
+  [[ -z "$TMUX" || -n "$NVIM" ]] && return 1
 
-  # Skip if there is more than 1 pane in the current window
-  local panes
-  panes=$(tmux display-message -p '#{window_panes}' 2>/dev/null)
-  [[ ${panes:-1} -gt 1 ]]
+  # Single call to get pane count and the user-defined lock option
+  local tmux_state
+  tmux_state=$(tmux display-message -p '#{window_panes}|#{@tmux_rename_locked}' 2>/dev/null)
+
+  # If locked is "1" or "on", or panes > 1, we don't rename
+  [[ "$tmux_state" == *"|1"* || "$tmux_state" == *"|on"* ]] && return 1
+  [[ "${tmux_state%%|*}" -gt 1 ]] && return 1
+
+  return 0
 }
 
 _tmux_rename_preexec() {
-  _tmux_should_skip && return 0
+  _tmux_is_renamable || return 0
 
-  # Split command line into array, then get first element
-  local -a cmd_line
-  cmd_line=(${(z)1})
-  local raw_cmd=$cmd_line[1]
-  local cmd=${raw_cmd##*/}
+  # Safer parsing of the command string
+  local -a cmd_args
+  cmd_args=(${(z)1})
+  local cmd="${cmd_args[1]##*/}"
 
-  # Skip empty commands or shells
-  [[ -z $cmd || $cmd == (zsh|bash|sh) ]] && return 0
+  [[ -z "$cmd" || "$cmd" == (zsh|bash|sh) ]] && return 0
 
-  local name=$PROC_MAP[$cmd]
-  [[ -n $name ]] && tmux rename-window -t "$TMUX_PANE" "$name" 2>/dev/null
+  local name="${PROC_MAP[$cmd]}"
+  [[ -n "$name" ]] && tmux rename-window -t "$TMUX_PANE" "$name" 2>/dev/null
 }
 
 _tmux_rename_precmd() {
-  _tmux_should_skip && return 0
+  _tmux_is_renamable || return 0
 
-  # Clean PWD of trailing slash (except if it's strictly root '/')
+  # Clean PWD: strip trailing slash, but handle root explicitly
   local clean_pwd="${PWD%/}"
-  [[ -z $clean_pwd ]] && clean_pwd="/"
+  [[ -z "$clean_pwd" ]] && clean_pwd="/"
 
-  # Priority: dir name → CMD fallback
   local dir_name="${DIR_MAP[$clean_pwd]:-CMD}"
 
-  # echo "DEBUG PRECMD: PWD='$clean_pwd' -> dir_name='$dir_name'" >&2
-
   tmux rename-window -t "$TMUX_PANE" "$dir_name" 2>/dev/null
-  # echo "DEBUG: Renamed window to '$dir_name'" >&2
 }
 
 autoload -Uz add-zsh-hook
