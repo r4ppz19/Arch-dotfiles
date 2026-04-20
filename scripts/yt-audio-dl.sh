@@ -6,7 +6,9 @@ set -euo pipefail
 # Fallback to the best available audio (e.g., AAC),
 # then convert to a single format.
 
-OUTPUT_TEMPLATE='%(title)s.%(ext)s'
+# OUTPUT_TEMPLATE='%(title)s.%(ext)s'
+# OUTPUT_TEMPLATE='%(uploader)s - %(title)s.%(ext)s'
+OUTPUT_TEMPLATE='%(artist,uploader)s - %(title)s.%(ext)s'
 
 if [ "$#" -lt 1 ]; then
   echo "Usage: $0 URL [URL...]"
@@ -24,9 +26,9 @@ yt-dlp \
   -x --audio-format opus \
   --embed-metadata \
   --embed-thumbnail \
-  --convert-thumbnails jpg \
+  --convert-thumbnails png \
+  --ppa "thumbnailsconvertor:-vf crop='ih:ih'" \
+  --no-part \
+  --force-overwrites \
+  --no-cache-dir \
   "$@"
-
-# Cleanup
-find . -name "*.webp" -delete
-find . -name "*.info.json" -delete

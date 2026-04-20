@@ -260,11 +260,6 @@ keymap = [
   { on = [
     "g",
     "m",
-  ], run = "cd /run/media/r4ppz/", desc = "Go /media" },
-
-  { on = [
-    "g",
-    "M",
   ], run = "cd /mnt", desc = "Go /mnt" },
 
   { on = [
