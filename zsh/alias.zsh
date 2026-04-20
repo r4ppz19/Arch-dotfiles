@@ -21,12 +21,11 @@ alias news='clx -n'
 alias restore="gtrash r"
 alias q="qwen -p"
 alias bm="bashmount"
-alias rcopy='rsync -avh --info=progress2 --partial --inplace'
-alias rmirror='rsync -avh --delete --info=progress2 --partial --inplace'
 alias op='opencode'
 alias md='glow'
 alias pac='pacseek'
 alias copy='wl-copy'
+alias blue='bluetuith'
 
 # services
 alias smbon='sudo systemctl start smb.service nmb.service'
@@ -39,6 +38,6 @@ alias t="$DOTFILES/scripts/tmux-init.sh"
 alias of="$DOTFILES/scripts/open-file.sh"
 alias sm="$DOTFILES/scripts/tmux-session-manager.py"
 alias dev="$DOTFILES/scripts/dev.sh"
-alias dev2="$DOTFILES/scripts/dev2.sh"
 alias vo="$DOTFILES/scripts/vault.sh open"
 alias vc="$DOTFILES/scripts/vault.sh close"
+alias ytdl="$DOTFILES/scripts/yt-audio.sh"

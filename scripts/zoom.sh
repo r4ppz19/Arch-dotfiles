@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ZOOM_STEP=1.5
 MIN_ZOOM=1

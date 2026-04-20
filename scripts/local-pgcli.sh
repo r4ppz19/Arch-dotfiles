@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 SERVICE_NAME="$1"
 
 # Get the actual Container ID/Name from the Service Name

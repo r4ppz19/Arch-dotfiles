@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 SERVICE="$1"
 
 while true; do

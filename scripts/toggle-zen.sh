@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 
 STATE="$HOME/.cache/hypr-zen-mode"

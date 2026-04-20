@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Used for snippet frontend project
 # like React Aria zip file downloads

@@ -1,3 +1,19 @@
+rcopy() {
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: rcopy <source> <destination>"
+    return 1
+  fi
+  rsync -avh --info=progress2 --partial --inplace "$@"
+}
+
+rmirror() {
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: rcopy <source> <destination>"
+    return 1
+  fi
+  rsync -avh --delete --info=progress2 --partial --inplace "$@"
+}
+
 sshumount() {
   local mount_name="$1"
   local mount_base_dir="${HOME}/Mount"
