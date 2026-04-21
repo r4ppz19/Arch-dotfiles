@@ -1,5 +1,8 @@
 # Tmux auto-rename
 
+# Logic Flow:
+# PROC_MAP (commands) > DIR_MAP_UNIQUE (unique directories) > DIR_MAP (general directories) > CMD (default)
+
 typeset -gA PROC_MAP=(
   q LLM
   f FILE
@@ -31,8 +34,6 @@ typeset -gA DIR_MAP=(
   "/tmp" TEMP
 
   "$HOME" HOME
-  "$HOME/Arch-dotfiles" DOTS
-  "$HOME/Arch-dotfiles/nvim" VDOTS
   "$HOME/.config" DOTS
   "$HOME/.local" LOCAL
   "$HOME/Books" BOOKS
@@ -45,6 +46,11 @@ typeset -gA DIR_MAP=(
   "$HOME/Repositories" REPOS
   "$HOME/Vault" VAULT
   "$HOME/Videos" VIDS
+)
+
+typeset -gA DIR_MAP_UNIQUE=(
+  "$HOME/Arch-dotfiles" DOTS
+  "$HOME/Arch-dotfiles/nvim" VDOTS
 
   "$HOME/Projects" PROJECTS
   "$HOME/Projects/r4ppz.github.io" PWEB
@@ -89,9 +95,25 @@ _tmux_rename_precmd() {
   local clean_pwd="${PWD%/}"
   [[ -z "$clean_pwd" ]] && clean_pwd="/"
 
-  local dir_name="${DIR_MAP[$clean_pwd]:-CMD}"
+  local target_name=""
 
-  tmux rename-window -t "$TMUX_PANE" "$dir_name" 2>/dev/null
+  if [[ -n "${DIR_MAP_UNIQUE[$clean_pwd]}" ]]; then
+    local unique_name="${DIR_MAP_UNIQUE[$clean_pwd]}"
+    local current_window_name=$(tmux display-message -p '#{window_name}' 2>/dev/null)
+
+    if [[ "$unique_name" != "$current_window_name" ]] && tmux list-windows -F '#{window_name}' 2>/dev/null | grep -Fxq "$unique_name"; then
+      target_name="CMD"
+    else
+      target_name="$unique_name"
+    fi
+  else
+    target_name="${DIR_MAP[$clean_pwd]}"
+    if [[ -z "$target_name" ]]; then
+      target_name="CMD"
+    fi
+  fi
+
+  tmux rename-window -t "$TMUX_PANE" "$target_name" 2>/dev/null
 }
 
 autoload -Uz add-zsh-hook
