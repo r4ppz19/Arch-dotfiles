@@ -14,7 +14,7 @@ typeset -gA PROC_MAP=(
   pac PAC
   pgcli DB
   lnav LOGS
-  bluetuith BLUET
+  blue BLUET
   net NET
   lg GIT
   ld DOCKER
@@ -29,9 +29,10 @@ typeset -gA PROC_MAP=(
 typeset -gA DIR_MAP=(
   "/" ROOT
   "/etc" ETC
-  "/mnt/SHARED" SHARED
-  "/run/media" MOUNT
+  "/mnt" MOUNT
   "/tmp" TEMP
+  "/run/media" MOUNT
+  "/mnt/SHARED" SHARED
 
   "$HOME" HOME
   "$HOME/.config" DOTS
@@ -63,11 +64,9 @@ typeset -gA DIR_MAP_UNIQUE=(
 _tmux_is_renamable() {
   [[ -z "$TMUX" || -n "$NVIM" ]] && return 1
 
-  # Single call to get pane count and the user-defined lock option
   local tmux_state
   tmux_state=$(tmux display-message -p '#{window_panes}|#{@tmux_rename_locked}' 2>/dev/null)
 
-  # If locked is "1" or "on", or panes > 1, we don't rename
   [[ "$tmux_state" == *"|1"* || "$tmux_state" == *"|on"* ]] && return 1
   [[ "${tmux_state%%|*}" -gt 1 ]] && return 1
 
@@ -77,9 +76,7 @@ _tmux_is_renamable() {
 _tmux_rename_preexec() {
   _tmux_is_renamable || return 0
 
-  # Safer parsing of the command string
-  local -a cmd_args
-  cmd_args=(${(z)1})
+  local -a cmd_args=(${(z)1})
   local cmd="${cmd_args[1]##*/}"
 
   [[ -z "$cmd" || "$cmd" == (zsh|bash|sh) ]] && return 0
@@ -91,26 +88,26 @@ _tmux_rename_preexec() {
 _tmux_rename_precmd() {
   _tmux_is_renamable || return 0
 
-  # Clean PWD: strip trailing slash, but handle root explicitly
   local clean_pwd="${PWD%/}"
   [[ -z "$clean_pwd" ]] && clean_pwd="/"
 
-  local target_name=""
+  local target_name="CMD"
+  local unique_candidate="${DIR_MAP_UNIQUE[$clean_pwd]}"
 
-  if [[ -n "${DIR_MAP_UNIQUE[$clean_pwd]}" ]]; then
-    local unique_name="${DIR_MAP_UNIQUE[$clean_pwd]}"
-    local current_window_name=$(tmux display-message -p '#{window_name}' 2>/dev/null)
+  if [[ -n "$unique_candidate" ]]; then
+    local tmux_data
+    tmux_data=$(tmux display-message -p '#{window_name}' \; list-windows -F '#{window_name}' 2>/dev/null)
 
-    if [[ "$unique_name" != "$current_window_name" ]] && tmux list-windows -F '#{window_name}' 2>/dev/null | grep -Fxq "$unique_name"; then
+    local current_window_name="${tmux_data%%$'\n'*}"
+    local all_windows="${tmux_data#*$'\n'}"
+
+    if [[ "$unique_candidate" != "$current_window_name" && "$all_windows" == (*$'\n'"$unique_candidate"$'\n'*|"$unique_candidate"$'\n'*|*$'\n'"$unique_candidate") ]]; then
       target_name="CMD"
     else
-      target_name="$unique_name"
+      target_name="$unique_candidate"
     fi
   else
-    target_name="${DIR_MAP[$clean_pwd]}"
-    if [[ -z "$target_name" ]]; then
-      target_name="CMD"
-    fi
+    target_name="${DIR_MAP[$clean_pwd]:-CMD}"
   fi
 
   tmux rename-window -t "$TMUX_PANE" "$target_name" 2>/dev/null
