@@ -4,11 +4,16 @@ set -euo pipefail
 # Download YouTube audio (music) in the highest quality.
 # Prefer native Opus streams (no conversion).
 # Fallback to the best available audio (e.g., AAC),
-# then convert to a single format.
+# then convert to a upos format (for consistency).
+#
+# You can alias it for shorter name like
+# alias ytdl'=scriptPath'
+#
+# See: zsh/alias.zsh
 
+OUTPUT_TEMPLATE='%(artist,uploader)s - %(title)s.%(ext)s'
 # OUTPUT_TEMPLATE='%(title)s.%(ext)s'
 # OUTPUT_TEMPLATE='%(uploader)s - %(title)s.%(ext)s'
-OUTPUT_TEMPLATE='%(artist,uploader)s - %(title)s.%(ext)s'
 
 if [ "$#" -lt 1 ]; then
   echo "Usage: $0 URL [URL...]"

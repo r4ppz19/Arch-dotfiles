@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Used for linking this dotfiles directory to the .config directory.
+# The DOTFILES environment variable is set in:
+# hypr/core/environment.conf
+
 DOTFILES="${DOTFILES:-"$HOME/Arch-dotfiles")}"
 CONFIG_DIR="$HOME/.config"
 

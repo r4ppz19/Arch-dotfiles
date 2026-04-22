@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Toggles Hyprland's HyprSunset modes
+# between day, afternoon, night, and reading.
+#
+# Used in hyprland submap binds:
+# hypr/core/submap.conf
+# hypr/core/environment.conf
+
 STATE_FILE="$HOME/.cache/hyprsunset_mode"
 
 if [[ ! -f "$STATE_FILE" ]]; then

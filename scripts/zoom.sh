@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# Adjusts cursor zoom level in Hyprland
+#
+# Used in hyprland binds:
+# hypr/core/keybind.conf
+# hypr/core/environment.conf
+
 ZOOM_STEP=1.5
 MIN_ZOOM=1
 MAX_ZOOM=20

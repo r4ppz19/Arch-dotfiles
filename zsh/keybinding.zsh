@@ -5,4 +5,5 @@ bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
 
 # File picker
-bindkey '^[f' fzf-file-widget
+zle -N open_file
+bindkey '^[f' open_file

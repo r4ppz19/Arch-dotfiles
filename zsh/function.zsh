@@ -1,3 +1,7 @@
+open_file() {
+  "$DOTFILES/scripts/open-file.sh"
+}
+
 rcopy() {
   if [[ $# -lt 2 ]]; then
     echo "Usage: rcopy <source> <destination>"

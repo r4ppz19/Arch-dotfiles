@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-# Hide the float, open a tab, set wipeout, and schedule the Lazygit restore
+# Integrates Lazygit with Neovim
+# for seamless commit workflows.
+#
+# See: nvim/lua/plugins/snacks.lua
+
 nvr -cc close \
   --remote-tab-wait \
   +'setlocal bufhidden=wipe' \

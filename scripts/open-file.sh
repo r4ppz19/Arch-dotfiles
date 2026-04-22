@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SEARCH_DIR="${1:-$HOME}"
+# Opens a file selected via fzf in the specified
+# editor, with preview and exclusions.
+#
+# Used in zsh as a widget:
+# zsh/keybinding.zsh
+# zsh/function.zsh
+
+SEARCH_DIR="${1:-$PWD}"
 EDITOR="${EDITOR:-nvim}"
 
 if command -v bat &>/dev/null; then

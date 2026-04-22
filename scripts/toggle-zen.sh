@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Toggles Hyprland's Zen mode by
+# adjusting gaps, borders, and wallpaper.
+#
+# Used in hyprland binds:
+# hypr/core/keybind.conf
+# hypr/core/environment.conf
+
 STATE="$HOME/.cache/hypr-zen-mode"
 MONITOR="eDP-1"
 

@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Monitors battery levels and sends notifications
+# for low, critical, and very critical thresholds.
+#
+# Run using systemd:
+# systemd/user/battery-monitor.service
+
 # Configuration
 LOW_BATTERY_THRESHOLD=30
 CRITICAL_BATTERY_THRESHOLD=20

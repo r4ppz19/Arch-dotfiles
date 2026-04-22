@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Initializes/attaches to a tmux
+# session with a predefined first window.
+#
+# Used in zsh auto attach:
+# zsh/.zshrc
+
 SESSION="${1:-main}"
 FIRST_WINDOW_NAME="CMD"
 

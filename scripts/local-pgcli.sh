@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+
+# Connects to a PostgreSQL database running
+# in a Docker Compose service using pgcli.
+#
+# Used in LazyDocker custom cmd:
+# lazydocker/config.yml
+
 SERVICE_NAME="$1"
 
 # Get the actual Container ID/Name from the Service Name

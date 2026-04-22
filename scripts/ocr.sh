@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Captures a screen region, processes the image, and extracts text using OCR.
+#
+# Used in hyprland submap binds:
+# hypr/core/submap.conf
+# hypr/core/environment.conf
+
 LOCKFILE="/tmp/screenshot_ocr.lock"
 TMPIMG="$(mktemp --suffix=.png)"
 PROCESSED="$(mktemp --suffix=.png)"

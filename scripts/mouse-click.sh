@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Control the mouse using a keyboard
+# Only works using hyprland submap:
+# hypr/core/submap.conf
+
 STATE_FILE="/tmp/mouse_state"
 
 # Initialize state file if missing

@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# Fetches CPU temperature and categorizes it
+# into critical, warning, or normal levels.
+#
+# Used in waybar:
+# waybar/config.jsonc
+
 TEMP=$(sensors 2>/dev/null | awk '/^Package id 0:/ {gsub(/\+|°C/,"",$4); print int($4); exit}')
 
 if [ -z "$TEMP" ]; then
