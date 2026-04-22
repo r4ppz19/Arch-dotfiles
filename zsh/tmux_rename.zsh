@@ -1,7 +1,10 @@
 # Tmux auto-rename
 
-# Logic Flow:
-# PROC_MAP (commands) > DIR_MAP_UNIQUE (unique directories) > DIR_MAP (general directories) > CMD (default)
+# Prio:
+# 1 PROC_MAP (commands)
+# 2 DIR_MAP_UNIQUE (unique directories)
+# 3 DIR_MAP (general directories)
+# 4 CMD (default)
 
 typeset -gA PROC_MAP=(
   q LLM
@@ -24,6 +27,7 @@ typeset -gA PROC_MAP=(
   ssh SSH
   tetro-tui TETRIS
   kew MUSIC
+  sudo SUDO
 )
 
 typeset -gA DIR_MAP=(
