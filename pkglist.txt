@@ -129,7 +129,6 @@ neovim-remote
 network-manager-applet
 networkmanager
 networkmanager-openvpn
-nginx
 nodejs-lts-krypton
 noto-fonts-emoji
 npm
