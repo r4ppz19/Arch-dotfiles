@@ -9,8 +9,9 @@
 typeset -gA PROC_MAP=(
   q LLM
   f FILE
-  nv EDIT
+  nv NVIM
   op LLM
+  ai LLM
   top TASK
   ollama LLM
   news NEWS
@@ -28,6 +29,7 @@ typeset -gA PROC_MAP=(
   tetro-tui TETRIS
   kew MUSIC
   sudo SUDO
+  cargo CARGO
 )
 
 typeset -gA DIR_MAP=(
@@ -56,6 +58,8 @@ typeset -gA DIR_MAP=(
 typeset -gA DIR_MAP_UNIQUE=(
   "$HOME/Arch-dotfiles" DOTS
   "$HOME/Arch-dotfiles/nvim" VDOTS
+
+  "$HOME/Repositories/nvplug/lspeek.nvim" LSPEEK
 
   "$HOME/Projects" PROJECTS
   "$HOME/Projects/r4ppz.github.io" PWEB
