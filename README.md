@@ -47,13 +47,37 @@ _click the link to open their configuration_
 [Waybar](waybar/),
 [Zsh](zsh/),
 
-|                                                                                                                                                                                                                                                                    |                                                                                                                                           |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| <img src="screenshots/screenshot_2026-03-20_09-21-57.png" /><br><sub>[SwayNC](swaync/), [FastFetch](fastfetch)</sub>                                                                                                                                               | <img src="screenshots/screenshot_2026-03-20_09-25-27.png" /><br><sub>[OpenCode](opencode/), [Pacseek](pacseek/)</sub>                     |
-| <img src="screenshots/screenshot_2026-03-20_09-29-21.png" /><br><sub>[Yazi](yazi/), Kew</sub>                                                                                                                                                                      | <img src="screenshots/screenshot_2026-03-20_10-11-34.png" /><br><sub>[pgcli](pgcli/)</sub>                                                |
-| <img src="screenshots/screenshot_2026-03-20_09-34-48.png" /><br><sub>Rofi ([PowerMenu](rofi/powermenu/))</sub>                                                                                                                                                     | <img src="screenshots/screenshot_2026-03-20_09-34-54.png" /><br><sub>Rofi ([App Launcher](rofi/launcher))</sub>                           |
-| <img src="screenshots/screenshot_2026-03-20_11-19-18.png" /><br><sub>[GTK](https://github.com/TheGreatMcPain/gruvbox-material-gtk), [QT](https://github.com/sachnr/gruvbox-kvantum-themes) and [Icons](https://github.com/SylEleuth/gruvbox-plus-icon-pack) </sub> | <img src="screenshots/screenshot_2026-03-20_10-25-57.png" /><br><sub>GTK and QT ([floating rules](hypr/appearance/windowrule.conf))</sub> |
-| <img src="screenshots/screenshot_2026-03-20_11-54-36.png" /><br><sub>[LazyGit](lazygit/)</sub>                                                                                                                                                                     | <img src="screenshots/screenshot_2026-03-20_11-54-48.png" /><br><sub>[LazyDocker](lazydocker) ([custom script](scripts/))</sub>           |
-| <img src="screenshots/screenshot_2026-03-20_12-27-14.png" /><br><sub>[gdu](gdu/), [Yazi](yazi/), [Btop](btop/)</sub>                                                                                                                                               |                                                                                                                                           |
+![SwayNC, FastFetch](screenshots/screenshot_2026-03-20_09-21-57.png)
+[SwayNC](swaync/), [FastFetch](fastfetch)
+
+![Rofi PowerMenu](screenshots/screenshot_2026-03-20_09-34-48.png)
+Rofi ([PowerMenu](rofi/powermenu/))
+
+![Rofi App Launcher](screenshots/screenshot_2026-03-20_09-34-54.png)
+Rofi ([App Launcher](rofi/launcher))
+
+![LazyGit](screenshots/screenshot_2026-03-20_11-54-36.png)
+[LazyGit](lazygit/)
+
+![LazyDocker](screenshots/screenshot_2026-03-20_11-54-48.png)
+[LazyDocker](lazydocker) ([custom scripts](scripts/))
+
+![gdu, Yazi, Btop](screenshots/screenshot_2026-03-20_12-27-14.png)
+[gdu](gdu/), [Yazi](yazi/), [Btop](btop/)
+
+![Yazi, Kew](screenshots/screenshot_2026-03-20_09-29-21.png)
+[Yazi](yazi/), Kew
+
+![OpenCode, Pacseek](screenshots/screenshot_2026-03-20_09-25-27.png)
+[OpenCode](opencode/), [Pacseek](pacseek/)
+
+![pgcli](screenshots/screenshot_2026-03-20_10-11-34.png)
+[pgcli](pgcli/)
+
+![GTK, QT and Icons](screenshots/screenshot_2026-03-20_11-19-18.png)
+[GTK](https://github.com/TheGreatMcPain/gruvbox-material-gtk), [QT](https://github.com/sachnr/gruvbox-kvantum-themes) and [Icons](https://github.com/SylEleuth/gruvbox-plus-icon-pack)
+
+![GTK and QT floating rules](screenshots/screenshot_2026-03-20_10-25-57.png)
+GTK and QT ([floating rules](hypr/appearance/windowrule.conf))
 
 </details>
