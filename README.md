@@ -20,6 +20,7 @@ These files reflect my workflow and personal taste. Browse through, grab ideas, 
 - **Display Manager:** [SDDM](https://github.com/sddm/sddm) ([config](https://github.com/Keyitdev/sddm-astronaut-theme))
 - **Notification:** [SwayNC](https://github.com/ErikReider/SwayNotificationCenter)
 - **Bar:** [Waybar](https://github.com/Alexays/Waybar)
+- **Lock:** [Hyprlock](https://github.com/hyprwm/hyprlock/)
 - **Launcher:** [Rofi](https://github.com/davatorium/rofi)
 - **Music Player:** [Kew](https://github.com/ravachol/kew)
 - **File Managers:** [Thunar](https://github.com/xfce-mirror/thunar) (GUI), [Yazi](https://yazi-rs.github.io/) (TUI)
