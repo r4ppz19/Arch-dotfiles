@@ -129,11 +129,11 @@ function M:entry(job)
 			if run == "quit" then
 				break
 			elseif run == "mount" then
-				self.operate("mount")
+				require(".cross").operate("mount", active_partition())
 			elseif run == "unmount" then
-				self.operate("unmount")
+				require(".cross").operate("unmount", active_partition())
 			elseif run == "eject" then
-				self.operate("eject")
+				require(".cross").operate("eject", active_partition())
 			end
 		until not run
 	end
@@ -171,7 +171,7 @@ function M:redraw()
 				ui.Constraint.Length(20),
 				ui.Constraint.Length(20),
 				ui.Constraint.Percentage(70),
-				ui.Constraint.Length(10),
+				ui.Constraint.Length(20),
 			},
 	}
 end
@@ -212,6 +212,11 @@ function M.split(src)
 		{ "^/dev/mmcblk%d+", "p%d+$" }, -- /dev/mmcblk0p1
 		{ "^/dev/disk%d+", ".+$" }, -- /dev/disk1s1
 		{ "^/dev/sr%d+", ".+$" }, -- /dev/sr0
+		{ "^/dev/fd%d+", ".+$" }, -- /dev/fd0
+		{ "^/dev/md%d+", "p%d+$" }, -- /dev/md0p1
+		{ "^/dev/nbd%d+", "p%d+$" }, -- /dev/nbd0p1
+		{ "^/dev/bcache%d+", "p%d+$" }, -- /dev/bcache0p1
+		{ "^/dev/mapper/", ".+$" }, -- /dev/mapper/<name>
 	}
 	for _, p in ipairs(pats) do
 		local main = src:match(p[1])
@@ -248,48 +253,6 @@ function M.fillin(tbl)
 	end
 	return tbl
 end
-
-function M.operate(type)
-	local active = active_partition()
-	if not active then
-		return
-	elseif not active.sub then
-		return -- TODO: mount/unmount main disk
-	end
-
-	local cmd
-	if ya.target_os() == "macos" then
-		cmd = Command("diskutil"):arg { type, active.src }
-	end
-	if ya.target_os() == "linux" then
-		if type == "eject" and active.src:match("^/dev/sr%d+") then
-			Command("udisksctl"):arg({ "unmount", "-b", active.src }):status()
-			cmd = Command("eject"):arg { "--traytoggle", active.src }
-		elseif type == "eject" then
-			Command("udisksctl"):arg({ "unmount", "-b", active.src }):status()
-			cmd = Command("udisksctl"):arg { "power-off", "-b", active.src }
-		else
-			cmd = Command("udisksctl"):arg { type, "-b", active.src }
-		end
-	end
-
-	if not cmd then
-		return M.fail("mount.yazi is not currently supported on your platform")
-	end
-
-	local output, err = cmd:output()
-	if not output then
-		if cmd.program then
-			M.fail("Failed to spawn `%s`: %s", cmd.program, err)
-		else
-			M.fail("Failed to spawn `udisksctl`: %s", err) -- TODO: remove
-		end
-	elseif not output.status.success then
-		M.fail("Failed to %s `%s`: %s", type, active.src, output.stderr)
-	end
-end
-
-function M.fail(...) ya.notify { title = "Mount", content = string.format(...), timeout = 10, level = "error" } end
 
 function M:click() end
 
