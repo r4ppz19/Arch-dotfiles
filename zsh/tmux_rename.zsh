@@ -59,14 +59,18 @@ typeset -gA DIR_MAP_UNIQUE=(
   "$HOME/Arch-dotfiles" DOTS
   "$HOME/Arch-dotfiles/nvim" VDOTS
 
-  "$HOME/Repositories/nvplug/lspeek.nvim" LSPEEK
-
   "$HOME/Projects" PROJECTS
+
   "$HOME/Projects/r4ppz.github.io" PWEB
+
   "$HOME/Projects/research-repository" RESEARCH
   "$HOME/Projects/research-repository/docs" DOCS
   "$HOME/Projects/research-repository/backend" BACK
   "$HOME/Projects/research-repository/frontend" FRONT
+
+  "$HOME/Repositories/nvplug/lspeek.nvim" LSPEEK
+
+  "$HOME/Projects/mini-capstone/law-firm-management-system" CAPST
 )
 
 _tmux_is_renamable() {
