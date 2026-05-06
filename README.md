@@ -32,7 +32,11 @@ These files reflect my workflow and personal taste. Browse through, grab ideas, 
 
 ![Screenshot](screenshots/neovim.png)
 
-![Screenshot](screenshots/screenshot_2026-03-20_10-44-34.png)
+![Screenshot](screenshots/screenshot_2026-05-06_21-05-45.png)
+
+![Screenshot](screenshots/screenshot_2026-05-06_21-11-59.png)
+
+![Screenshot](screenshots/screenshot_2026-05-06_21-19-42.png)
 
 <details>
 <summary>Screenshots with configs</summary>
