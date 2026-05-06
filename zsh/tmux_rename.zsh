@@ -30,6 +30,7 @@ typeset -gA PROC_MAP=(
   kew MUSIC
   sudo SUDO
   cargo CARGO
+  gdu GDU
 )
 
 typeset -gA DIR_MAP=(

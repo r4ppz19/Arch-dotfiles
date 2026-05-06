@@ -13,7 +13,7 @@ bind
 binwalk
 bitwarden
 blueman
-bluetuith
+bluetui
 bluez-obex
 bluez-utils
 brave-bin
@@ -26,6 +26,7 @@ chromium
 clang
 cliphist
 cloudflared
+composer
 cpio
 dkms
 docker
