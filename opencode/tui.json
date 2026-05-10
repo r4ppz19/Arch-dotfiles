@@ -1,6 +1,15 @@
 {
   "$schema": "https://opencode.ai/tui.json",
   "theme": "gruvbox",
+
+  "scroll_speed": 1,
+
+  "scroll_acceleration": {
+    "enabled": true
+  },
+
+  "diff_style": "stacked",
+
   "keybinds": {
     "leader": "ctrl+space",
     "app_exit": "ctrl+c,<leader>q",
@@ -9,7 +18,6 @@
     "theme_list": "<leader>t",
     "sidebar_toggle": "<leader>b",
     "scrollbar_toggle": "<leader>B",
-    "username_toggle": "<leader>u",
     "status_view": "<leader>s",
     "tool_details": "<leader>d",
 
@@ -27,9 +35,12 @@
     "session_child_cycle_reverse": "<leader>left",
     "session_parent": "<leader>up",
 
-    "messages_copy": "<leader>y",
+    "messages_half_page_up": "ctrl+shift+up",
+    "messages_half_page_down": "ctrl+shift+down",
     "messages_line_up": "ctrl+alt+up",
     "messages_line_down": "ctrl+alt+down",
+
+    "messages_copy": "<leader>y",
     "messages_next": "ctrl+alt+right",
     "messages_previous": "ctrl+alt+left",
     "messages_first": "ctrl+shift+alt+up",
@@ -113,10 +124,5 @@
     "terminal_suspend": "ctrl+z",
     "terminal_title_toggle": "none",
     "tips_toggle": "<leader>h"
-  },
-  "scroll_speed": 1,
-  "scroll_acceleration": {
-    "enabled": true
-  },
-  "diff_style": "stacked"
+  }
 }
