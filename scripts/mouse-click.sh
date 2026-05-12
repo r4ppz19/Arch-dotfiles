@@ -14,7 +14,7 @@ fi
 
 if [[ "$1" = "left" ]]; then
   ydotool click 0x40 0x80
-  hyprctl dispatch submap reset
+  hyprctl dispatch 'hl.dsp.submap("reset")'
 
 elif [[ "$1" = "right" ]]; then
   ydotool click 0x41 0x81
@@ -48,7 +48,7 @@ elif [[ "$1" = "toggle" ]]; then
       -i dialog-information \
       -t 1400
 
-    hyprctl dispatch submap reset
+    hyprctl dispatch 'hl.dsp.submap("reset")'
   fi
 
 elif [[ "$1" = "reset" ]]; then
@@ -58,5 +58,5 @@ elif [[ "$1" = "reset" ]]; then
   # ydotool click 0x40 0x80
   # ydotool key 1:1 1:0
 
-  hyprctl dispatch submap reset
+  hyprctl dispatch 'hl.dsp.submap("reset")'
 fi

@@ -189,7 +189,12 @@ hl.define_submap("mouse-mode", function()
   hl.bind("KP_Delete", hl.dsp.exec_cmd(vars.mouseclick .. " middle"))
   hl.bind("KP_End", hl.dsp.exec_cmd(vars.mouseclick .. " toggle"))
 
-  hl.bind("catchall", hl.dsp.exec_cmd(vars.mouseclick .. "reset"))
+  hl.bind("Q", hl.dsp.exec_cmd(vars.mouseclick .. " left"))
+  hl.bind("W", hl.dsp.exec_cmd(vars.mouseclick .. " right"))
+  hl.bind("E", hl.dsp.exec_cmd(vars.mouseclick .. " middle"))
+  hl.bind("R", hl.dsp.exec_cmd(vars.mouseclick .. " toggle"))
+
+  hl.bind("catchall", hl.dsp.exec_cmd(vars.mouseclick .. " reset"))
   hl.bind("Shift_L", hl.dsp.exec_cmd("true"))
   hl.bind("escape", hl.dsp.submap("reset"))
 end)
