@@ -8,4 +8,4 @@ hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
 
 hl.env("QT_QPA_PLATFORMTHEME", "kvantum")
 
-hl.env("DOTFILES", "$HOME/Arch-dotfiles")
+hl.env("DOTFILES", os.getenv("HOME") .. "/Arch-dotfiles")

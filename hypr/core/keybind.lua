@@ -1,5 +1,3 @@
--- Keyhl.bindings hl.configuration
-
 local vars = require("core.variable")
 
 -- ============================================================================
@@ -29,9 +27,8 @@ hl.bind("XF86PowerOff", hl.dsp.exec_cmd(vars.powermenu))
 -- ============================================================================
 -- FOCUS MANAGEMENT
 -- ============================================================================
-hl.bind("ALT + TAB", hl.dsp.layout("cyclenext"))
-hl.bind("ALT + TAB", hl.dsp.layout("focusmaster"))
-hl.bind("ALT + SHIFT + TAB", hl.dsp.layout("cyclenext noloop"))
+hl.bind("ALT + TAB", hl.dsp.layout("rollnext"))
+hl.bind("ALT + TAB + SHIFT", hl.dsp.layout("rollprev"))
 
 hl.bind("CTRL + ALT + TAB", hl.dsp.window.cycle_next())
 hl.bind("CTRL + ALT + SHIFT + TAB", hl.dsp.window.cycle_next({ previous = true }))
@@ -83,7 +80,7 @@ hl.bind(vars.mainMod .. " + SHIFT + mouse_down", hl.dsp.exec_cmd(vars.zoom .. " 
 
 -- Special workspace (scratchpad)
 hl.workspace_rule({
-  workspace = "special:window",
+  workspace = "special:window1",
   gaps_in = 3,
   gaps_out = {
     top = 120,
@@ -93,12 +90,12 @@ hl.workspace_rule({
   },
 })
 
-hl.bind(vars.mainMod .. "+ W", hl.dsp.workspace.toggle_special({ workspace = "special:window" }))
-hl.bind(vars.mainMod .. "+ SHIFT + W", hl.dsp.window.move({ workspace = "special:window" }))
+hl.bind(vars.mainMod .. " + W", hl.dsp.workspace.toggle_special({ workspace = "special:window1" }))
+hl.bind(vars.mainMod .. " + SHIFT + W", hl.dsp.window.move({ workspace = "special:window1" }))
 
 -- SecondSpecial workspace (scratchpad)
 hl.workspace_rule({
-  workspace = "special:windows",
+  workspace = "special:window2",
   gaps_in = 3,
   gaps_out = {
     top = 120,
@@ -108,8 +105,8 @@ hl.workspace_rule({
   },
 })
 
-hl.bind(vars.mainMod .. " + backslash", hl.dsp.workspace.toggle_special({ workspace = "special:windows" }))
-hl.bind(vars.mainMod .. "+ SHIFT + backslash", hl.dsp.window.move({ workspace = "special:windows" }))
+hl.bind(vars.mainMod .. " + backslash", hl.dsp.workspace.toggle_special({ workspace = "special:windows2" }))
+hl.bind(vars.mainMod .. " + SHIFT + backslash", hl.dsp.window.move({ workspace = "special:windows2" }))
 
 -- Minimize workspace
 hl.workspace_rule({
@@ -124,8 +121,8 @@ hl.workspace_rule({
   border_size = 0,
 })
 
-hl.bind(vars.mainMod .. "+ X", hl.dsp.window.move({ workspace = "special:minimize" }))
-hl.bind(vars.mainMod .. "+ grave", hl.dsp.workspace.toggle_special("special:minimize"))
+hl.bind(vars.mainMod .. " + grave", hl.dsp.workspace.toggle_special("special:minimize"))
+hl.bind(vars.mainMod .. " + X", hl.dsp.window.move({ workspace = "special:minimize" }))
 
 -- ============================================================================
 -- WORKSPACE NAVIGATION
