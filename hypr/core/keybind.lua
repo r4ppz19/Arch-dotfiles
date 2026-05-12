@@ -85,7 +85,12 @@ hl.bind(vars.mainMod .. " + SHIFT + mouse_down", hl.dsp.exec_cmd(vars.zoom .. " 
 hl.workspace_rule({
   workspace = "special:window",
   gaps_in = 3,
-  gaps_out = { 120, 240, 120, 240 },
+  gaps_out = {
+    top = 120,
+    right = 240,
+    bottom = 120,
+    left = 240,
+  },
 })
 
 hl.bind(vars.mainMod .. "+ W", hl.dsp.workspace.toggle_special({ workspace = "special:window" }))
@@ -95,7 +100,12 @@ hl.bind(vars.mainMod .. "+ SHIFT + W", hl.dsp.window.move({ workspace = "special
 hl.workspace_rule({
   workspace = "special:windows",
   gaps_in = 3,
-  gaps_out = { 120, 240, 120, 240 },
+  gaps_out = {
+    top = 120,
+    right = 240,
+    bottom = 120,
+    left = 240,
+  },
 })
 
 hl.bind(vars.mainMod .. " + backslash", hl.dsp.workspace.toggle_special({ workspace = "special:windows" }))
@@ -105,12 +115,17 @@ hl.bind(vars.mainMod .. "+ SHIFT + backslash", hl.dsp.window.move({ workspace = 
 hl.workspace_rule({
   workspace = "special:minimize",
   gaps_in = 2,
-  gaps_out = { 5, 5, 5, 5 },
+  gaps_out = {
+    top = 5,
+    right = 5,
+    bottom = 5,
+    left = 5,
+  },
   border_size = 0,
 })
 
 hl.bind(vars.mainMod .. "+ X", hl.dsp.window.move({ workspace = "special:minimize" }))
-hl.bind(vars.mainMod .. "+ grave", hl.dsp.workspace.toggle_special("minimize"))
+hl.bind(vars.mainMod .. "+ grave", hl.dsp.workspace.toggle_special("special:minimize"))
 
 -- ============================================================================
 -- WORKSPACE NAVIGATION
@@ -120,8 +135,8 @@ hl.bind(vars.mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(vars.mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e-1" }))
 
 -- Page up/down for workspace navigation
-hl.bind("" .. "Page_Up", hl.dsp.focus({ workspace = "e-1" }))
-hl.bind("" .. "Page_Down", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind("Page_Up", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind("Page_Down", hl.dsp.focus({ workspace = "e+1" }))
 
 -- Switch workspaces with vars.mainMod + [0-9]
 for i = 1, 10 do
@@ -133,9 +148,9 @@ end
 -- ============================================================================
 -- MEDIA KEYS (LAPTOP)
 -- ============================================================================
-hl.bind("" .. "XF86AudioRaiseVolume", hl.dsp.exec_cmd(vars.mediactl .. " volume-up"), { repeating = true })
-hl.bind("" .. "XF86AudioLowerVolume", hl.dsp.exec_cmd(vars.mediactl .. " volume-down"), { repeating = true })
-hl.bind("" .. "XF86AudioMute", hl.dsp.exec_cmd(vars.mediactl .. " mute"))
-hl.bind("" .. "XF86AudioMicMute", hl.dsp.exec_cmd(vars.mediactl .. " mic-mute"))
-hl.bind("" .. "XF86MonBrightnessUp", hl.dsp.exec_cmd(vars.mediactl .. " brightness-up"), { repeating = true })
-hl.bind("" .. "XF86MonBrightnessDown", hl.dsp.exec_cmd(vars.mediactl .. " brightness-down"), { repeating = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(vars.mediactl .. " volume-up"), { repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(vars.mediactl .. " volume-down"), { repeating = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd(vars.mediactl .. " mute"))
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(vars.mediactl .. " mic-mute"))
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(vars.mediactl .. " brightness-up"), { repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(vars.mediactl .. " brightness-down"), { repeating = true })
