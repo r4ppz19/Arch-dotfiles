@@ -1,5 +1,3 @@
--- Environment variables configuration
-
 hl.env("GDK_SCALE", "1")
 
 hl.env("QT_QPA_PLATFORM", "wayland;xcb")

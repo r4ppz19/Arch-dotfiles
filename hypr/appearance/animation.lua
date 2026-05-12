@@ -1,5 +1,3 @@
--- Animation configuration
-
 hl.curve("easeOutQuint", { type = "bezier", points = { { 0.22, 1 }, { 0.36, 1 } } })
 hl.curve("easeInOutCubic", { type = "bezier", points = { { 0.65, 0 }, { 0.25, 1 } } })
 hl.curve("almostLinear", { type = "bezier", points = { { 0.5, 0.5 }, { 0.75, 1.0 } } })

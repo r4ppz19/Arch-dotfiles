@@ -1,5 +1,3 @@
--- Centralized variable module
-
 local vars = {}
 
 -- MODIFIERS

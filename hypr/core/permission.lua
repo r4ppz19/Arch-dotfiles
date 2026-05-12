@@ -1,5 +1,3 @@
--- Permission configuration
-
 hl.config({
   ecosystem = {
     enforce_permissions = false,

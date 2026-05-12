@@ -1,4 +1,3 @@
--- General appearance configuration
 hl.config({
   general = {
     gaps_in = 8,

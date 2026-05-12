@@ -1,8 +1,6 @@
 local vars = require("core.variable")
 
--- ============================================================================
--- APPLICATION LAUNCHING
--- ============================================================================
+-- Application launching
 hl.bind(vars.mainMod .. " + RETURN", hl.dsp.exec_cmd(vars.terminal))
 hl.bind(vars.mainMod .. " + E", hl.dsp.exec_cmd(vars.filemanager))
 hl.bind(vars.mainMod .. " + D", hl.dsp.exec_cmd(vars.launcher))
@@ -11,9 +9,7 @@ hl.bind(vars.mainMod .. " + L", hl.dsp.exec_cmd(vars.lockscreen))
 hl.bind(vars.mainMod .. " + N", hl.dsp.exec_cmd(vars.notifpanel))
 hl.bind(vars.mainMod .. " + slash", hl.dsp.exec_cmd(vars.websearch))
 
--- ============================================================================
 -- WINDOW MANAGEMENT
--- ============================================================================
 hl.bind(vars.mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind(vars.mainMod .. " + SHIFT + K", hl.dsp.window.kill())
 hl.bind(vars.mainMod .. " + SHIFT + Q", hl.dsp.window.close())
@@ -24,9 +20,7 @@ hl.bind(vars.mainMod .. " + SHIFT + Z", hl.dsp.exec_cmd(vars.zen))
 -- Power menu
 hl.bind("XF86PowerOff", hl.dsp.exec_cmd(vars.powermenu))
 
--- ============================================================================
--- FOCUS MANAGEMENT
--- ============================================================================
+-- Focus management
 hl.bind("ALT + TAB", hl.dsp.layout("rollnext"))
 hl.bind("ALT + SHIFT + TAB ", hl.dsp.layout("rollprev"))
 
@@ -42,9 +36,6 @@ hl.bind(vars.mainMod .. " + right", hl.dsp.focus({ direction = "r" }))
 hl.bind(vars.mainMod .. " + up", hl.dsp.focus({ direction = "u" }))
 hl.bind(vars.mainMod .. " + down", hl.dsp.focus({ direction = "d" }))
 
--- ============================================================================
--- WINDOW MOVEMENT
--- ============================================================================
 -- Move windows with arrow keys
 hl.bind(vars.mainMod .. " + SHIFT + left", hl.dsp.window.move({ direction = "l" }))
 hl.bind(vars.mainMod .. " + SHIFT + right", hl.dsp.window.move({ direction = "r" }))
@@ -57,9 +48,7 @@ hl.bind(vars.mainMod .. " + CTRL + right", hl.dsp.window.move({ direction = "r" 
 hl.bind(vars.mainMod .. " + CTRL + up", hl.dsp.window.move({ direction = "u" }), { repeating = true })
 hl.bind(vars.mainMod .. " + CTRL + down", hl.dsp.window.move({ direction = "d" }), { repeating = true })
 
--- ============================================================================
--- MOUSE hl.bindS
--- ============================================================================
+-- Mouse
 hl.config({
   binds = {
     drag_threshold = 5,
@@ -73,10 +62,6 @@ hl.bind(vars.mainMod .. " + mouse:273", hl.dsp.window.resize())
 -- Zoom with mouse wheel + shift
 hl.bind(vars.mainMod .. " + SHIFT + mouse_up", hl.dsp.exec_cmd(vars.zoom .. " out"))
 hl.bind(vars.mainMod .. " + SHIFT + mouse_down", hl.dsp.exec_cmd(vars.zoom .. " in"))
-
--- ============================================================================
--- SPECIAL WORKSPACES (SCRATCHPADS)
--- ============================================================================
 
 -- Special workspace (scratchpad)
 hl.workspace_rule({
@@ -124,9 +109,6 @@ hl.workspace_rule({
 hl.bind(vars.mainMod .. " + grave", hl.dsp.workspace.toggle_special("special:minimize"))
 hl.bind(vars.mainMod .. " + X", hl.dsp.window.move({ workspace = "special:minimize" }))
 
--- ============================================================================
--- WORKSPACE NAVIGATION
--- ============================================================================
 -- Scroll through workspaces with mouse wheel
 hl.bind(vars.mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(vars.mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e-1" }))
@@ -142,9 +124,7 @@ for i = 1, 10 do
   hl.bind(vars.mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
--- ============================================================================
--- MEDIA KEYS (LAPTOP)
--- ============================================================================
+-- Media keys
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(vars.mediactl .. " volume-up"), { repeating = true })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(vars.mediactl .. " volume-down"), { repeating = true })
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd(vars.mediactl .. " mute"))

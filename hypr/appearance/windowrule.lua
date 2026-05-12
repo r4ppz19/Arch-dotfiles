@@ -1,8 +1,4 @@
--- Window rules configuration
-
--- ============================================================================
--- FLOATING DIALOG WINDOWS
--- ============================================================================
+-- Floating dialog windows
 hl.window_rule({
   name = "xdg-desktop-portal-gtk",
   match = { initial_class = "^.*(xdg-desktop-portal-gtk).*$" },
@@ -45,7 +41,7 @@ hl.window_rule({
   size = { 350, 130 },
 })
 
--- WEB / SPECIFIC POPUPS
+-- Web / specific popups
 hl.window_rule({
   name = "export-download",
   match = { initial_title = "^.*(export-download|codeload|drive|wants to).*$" },
@@ -54,9 +50,7 @@ hl.window_rule({
   size = { 700, 500 },
 })
 
--- ============================================================================
--- WORKSPACE ASSIGNMENTS
--- ============================================================================
+-- Workspace assignments
 hl.window_rule({
   name = "brave-browser",
   match = { class = "Brave-browser" },

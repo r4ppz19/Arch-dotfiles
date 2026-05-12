@@ -1,5 +1,3 @@
--- Monitor configuration module
-
 hl.monitor({
   output = "",
   mode = "preferred",
@@ -7,7 +5,7 @@ hl.monitor({
   scale = "auto",
 })
 
--- AVAILABLE MONITOR PRESETS
+-- Available monitor presets
 
 -- 1366x768 (Common laptop resolution)
 -- hl.monitor({

@@ -1,5 +1,3 @@
--- Submap configurations (modal keyhl.bindings)
-
 local vars = require("core.variable")
 
 local websites = {
