@@ -28,7 +28,7 @@ hl.bind("XF86PowerOff", hl.dsp.exec_cmd(vars.powermenu))
 -- FOCUS MANAGEMENT
 -- ============================================================================
 hl.bind("ALT + TAB", hl.dsp.layout("rollnext"))
-hl.bind("ALT + TAB + SHIFT", hl.dsp.layout("rollprev"))
+hl.bind("ALT + SHIFT + TAB ", hl.dsp.layout("rollprev"))
 
 hl.bind("CTRL + ALT + TAB", hl.dsp.window.cycle_next())
 hl.bind("CTRL + ALT + SHIFT + TAB", hl.dsp.window.cycle_next({ previous = true }))

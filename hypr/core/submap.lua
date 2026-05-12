@@ -38,7 +38,7 @@ local websites = {
 -- ============================================================================
 hl.bind(vars.mainMod .. " + A", hl.dsp.submap("AI Slop"))
 
-hl.define_submap("AI Slop, reset", function()
+hl.define_submap("AI Slop", "reset", function()
   hl.bind(vars.mainMod .. " + V", hl.dsp.exec_cmd(vars.browser .. " --app=" .. websites.microsoft_copilot))
   hl.bind(vars.mainMod .. " + K", hl.dsp.exec_cmd(vars.browser .. " --app=" .. websites.kimi))
   hl.bind(vars.mainMod .. " + X", hl.dsp.exec_cmd(vars.browser .. " --app=" .. websites.github_copilot))
@@ -49,19 +49,18 @@ hl.define_submap("AI Slop, reset", function()
   hl.bind(vars.mainMod .. " + N", hl.dsp.exec_cmd(vars.browser .. " --app=" .. websites.notebooklm))
   hl.bind(vars.mainMod .. " + Q", hl.dsp.exec_cmd(vars.browser .. " --app=" .. websites.qwen))
   hl.bind(vars.mainMod .. " + H", hl.dsp.exec_cmd(vars.browser .. " --app=" .. websites.huggingface))
-  hl.bind(vars.mainMod .. " + A", hl.dsp.exec_cmd(vars.browser .. " --app=" .. websites.claude))
 
-  hl.bind("V", hl.dsp.exec_cmd(vars.browser .. " --new-tab =" .. websites.microsoft_copilot))
-  hl.bind("K", hl.dsp.exec_cmd(vars.browser .. " --new-tab =" .. websites.kimi))
-  hl.bind("X", hl.dsp.exec_cmd(vars.browser .. " --new-tab =" .. websites.github_copilot))
-  hl.bind("C", hl.dsp.exec_cmd(vars.browser .. " --new-tab =" .. websites.chatgpt))
-  hl.bind("P", hl.dsp.exec_cmd(vars.browser .. " --new-tab =" .. websites.perplexity))
-  hl.bind("G", hl.dsp.exec_cmd(vars.browser .. " --new-tab =" .. websites.gemini))
-  hl.bind("D", hl.dsp.exec_cmd(vars.browser .. " --new-tab =" .. websites.deepseek))
-  hl.bind("N", hl.dsp.exec_cmd(vars.browser .. " --new-tab =" .. websites.notebooklm))
-  hl.bind("Q", hl.dsp.exec_cmd(vars.browser .. " --new-tab =" .. websites.qwen))
-  hl.bind("H", hl.dsp.exec_cmd(vars.browser .. " --new-tab =" .. websites.huggingface))
-  hl.bind("A", hl.dsp.exec_cmd(vars.browser .. " --new-tab =" .. websites.claude))
+  hl.bind("V", hl.dsp.exec_cmd(vars.browser .. " --new-tab " .. websites.microsoft_copilot))
+  hl.bind("K", hl.dsp.exec_cmd(vars.browser .. " --new-tab " .. websites.kimi))
+  hl.bind("X", hl.dsp.exec_cmd(vars.browser .. " --new-tab " .. websites.github_copilot))
+  hl.bind("C", hl.dsp.exec_cmd(vars.browser .. " --new-tab " .. websites.chatgpt))
+  hl.bind("P", hl.dsp.exec_cmd(vars.browser .. " --new-tab " .. websites.perplexity))
+  hl.bind("G", hl.dsp.exec_cmd(vars.browser .. " --new-tab " .. websites.gemini))
+  hl.bind("D", hl.dsp.exec_cmd(vars.browser .. " --new-tab " .. websites.deepseek))
+  hl.bind("N", hl.dsp.exec_cmd(vars.browser .. " --new-tab " .. websites.notebooklm))
+  hl.bind("Q", hl.dsp.exec_cmd(vars.browser .. " --new-tab " .. websites.qwen))
+  hl.bind("H", hl.dsp.exec_cmd(vars.browser .. " --new-tab " .. websites.huggingface))
+  hl.bind("A", hl.dsp.exec_cmd(vars.browser .. " --new-tab " .. websites.claude))
 
   hl.bind("catchall", hl.dsp.submap("reset"))
   hl.bind("escape", hl.dsp.submap("reset"))
@@ -72,7 +71,7 @@ end)
 -- ============================================================================
 hl.bind(vars.mainMod .. " + SPACE", hl.dsp.submap("Applications"))
 
-hl.define_submap("Applications, reset", function()
+hl.define_submap("Applications", "reset", function()
   -- Website shortcuts
   hl.bind("A", hl.dsp.exec_cmd(vars.browser .. " --new-tab " .. websites.annas_archive))
   hl.bind("W", hl.dsp.exec_cmd(vars.browser .. " --new-tab " .. websites.w3schools))
@@ -110,7 +109,7 @@ end)
 -- ============================================================================
 hl.bind(vars.mainMod .. " + S", hl.dsp.submap("School"))
 
-hl.define_submap("School, reset", function()
+hl.define_submap("School", "reset", function()
   hl.bind(vars.mainMod .. " + C", hl.dsp.exec_cmd(vars.browserForSchool .. " --app=" .. websites.classroom))
   hl.bind(vars.mainMod .. " + M", hl.dsp.exec_cmd(vars.browserForSchool .. " --app=" .. websites.mail))
 
