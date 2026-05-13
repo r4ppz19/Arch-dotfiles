@@ -25,12 +25,9 @@ end)
 -- Power menu
 hl.bind("XF86PowerOff", hl.dsp.exec_cmd(var.powermenu))
 
--- Focus management
+-- Layout: master
 hl.bind("ALT + TAB", hl.dsp.layout("rollnext"))
 hl.bind("ALT + SHIFT + TAB ", hl.dsp.layout("rollprev"))
-
-hl.bind("CTRL + ALT + TAB", hl.dsp.window.cycle_next())
-hl.bind("CTRL + ALT + SHIFT + TAB", hl.dsp.window.cycle_next({ previous = true }))
 
 -- Go to previous workspace
 hl.bind(var.mod .. " + TAB", hl.dsp.focus({ workspace = "previous" }))
