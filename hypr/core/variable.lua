@@ -1,9 +1,8 @@
 local vars = {}
 
--- MODIFIERS
 vars.mainMod = "SUPER"
 
--- PROGRAMS
+-- Programs
 vars.terminal = "kitty"
 vars.browser = "brave"
 vars.browserForSchool = "chromium"
@@ -14,7 +13,7 @@ vars.colorpicker = "hyprpicker -a"
 vars.ide = "code"
 vars.passmanager = "bitwarden-desktop"
 
--- SCRIPTS
+-- Scripts
 vars.launcher = "$DOTFILES/rofi/launcher/launcher.sh"
 vars.powermenu = "$DOTFILES/rofi/powermenu/powermenu.sh"
 vars.websearch = "$DOTFILES/rofi/websearch/websearch.sh"
@@ -29,5 +28,4 @@ vars.eyetemp = "$DOTFILES/scripts/toggle-hyprsunset.sh"
 vars.zoom = "$DOTFILES/scripts/zoom.sh"
 vars.record = "$DOTFILES/scripts/toggle-obs.sh"
 
--- EXPORT
 return vars

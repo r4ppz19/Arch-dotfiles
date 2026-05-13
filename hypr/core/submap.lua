@@ -121,12 +121,12 @@ end)
 hl.bind(vars.mainMod .. " + U", hl.dsp.submap("util"))
 
 hl.define_submap("util", function()
-  hl.bind("SHIFT + S", hl.dsp.exec_cmd('bash -c "' .. vars.screenshotfull .. '; hyprctl dispatch submap reset"'))
-  hl.bind("S", hl.dsp.exec_cmd('bash -c "' .. vars.screenshot .. '; hyprctl dispatch submap reset"'))
-  hl.bind("R", hl.dsp.exec_cmd('bash -c "' .. vars.record .. '; hyprctl dispatch submap reset"'))
-  hl.bind("O", hl.dsp.exec_cmd('bash -c "' .. vars.ocr .. '; hyprctl dispatch submap reset"'))
-  hl.bind("C", hl.dsp.exec_cmd('bash -c "' .. vars.colorpicker .. '; hyprctl dispatch submap reset"'))
-  hl.bind("E", hl.dsp.exec_cmd('bash -c "' .. vars.eyetemp .. '; hyprctl dispatch submap reset"'))
+  hl.bind("SHIFT + S", hl.dsp.exec_cmd(vars.screenshotfull))
+  hl.bind("S", hl.dsp.exec_cmd(vars.screenshot))
+  hl.bind("R", hl.dsp.exec_cmd(vars.record))
+  hl.bind("O", hl.dsp.exec_cmd(vars.ocr))
+  hl.bind("C", hl.dsp.exec_cmd(vars.colorpicker))
+  hl.bind("E", hl.dsp.exec_cmd(vars.eyetemp))
 
   hl.bind("1", hl.dsp.exec_cmd(vars.mediactl .. " mute"))
   hl.bind("2", hl.dsp.exec_cmd(vars.mediactl .. " mic-mute"))
@@ -139,7 +139,6 @@ hl.define_submap("util", function()
   hl.bind("9", hl.dsp.exec_cmd("playerctl play-pause"))
 
   hl.bind("Shift_L", hl.dsp.exec_cmd("true"))
-
   hl.bind("catchall", hl.dsp.submap("reset"))
   hl.bind("escape", hl.dsp.submap("reset"))
 end)
@@ -163,12 +162,6 @@ end)
 -- MOUSE MODE SUBMAP
 -- ============================================================================
 hl.bind(vars.mainMod .. " + Q", hl.dsp.submap("mouse-mode"))
-hl.bind("delete", hl.dsp.submap("mouse-mode"))
-
--- Outside so it can be used without toggle
-hl.bind("KP_Insert", hl.dsp.exec_cmd(vars.mouseclick .. " left"))
-hl.bind("KP_Enter", hl.dsp.exec_cmd(vars.mouseclick .. " right"))
-hl.bind("KP_Delete", hl.dsp.exec_cmd(vars.mouseclick .. " middle"))
 
 hl.define_submap("mouse-mode", function()
   -- Normal speed arrow keys
@@ -194,7 +187,5 @@ hl.define_submap("mouse-mode", function()
   hl.bind("E", hl.dsp.exec_cmd(vars.mouseclick .. " middle"))
   hl.bind("R", hl.dsp.exec_cmd(vars.mouseclick .. " toggle"))
 
-  hl.bind("catchall", hl.dsp.exec_cmd(vars.mouseclick .. " reset"))
-  hl.bind("Shift_L", hl.dsp.exec_cmd("true"))
-  hl.bind("escape", hl.dsp.submap("reset"))
+  hl.bind("escape", hl.dsp.exec_cmd(vars.mouseclick .. " reset"))
 end)

@@ -9,13 +9,13 @@ hl.bind(vars.mainMod .. " + L", hl.dsp.exec_cmd(vars.lockscreen))
 hl.bind(vars.mainMod .. " + N", hl.dsp.exec_cmd(vars.notifpanel))
 hl.bind(vars.mainMod .. " + slash", hl.dsp.exec_cmd(vars.websearch))
 
--- WINDOW MANAGEMENT
-hl.bind(vars.mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
+-- Window management
 hl.bind(vars.mainMod .. " + SHIFT + K", hl.dsp.window.kill())
 hl.bind(vars.mainMod .. " + SHIFT + Q", hl.dsp.window.close())
-hl.bind(vars.mainMod .. " + SHIFT + F", hl.dsp.exec_cmd("hyprctl dispatch fullscreenstate 0 2"))
-hl.bind(vars.mainMod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(vars.mainMod .. " + SHIFT + Z", hl.dsp.exec_cmd(vars.zen))
+hl.bind(vars.mainMod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(vars.mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
+hl.bind(vars.mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen_state({ internal = 0, client = 2 }))
 
 -- Power menu
 hl.bind("XF86PowerOff", hl.dsp.exec_cmd(vars.powermenu))
@@ -59,56 +59,6 @@ hl.config({
 hl.bind(vars.mainMod .. " + mouse:272", hl.dsp.window.drag())
 hl.bind(vars.mainMod .. " + mouse:273", hl.dsp.window.resize())
 
--- Zoom with mouse wheel + shift
-hl.bind(vars.mainMod .. " + SHIFT + mouse_up", hl.dsp.exec_cmd(vars.zoom .. " out"))
-hl.bind(vars.mainMod .. " + SHIFT + mouse_down", hl.dsp.exec_cmd(vars.zoom .. " in"))
-
--- Special workspace (scratchpad)
-hl.workspace_rule({
-  workspace = "special:window1",
-  gaps_in = 3,
-  gaps_out = {
-    top = 120,
-    right = 240,
-    bottom = 120,
-    left = 240,
-  },
-})
-
-hl.bind(vars.mainMod .. " + W", hl.dsp.workspace.toggle_special({ workspace = "special:window1" }))
-hl.bind(vars.mainMod .. " + SHIFT + W", hl.dsp.window.move({ workspace = "special:window1" }))
-
--- SecondSpecial workspace (scratchpad)
-hl.workspace_rule({
-  workspace = "special:window2",
-  gaps_in = 3,
-  gaps_out = {
-    top = 120,
-    right = 240,
-    bottom = 120,
-    left = 240,
-  },
-})
-
-hl.bind(vars.mainMod .. " + backslash", hl.dsp.workspace.toggle_special({ workspace = "special:windows2" }))
-hl.bind(vars.mainMod .. " + SHIFT + backslash", hl.dsp.window.move({ workspace = "special:windows2" }))
-
--- Minimize workspace
-hl.workspace_rule({
-  workspace = "special:minimize",
-  gaps_in = 2,
-  gaps_out = {
-    top = 5,
-    right = 5,
-    bottom = 5,
-    left = 5,
-  },
-  border_size = 0,
-})
-
-hl.bind(vars.mainMod .. " + grave", hl.dsp.workspace.toggle_special("special:minimize"))
-hl.bind(vars.mainMod .. " + X", hl.dsp.window.move({ workspace = "special:minimize" }))
-
 -- Scroll through workspaces with mouse wheel
 hl.bind(vars.mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(vars.mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e-1" }))
@@ -131,3 +81,34 @@ hl.bind("XF86AudioMute", hl.dsp.exec_cmd(vars.mediactl .. " mute"))
 hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(vars.mediactl .. " mic-mute"))
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(vars.mediactl .. " brightness-up"), { repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(vars.mediactl .. " brightness-down"), { repeating = true })
+
+-- Special workspace (scratchpad)
+hl.workspace_rule({
+  workspace = "special:window1",
+  gaps_in = 3,
+  gaps_out = { top = 120, right = 240, bottom = 120, left = 240 },
+})
+
+hl.bind(vars.mainMod .. " + W", hl.dsp.workspace.toggle_special("window1"))
+hl.bind(vars.mainMod .. " + SHIFT + W", hl.dsp.window.move({ workspace = "special:window1" }))
+
+-- Second special workspace (scratchpad)
+hl.workspace_rule({
+  workspace = "special:window2",
+  gaps_in = 3,
+  gaps_out = { top = 120, right = 240, bottom = 120, left = 240 },
+})
+
+hl.bind(vars.mainMod .. " + backslash", hl.dsp.workspace.toggle_special("window2"))
+hl.bind(vars.mainMod .. " + SHIFT + backslash", hl.dsp.window.move({ workspace = "special:window2" }))
+
+-- Minimize workspace
+hl.workspace_rule({
+  workspace = "special:minimize",
+  gaps_in = 2,
+  gaps_out = { top = 5, right = 5, bottom = 5, left = 5 },
+  border_size = 0,
+})
+
+hl.bind(vars.mainMod .. " + grave", hl.dsp.workspace.toggle_special("minimize"))
+hl.bind(vars.mainMod .. " + X", hl.dsp.window.move({ workspace = "special:minimize" }))

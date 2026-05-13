@@ -3,30 +3,17 @@ hl.monitor({
   mode = "preferred",
   position = "auto",
   scale = "auto",
+
+  --  mode = "1920x1080",
+  --  position = "0x0",
+  --  scale = 1,
+  --
+  --  output = "",
+  --  mode = "1366x768",
+  --  position = "0x0",
+  --  scale = 1,
+  --
+  --  mode = "1280x720",
+  --  position = "0x0",
+  --  scale = 1,
 })
-
--- Available monitor presets
-
--- 1366x768 (Common laptop resolution)
--- hl.monitor({
---   output = "",
---   mode = "1366x768",
---   position = "0x0",
---   scale = 1,
--- })
-
--- 1280x720 (720p)
--- hl.monitor({
---   output = "",
---   mode = "1280x720",
---   position = "0x0",
---   scale = 1,
--- })
-
--- 1920x1080 (1080p)
--- hl.monitor({
---   output = "",
---   mode = "1920x1080",
---   position = "0x0",
---   scale = 1,
--- })
