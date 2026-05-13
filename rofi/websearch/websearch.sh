@@ -23,6 +23,8 @@ declare -A sites=(
   [canva]="https://www.canva.com"
   [speed]="https://www.speedtest.net"
   [wifi]="http://192.168.1.254"
+  [disc]="https://discord.com/channels/@me"
+  [hlwiki]="https://wiki.hypr.land"
 )
 
 search_engine="https://duckduckgo.com/?q="
