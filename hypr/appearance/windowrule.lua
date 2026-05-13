@@ -53,7 +53,7 @@ hl.window_rule({
 -- Workspace assignments
 hl.window_rule({
   name = "brave-browser",
-  match = { class = "Brave-browser" },
+  match = { class = "brave-browser" },
   workspace = 1,
 })
 
@@ -75,7 +75,6 @@ hl.window_rule({
   workspace = 4,
 })
 
--- Development/Creative workspace
 hl.window_rule({
   name = "obs",
   match = { initial_class = "^com.obsproject.Studio$" },
