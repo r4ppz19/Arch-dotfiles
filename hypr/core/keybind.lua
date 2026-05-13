@@ -1,4 +1,5 @@
 local vars = require("core.variable")
+local zen = require("util.toggle-zen")
 
 -- Application launching
 hl.bind(vars.mainMod .. " + RETURN", hl.dsp.exec_cmd(vars.terminal))
@@ -12,10 +13,14 @@ hl.bind(vars.mainMod .. " + slash", hl.dsp.exec_cmd(vars.websearch))
 -- Window management
 hl.bind(vars.mainMod .. " + SHIFT + K", hl.dsp.window.kill())
 hl.bind(vars.mainMod .. " + SHIFT + Q", hl.dsp.window.close())
-hl.bind(vars.mainMod .. " + SHIFT + Z", hl.dsp.exec_cmd(vars.zen))
 hl.bind(vars.mainMod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(vars.mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind(vars.mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen_state({ internal = 0, client = 2 }))
+
+-- Toggle zen mode
+hl.bind(vars.mainMod .. "+ SHIFT + Z", function()
+  zen.toggle()
+end)
 
 -- Power menu
 hl.bind("XF86PowerOff", hl.dsp.exec_cmd(vars.powermenu))
