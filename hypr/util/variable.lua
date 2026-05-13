@@ -1,6 +1,6 @@
 local vars = {}
 
-vars.mainMod = "SUPER"
+vars.mod = "SUPER"
 
 -- Programs
 vars.terminal = "kitty"

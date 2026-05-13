@@ -35,19 +35,19 @@ local websites = {
 -- ============================================================================
 -- AI APPLICATIONS SUBMAP
 -- ============================================================================
-hl.bind(var.mainMod .. " + A", hl.dsp.submap("AI Slop"))
+hl.bind(var.mod .. " + A", hl.dsp.submap("AI Slop"))
 
 hl.define_submap("AI Slop", "reset", function()
-  hl.bind(var.mainMod .. " + V", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.microsoft_copilot))
-  hl.bind(var.mainMod .. " + K", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.kimi))
-  hl.bind(var.mainMod .. " + X", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.github_copilot))
-  hl.bind(var.mainMod .. " + C", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.chatgpt))
-  hl.bind(var.mainMod .. " + P", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.perplexity))
-  hl.bind(var.mainMod .. " + G", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.gemini))
-  hl.bind(var.mainMod .. " + D", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.deepseek))
-  hl.bind(var.mainMod .. " + N", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.notebooklm))
-  hl.bind(var.mainMod .. " + Q", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.qwen))
-  hl.bind(var.mainMod .. " + H", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.huggingface))
+  hl.bind(var.mod .. " + V", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.microsoft_copilot))
+  hl.bind(var.mod .. " + K", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.kimi))
+  hl.bind(var.mod .. " + X", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.github_copilot))
+  hl.bind(var.mod .. " + C", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.chatgpt))
+  hl.bind(var.mod .. " + P", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.perplexity))
+  hl.bind(var.mod .. " + G", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.gemini))
+  hl.bind(var.mod .. " + D", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.deepseek))
+  hl.bind(var.mod .. " + N", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.notebooklm))
+  hl.bind(var.mod .. " + Q", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.qwen))
+  hl.bind(var.mod .. " + H", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.huggingface))
 
   hl.bind("V", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.microsoft_copilot))
   hl.bind("K", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.kimi))
@@ -68,7 +68,7 @@ end)
 -- ============================================================================
 -- APPLICATIONS SUBMAP
 -- ============================================================================
-hl.bind(var.mainMod .. " + SPACE", hl.dsp.submap("Applications"))
+hl.bind(var.mod .. " + SPACE", hl.dsp.submap("Applications"))
 
 hl.define_submap("Applications", "reset", function()
   -- Website shortcuts
@@ -89,15 +89,15 @@ hl.define_submap("Applications", "reset", function()
   hl.bind("P", hl.dsp.exec_cmd(var.passmanager))
 
   -- App mode shortcuts
-  hl.bind(var.mainMod .. " + S", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.spotify))
-  hl.bind(var.mainMod .. " + N", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.news))
-  hl.bind(var.mainMod .. " + D", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.devdocs))
-  hl.bind(var.mainMod .. " + G", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.github))
-  hl.bind(var.mainMod .. " + F", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.facebook))
-  hl.bind(var.mainMod .. " + Y", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.youtube))
-  hl.bind(var.mainMod .. " + T", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.monkeytype))
-  hl.bind(var.mainMod .. " + M", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.ytmusic))
-  hl.bind(var.mainMod .. " + SHIFT + M", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.mappltv))
+  hl.bind(var.mod .. " + S", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.spotify))
+  hl.bind(var.mod .. " + N", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.news))
+  hl.bind(var.mod .. " + D", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.devdocs))
+  hl.bind(var.mod .. " + G", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.github))
+  hl.bind(var.mod .. " + F", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.facebook))
+  hl.bind(var.mod .. " + Y", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.youtube))
+  hl.bind(var.mod .. " + T", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.monkeytype))
+  hl.bind(var.mod .. " + M", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.ytmusic))
+  hl.bind(var.mod .. " + SHIFT + M", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.mappltv))
 
   hl.bind("catchall", hl.dsp.submap("reset"))
   hl.bind("escape", hl.dsp.submap("reset"))
@@ -106,11 +106,11 @@ end)
 -- ============================================================================
 -- SCHOOL WORKS SUBMAP
 -- ============================================================================
-hl.bind(var.mainMod .. " + S", hl.dsp.submap("School"))
+hl.bind(var.mod .. " + S", hl.dsp.submap("School"))
 
 hl.define_submap("School", "reset", function()
-  hl.bind(var.mainMod .. " + C", hl.dsp.exec_cmd(var.browserForSchool .. " --app=" .. websites.classroom))
-  hl.bind(var.mainMod .. " + M", hl.dsp.exec_cmd(var.browserForSchool .. " --app=" .. websites.mail))
+  hl.bind(var.mod .. " + C", hl.dsp.exec_cmd(var.browserForSchool .. " --app=" .. websites.classroom))
+  hl.bind(var.mod .. " + M", hl.dsp.exec_cmd(var.browserForSchool .. " --app=" .. websites.mail))
 
   hl.bind("catchall", hl.dsp.submap("reset"))
   hl.bind("escape", hl.dsp.submap("reset"))
@@ -119,7 +119,7 @@ end)
 -- ============================================================================
 -- UTILITIES SUBMAP
 -- ============================================================================
-hl.bind(var.mainMod .. " + U", hl.dsp.submap("util"))
+hl.bind(var.mod .. " + U", hl.dsp.submap("util"))
 
 hl.define_submap("util", function()
   hl.bind("SHIFT + S", hl.dsp.exec_cmd(var.screenshotfull))
@@ -147,7 +147,7 @@ end)
 -- ============================================================================
 -- RESIZE WINDOWS SUBMAP
 -- ============================================================================
-hl.bind(var.mainMod .. " + R", hl.dsp.submap("resize"))
+hl.bind(var.mod .. " + R", hl.dsp.submap("resize"))
 
 hl.define_submap("resize", function()
   hl.bind("right", hl.dsp.window.resize({ x = 20, y = 0, relative = true }), { repeating = true })
@@ -162,7 +162,7 @@ end)
 -- ============================================================================
 -- MOUSE MODE SUBMAP
 -- ============================================================================
-hl.bind(var.mainMod .. " + Q", hl.dsp.submap("mouse-mode"))
+hl.bind(var.mod .. " + Q", hl.dsp.submap("mouse-mode"))
 
 hl.define_submap("mouse-mode", function()
   -- Normal speed
