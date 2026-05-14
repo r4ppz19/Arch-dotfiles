@@ -2,6 +2,7 @@ hl.config({
   general = {
     gaps_in = 8,
     gaps_out = 15,
+    float_gaps = 5,
 
     border_size = 2,
 
@@ -11,6 +12,7 @@ hl.config({
     },
 
     resize_on_border = false,
+    modal_parent_blocking = true,
 
     allow_tearing = true,
 
@@ -20,24 +22,8 @@ hl.config({
       monitor_gap = 5,
       window_gap = 5,
     },
-
-    layout = "master",
   },
 
-  -- Dwindle layout configuration
-  dwindle = {
-    preserve_split = true,
-    force_split = 3,
-    split_bias = 2,
-  },
-
-  -- Master layout configuration
-  master = {
-    new_status = "slave",
-    mfact = 0.60,
-  },
-
-  -- Decoration configuration
   decoration = {
     rounding = 1,
     rounding_power = 5,
@@ -48,6 +34,7 @@ hl.config({
 
     dim_inactive = true,
     dim_strength = 0.2,
+    dim_special = 0.2,
 
     shadow = {
       enabled = false,
@@ -67,23 +54,46 @@ hl.config({
       xray = false,
       noise = 0.01,
     },
+
+    glow = {
+      enabled = false,
+      range = 20,
+      render_power = 3,
+      color = 0xee1a1a1a,
+      color_inactive = nil,
+    },
   },
 
-  -- Misc settings
-  misc = {
-    force_default_wallpaper = 0,
-    disable_hyprland_logo = true,
-    font_family = "JetBrainsMono Nerd Font",
-    focus_on_activate = true,
-    middle_click_paste = true,
-    vrr = 1,
-    always_follow_on_dnd = true,
-    close_special_on_empty = true,
-  },
-
-  -- Render settings
   render = {
     direct_scanout = 2,
     new_render_scheduling = true,
+  },
+
+  misc = {
+    disable_hyprland_logo = true,
+    disable_splash_rendering = true,
+    force_default_wallpaper = 0,
+    disable_scale_notification = false,
+
+    col = {
+      splash = "rgb(FFFFFF)",
+    },
+
+    font_family = "JetBrainsMono Nerd Font",
+    splash_font_family = "JetBrainsMono Nerd Font",
+
+    on_focus_under_fullscreen = true,
+    exit_window_retains_fullscreen = false,
+    focus_on_activate = true,
+    always_follow_on_dnd = true,
+    close_special_on_empty = true,
+    middle_click_paste = true,
+
+    mouse_move_enables_dpms = true,
+    key_press_enables_dpms = true,
+
+    enable_anr_dialog = true,
+
+    vrr = 1,
   },
 })

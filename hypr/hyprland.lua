@@ -10,6 +10,7 @@ require("core.keybind")
 require("core.submap")
 require("core.permission")
 
-require("appearance.lookNfeel")
+require("appearance.general")
+require("appearance.layout")
 require("appearance.windowrule")
 require("appearance.animation")
