@@ -121,20 +121,28 @@ end)
 -- ============================================================================
 hl.bind(var.mod .. " + U", hl.dsp.submap("util"))
 
+-- Helper func run cmd + submap reset
+local function cmd_with_reset(command)
+  return function()
+    hl.dispatch(hl.dsp.exec_cmd(command))
+    hl.dispatch(hl.dsp.submap("reset"))
+  end
+end
+
 hl.define_submap("util", function()
-  hl.bind("SHIFT + S", hl.dsp.exec_cmd(var.screenshotfull))
-  hl.bind("S", hl.dsp.exec_cmd(var.screenshot))
-  hl.bind("R", hl.dsp.exec_cmd(var.record))
-  hl.bind("O", hl.dsp.exec_cmd(var.ocr))
-  hl.bind("C", hl.dsp.exec_cmd(var.colorpicker))
-  hl.bind("E", hl.dsp.exec_cmd(var.eyetemp))
+  hl.bind("SHIFT + S", cmd_with_reset(var.screenshotfull))
+  hl.bind("S", cmd_with_reset(var.screenshot))
+  hl.bind("R", cmd_with_reset(var.record))
+  hl.bind("O", cmd_with_reset(var.ocr))
+  hl.bind("C", cmd_with_reset(var.colorpicker))
+  hl.bind("E", cmd_with_reset(var.eyetemp))
 
   hl.bind("1", hl.dsp.exec_cmd(var.mediactl .. " mute"))
   hl.bind("2", hl.dsp.exec_cmd(var.mediactl .. " mic-mute"))
-  hl.bind("3", hl.dsp.exec_cmd(var.mediactl .. " volume-down"))
-  hl.bind("4", hl.dsp.exec_cmd(var.mediactl .. " volume-up"))
-  hl.bind("5", hl.dsp.exec_cmd(var.mediactl .. " brightness-down"))
-  hl.bind("6", hl.dsp.exec_cmd(var.mediactl .. " brightness-up"))
+  hl.bind("3", hl.dsp.exec_cmd(var.mediactl .. " volume-down"), { repeating = true })
+  hl.bind("4", hl.dsp.exec_cmd(var.mediactl .. " volume-up"), { repeating = true })
+  hl.bind("5", hl.dsp.exec_cmd(var.mediactl .. " brightness-down"), { repeating = true })
+  hl.bind("6", hl.dsp.exec_cmd(var.mediactl .. " brightness-up"), { repeating = true })
   hl.bind("7", hl.dsp.exec_cmd("playerctl previous"))
   hl.bind("8", hl.dsp.exec_cmd("playerctl next"))
   hl.bind("9", hl.dsp.exec_cmd("playerctl play-pause"))

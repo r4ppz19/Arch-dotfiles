@@ -88,10 +88,10 @@ end
 -- Media keys
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(var.mediactl .. " volume-up"), { repeating = true })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(var.mediactl .. " volume-down"), { repeating = true })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd(var.mediactl .. " mute"))
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(var.mediactl .. " mic-mute"))
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(var.mediactl .. " brightness-up"), { repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(var.mediactl .. " brightness-down"), { repeating = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd(var.mediactl .. " mute"))
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(var.mediactl .. " mic-mute"))
 
 -- Special workspace (scratchpad)
 hl.workspace_rule({
