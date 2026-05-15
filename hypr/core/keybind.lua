@@ -1,5 +1,6 @@
 local var = require("util.variable")
 local zen = require("util.zen")
+local zoom = require("util.zoom")
 
 -- Application launching
 hl.bind(var.mod .. " + RETURN", hl.dsp.exec_cmd(var.terminal))
@@ -31,6 +32,17 @@ hl.bind(var.mod .. "+ SHIFT + Z", function()
   zen.toggle()
 end)
 
+-- Zoom in and out
+hl.bind("SUPER + ALT + mouse_down", function()
+  zoom.zoom_in()
+end)
+hl.bind("SUPER + ALT + mouse_up", function()
+  zoom.zoom_out()
+end)
+hl.bind("SUPER + ALT + mouse:272", function()
+  zoom.zoom_reset()
+end)
+
 -- Power menu
 hl.bind("XF86PowerOff", hl.dsp.exec_cmd(var.powermenu))
 
@@ -59,6 +71,7 @@ hl.bind(var.mod .. " + CTRL + down", hl.dsp.window.move({ direction = "d" }), { 
 hl.config({
   binds = {
     drag_threshold = 5,
+    scroll_event_delay = 0, -- snappy zooming
   },
 })
 
