@@ -14,8 +14,17 @@ hl.bind(var.mod .. " + slash", hl.dsp.exec_cmd(var.websearch))
 hl.bind(var.mod .. " + SHIFT + K", hl.dsp.window.kill())
 hl.bind(var.mod .. " + SHIFT + Q", hl.dsp.window.close())
 hl.bind(var.mod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
+
+-- Fullscreen
 hl.bind(var.mod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
-hl.bind(var.mod .. " + SHIFT + F", hl.dsp.window.fullscreen_state({ internal = 0, client = 2 }))
+hl.bind(
+  var.mod .. " + SHIFT + F",
+  hl.dsp.window.fullscreen_state({
+    internal = 0,
+    client = 2,
+    action = "toggle",
+  })
+)
 
 -- Toggle zen mode
 hl.bind(var.mod .. "+ SHIFT + Z", function()
