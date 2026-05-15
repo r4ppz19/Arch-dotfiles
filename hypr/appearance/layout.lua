@@ -19,3 +19,6 @@ hl.config({
     mfact = 0.60,
   },
 })
+
+hl.bind("ALT + TAB", hl.dsp.layout("rollnext"))
+hl.bind("ALT + SHIFT + TAB ", hl.dsp.layout("rollprev"))
