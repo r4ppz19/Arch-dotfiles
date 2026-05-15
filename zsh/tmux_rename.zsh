@@ -12,6 +12,7 @@ typeset -gA PROC_MAP=(
   nv NVIM
   op LLM
   ai LLM
+  cline LLM
   top TASK
   ollama LLM
   news NEWS
