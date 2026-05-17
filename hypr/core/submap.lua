@@ -1,5 +1,6 @@
 local var = require("util.variable")
 local mouse = require("util.mouse")
+local eyetemp = require("util.eyetemp")
 
 local websites = {
   microsoft_copilot = "https://copilot.microsoft.com/chats/temporary",
@@ -109,8 +110,8 @@ end)
 hl.bind(var.mod .. " + S", hl.dsp.submap("School"))
 
 hl.define_submap("School", "reset", function()
-  hl.bind(var.mod .. " + C", hl.dsp.exec_cmd(var.browserForSchool .. " --app=" .. websites.classroom))
-  hl.bind(var.mod .. " + M", hl.dsp.exec_cmd(var.browserForSchool .. " --app=" .. websites.mail))
+  hl.bind(var.mod .. " + C", hl.dsp.exec_cmd(var.school_browser .. " --app=" .. websites.classroom))
+  hl.bind(var.mod .. " + M", hl.dsp.exec_cmd(var.school_browser .. " --app=" .. websites.mail))
 
   hl.bind("catchall", hl.dsp.submap("reset"))
   hl.bind("escape", hl.dsp.submap("reset"))
@@ -135,7 +136,9 @@ hl.define_submap("util", function()
   hl.bind("R", cmd_with_reset(var.record))
   hl.bind("O", cmd_with_reset(var.ocr))
   hl.bind("C", cmd_with_reset(var.colorpicker))
-  hl.bind("E", cmd_with_reset(var.eyetemp))
+  hl.bind("E", function()
+    eyetemp.toggle()
+  end)
 
   hl.bind("1", hl.dsp.exec_cmd(var.mediactl .. " mute"))
   hl.bind("2", hl.dsp.exec_cmd(var.mediactl .. " mic-mute"))

@@ -3,10 +3,6 @@ set -euo pipefail
 
 # Controls media functions like volume,
 # brightness, and mute with notifications.
-#
-# Used in hyprland binds:
-# hypr/core/keybind.conf
-# hypr/core/variable.conf
 
 case "$1" in
 volume-up)

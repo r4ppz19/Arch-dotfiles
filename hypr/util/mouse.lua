@@ -1,3 +1,5 @@
+local notify = require("util.notify")
+
 local M = {}
 
 local state = "released"
@@ -30,7 +32,14 @@ function M.toggle()
     hl.timer(function()
       run("ydotool key 29:1 46:1 46:0 29:0") -- Ctrl+C
       run("ydotool click 0x40 0x80") -- clear selection
-      run([[notify-send -h boolean:transient:true "Copied." -i dialog-information -t 1400]])
+
+      notify.send("Copied", nil, {
+        timeout = 1400,
+        app_name = "Mouse Mode",
+        icon = "dialog-information",
+        transient = true,
+      })
+
       hl.dispatch(hl.dsp.submap("reset"))
     end, { timeout = 100, type = "oneshot" })
   end

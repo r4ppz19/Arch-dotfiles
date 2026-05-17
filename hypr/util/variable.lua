@@ -1,30 +1,29 @@
-local vars = {}
+local M = {}
 
-vars.mod = "SUPER"
+M.mod = "SUPER"
 
 -- Programs
-vars.terminal = "kitty"
-vars.browser = "brave"
-vars.browserForSchool = "chromium"
-vars.filemanager = "thunar"
-vars.lockscreen = "hyprlock"
-vars.notifpanel = "swaync-client -t"
-vars.colorpicker = "hyprpicker -a"
-vars.ide = "code"
-vars.passmanager = "bitwarden-desktop"
+M.terminal = "kitty"
+M.browser = "brave"
+M.school_browser = "chromium"
+M.filemanager = "thunar"
+M.lockscreen = "hyprlock"
+M.notifpanel = "swaync-client -t"
+M.colorpicker = "hyprpicker -a"
+M.ide = "code"
+M.passmanager = "bitwarden-desktop"
 
 -- Scripts
-vars.launcher = "$DOTFILES/rofi/launcher/launcher.sh"
-vars.powermenu = "$DOTFILES/rofi/powermenu/powermenu.sh"
-vars.websearch = "$DOTFILES/rofi/websearch/websearch.sh"
+M.launcher = "$DOTFILES/rofi/launcher/launcher.sh"
+M.powermenu = "$DOTFILES/rofi/powermenu/powermenu.sh"
+M.websearch = "$DOTFILES/rofi/websearch/websearch.sh"
 
-vars.screenshot = "$DOTFILES/scripts/screenshot.sh"
-vars.screenshotfull = "$DOTFILES/scripts/screenshot-full.sh"
-vars.ocr = "$DOTFILES/scripts/ocr.sh"
-vars.zen = "$DOTFILES/scripts/toggle-zen.sh"
-vars.mediactl = "$DOTFILES/scripts/mediactl.sh"
-vars.eyetemp = "$DOTFILES/scripts/toggle-hyprsunset.sh"
-vars.zoom = "$DOTFILES/scripts/zoom.sh"
-vars.record = "$DOTFILES/scripts/toggle-obs.sh"
+M.screenshot = "$DOTFILES/scripts/screenshot.sh"
+M.screenshotfull = "$DOTFILES/scripts/screenshot-full.sh"
+M.ocr = "$DOTFILES/scripts/ocr.sh"
+M.zen = "$DOTFILES/scripts/toggle-zen.sh"
+M.mediactl = "$DOTFILES/scripts/mediactl.sh"
+M.zoom = "$DOTFILES/scripts/zoom.sh"
+M.record = "$DOTFILES/scripts/toggle-obs.sh"
 
-return vars
+return M

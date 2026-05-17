@@ -3,10 +3,6 @@ set -euo pipefail
 
 # Captures a full-screen screenshot and
 # saves it with a timestamped filename.
-#
-# Used in hyprland submap binds:
-# hypr/core/submap.conf
-# hypr/core/environment.conf
 
 LOCKFILE="/tmp/screenshot.lock"
 SCREENSHOT_DIR="$HOME/Pictures/screenshot"

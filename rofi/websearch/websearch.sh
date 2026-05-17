@@ -25,6 +25,8 @@ declare -A sites=(
   [wifi]="http://192.168.1.254"
   [disc]="https://discord.com/channels/@me"
   [hlwiki]="https://wiki.hypr.land"
+  [hlwiki]="https://wiki.hypr.land"
+  [manga]="https://mangakatana.com"
 )
 
 search_engine="https://duckduckgo.com/?q="

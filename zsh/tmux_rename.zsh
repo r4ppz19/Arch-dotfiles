@@ -55,6 +55,7 @@ typeset -gA DIR_MAP=(
   "$HOME/Repositories" REPOS
   "$HOME/Vault" VAULT
   "$HOME/Videos" VIDS
+  "$HOME/Documents/notes" NOTES
 )
 
 typeset -gA DIR_MAP_UNIQUE=(
