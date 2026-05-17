@@ -21,6 +21,7 @@ if [[ $- == *i* ]]; then
   source ${zsh_plugins}.zsh
 
   # Source Configuration Files
+  export DOTFILES="${DOTFILES:-$HOME/Arch-dotfiles}"
   local zsh_config_dir="$DOTFILES/zsh/"
 
   if [[ -d "$zsh_config_dir" ]]; then
