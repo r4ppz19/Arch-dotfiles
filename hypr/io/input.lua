@@ -26,6 +26,7 @@ hl.config({
   cursor = {
     no_warps = true,
     inactive_timeout = 10,
+    no_hardware_cursors = true,
   },
 })
 
