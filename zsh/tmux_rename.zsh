@@ -80,21 +80,41 @@ typeset -gA DIR_MAP_UNIQUE=(
   # Project 2
   "$HOME/Projects/mini-capstone/law-firm-management-system" CAPST
   "$HOME/Projects/mini-capstone/documentation" DOCS
-
 )
 
+# Helpers
 _tmux_is_renamable() {
   [[ -z "$TMUX" || -n "$NVIM" ]] && return 1
 
   local tmux_state
   tmux_state=$(tmux display-message -p '#{window_panes}|#{@tmux_rename_locked}' 2>/dev/null)
 
-  [[ "$tmux_state" == *"|1"* || "$tmux_state" == *"|on"* ]] && return 1
-  [[ "${tmux_state%%|*}" -gt 1 ]] && return 1
+  local pane_count="${tmux_state%%|*}"
+  local lock_value="${tmux_state##*|}"
+
+  [[ "$lock_value" == (1|on) ]] && return 1
+  [[ "$pane_count" -gt 1 ]] && return 1
 
   return 0
 }
 
+# Returns 0 (available) if no window other than the current one uses the given label.
+_tmux_label_available() {
+  local label="$1"
+  local current_window="$2"
+  shift 2
+  local -a all_windows=("$@")
+
+  # Already named this label — no conflict
+  [[ "$label" == "$current_window" ]] && return 0
+
+  for window_name in "${all_windows[@]}"; do
+    [[ "$window_name" == "$label" ]] && return 1
+  done
+  return 0
+}
+
+# Hooks
 _tmux_rename_preexec() {
   _tmux_is_renamable || return 0
 
@@ -121,12 +141,13 @@ _tmux_rename_precmd() {
     tmux_data=$(tmux display-message -p '#{window_name}' \; list-windows -F '#{window_name}' 2>/dev/null)
 
     local current_window_name="${tmux_data%%$'\n'*}"
-    local all_windows="${tmux_data#*$'\n'}"
+    local all_data="${tmux_data#*$'\n'}"
+    local -a window_names=("${(f)all_data}")
 
-    if [[ "$unique_candidate" != "$current_window_name" && "$all_windows" == (*$'\n'"$unique_candidate"$'\n'*|"$unique_candidate"$'\n'*|*$'\n'"$unique_candidate") ]]; then
-      target_name="CMD"
-    else
+    if _tmux_label_available "$unique_candidate" "$current_window_name" "${window_names[@]}"; then
       target_name="$unique_candidate"
+    else
+      target_name="CMD"
     fi
   else
     target_name="${DIR_MAP[$clean_pwd]:-CMD}"

@@ -27,6 +27,7 @@ declare -A sites=(
   [hlwiki]="https://wiki.hypr.land"
   [hlwiki]="https://wiki.hypr.land"
   [manga]="https://mangakatana.com"
+  [aria]="https://react-aria.adobe.com/getting-started"
 )
 
 search_engine="https://duckduckgo.com/?q="

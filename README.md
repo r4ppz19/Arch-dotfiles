@@ -16,6 +16,9 @@ These files reflect my workflow and personal taste. Browse through, grab ideas, 
 - **Shell:** [Zsh](https://github.com/zsh-users/zsh) + [Antidote](https://antidote.sh/) ([Plugins](zsh/.zsh_plugins.txt))
 - **Font:** [JetBrainsMono](https://www.jetbrains.com/lp/mono/)
 - **Theme:** [Gruvbox](https://github.com/morhetz/gruvbox)
+  - **GTK:** [gruvbox-material-gtk](https://github.com/TheGreatMcPain/gruvbox-material-gtk)
+  - **QT:** [gruvbox-kvantum-themes](https://github.com/sachnr/gruvbox-kvantum-themes)
+  - **Icon:** [gruvbox-plus-icon-pack](https://github.com/SylEleuth/gruvbox-plus-icon-pack)
 - **Cursor:** [Hackeyed](https://www.gnome-look.org/p/999998)
 - **Display Manager:** [SDDM](https://github.com/sddm/sddm) ([config](https://github.com/Keyitdev/sddm-astronaut-theme))
 - **Notification:** [SwayNC](https://github.com/ErikReider/SwayNotificationCenter)
@@ -37,52 +40,3 @@ These files reflect my workflow and personal taste. Browse through, grab ideas, 
 ![Screenshot](screenshots/screenshot_2026-05-06_21-11-59.png)
 
 ![Screenshot](screenshots/screenshot_2026-05-06_21-19-42.png)
-
-<details>
-<summary>Screenshots with configs</summary>
-
-_click the link to open their configuration_
-
-> This is mostly CLI/TUI configurations.
-
-[Hyprland](hypr/),
-[Neovim](https://github.com/r4ppz/nvZzz),
-[Kitty](kitty/),
-[Tmux](tmux/),
-[Waybar](waybar/),
-[Zsh](zsh/),
-
-![SwayNC, FastFetch](screenshots/screenshot_2026-03-20_09-21-57.png)
-[SwayNC](swaync/), [FastFetch](fastfetch)
-
-![Rofi PowerMenu](screenshots/screenshot_2026-03-20_09-34-48.png)
-Rofi ([PowerMenu](rofi/powermenu/))
-
-![Rofi App Launcher](screenshots/screenshot_2026-03-20_09-34-54.png)
-Rofi ([App Launcher](rofi/launcher))
-
-![LazyGit](screenshots/screenshot_2026-03-20_11-54-36.png)
-[LazyGit](lazygit/)
-
-![LazyDocker](screenshots/screenshot_2026-03-20_11-54-48.png)
-[LazyDocker](lazydocker) ([custom scripts](scripts/))
-
-![gdu, Yazi, Btop](screenshots/screenshot_2026-03-20_12-27-14.png)
-[gdu](gdu/), [Yazi](yazi/), [Btop](btop/)
-
-![Yazi, Kew](screenshots/screenshot_2026-03-20_09-29-21.png)
-[Yazi](yazi/), Kew
-
-![OpenCode, Pacseek](screenshots/screenshot_2026-03-20_09-25-27.png)
-[OpenCode](opencode/), [Pacseek](pacseek/)
-
-![pgcli](screenshots/screenshot_2026-03-20_10-11-34.png)
-[pgcli](pgcli/)
-
-![GTK, QT and Icons](screenshots/screenshot_2026-03-20_11-19-18.png)
-[GTK](https://github.com/TheGreatMcPain/gruvbox-material-gtk), [QT](https://github.com/sachnr/gruvbox-kvantum-themes) and [Icons](https://github.com/SylEleuth/gruvbox-plus-icon-pack)
-
-![GTK and QT floating rules](screenshots/screenshot_2026-03-20_10-25-57.png)
-GTK and QT ([floating rules](hypr/appearance/windowrule.conf))
-
-</details>

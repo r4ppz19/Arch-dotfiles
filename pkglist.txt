@@ -23,6 +23,7 @@ btop
 bun
 cava
 chromium
+circumflex
 clang
 cliphist
 cloudflared
@@ -84,6 +85,7 @@ hyprpolkitagent
 hyprqt6engine
 hyprsunset
 imagemagick
+impala
 imv
 intel-media-driver
 intel-ucode
@@ -144,7 +146,6 @@ ollama
 onlyoffice-bin
 ookla-speedtest-bin
 openbsd-netcat
-opencode
 os-prober
 pacseek
 pandoc-cli
@@ -163,7 +164,10 @@ qbittorrent
 qt5-wayland
 qt5ct
 qt6-wayland
+qt6ct
+quickshell
 reflector
+ripgrep
 rofi
 rsync
 ruby
