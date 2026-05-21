@@ -247,6 +247,11 @@ keymap = [
   # Goto
   { on = [
     "g",
+    "l",
+  ], run = "cd ~/.local", desc = "Go ~/.local" },
+
+  { on = [
+    "g",
     "t",
   ], run = "cd /tmp", desc = "Go /tmp" },
 
