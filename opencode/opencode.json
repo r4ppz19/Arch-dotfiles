@@ -58,7 +58,8 @@
       "gh pr list * ": "allow",
       "gh pr status * ": "allow",
       "gh pr diff * ": "allow",
-      "gh pr view * ": "allow"
+      "gh pr view * ": "allow",
+      "gh search issues *": "allow"
     }
   }
 }

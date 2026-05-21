@@ -1,6 +1,6 @@
 typeset -U path
 path=(
-  $PNPM_HOME
+  $PNPM_HOME/bin
   $BUN_INSTALL/bin
   $HOME/.local/bin
   $GOPATH/bin

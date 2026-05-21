@@ -33,6 +33,7 @@ build/
 out/
 .next/
 .turbo/
+.parcel-cache/
 
 # Logs
 npm-debug.log*
