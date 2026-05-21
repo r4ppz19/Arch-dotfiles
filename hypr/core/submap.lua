@@ -1,6 +1,7 @@
 local var = require("util.variable")
 local mouse = require("util.mouse")
 local eyetemp = require("util.eyetemp")
+local layout = require("appearance.layout")
 
 local websites = {
   microsoft_copilot = "https://copilot.microsoft.com/chats/temporary",
@@ -149,6 +150,14 @@ hl.define_submap("util", function()
   hl.bind("7", hl.dsp.exec_cmd("playerctl previous"))
   hl.bind("8", hl.dsp.exec_cmd("playerctl next"))
   hl.bind("9", hl.dsp.exec_cmd("playerctl play-pause"))
+
+  -- Layout cycling
+  hl.bind("l", function()
+    layout.cycle_next()
+  end)
+  hl.bind("SHIFT + L", function()
+    layout.cycle_back()
+  end)
 
   hl.bind("Shift_L", hl.dsp.exec_cmd("true"))
   hl.bind("catchall", hl.dsp.submap("reset"))
