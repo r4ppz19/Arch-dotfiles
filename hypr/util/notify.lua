@@ -42,7 +42,7 @@ function M.send(summary, body, config)
   end
 
   local final_cmd = table.concat(cmd_parts, " ")
-  return hl.dispatch(hl.dsp.exec_cmd(final_cmd))
+  hl.exec_cmd(final_cmd)
 end
 
 return M
