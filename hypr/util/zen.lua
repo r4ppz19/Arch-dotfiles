@@ -1,3 +1,5 @@
+local notify = require("util.notify")
+
 local M = {}
 
 local zen = false
@@ -27,13 +29,29 @@ local function apply_config(mode)
   hl.dispatch(hl.dsp.exec_cmd("systemctl --user " .. conf.waybar .. " waybar.service"))
 end
 
+function M.is_zen()
+  return zen
+end
+
 function M.toggle()
   if zen then
     apply_config("normal")
     zen = false
+    notify.send("Normal Mode", nil, {
+      timeout = 1000,
+      app_name = "Zen Mode",
+      icon = "dialog-information",
+      transient = true,
+    })
   else
     apply_config("zen")
     zen = true
+    notify.send("Zen Mode", nil, {
+      timeout = 1000,
+      app_name = "Zen Mode",
+      icon = "dialog-information",
+      transient = true,
+    })
   end
 end
 

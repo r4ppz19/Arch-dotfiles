@@ -2,6 +2,8 @@ local var = require("util.variable")
 local mouse = require("util.mouse")
 local eyetemp = require("util.eyetemp")
 local layout = require("appearance.layout")
+local notify = require("util.notify")
+local zen = require("util.zen")
 
 local websites = {
   microsoft_copilot = "https://copilot.microsoft.com/chats/temporary",
@@ -37,7 +39,18 @@ local websites = {
 -- ============================================================================
 -- AI APPLICATIONS SUBMAP
 -- ============================================================================
-hl.bind(var.mod .. " + A", hl.dsp.submap("AI Slop"))
+hl.bind(var.mod .. " + A", function()
+  hl.dispatch(hl.dsp.submap("AI Slop"))
+
+  if zen.is_zen() then
+    notify.send("Submap", "AI Slop", {
+      timeout = 1000,
+      app_name = "Submap",
+      icon = "dialog-information",
+      transient = true,
+    })
+  end
+end)
 
 hl.define_submap("AI Slop", "reset", function()
   hl.bind(var.mod .. " + V", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.microsoft_copilot))
@@ -70,7 +83,18 @@ end)
 -- ============================================================================
 -- APPLICATIONS SUBMAP
 -- ============================================================================
-hl.bind(var.mod .. " + SPACE", hl.dsp.submap("Applications"))
+hl.bind(var.mod .. " + SPACE", function()
+  hl.dispatch(hl.dsp.submap("Applications"))
+
+  if zen.is_zen() then
+    notify.send("Submap", "Applications", {
+      timeout = 1000,
+      app_name = "Submap",
+      icon = "dialog-information",
+      transient = true,
+    })
+  end
+end)
 
 hl.define_submap("Applications", "reset", function()
   -- Website shortcuts
@@ -108,7 +132,18 @@ end)
 -- ============================================================================
 -- SCHOOL WORKS SUBMAP
 -- ============================================================================
-hl.bind(var.mod .. " + S", hl.dsp.submap("School"))
+hl.bind(var.mod .. " + S", function()
+  hl.dispatch(hl.dsp.submap("School"))
+
+  if zen.is_zen() then
+    notify.send("Submap", "School", {
+      timeout = 1000,
+      app_name = "Submap",
+      icon = "dialog-information",
+      transient = true,
+    })
+  end
+end)
 
 hl.define_submap("School", "reset", function()
   hl.bind(var.mod .. " + C", hl.dsp.exec_cmd(var.school_browser .. " --app=" .. websites.classroom))
@@ -121,7 +156,18 @@ end)
 -- ============================================================================
 -- UTILITIES SUBMAP
 -- ============================================================================
-hl.bind(var.mod .. " + U", hl.dsp.submap("util"))
+hl.bind(var.mod .. " + U", function()
+  hl.dispatch(hl.dsp.submap("util"))
+
+  if zen.is_zen() then
+    notify.send("Submap", "Util", {
+      timeout = 1000,
+      app_name = "Submap",
+      icon = "dialog-information",
+      transient = true,
+    })
+  end
+end)
 
 -- Helper func run cmd + submap reset
 local function cmd_with_reset(command)
@@ -167,7 +213,18 @@ end)
 -- ============================================================================
 -- RESIZE WINDOWS SUBMAP
 -- ============================================================================
-hl.bind(var.mod .. " + R", hl.dsp.submap("resize"))
+hl.bind(var.mod .. " + R", function()
+  hl.dispatch(hl.dsp.submap("resize"))
+
+  if zen.is_zen() then
+    notify.send("Submap", "Resize", {
+      timeout = 1000,
+      app_name = "Submap",
+      icon = "dialog-information",
+      transient = true,
+    })
+  end
+end)
 
 hl.define_submap("resize", function()
   hl.bind("right", hl.dsp.window.resize({ x = 20, y = 0, relative = true }), { repeating = true })
@@ -182,7 +239,18 @@ end)
 -- ============================================================================
 -- MOUSE MODE SUBMAP
 -- ============================================================================
-hl.bind(var.mod .. " + Q", hl.dsp.submap("mouse-mode"))
+hl.bind(var.mod .. " + Q", function()
+  hl.dispatch(hl.dsp.submap("mouse-mode"))
+
+  if zen.is_zen() then
+    notify.send("Submap", "Mouse Mode", {
+      timeout = 1000,
+      app_name = "Submap",
+      icon = "dialog-information",
+      transient = true,
+    })
+  end
+end)
 
 hl.define_submap("mouse-mode", function()
   -- Normal speed

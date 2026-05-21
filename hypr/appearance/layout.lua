@@ -45,7 +45,7 @@ local presets = {
   { name = "Dwindle", layout = "dwindle", gaps_in = 8, gaps_out = 15, border_size = 2, rounding = 1 },
   { name = "Scrolling", layout = "scrolling", gaps_in = 8, gaps_out = 15, border_size = 2, rounding = 1 },
   { name = "Display", layout = "master", gaps_in = 25, gaps_out = 50, border_size = 2, rounding = 1 },
-  { name = "Minimal", layout = "master", gaps_in = 1, gaps_out = 2, border_size = 0, rounding = 1 },
+  { name = "Minimal", layout = "dwindle", gaps_in = 1, gaps_out = 2, border_size = 0, rounding = 1 },
   {
     name = "Impractical",
     layout = "master",
@@ -57,7 +57,6 @@ local presets = {
 }
 
 local current = 1
-
 local function apply_config(preset)
   hl.config({
     general = {
@@ -73,8 +72,9 @@ end
 local function apply_preset(idx)
   local preset = presets[idx]
 
-  notify.send("Mode", " " .. preset.name, {
+  notify.send("Layout", " " .. preset.name, {
     timeout = 1000,
+    app_name = "Layout",
     icon = "dialog-information",
     transient = true,
   })
