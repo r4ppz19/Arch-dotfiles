@@ -19,55 +19,63 @@ rmirror() {
 }
 
 sshumount() {
-  local mount_name="$1"
-  local mount_base_dir="${HOME}/Mount"
-  local mount_dir="${mount_base_dir}/${mount_name}"
-
-  _remove_empty_dir() {
-    local dir="$1"
-    if [[ -d "$dir" ]]; then
-      if rmdir "$dir"; then
-        echo "Removed directory $dir"
-      else
-        echo "Warning: Failed to remove directory $dir (not empty or in use)"
-      fi
-    fi
-  }
-
-  if [[ -z "$mount_name" ]]; then
-    echo "Usage: sshunmount <mount_name>"
-    return 1
-  fi
-
-  if mountpoint -q "$mount_dir"; then
-    if fusermount -u "$mount_dir"; then
-      echo "Unmounted $mount_dir"
-      _remove_empty_dir "$mount_dir"
-      _remove_empty_dir "$mount_base_dir"
-    else
-      echo "Error: Failed to unmount $mount_dir"
-      return 1
-    fi
-  else
-    echo "No mount found at $mount_dir"
-    _remove_empty_dir "$mount_dir"
-    _remove_empty_dir "$mount_base_dir"
-  fi
-}
-
-sshmount() {
-  local remote_host="${1}"
-  local remote_path="${2:-/}"
-  local mount_name="${3:-$1}"
+  local mount_name="${1}"
   local mount_base="${HOME}/Mount"
   local mount="${mount_base}/${mount_name}"
 
-  if [[ -z "$remote_host" ]]; then
-    echo "Usage: sshmount <ssh_alias/ip> [remote_path] [local_name]"
-    echo "\nExample:"
-    echo "sshmount john@192.168.1.52"
+  if [[ -z "$mount_name" ]]; then
+    echo "Usage: sshumount <mount_name>"
+    echo "Example: sshumount phone"
     return 1
   fi
+
+  # Helper logic to clean up empty directories safely
+  _clean_dir() {
+    [[ -d "$1" ]] && rmdir "$1" 2>/dev/null
+  }
+
+  if mountpoint -q "$mount"; then
+    echo "Unmounting ${mount}..."
+
+    # Try elegant user-space unmount first, fallback to standard umount if fusermount is missing
+    if command -v fusermount >/dev/null 2>&1; then
+      fusermount -u "$mount"
+    else
+      umount "$mount"
+    fi
+
+    # Check execution status
+    if [[ $? -eq 0 ]]; then
+      echo "Successfully unmounted."
+      _clean_dir "$mount"
+      _clean_dir "$mount_base"
+    else
+      echo "Warning: Standard unmount failed. Device might be busy or network dropped."
+      echo "Attempting lazy/force unmount..."
+
+      # Lazy unmount detaches the filesystem immediately, even if resources are busy
+      umount -l "$mount" 2>/dev/null || fusermount -z -u "$mount" 2>/dev/null
+
+      _clean_dir "$mount"
+      _clean_dir "$mount_base"
+    fi
+  else
+    echo "No active mount found at ${mount}"
+    # Clean up orphan empty folders if they exist
+    _clean_dir "$mount"
+    _clean_dir "$mount_base"
+  fi
+}
+
+# Core execution function
+_sshfs_execute() {
+  local remote_host="${1}"
+  local remote_path="${2}"
+  local mount_name="${3}"
+  local port="${4}"
+  local mount_base="${HOME}/Mount"
+  local mount="${mount_base}/${mount_name}"
+  local extra_opts=()
 
   [[ -d "$mount_base" ]] || mkdir -p "$mount_base"
   [[ -d "$mount" ]] || mkdir -p "$mount"
@@ -77,15 +85,44 @@ sshmount() {
     return 1
   fi
 
-  echo "Attempting to mount ${remote_host}:${remote_path} to ${mount}..."
+  # Dynamic check for local fuse configuration
+  if grep -q "^user_allow_other" /etc/fuse.conf 2>/dev/null; then
+    extra_opts=(-o "allow_other,defer_permissions,idmap=user")
+  else
+    extra_opts=(-o "idmap=user")
+  fi
 
-  if sshfs "${remote_host}:${remote_path}" "$mount" -o reconnect,ConnectTimeout=5,ServerAliveInterval=15,idmap=user; then
+  echo "Attempting to mount ${remote_host}:${remote_path} on port ${port} to ${mount}..."
+
+  if sshfs "${remote_host}:${remote_path}" "$mount" \
+    -p "$port" \
+    -o reconnect,ConnectTimeout=5,ServerAliveInterval=15 \
+    "${extra_opts[@]}"; then
     echo "Successfully mounted at $mount"
   else
     echo "Mount failed."
     rmdir "$mount" 2>/dev/null
     return 1
   fi
+}
+
+# For standard Linux/macOS machines (Port 22, Default Root Path)
+sshmount() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: sshmount <ssh_alias/ip> [remote_path] [local_name]"
+    return 1
+  fi
+  _sshfs_execute "${1}" "${2:-/}" "${3:-$1}" "22"
+}
+
+# For Termux environments (Port 8022, Strict Sandbox Path)
+termuxmount() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: termuxmount <ssh_alias/ip> [remote_path] [local_name]"
+    return 1
+  fi
+  # Enforces the absolute path and port 8022 explicitly
+  _sshfs_execute "${1}" "${2:-/data/data/com.termux/files/home}" "${3:-$1}" "8022"
 }
 
 # Encrypt a file or folder using AES-256 ZIP
