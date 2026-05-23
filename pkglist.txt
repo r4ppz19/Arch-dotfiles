@@ -161,11 +161,13 @@ python-mutagen
 python-pipx
 python-secretstorage
 qbittorrent
+qml-language-server-bin
 qt5-wayland
 qt5ct
+qt6-languageserver
 qt6-wayland
 qt6ct
-quickshell
+quickshell-git
 reflector
 ripgrep
 rofi
@@ -207,6 +209,7 @@ ttf-roboto
 ttf-roboto-mono-nerd
 udiskie
 ufw
+unixodbc
 uwsm
 vim
 virtualbox-host-dkms
@@ -215,6 +218,7 @@ vlc
 vulkan-intel
 vulkan-tools
 waybar
+webkit2gtk-4.1
 wev
 wget
 wireless_tools

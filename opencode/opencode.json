@@ -5,6 +5,7 @@
   },
 
   "autoupdate": true,
+  "lsp": true,
 
   "permission": {
     "read": "allow",

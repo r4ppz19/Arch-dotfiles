@@ -247,6 +247,11 @@ keymap = [
   # Goto
   { on = [
     "g",
+    "e",
+  ], run = "cd /etc", desc = "Go /etc" },
+
+  { on = [
+    "g",
     "l",
   ], run = "cd ~/.local", desc = "Go ~/.local" },
 
