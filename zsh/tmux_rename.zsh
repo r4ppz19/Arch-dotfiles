@@ -80,6 +80,9 @@ typeset -gA DIR_MAP_UNIQUE=(
   # Project 2
   "$HOME/Projects/mini-capstone/law-firm-management-system" CAPST
   "$HOME/Projects/mini-capstone/documentation" DOCS
+
+  # Project 3
+  "$HOME/Projects/pacy" PACY
 )
 
 # Helpers
