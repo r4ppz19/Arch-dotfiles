@@ -11,7 +11,7 @@ window {
     location: center;
     anchor: center;
     fullscreen: false;
-    width: 25%;
+    width: 20%;
     border: 2px;
     border-radius: 2px;
     padding: 10px;

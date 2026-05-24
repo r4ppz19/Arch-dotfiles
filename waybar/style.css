@@ -47,8 +47,8 @@ window#waybar.hidden {
 #custom-rofi,
 #memory,
 #submap {
-  font-family: JetBrainsMono Nerd Font;
-  font-size: 9px;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 10px;
   font-weight: 800;
   color: #282828;
   /* background: #282828; */
@@ -300,7 +300,7 @@ window#waybar.empty #window {
 /* ================================= */
 
 #custom-notification {
-  font-family: JetBrainsMono Nerd Font;
-  font-size: 10px;
-  padding: 0px 7px 0px 0px;
+  font-size: 12px;
+  padding-left: 1px;
+  padding-right: 7px;
 }

@@ -106,21 +106,11 @@ hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(var.mediactl .. " mic-mute"))
 hl.workspace_rule({
   workspace = "special:window1",
   gaps_in = 3,
-  gaps_out = { top = 120, right = 240, bottom = 120, left = 240 },
+  gaps_out = { top = 180, right = 350, bottom = 180, left = 350 },
 })
 
 hl.bind(var.mod .. " + W", hl.dsp.workspace.toggle_special("window1"))
 hl.bind(var.mod .. " + SHIFT + W", hl.dsp.window.move({ workspace = "special:window1" }))
-
--- Second special workspace (scratchpad)
-hl.workspace_rule({
-  workspace = "special:window2",
-  gaps_in = 3,
-  gaps_out = { top = 120, right = 240, bottom = 120, left = 240 },
-})
-
-hl.bind(var.mod .. " + backslash", hl.dsp.workspace.toggle_special("window2"))
-hl.bind(var.mod .. " + SHIFT + backslash", hl.dsp.window.move({ workspace = "special:window2" }))
 
 -- Minimize workspace
 hl.workspace_rule({

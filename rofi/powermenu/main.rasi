@@ -9,9 +9,8 @@ configuration {
 
 * {
     font: "JetBrains Mono Nerd Font 12";
-    /* Resolution : 1366x768 */
     box-spacing:                 30px;
-    box-margin:                  200px 200px;
+    box-margin:                  340px;
     message-margin:              0px 200px;
     inputbar-spacing:            0px;
     list-spacing:                30px;
@@ -29,7 +28,7 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  true;
-    width:                       1366px;
+    width:                       1920px;
     x-offset:                    0px;
     y-offset:                    0px;
 

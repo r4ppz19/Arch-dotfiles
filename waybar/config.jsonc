@@ -1,9 +1,10 @@
 // r4ppz
 {
   // General Waybar configuration
+  "output": "HDMI-A-1", // external monitor
   "position": "top",
   "layer": "top",
-  "height": 21,
+  "height": 23,
   "spacing": 0,
   "margin-top": 0,
   "margin-right": 0,
@@ -57,7 +58,7 @@
       "special": ""
     },
     "persistent-workspaces": {
-      "*": 3
+      "HDMI-A-1": [1, 2, 3]
     }
     // "on-scroll-up": "hyprctl dispatch workspace e+1",
     // "on-scroll-down": "hyprctl dispatch workspace e-1"
@@ -95,9 +96,9 @@
   },
   // Memory module
   "memory": {
-    "format": "   {used} GiB ({percentage}%)",
+    "format": "   {used:.2f} GiB ({percentage}%)",
     "tooltip": true,
-    "tooltip-format": "Total: {total}\nAvailable: {avail}",
+    "tooltip-format": "Total: {total:.2f} GiB\nAvailable: {avail:.2f} GiB",
     "interval": 10,
     "on-click-right": "kitty -e btop"
   },
