@@ -25,6 +25,7 @@ CONFIG_LINKS=(
   lazydocker
   opencode
   pgcli
+  fontconfig
 )
 
 link_item() {
