@@ -24,10 +24,10 @@ declare -A sites=(
   [speed]="https://www.speedtest.net"
   [wifi]="http://192.168.1.254"
   [disc]="https://discord.com/channels/@me"
-  [hlwiki]="https://wiki.hypr.land"
-  [hlwiki]="https://wiki.hypr.land"
   [manga]="https://mangakatana.com"
   [aria]="https://react-aria.adobe.com/getting-started"
+  [hlwiki]="https://wiki.hypr.land"
+  [qswiki]="https://quickshell.org/docs/v0.3.0/guide/introduction/"
 )
 
 search_engine="https://duckduckgo.com/?q="
@@ -46,6 +46,8 @@ if [ -n "$url" ]; then
   xdg-open "$url"
 elif [[ $query =~ ^https?:// ]]; then
   xdg-open "$query"
+elif [[ $query == *.* && $query != *[[:space:]]* ]]; then
+  xdg-open "https://$query"
 else
   encoded_query=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote_plus(sys.argv[1]))" "$query")
   xdg-open "${search_engine}${encoded_query}"
