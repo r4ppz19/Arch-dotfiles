@@ -19,3 +19,18 @@ os:
   edit: '[ -z "$NVIM" ] && (nvim -- {{filename}}) || (nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote {{filename}})'
   editAtLine: '[ -z "$NVIM" ] && (nvim +{{line}} -- {{filename}}) || (nvim --server "$NVIM" --remote-send "q" &&  nvim --server "$NVIM" --remote {{filename}} && nvim --server "$NVIM" --remote-send ":{{line}}<CR>")'
   openDirInEditor: '[ -z "$NVIM" ] && (nvim -- {{dir}}) || (nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote {{dir}})'
+
+keybinding:
+  universal:
+    undo: <alt+a>
+    redo: <alt+d>
+    scrollDownMain:
+      - <pgdown>
+      - J
+      - <ctrl+d>
+      - <ctrl+down>
+    scrollUpMain:
+      - <pgup>
+      - K
+      - <ctrl+u>
+      - <ctrl+up>
