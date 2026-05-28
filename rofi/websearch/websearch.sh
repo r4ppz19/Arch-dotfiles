@@ -28,6 +28,9 @@ declare -A sites=(
   [aria]="https://react-aria.adobe.com/getting-started"
   [hlwiki]="https://wiki.hypr.land"
   [qswiki]="https://quickshell.org/docs/v0.3.0/guide/introduction/"
+  [render]="https://dashboard.render.com/"
+  [gcp]="https://console.cloud.google.com/apis"
+  [x]="https://x.com/home"
 )
 
 search_engine="https://duckduckgo.com/?q="
