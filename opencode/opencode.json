@@ -4,6 +4,8 @@
     "ignore": ["node_modules/**", "dist/**", ".git/**"]
   },
 
+  "instructions": ["AGENTS.md", "AGENTS.md"],
+
   "autoupdate": true,
   "lsp": true,
 

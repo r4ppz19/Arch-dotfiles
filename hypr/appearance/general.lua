@@ -82,7 +82,7 @@ hl.config({
     font_family = "JetBrainsMono Nerd Font",
     splash_font_family = "JetBrainsMono Nerd Font",
 
-    on_focus_under_fullscreen = true,
+    on_focus_under_fullscreen = 2,
     exit_window_retains_fullscreen = false,
     focus_on_activate = true,
     always_follow_on_dnd = true,
