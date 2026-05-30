@@ -36,6 +36,7 @@
 
 [diff]
   tool = nvimdiff
+	context = 12
 
 [difftool "nvimdiff"]
   cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""

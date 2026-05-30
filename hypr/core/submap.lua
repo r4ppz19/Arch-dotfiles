@@ -17,7 +17,7 @@ local websites = {
   claude = "https://claude.ai",
   huggingface = "https://huggingface.co/chat",
 
-  annas_archive = "https://annas-archive.li",
+  annas_archive = "https://annas-archive.is",
   w3schools = "https://www.w3schools.com",
   youtube = "https://www.youtube.com",
   facebook = "https://www.facebook.com/messages",
