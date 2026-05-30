@@ -25,7 +25,7 @@ local function apply_config(mode)
     general = conf.general,
     decoration = conf.decoration,
   })
-  hl.dispatch(hl.dsp.exec_cmd("hyprctl hyprpaper wallpaper eDP-1," .. conf.wallpaper .. ",cover"))
+  hl.dispatch(hl.dsp.exec_cmd("hyprctl hyprpaper wallpaper  HDMI-A-1," .. conf.wallpaper .. ",cover"))
   hl.dispatch(hl.dsp.exec_cmd("systemctl --user " .. conf.waybar .. " waybar.service"))
 end
 
