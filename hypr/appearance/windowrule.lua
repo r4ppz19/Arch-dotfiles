@@ -58,6 +58,12 @@ hl.window_rule({
 })
 
 hl.window_rule({
+  name = "brave-browser",
+  match = { class = "brave-origin-nightly" },
+  workspace = 1,
+})
+
+hl.window_rule({
   name = "chromium",
   match = { class = "Chromium" },
   workspace = 5,

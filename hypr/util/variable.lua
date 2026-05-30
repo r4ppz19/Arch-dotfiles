@@ -4,7 +4,7 @@ M.mod = "SUPER"
 
 -- Programs
 M.terminal = "kitty"
-M.browser = "brave"
+M.browser = "brave-origin-nightly"
 M.school_browser = "chromium"
 M.filemanager = "thunar"
 M.lockscreen = "hyprlock"
