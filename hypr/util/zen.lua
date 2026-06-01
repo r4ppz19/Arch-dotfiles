@@ -6,7 +6,7 @@ local zen = false
 
 local config = {
   normal = {
-    general = { gaps_out = 15, gaps_in = 8, border_size = 2 },
+    general = { gaps_in = 10, gaps_out = 20 },
     decoration = { rounding = 1, rounding_power = 5 },
     wallpaper = os.getenv("DOTFILES") .. "/wallpaper/wallpaper2.png",
     waybar = "start",
