@@ -19,6 +19,7 @@ local websites = {
 
   annas_archive = "https://annas-archive.is",
   w3schools = "https://www.w3schools.com",
+  reddit = "https://www.reddit.com",
   youtube = "https://www.youtube.com",
   facebook = "https://www.facebook.com/messages",
   github = "https://github.com/r4ppz",
@@ -108,6 +109,7 @@ hl.define_submap("Applications", "reset", function()
   hl.bind("N", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.news))
   hl.bind("T", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.monkeytype))
   hl.bind("C", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.cloudflare))
+  hl.bind("R", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.reddit))
 
   -- Applications
   hl.bind("V", hl.dsp.exec_cmd(var.ide))
@@ -122,6 +124,7 @@ hl.define_submap("Applications", "reset", function()
   hl.bind(var.mod .. " + Y", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.youtube))
   hl.bind(var.mod .. " + T", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.monkeytype))
   hl.bind(var.mod .. " + M", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.ytmusic))
+  hl.bind(var.mod .. " + R", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.reddit))
   hl.bind(var.mod .. " + SHIFT + M", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.mappltv))
 
   hl.bind("catchall", hl.dsp.submap("reset"))
