@@ -12,6 +12,7 @@ M.notifpanel = "swaync-client -t"
 M.colorpicker = "hyprpicker -a"
 M.ide = "code"
 M.passmanager = "bitwarden-desktop"
+M.taskmanager = "btop"
 
 -- Scripts
 M.launcher = "$DOTFILES/rofi/launcher/launcher.sh"

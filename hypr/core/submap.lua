@@ -111,10 +111,6 @@ hl.define_submap("Applications", "reset", function()
   hl.bind("C", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.cloudflare))
   hl.bind("R", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.reddit))
 
-  -- Applications
-  hl.bind("V", hl.dsp.exec_cmd(var.ide))
-  hl.bind("P", hl.dsp.exec_cmd(var.passmanager))
-
   -- App mode shortcuts
   hl.bind(var.mod .. " + S", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.spotify))
   hl.bind(var.mod .. " + N", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.news))
@@ -126,6 +122,11 @@ hl.define_submap("Applications", "reset", function()
   hl.bind(var.mod .. " + M", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.ytmusic))
   hl.bind(var.mod .. " + R", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.reddit))
   hl.bind(var.mod .. " + SHIFT + M", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.mappltv))
+
+  -- Applications
+  hl.bind("V", hl.dsp.exec_cmd(var.ide))
+  hl.bind("P", hl.dsp.exec_cmd(var.passmanager))
+  hl.bind(var.mod .. " + B", hl.dsp.exec_cmd(var.terminal .. " -e " .. var.taskmanager))
 
   hl.bind("catchall", hl.dsp.submap("reset"))
   hl.bind("escape", hl.dsp.submap("reset"))
