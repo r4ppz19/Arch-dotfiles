@@ -26,7 +26,11 @@ CONFIG_LINKS=(
   opencode
   pgcli
   fontconfig
+  atuin
 )
+
+# If atuin failed, manual symlink:
+# rm -rf /home/r4ppz/.config/atuin && ln -sT /home/r4ppz/Arch-dotfiles/atuin /home/r4ppz/.config/atuin
 
 link_item() {
   local src="$1"

@@ -2,6 +2,5 @@ romkatv/powerlevel10k
 Aloxaf/fzf-tab
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
-zsh-users/zsh-history-substring-search
 zsh-users/zsh-syntax-highlighting
 paulirish/git-open

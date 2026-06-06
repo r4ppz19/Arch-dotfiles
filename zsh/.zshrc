@@ -45,4 +45,9 @@ if [[ $- == *i* ]]; then
       fi
     fi
   fi
+
+  # Initialize Atuin Shell History Engine
+  if command -v atuin &>/dev/null; then
+    eval "$(atuin init zsh --disable-up-arrow)"
+  fi
 fi

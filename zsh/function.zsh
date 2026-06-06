@@ -181,15 +181,6 @@ fslabel() {
   echo "Successfully labeled $dev as '$name' ($fstype)"
 }
 
-# filter history
-zshaddhistory() {
-  emulate -L zsh
-  # [[ $1 == *\'* || $1 == *\"* ]] && return 1
-  [[ $1 == *\'* ]] && return 1
-  ((${#1} > 2000)) && return 1
-  return 0
-}
-
 # yazi
 f() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
