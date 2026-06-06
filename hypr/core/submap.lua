@@ -4,6 +4,16 @@ local eyetemp = require("util.eyetemp")
 local notify = require("util.notify")
 local zen = require("util.zen")
 
+local submap_timer = nil
+local function start_submap_timer()
+  if submap_timer then
+    submap_timer:set_enabled(false)
+  end
+  submap_timer = hl.timer(function()
+    hl.dispatch(hl.dsp.submap("reset"))
+  end, { timeout = 2000, type = "oneshot" })
+end
+
 local websites = {
   microsoft_copilot = "https://copilot.microsoft.com/chats/temporary",
   github_copilot = "https://github.com/copilot",
@@ -41,6 +51,7 @@ local websites = {
 -- ============================================================================
 hl.bind(var.mod .. " + A", function()
   hl.dispatch(hl.dsp.submap("AI Slop"))
+  start_submap_timer()
 
   if zen.is_zen() then
     notify.send("Submap", "AI Slop", {
@@ -85,6 +96,7 @@ end)
 -- ============================================================================
 hl.bind(var.mod .. " + SPACE", function()
   hl.dispatch(hl.dsp.submap("Applications"))
+  start_submap_timer()
 
   if zen.is_zen() then
     notify.send("Submap", "Applications", {
@@ -137,6 +149,7 @@ end)
 -- ============================================================================
 hl.bind(var.mod .. " + S", function()
   hl.dispatch(hl.dsp.submap("School"))
+  start_submap_timer()
 
   if zen.is_zen() then
     notify.send("Submap", "School", {
@@ -161,6 +174,7 @@ end)
 -- ============================================================================
 hl.bind(var.mod .. " + U", function()
   hl.dispatch(hl.dsp.submap("util"))
+  start_submap_timer()
 
   if zen.is_zen() then
     notify.send("Submap", "Util", {
@@ -210,6 +224,7 @@ end)
 -- ============================================================================
 hl.bind(var.mod .. " + R", function()
   hl.dispatch(hl.dsp.submap("resize"))
+  start_submap_timer()
 
   if zen.is_zen() then
     notify.send("Submap", "Resize", {
@@ -236,6 +251,7 @@ end)
 -- ============================================================================
 hl.bind(var.mod .. " + Q", function()
   hl.dispatch(hl.dsp.submap("mouse-mode"))
+  start_submap_timer()
 
   if zen.is_zen() then
     notify.send("Submap", "Mouse Mode", {
