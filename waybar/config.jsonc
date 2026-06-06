@@ -25,7 +25,7 @@
     // "temperature",
     // "disk",
     "pulseaudio",
-    "backlight",
+    // "backlight",
     "battery",
     // "power-profiles-daemon",
     "tray",

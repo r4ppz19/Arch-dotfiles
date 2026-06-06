@@ -251,7 +251,6 @@ end)
 -- ============================================================================
 hl.bind(var.mod .. " + Q", function()
   hl.dispatch(hl.dsp.submap("mouse-mode"))
-  start_submap_timer()
 
   if zen.is_zen() then
     notify.send("Submap", "Mouse Mode", {
