@@ -29,6 +29,7 @@ typeset -gA PROC_MAP=(
   ssh SSH
   tetro-tui TETRIS
   kew MUSIC
+  cliamp MUSIC
   sudo SUDO
   cargo CARGO
   gdu GDU
