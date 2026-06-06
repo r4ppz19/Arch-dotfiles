@@ -174,7 +174,6 @@ end)
 -- ============================================================================
 hl.bind(var.mod .. " + U", function()
   hl.dispatch(hl.dsp.submap("util"))
-  start_submap_timer()
 
   if zen.is_zen() then
     notify.send("Submap", "Util", {
