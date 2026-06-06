@@ -102,6 +102,11 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(var.mediactl .. " brightness-do
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd(var.mediactl .. " mute"))
 hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(var.mediactl .. " mic-mute"))
 
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"))
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"))
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"))
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"))
+
 -- Special workspace (scratchpad)
 hl.workspace_rule({
   workspace = "special:window1",
