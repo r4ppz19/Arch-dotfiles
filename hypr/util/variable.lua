@@ -10,7 +10,7 @@ M.filemanager = "thunar"
 M.lockscreen = "hyprlock"
 M.notifpanel = "swaync-client -t"
 M.colorpicker = "hyprpicker -a"
-M.ide = "code"
+M.gui_ide = "code"
 M.passmanager = "bitwarden-desktop"
 M.taskmanager = "btop"
 

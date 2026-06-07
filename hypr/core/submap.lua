@@ -26,9 +26,10 @@ local websites = {
   qwen = "https://chat.qwen.ai/?temporary-chat=true",
   claude = "https://claude.ai",
   huggingface = "https://huggingface.co/chat",
+  duckduckgo = "https://duck.ai/chat",
+  mistral = "https://chat.mistral.ai/incognito",
 
   annas_archive = "https://annas-archive.is",
-  w3schools = "https://www.w3schools.com",
   reddit = "https://www.reddit.com",
   youtube = "https://www.youtube.com",
   facebook = "https://www.facebook.com/messages",
@@ -44,6 +45,7 @@ local websites = {
   ytmusic = "https://music.youtube.com",
   mappltv = "https://mappl.tv",
   classroom = "https://classroom.google.com",
+  archwiki = "https://wiki.archlinux.org",
 }
 
 -- ============================================================================
@@ -74,6 +76,8 @@ hl.define_submap("AI Slop", "reset", function()
   hl.bind(var.mod .. " + N", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.notebooklm))
   hl.bind(var.mod .. " + Q", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.qwen))
   hl.bind(var.mod .. " + H", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.huggingface))
+  hl.bind(var.mod .. " + O", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.duckduckgo))
+  hl.bind(var.mod .. " + M", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.mistral))
 
   hl.bind("V", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.microsoft_copilot))
   hl.bind("K", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.kimi))
@@ -86,6 +90,8 @@ hl.define_submap("AI Slop", "reset", function()
   hl.bind("Q", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.qwen))
   hl.bind("H", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.huggingface))
   hl.bind("A", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.claude))
+  hl.bind("O", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.duckduckgo))
+  hl.bind("M", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.mistral))
 
   hl.bind("catchall", hl.dsp.submap("reset"))
   hl.bind("escape", hl.dsp.submap("reset"))
@@ -109,36 +115,69 @@ hl.bind(var.mod .. " + SPACE", function()
 end)
 
 hl.define_submap("Applications", "reset", function()
-  -- Website shortcuts
-  hl.bind("A", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.annas_archive))
-  hl.bind("W", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.w3schools))
-  hl.bind("Y", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.youtube))
-  hl.bind("F", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.facebook))
+  -- New Tap shortcuts
   hl.bind("G", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.github))
   hl.bind("D", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.drive))
   hl.bind("M", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.mail))
   hl.bind("E", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.getemoji))
-  hl.bind("N", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.news))
   hl.bind("T", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.monkeytype))
   hl.bind("C", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.cloudflare))
-  hl.bind("R", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.reddit))
 
   -- App mode shortcuts
-  hl.bind(var.mod .. " + S", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.spotify))
-  hl.bind(var.mod .. " + N", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.news))
-  hl.bind(var.mod .. " + D", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.devdocs))
   hl.bind(var.mod .. " + G", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.github))
-  hl.bind(var.mod .. " + F", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.facebook))
-  hl.bind(var.mod .. " + Y", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.youtube))
+  hl.bind(var.mod .. " + D", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.drive))
+  hl.bind(var.mod .. " + M", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.mail))
+  hl.bind(var.mod .. " + E", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.getemoji))
   hl.bind(var.mod .. " + T", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.monkeytype))
-  hl.bind(var.mod .. " + M", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.ytmusic))
-  hl.bind(var.mod .. " + R", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.reddit))
-  hl.bind(var.mod .. " + SHIFT + M", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.mappltv))
+  hl.bind(var.mod .. " + C", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.cloudflare))
 
   -- Applications
-  hl.bind("V", hl.dsp.exec_cmd(var.ide))
+  hl.bind("V", hl.dsp.exec_cmd(var.gui_ide))
   hl.bind("P", hl.dsp.exec_cmd(var.passmanager))
   hl.bind(var.mod .. " + B", hl.dsp.exec_cmd(var.terminal .. " -e " .. var.taskmanager))
+
+  hl.bind("catchall", hl.dsp.submap("reset"))
+  hl.bind("escape", hl.dsp.submap("reset"))
+end)
+
+-- ============================================================================
+-- MEDIA
+-- ============================================================================
+
+local submap_entry_timer = nil
+hl.bind(var.mod .. " + M", function()
+  -- Cancel any pending entry
+  if submap_entry_timer then
+    submap_entry_timer:set_enabled(false)
+  end
+
+  -- Enter submap after a small delay so this event doesn't also hit the submap bind
+  submap_entry_timer = hl.timer(function()
+    start_submap_timer()
+    hl.dispatch(hl.dsp.submap("Media"))
+  end, { timeout = 50, type = "oneshot" })
+end)
+
+hl.define_submap("Media", "reset", function()
+  -- Website shortcuts
+  hl.bind("A", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.annas_archive))
+  hl.bind("Y", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.youtube))
+  hl.bind("R", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.reddit))
+  hl.bind("F", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.facebook))
+  hl.bind("N", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.news))
+  hl.bind("S", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.spotify))
+  hl.bind("M", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.ytmusic))
+  hl.bind("W", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.archwiki))
+
+  -- App mode shortcuts
+  hl.bind(var.mod .. " + A", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.annas_archive))
+  hl.bind(var.mod .. " + Y", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.youtube))
+  hl.bind(var.mod .. " + R", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.reddit))
+  hl.bind(var.mod .. " + F", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.facebook))
+  hl.bind(var.mod .. " + N", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.news))
+  hl.bind(var.mod .. " + S", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.spotify))
+  hl.bind(var.mod .. " + M", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.ytmusic))
+  hl.bind(var.mod .. " + W", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.archwiki))
 
   hl.bind("catchall", hl.dsp.submap("reset"))
   hl.bind("escape", hl.dsp.submap("reset"))
