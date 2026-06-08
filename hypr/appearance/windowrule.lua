@@ -44,7 +44,7 @@ hl.window_rule({
 -- Web / specific popups
 hl.window_rule({
   name = "export-download",
-  match = { initial_title = "^.*(export-download|codeload|drive|wants to).*$" },
+  match = { initial_title = "^.*(export-download|codeload|wants to).*$" },
   float = true,
   center = true,
   size = { 700, 500 },
