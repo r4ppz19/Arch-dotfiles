@@ -46,6 +46,7 @@ local websites = {
   mappltv = "https://mappl.tv",
   classroom = "https://classroom.google.com",
   archwiki = "https://wiki.archlinux.org",
+  twitter = "https://x.com/",
 }
 
 -- ============================================================================
@@ -134,7 +135,7 @@ hl.define_submap("Applications", "reset", function()
   -- Applications
   hl.bind("V", hl.dsp.exec_cmd(var.gui_ide))
   hl.bind("P", hl.dsp.exec_cmd(var.passmanager))
-  hl.bind(var.mod .. " + B", hl.dsp.exec_cmd(var.terminal .. " -e " .. var.taskmanager))
+  hl.bind("B", hl.dsp.exec_cmd(var.terminal .. " -e " .. var.taskmanager))
 
   hl.bind("catchall", hl.dsp.submap("reset"))
   hl.bind("escape", hl.dsp.submap("reset"))
@@ -168,6 +169,7 @@ hl.define_submap("Media", "reset", function()
   hl.bind("S", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.spotify))
   hl.bind("M", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.ytmusic))
   hl.bind("W", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.archwiki))
+  hl.bind("X", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.twitter))
 
   -- App mode shortcuts
   hl.bind(var.mod .. " + A", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.annas_archive))
@@ -178,6 +180,7 @@ hl.define_submap("Media", "reset", function()
   hl.bind(var.mod .. " + S", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.spotify))
   hl.bind(var.mod .. " + M", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.ytmusic))
   hl.bind(var.mod .. " + W", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.archwiki))
+  hl.bind(var.mod .. " + X", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.twitter))
 
   hl.bind("catchall", hl.dsp.submap("reset"))
   hl.bind("escape", hl.dsp.submap("reset"))
@@ -262,7 +265,6 @@ end)
 -- ============================================================================
 hl.bind(var.mod .. " + R", function()
   hl.dispatch(hl.dsp.submap("resize"))
-  start_submap_timer()
 
   if zen.is_zen() then
     notify.send("Submap", "Resize", {
