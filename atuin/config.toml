@@ -356,7 +356,7 @@ enabled = false
 ## Examples:
 ##
 ## Minimal - more space for commands:
-columns = ["time", "command"]
+columns = ["command"]
 ##
 ## With wider directory column:
 # columns = ["duration", { type = "directory", width = 30 }, "command"]

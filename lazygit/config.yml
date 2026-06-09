@@ -1,6 +1,17 @@
 notARepository: skip
+promptToReturnFromSubprocess: false
 
 gui:
+  tabWidth: 2
+  expandFocusedSidePanel: true
+  expandedSidePanelWeight: 2
+  mainPanelSplitMode: flexible
+
+  showListFooter: true
+  showBottomLine: true
+  showCommandLog: true
+  showPanelJumps: true
+
   showIcons: true
   nerdFontsVersion: "3"
   border: single
@@ -10,12 +21,16 @@ gui:
       - bold
 
 git:
+  autoFetch: true
+  autoRefresh: true
+
   overrideGpg: true
   pagers:
     - colorArg: always
-      pager: delta --dark --paging=never --hyperlinks --file-style="omit"
+      pager: delta --dark --paging=never --hyperlinks --file-style="omit" --width=-2
 
 os:
+  editInTerminal: true
   edit: '[ -z "$NVIM" ] && (nvim -- {{filename}}) || (nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote {{filename}})'
   editAtLine: '[ -z "$NVIM" ] && (nvim +{{line}} -- {{filename}}) || (nvim --server "$NVIM" --remote-send "q" &&  nvim --server "$NVIM" --remote {{filename}} && nvim --server "$NVIM" --remote-send ":{{line}}<CR>")'
   openDirInEditor: '[ -z "$NVIM" ] && (nvim -- {{dir}}) || (nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote {{dir}})'

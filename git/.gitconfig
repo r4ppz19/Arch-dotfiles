@@ -58,6 +58,7 @@
   line-numbers = true
   side-by-side = false
   hyperlinks = true
+  blame-code-style = syntax
 
 [credential]
 	helper = store

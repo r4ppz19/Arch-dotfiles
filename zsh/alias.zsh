@@ -28,8 +28,8 @@ alias copy='wl-copy'
 alias blue='bluetui'
 
 # services
-alias smbon='sudo systemctl start smb.service nmb.service'
-alias smboff='sudo systemctl stop smb.service nmb.service'
+alias smbon='sudo systemctl start smb.service nmb.service && echo "Samba server started"'
+alias smboff='sudo systemctl stop smb.service nmb.service && echo "Samba server stopped"'
 alias dockeron='sudo systemctl start docker.service docker.socket && echo "Docker started"'
 alias dockeroff='sudo systemctl stop docker.service docker.socket && echo "Docker stopped"'
 

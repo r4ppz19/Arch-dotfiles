@@ -215,7 +215,7 @@ end)
 -- UTILITIES SUBMAP
 -- ============================================================================
 hl.bind(var.mod .. " + U", function()
-  hl.dispatch(hl.dsp.submap("util"))
+  hl.dispatch(hl.dsp.submap("Util"))
 
   if zen.is_zen() then
     notify.send("Submap", "Util", {
@@ -235,7 +235,7 @@ local function cmd_with_reset(command)
   end
 end
 
-hl.define_submap("util", function()
+hl.define_submap("Util", function()
   hl.bind("SHIFT + S", cmd_with_reset(var.screenshotfull))
   hl.bind("S", cmd_with_reset(var.screenshot))
   hl.bind("R", cmd_with_reset(var.record))
@@ -290,7 +290,7 @@ end)
 -- MOUSE MODE SUBMAP
 -- ============================================================================
 hl.bind(var.mod .. " + Q", function()
-  hl.dispatch(hl.dsp.submap("mouse-mode"))
+  hl.dispatch(hl.dsp.submap("Mouse Mode"))
 
   if zen.is_zen() then
     notify.send("Submap", "Mouse Mode", {
@@ -302,7 +302,7 @@ hl.bind(var.mod .. " + Q", function()
   end
 end)
 
-hl.define_submap("mouse-mode", function()
+hl.define_submap("Mouse Mode", function()
   -- Normal speed
   hl.bind("left", function()
     mouse.move("left")
