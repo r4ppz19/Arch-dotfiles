@@ -3,6 +3,7 @@ acpi
 acpi_call
 antimicrox
 archlinux-xdg-menu
+atuin
 auto-cpufreq
 base
 base-devel
@@ -13,7 +14,7 @@ bind
 binwalk
 bitwarden
 blueman
-bluetui
+bluetuith
 bluez-obex
 bluez-utils
 brave-bin
@@ -25,10 +26,12 @@ cava
 chromium
 circumflex
 clang
+cliamp
 cliphist
 cloudflared
 composer
 cpio
+ddcutil
 dkms
 docker
 docker-buildx
@@ -72,6 +75,7 @@ gsimplecal
 gst-plugin-pipewire
 gtk-engine-murrine
 gtrash
+gum
 gvfs
 gvfs-mtp
 htop
@@ -217,7 +221,7 @@ visual-studio-code-bin
 vlc
 vulkan-intel
 vulkan-tools
-waybar
+waybar-git
 webkit2gtk-4.1
 wev
 wget
@@ -233,7 +237,6 @@ xdg-utils
 xorg-server
 xorg-xinit
 xpadneo-dkms
-yarn
 yay
 yazi
 ydotool

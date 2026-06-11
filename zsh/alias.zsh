@@ -25,7 +25,7 @@ alias ai='opencode run'
 alias md='glow'
 alias pac='pacseek'
 alias copy='wl-copy'
-alias blue='bluetui'
+alias blue='bluetuith'
 
 # services
 alias smbon='sudo systemctl start smb.service nmb.service && echo "Samba server started"'
