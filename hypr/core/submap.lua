@@ -47,6 +47,8 @@ local websites = {
   classroom = "https://classroom.google.com",
   archwiki = "https://wiki.archlinux.org",
   twitter = "https://x.com/",
+  render = "https://dashboard.render.com",
+  figma = "https://www.figma.com",
 }
 
 -- ============================================================================
@@ -123,6 +125,8 @@ hl.define_submap("Applications", "reset", function()
   hl.bind("E", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.getemoji))
   hl.bind("T", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.monkeytype))
   hl.bind("C", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.cloudflare))
+  hl.bind("R", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.render))
+  hl.bind("F", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.figma))
 
   -- App mode shortcuts
   hl.bind(var.mod .. " + G", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.github))
@@ -131,11 +135,8 @@ hl.define_submap("Applications", "reset", function()
   hl.bind(var.mod .. " + E", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.getemoji))
   hl.bind(var.mod .. " + T", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.monkeytype))
   hl.bind(var.mod .. " + C", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.cloudflare))
-
-  -- Applications
-  hl.bind("V", hl.dsp.exec_cmd(var.gui_ide))
-  hl.bind("P", hl.dsp.exec_cmd(var.passmanager))
-  hl.bind("B", hl.dsp.exec_cmd(var.terminal .. " -e " .. var.taskmanager))
+  hl.bind(var.mod .. " + R", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.render))
+  hl.bind(var.mod .. " + F", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.figma))
 
   hl.bind("catchall", hl.dsp.submap("reset"))
   hl.bind("escape", hl.dsp.submap("reset"))
