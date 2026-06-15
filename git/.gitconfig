@@ -1,70 +1,83 @@
+[core]
+	editor = nvim
+	pager = delta
+	autocrlf = input
+	whitespace = -indent-with-non-tab,trailing-space,cr-at-eol
+
 [user]
-  name = r4ppz
-  email = johnreyrabosa.f@gmail.com
-  signingKey = ~/.ssh/id_ed25519.pub
+	name = r4ppz
+	email = johnreyrabosa.f@gmail.com
+	signingKey = ~/.ssh/id_ed25519.pub
 
 [gpg]
-  format = ssh
-
-[tag]
-  gpgSign = true
-
-[push]
-  autoSetupRemote = true
-
-[pull]
-  rebase = true
-
-[commit]
-  verbose = true
-  gpgsign = true
+	format = ssh
 
 [init]
-  defaultBranch = main
+	defaultBranch = main
 
-[core]
-  editor = nvim
-  pager = delta
-  autocrlf = input
-  whitespace = -indent-with-non-tab,trailing-space,cr-at-eol
+[column]
+	ui = auto
+
+[tag]
+	gpgSign = true
+	sort = version:refname
+
+[push]
+	default = simple
+	autoSetupRemote = true
+	followTags = true
+
+[pull]
+	rebase = true
+
+[rebase]
+	updateRefs = true
+
+[commit]
+	verbose = true
+	gpgsign = true
 
 [branch]
-  autosetuprebase = always
+	sort = -committerdate
 
 [fetch]
 	prune = true
+	pruneTags = true
+	all = true
 
 [diff]
-  tool = nvimdiff
-	context = 12
+	tool = nvimdiff
+	context = 3
 
 [difftool "nvimdiff"]
-  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
 [merge]
-  tool = nvimdiff
+	tool = nvimdiff
+	conflictStyle = zdiff3
 
 [mergetool "nvimdiff"]
-  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\" -c 'wincmd J'"
-
-[merge]
-  conflictStyle = zdiff3
+	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\" -c 'wincmd J'"
 
 [interactive]
-  diffFilter = delta --color-only
+	diffFilter = delta --color-only
 
 [delta]
-  navigate = true
-  line-numbers = true
-  side-by-side = false
-  hyperlinks = true
-  blame-code-style = syntax
-
-[credential]
-	helper = store
+	navigate = true
+	line-numbers = true
+	side-by-side = false
+	hyperlinks = true
+	blame-code-style = syntax
 
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+
+[help]
+	autocorrect = prompt
+
+[rerere]
+	enabled = true
+	autoupdate = true
