@@ -6,8 +6,6 @@ This repository contains all my configurations. It’s meant as a reference for 
 
 These files reflect my workflow and personal taste. Browse through, grab ideas, and build your own setup ;)
 
-> I don’t have a full installation script because I hate the idea of blindly running something to replicate a setup from scratch. There is a symlink script to link some of the dotfiles, but it’s just for convenience — it won’t recreate the whole system.
-
 ## Setup
 
 - **OS:** [Arch Linux](https://archlinux.org/)
