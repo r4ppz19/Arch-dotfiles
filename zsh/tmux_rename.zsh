@@ -30,6 +30,7 @@ typeset -gA PROC_MAP=(
   tetro-tui TETRIS
   kew MUSIC
   cliamp MUSIC
+  music MUSIC
   sudo SUDO
   cargo CARGO
   gdu GDU

@@ -26,6 +26,7 @@ alias md='glow'
 alias pac='pacseek'
 alias copy='wl-copy'
 alias blue='bluetuith'
+alias music='cliamp'
 
 # services
 alias smbon='sudo systemctl start smb.service nmb.service && echo "Samba server started"'
