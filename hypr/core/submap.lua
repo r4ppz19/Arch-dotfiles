@@ -45,7 +45,7 @@ local websites = {
   ytmusic = "https://music.youtube.com",
   mappltv = "https://mappl.tv",
   classroom = "https://classroom.google.com",
-  archwiki = "https://wiki.archlinux.org",
+  arch = "https://archlinux.org",
   twitter = "https://x.com/",
   render = "https://dashboard.render.com",
   figma = "https://www.figma.com",
@@ -127,6 +127,7 @@ hl.define_submap("Applications", "reset", function()
   hl.bind("C", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.cloudflare))
   hl.bind("R", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.render))
   hl.bind("F", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.figma))
+  hl.bind("A", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.arch))
 
   -- App mode shortcuts
   hl.bind(var.mod .. " + G", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.github))
@@ -137,6 +138,7 @@ hl.define_submap("Applications", "reset", function()
   hl.bind(var.mod .. " + C", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.cloudflare))
   hl.bind(var.mod .. " + R", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.render))
   hl.bind(var.mod .. " + F", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.figma))
+  hl.bind(var.mod .. " + A", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.arch))
 
   hl.bind("catchall", hl.dsp.submap("reset"))
   hl.bind("escape", hl.dsp.submap("reset"))
@@ -169,7 +171,6 @@ hl.define_submap("Media", "reset", function()
   hl.bind("N", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.news))
   hl.bind("S", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.spotify))
   hl.bind("M", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.ytmusic))
-  hl.bind("W", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.archwiki))
   hl.bind("X", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.twitter))
 
   -- App mode shortcuts
@@ -180,7 +181,6 @@ hl.define_submap("Media", "reset", function()
   hl.bind(var.mod .. " + N", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.news))
   hl.bind(var.mod .. " + S", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.spotify))
   hl.bind(var.mod .. " + M", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.ytmusic))
-  hl.bind(var.mod .. " + W", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.archwiki))
   hl.bind(var.mod .. " + X", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.twitter))
 
   hl.bind("catchall", hl.dsp.submap("reset"))

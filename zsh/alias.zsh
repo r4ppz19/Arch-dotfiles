@@ -28,12 +28,6 @@ alias copy='wl-copy'
 alias blue='bluetuith'
 alias music='cliamp'
 
-# services
-alias smbon='sudo systemctl start smb.service nmb.service && echo "Samba server started"'
-alias smboff='sudo systemctl stop smb.service nmb.service && echo "Samba server stopped"'
-alias dockeron='sudo systemctl start docker.service docker.socket && echo "Docker started"'
-alias dockeroff='sudo systemctl stop docker.service docker.socket && echo "Docker stopped"'
-
 # script
 alias t="$DOTFILES/scripts/tmux-init.sh"
 alias of="$DOTFILES/scripts/open-file.sh"

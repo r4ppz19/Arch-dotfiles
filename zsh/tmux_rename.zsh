@@ -13,6 +13,8 @@ typeset -gA PROC_MAP=(
   op LLM
   ai LLM
   cline LLM
+  crush LLM
+  kilocode LLM
   top TASK
   ollama LLM
   news NEWS

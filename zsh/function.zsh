@@ -1,3 +1,43 @@
+smbon() {
+  sudo systemctl start smb.service nmb.service
+  if systemctl is-active --quiet smb.service && systemctl is-active --quiet nmb.service; then
+    echo "Samba services successfully started and active."
+  else
+    echo "Error: One or both Samba services failed to start." >&2
+    return 1
+  fi
+}
+
+smboff() {
+  sudo systemctl stop smb.service nmb.service
+  if ! systemctl is-active --quiet smb.service && ! systemctl is-active --quiet nmb.service; then
+    echo "Samba services stopped."
+  else
+    echo "Error: Failed to fully stop Samba services." >&2
+    return 1
+  fi
+}
+
+dockeron() {
+  sudo systemctl start docker.socket docker.service
+  if systemctl is-active --quiet docker.service; then
+    echo "Docker daemon is active."
+  else
+    echo "Error: Docker daemon failed to start." >&2
+    return 1
+  fi
+}
+
+dockeroff() {
+  sudo systemctl stop docker.service docker.socket
+  if ! systemctl is-active --quiet docker.service && ! systemctl is-active --quiet docker.socket; then
+    echo "Docker service and socket stopped."
+  else
+    echo "Error: Docker frames failed to terminate completely." >&2
+    return 1
+  fi
+}
+
 open_file() {
   "$DOTFILES/scripts/open-file.sh"
 }
