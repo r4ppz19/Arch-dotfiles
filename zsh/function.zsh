@@ -1,3 +1,16 @@
+ai() {
+  tgpt --quiet "$@" | glow --pager --preserve-new-lines
+}
+
+bgc() {
+  if [ $# -eq 0 ]; then
+    printf 'bgc: no command provided\n' >&2
+    return 2
+  fi
+
+  "$@" </dev/null >/dev/null 2>&1 &
+}
+
 smbon() {
   sudo systemctl start smb.service nmb.service
   if systemctl is-active --quiet smb.service && systemctl is-active --quiet nmb.service; then

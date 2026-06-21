@@ -21,7 +21,6 @@ alias news='clx -n --indent 4'
 alias restore="gtrash r"
 alias bm="bashmount"
 alias op='opencode'
-alias ai='opencode run'
 alias md='glow'
 alias pac='pacseek'
 alias copy='wl-copy'
