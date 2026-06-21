@@ -31,7 +31,9 @@ cliphist
 cloudflared
 composer
 cpio
+crush-bin
 ddcutil
+devtools
 dkms
 docker
 docker-buildx
@@ -49,7 +51,6 @@ etckeeper
 evtest
 exfatprogs
 eza
-f3
 fastfetch
 fd
 firefox
@@ -153,7 +154,6 @@ openbsd-netcat
 os-prober
 pacseek
 pandoc-cli
-partitionmanager
 perl-image-exiftool
 pipewire
 pipewire-alsa
@@ -237,6 +237,7 @@ xdg-utils
 xorg-server
 xorg-xinit
 xpadneo-dkms
+yarn
 yay
 yazi
 ydotool

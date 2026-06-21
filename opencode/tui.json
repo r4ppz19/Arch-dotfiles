@@ -37,12 +37,12 @@
 
     "messages_half_page_up": "ctrl+shift+up",
     "messages_half_page_down": "ctrl+shift+down",
-    "messages_line_up": "ctrl+alt+up",
-    "messages_line_down": "ctrl+alt+down",
+    "messages_line_up": "ctrl+up",
+    "messages_line_down": "ctrl+down",
 
     "messages_copy": "<leader>y",
-    "messages_next": "ctrl+alt+right",
-    "messages_previous": "ctrl+alt+left",
+    "messages_next": "ctrl+alt+down",
+    "messages_previous": "ctrl+alt+up",
     "messages_first": "ctrl+shift+alt+up",
     "messages_last": "ctrl+shift+alt+down",
 
