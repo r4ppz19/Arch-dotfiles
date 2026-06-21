@@ -4,7 +4,6 @@ local zoom = require("util.zoom")
 
 -- Application launching
 hl.bind(var.mod .. " + RETURN", hl.dsp.exec_cmd(var.terminal))
-hl.bind(var.mod .. " + D", hl.dsp.exec_cmd(var.launcher))
 hl.bind(var.mod .. " + T", hl.dsp.exec_cmd(var.terminal))
 hl.bind(var.mod .. " + L", hl.dsp.exec_cmd(var.lockscreen))
 hl.bind(var.mod .. " + N", hl.dsp.exec_cmd(var.notifpanel))

@@ -33,22 +33,34 @@ local websites = {
   reddit = "https://www.reddit.com",
   youtube = "https://www.youtube.com",
   facebook = "https://www.facebook.com/messages",
-  github = "https://github.com/r4ppz",
   drive = "https://drive.google.com/drive/my-drive",
   mail = "https://mail.google.com",
   getemoji = "https://getemoji.com",
   news = "https://news.ycombinator.com",
   monkeytype = "https://monkeytype.com",
-  cloudflare = "https://dash.cloudflare.com",
   spotify = "https://open.spotify.com",
-  devdocs = "https://devdocs.io",
   ytmusic = "https://music.youtube.com",
   mappltv = "https://mappl.tv",
   classroom = "https://classroom.google.com",
-  arch = "https://archlinux.org",
   twitter = "https://x.com/",
+  manga = "https://mangakatana.com",
+  wifi = "http://192.168.1.254",
+  olsis = "https://tsis.assumptiondavao.edu.ph",
+  medium = "https://medium.com",
+
+  codeberg = "https://codeberg.org/r4ppz",
+  github = "https://github.com/r4ppz",
+  devdocs = "https://devdocs.io",
+  arch = "https://archlinux.org",
   render = "https://dashboard.render.com",
   figma = "https://www.figma.com",
+  vercel = "https://vercel.com/r4ppz",
+  cloudflare = "https://dash.cloudflare.com",
+  w3school = "https://www.w3schools.com",
+  google_cloud = "https://console.cloud.google.com/apis",
+  react_aria = "https://react-aria.adobe.com/getting-started",
+  hl_wiki = "https://wiki.hypr.land",
+  qs_wiki = "https://quickshell.org/docs/v0.3.0/guide/introduction/",
 }
 
 -- ============================================================================
@@ -119,35 +131,82 @@ end)
 
 hl.define_submap("Applications", "reset", function()
   -- New Tap shortcuts
-  hl.bind("G", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.github))
   hl.bind("D", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.drive))
   hl.bind("M", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.mail))
   hl.bind("E", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.getemoji))
   hl.bind("T", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.monkeytype))
-  hl.bind("C", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.cloudflare))
-  hl.bind("R", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.render))
-  hl.bind("F", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.figma))
-  hl.bind("A", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.arch))
+  hl.bind("W", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.wifi))
 
   -- App mode shortcuts
-  hl.bind(var.mod .. " + G", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.github))
   hl.bind(var.mod .. " + D", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.drive))
   hl.bind(var.mod .. " + M", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.mail))
   hl.bind(var.mod .. " + E", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.getemoji))
   hl.bind(var.mod .. " + T", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.monkeytype))
-  hl.bind(var.mod .. " + C", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.cloudflare))
-  hl.bind(var.mod .. " + R", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.render))
-  hl.bind(var.mod .. " + F", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.figma))
-  hl.bind(var.mod .. " + A", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.arch))
+  hl.bind(var.mod .. " + W", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.wifi))
+
+  hl.bind(var.mod .. " + B", hl.dsp.exec_cmd(var.browser))
+
+  hl.bind(var.mod .. " + SPACE", hl.dsp.exec_cmd(var.launcher))
 
   hl.bind("catchall", hl.dsp.submap("reset"))
   hl.bind("escape", hl.dsp.submap("reset"))
 end)
 
 -- ============================================================================
--- MEDIA
+-- DEVTOOLS SUBMAP
 -- ============================================================================
+hl.bind(var.mod .. " + D", function()
+  hl.dispatch(hl.dsp.submap("Dev Tools"))
+  start_submap_timer()
 
+  if zen.is_zen() then
+    notify.send("Submap", "Developer Tools", {
+      timeout = 1000,
+      app_name = "Submap",
+      icon = "dialog-information",
+      transient = true,
+    })
+  end
+end)
+
+hl.define_submap("Dev Tools", "reset", function()
+  -- New Tap shortcuts
+  hl.bind("G", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.github))
+  hl.bind("C", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.cloudflare))
+  hl.bind("R", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.render))
+  hl.bind("F", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.figma))
+  hl.bind("A", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.arch))
+  hl.bind("V", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.vercel))
+  hl.bind("D", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.devdocs))
+  hl.bind("W", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.w3school))
+  hl.bind("O", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.google_cloud))
+  hl.bind("E", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.react_aria))
+  hl.bind("H", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.hl_wiki))
+  hl.bind("Q", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.qs_wiki))
+  hl.bind("B", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.codeberg))
+
+  -- App mode shortcuts
+  hl.bind(var.mod .. " + G", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.github))
+  hl.bind(var.mod .. " + C", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.cloudflare))
+  hl.bind(var.mod .. " + R", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.render))
+  hl.bind(var.mod .. " + F", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.figma))
+  hl.bind(var.mod .. " + A", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.arch))
+  hl.bind(var.mod .. " + V", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.vercel))
+  hl.bind(var.mod .. " + D", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.devdocs))
+  hl.bind(var.mod .. " + W", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.w3school))
+  hl.bind(var.mod .. " + O", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.google_cloud))
+  hl.bind(var.mod .. " + E", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.react_aria))
+  hl.bind(var.mod .. " + H", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.hl_wiki))
+  hl.bind(var.mod .. " + Q", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.qs_wiki))
+  hl.bind(var.mod .. " + B", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.codeberg))
+
+  hl.bind("catchall", hl.dsp.submap("reset"))
+  hl.bind("escape", hl.dsp.submap("reset"))
+end)
+
+-- ============================================================================
+-- MEDIA SUBMAP
+-- ============================================================================
 local submap_entry_timer = nil
 hl.bind(var.mod .. " + M", function()
   -- Cancel any pending entry
@@ -172,6 +231,9 @@ hl.define_submap("Media", "reset", function()
   hl.bind("S", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.spotify))
   hl.bind("M", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.ytmusic))
   hl.bind("X", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.twitter))
+  hl.bind("V", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.mappltv))
+  hl.bind("G", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.manga))
+  hl.bind("D", hl.dsp.exec_cmd(var.browser .. " --new-tab " .. websites.medium))
 
   -- App mode shortcuts
   hl.bind(var.mod .. " + A", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.annas_archive))
@@ -182,6 +244,9 @@ hl.define_submap("Media", "reset", function()
   hl.bind(var.mod .. " + S", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.spotify))
   hl.bind(var.mod .. " + M", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.ytmusic))
   hl.bind(var.mod .. " + X", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.twitter))
+  hl.bind(var.mod .. " + V", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.mappltv))
+  hl.bind(var.mod .. " + G", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.manga))
+  hl.bind(var.mod .. " + D", hl.dsp.exec_cmd(var.browser .. " --app=" .. websites.medium))
 
   hl.bind("catchall", hl.dsp.submap("reset"))
   hl.bind("escape", hl.dsp.submap("reset"))
@@ -207,6 +272,8 @@ end)
 hl.define_submap("School", "reset", function()
   hl.bind(var.mod .. " + C", hl.dsp.exec_cmd(var.school_browser .. " --app=" .. websites.classroom))
   hl.bind(var.mod .. " + M", hl.dsp.exec_cmd(var.school_browser .. " --app=" .. websites.mail))
+  hl.bind(var.mod .. " + O", hl.dsp.exec_cmd(var.school_browser .. " --app=" .. websites.olsis))
+  hl.bind(var.mod .. " + S", hl.dsp.exec_cmd(var.school_browser))
 
   hl.bind("catchall", hl.dsp.submap("reset"))
   hl.bind("escape", hl.dsp.submap("reset"))
@@ -265,7 +332,6 @@ hl.define_submap("resize", function()
   hl.bind("up", hl.dsp.window.resize({ x = 0, y = -20, relative = true }), { repeating = true })
   hl.bind("down", hl.dsp.window.resize({ x = 0, y = 20, relative = true }), { repeating = true })
 
-  hl.bind("catchall", hl.dsp.submap("reset"))
   hl.bind("escape", hl.dsp.submap("reset"))
 end)
 

@@ -1,38 +1,5 @@
 #!/usr/bin/env bash
 
-declare -A sites=(
-  [fb]="https://www.facebook.com/messages"
-  [gh]="https://github.com/r4ppz"
-  [ghg]="https://gist.github.com/r4ppz"
-  [cb]="https://codeberg.org/r4ppz"
-  [yt]="https://www.youtube.com"
-  [red]="https://www.reddit.com"
-  [pin]="https://www.pinterest.com"
-  [dev]="https://app.daily.dev"
-  [mail]="https://mail.google.com"
-  [movie]="https://movielair.cc"
-  [book]="https://annas-archive.is"
-  [music]="https://music.youtube.com"
-  [figma]="https://www.figma.com"
-  [olsis]="https://tsis.assumptiondavao.edu.ph"
-  [icon]="https://lucide.dev/icons"
-  [read]="https://medium.com"
-  [framer]="https://framer.com/projects"
-  [drive]="https://drive.google.com/drive/my-drive"
-  [docker]="https://hub.docker.com/repositories/r4ppzf"
-  [canva]="https://www.canva.com"
-  [speed]="https://www.speedtest.net"
-  [wifi]="http://192.168.1.254"
-  [disc]="https://discord.com/channels/@me"
-  [manga]="https://mangakatana.com"
-  [aria]="https://react-aria.adobe.com/getting-started"
-  [hlwiki]="https://wiki.hypr.land"
-  [qswiki]="https://quickshell.org/docs/v0.3.0/guide/introduction/"
-  [render]="https://dashboard.render.com/"
-  [gcp]="https://console.cloud.google.com/apis"
-  [x]="https://x.com/home"
-)
-
 search_engine="https://duckduckgo.com/?q="
 
 query=$(rofi -dmenu -theme "$HOME/.config/rofi/websearch/main.rasi")
@@ -42,8 +9,6 @@ query=$(rofi -dmenu -theme "$HOME/.config/rofi/websearch/main.rasi")
 # Trim leading and trailing whitespace
 query="${query#"${query%%[![:space:]]*}"}"
 query="${query%"${query##*[![:space:]]}"}"
-
-url=${sites[$query]}
 
 if [ -n "$url" ]; then
   xdg-open "$url"
