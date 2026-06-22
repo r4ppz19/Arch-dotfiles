@@ -27,16 +27,20 @@ CONFIG_LINKS=(
   pgcli
   fontconfig
   atuin
+  gtk-3.0
+  gtk-4.0
 )
-
-# If atuin failed, manual symlink:
-# rm -rf /home/r4ppz/.config/atuin && ln -sT /home/r4ppz/Arch-dotfiles/atuin /home/r4ppz/.config/atuin
 
 link_item() {
   local src="$1"
   local dest="$2"
   if [[ -e "$src" ]]; then
     echo "Linking $src to $dest"
+
+    if [[ -d "$dest" || -L "$dest" ]]; then
+      rm -rf "$dest"
+    fi
+
     ln -sfT "$src" "$dest"
   else
     echo "Skipping missing item: $src" >&2
