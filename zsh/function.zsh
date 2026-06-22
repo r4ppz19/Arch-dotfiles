@@ -65,7 +65,7 @@ rcopy() {
 
 rmirror() {
   if [[ $# -lt 2 ]]; then
-    echo "Usage: rcopy <source> <destination>"
+    echo "Usage: rmirror <source> <destination>"
     return 1
   fi
   rsync -avh --delete --info=progress2 --partial --inplace "$@"
