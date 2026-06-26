@@ -3,4 +3,4 @@ Aloxaf/fzf-tab
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
 zsh-users/zsh-syntax-highlighting
-paulirish/git-open
+r4ppz/git-open

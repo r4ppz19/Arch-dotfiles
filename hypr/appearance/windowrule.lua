@@ -105,3 +105,13 @@ hl.window_rule({
   match = { class = "Code" },
   fullscreen_state = 2,
 })
+
+-- Prevents screen idle/sleep
+hl.window_rule({
+  match = { initial_class = "brave-music.youtube.com__-Default" },
+  idle_inhibit = "always",
+})
+hl.window_rule({
+  match = { initial_class = "brave-www.youtube.com__-Default" },
+  idle_inhibit = "focus",
+})
