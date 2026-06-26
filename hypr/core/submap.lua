@@ -54,6 +54,7 @@ local websites = {
   react_aria = "https://react-aria.adobe.com/getting-started",
   hl_wiki = "https://wiki.hypr.land",
   qs_wiki = "https://quickshell.org/docs/v0.3.0/guide/introduction/",
+  zig = "https://ziglang.org/documentation/0.16.0/",
 }
 
 --- Starts or restarts a 2-second inactivity timer.
@@ -161,6 +162,7 @@ hl.define_submap("Dev Tools", "reset", function()
   bind_site(var.browser, "H", websites.hl_wiki)
   bind_site(var.browser, "Q", websites.qs_wiki)
   bind_site(var.browser, "B", websites.codeberg)
+  bind_site(var.browser, "Z", websites.zig)
 
   bind_exits()
 end)
@@ -197,11 +199,11 @@ hl.bind(var.mod .. " + S", function()
 end)
 
 hl.define_submap("School", "reset", function()
-  bind_site(var.school_browser, "C", websites.classroom)
-  bind_site(var.school_browser, "M", websites.mail)
-  bind_site(var.school_browser, "O", websites.olsis)
+  bind_site(var.browser_school, "C", websites.classroom)
+  bind_site(var.browser_school, "M", websites.mail)
+  bind_site(var.browser_school, "O", websites.olsis)
 
-  hl.bind(var.mod .. " + S", hl.dsp.exec_cmd(var.school_browser))
+  hl.bind(var.mod .. " + S", hl.dsp.exec_cmd(var.browser_school))
 
   bind_exits()
 end)

@@ -8,14 +8,14 @@ hl.bind(var.mod .. " + T", hl.dsp.exec_cmd(var.terminal))
 hl.bind(var.mod .. " + L", hl.dsp.exec_cmd(var.lockscreen))
 hl.bind(var.mod .. " + N", hl.dsp.exec_cmd(var.notifpanel))
 hl.bind(var.mod .. " + slash", hl.dsp.exec_cmd(var.websearch))
-hl.bind(var.mod .. " + V", hl.dsp.exec_cmd(var.gui_ide))
-hl.bind(var.mod .. " + E", hl.dsp.exec_cmd(var.gui_filemanager))
+hl.bind(var.mod .. " + V", hl.dsp.exec_cmd(var.ide_gui))
+hl.bind(var.mod .. " + E", hl.dsp.exec_cmd(var.filemanager_gui))
 hl.bind(var.mod .. " + P", hl.dsp.exec_cmd(var.passmanager))
 
 -- TUIs
-hl.bind(var.mod .. " + SHIFT + E", hl.dsp.exec_cmd(var.terminal .. " -e " .. var.tui_filemanager))
+hl.bind(var.mod .. " + SHIFT + E", hl.dsp.exec_cmd(var.terminal .. " -e " .. var.filemanager_tui))
 hl.bind(var.mod .. " + SHIFT + T", hl.dsp.exec_cmd(var.terminal .. " -e " .. var.taskmanager))
-hl.bind(var.mod .. " + SHIFT + N", hl.dsp.exec_cmd(var.terminal .. " -e " .. var.tui_ide))
+hl.bind(var.mod .. " + SHIFT + N", hl.dsp.exec_cmd(var.terminal .. " -e " .. var.ide_tui))
 
 local toggle_waybar = [[
     if systemctl --user is-active --quiet waybar.service; then
