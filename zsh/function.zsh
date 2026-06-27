@@ -149,7 +149,12 @@ _sshfs_execute() {
 
   if sshfs "${remote_host}:${remote_path}" "$mount" \
     -p "$port" \
-    -o reconnect,ConnectTimeout=5,ServerAliveInterval=15 \
+    -o reconnect \
+    -o ServerAliveInterval=15 \
+    -o max_conns=4 \
+    -o dir_cache=yes \
+    -o dcache_timeout=3600 \
+    -o dcache_max_size=10000 \
     "${extra_opts[@]}"; then
     echo "Successfully mounted at $mount"
   else
@@ -175,7 +180,8 @@ termuxmount() {
     return 1
   fi
   # Enforces the absolute path and port 8022 explicitly
-  _sshfs_execute "${1}" "${2:-/data/data/com.termux/files/home}" "${3:-$1}" "8022"
+  # _sshfs_execute "${1}" "${2:-/data/data/com.termux/files/home}" "${3:-$1}" "8022"
+  _sshfs_execute "${1}" "${2:-/storage/emulated/0}" "${3:-$1}" "8022"
 }
 
 # Encrypt a file or folder using AES-256 ZIP

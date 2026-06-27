@@ -45,6 +45,7 @@ typeset -gA DIR_MAP=(
   "/tmp" TEMP
   "/run/media" MOUNT
   "/mnt/SHARED" SHARED
+  "/mnt/SHARED/Music (Better)/" MUSIC
 
   "$HOME" HOME
   "$HOME/.config" DOTS
