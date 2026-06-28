@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 dir="$HOME/.config/rofi/launcher"
 theme='main'

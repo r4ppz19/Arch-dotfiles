@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -euo pipefail
 
 # Captures a full-screen screenshot and
@@ -30,7 +30,7 @@ mkdir -p "$SCREENSHOT_DIR"
 
 grim "$FILENAME"
 
-if [[ -s "$FILENAME" ]]; then
+if [[ -s $FILENAME ]]; then
   notify-send -h boolean:transient:true \
     "Screenshot Taken" \
     "Full screen saved to: $FILENAME" \

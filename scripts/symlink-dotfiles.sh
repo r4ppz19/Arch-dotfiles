@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -euo pipefail
 
 # Used for linking this dotfiles directory to the .config directory.
@@ -34,10 +34,10 @@ CONFIG_LINKS=(
 link_item() {
   local src="$1"
   local dest="$2"
-  if [[ -e "$src" ]]; then
+  if [[ -e $src ]]; then
     echo "Linking $src to $dest"
 
-    if [[ -d "$dest" || -L "$dest" ]]; then
+    if [[ -d $dest || -L $dest ]]; then
       rm -rf "$dest"
     fi
 

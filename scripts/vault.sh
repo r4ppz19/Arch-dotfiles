@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -euo pipefail
 
 CIPHER_DIR="$HOME/Vault"
@@ -9,13 +9,13 @@ lock_vault() {
     echo "Unmounting $MOUNT_POINT..."
     fusermount -u "$MOUNT_POINT"
 
-    if [ $? -eq 0 ]; then
+    if (($? == 0)); then
       rmdir "$MOUNT_POINT"
       echo "Vault locked and mount point removed."
     else
       fusermount -uz "$MOUNT_POINT"
       echo "Vault locked and mount point removed (lazy)."
-      if [ $? -eq 0 ]; then
+      if (($? == 0)); then
         echo "Error: Could not unmount. Is a file or terminal still open in the vault?"
       fi
       exit 1
@@ -26,7 +26,7 @@ lock_vault() {
 }
 
 unlock_vault() {
-  if [[ ! -d "$CIPHER_DIR" ]]; then
+  if [[ ! -d $CIPHER_DIR ]]; then
     echo "Error: Ciphertext directory $CIPHER_DIR does not exist."
     exit 1
   fi
@@ -36,7 +36,7 @@ unlock_vault() {
   echo "Unlocking $CIPHER_DIR..."
   gocryptfs "$CIPHER_DIR" "$MOUNT_POINT"
 
-  if [ $? -eq 0 ]; then
+  if (($? == 0)); then
     echo "Vault unlocked at $MOUNT_POINT"
   else
     rmdir "$MOUNT_POINT"

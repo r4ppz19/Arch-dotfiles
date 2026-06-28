@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Used for snippet frontend project
 # like React Aria zip file downloads
@@ -10,7 +10,7 @@
 # - Installs dependencies with pnpm
 # - Makes an initial commit
 
-if [ ! -d ".git" ]; then
+if [[ ! -d .git ]]; then
   git init
   echo "Initialized empty Git repository."
 else
@@ -67,7 +67,7 @@ echo ".gitignore created."
 rm -f package-lock.json yarn.lock
 echo "Legacy lockfiles removed."
 
-if [ -f "package.json" ]; then
+if [[ -f package.json ]]; then
   echo "Starting pnpm install..."
   pnpm install --shamefully-hoist
 else

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 if ! pgrep -x "obs" >/dev/null; then
   obs --minimize-to-tray &

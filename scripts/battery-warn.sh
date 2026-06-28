@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -euo pipefail
 
 # Monitors battery levels and sends notifications
@@ -28,9 +28,9 @@ send_notification() {
   local message="$3"
   local current_time=$(date +%s)
 
-  if [[ "$LAST_NOTIFICATION_LEVEL" == "$urgency" ]]; then
+  if [[ $LAST_NOTIFICATION_LEVEL == $urgency ]]; then
     local time_diff=$((current_time - LAST_NOTIFICATION_TIME))
-    if [[ $time_diff -lt $NOTIFICATION_COOLDOWN ]]; then
+    if ((time_diff < NOTIFICATION_COOLDOWN)); then
       return
     fi
   fi
@@ -47,7 +47,7 @@ get_battery_icon() {
   local level="$1"
   local status="$2"
 
-  if [[ "$status" == "Charging" ]]; then
+  if [[ $status == "Charging" ]]; then
     echo "󰂄"
   elif ((level >= 90)); then
     echo "󰁹"
@@ -71,18 +71,18 @@ get_battery_info() {
   local battery_dir=""
 
   for bat in "$bat_path"/BAT*; do
-    if [[ -d "$bat" ]]; then
+    if [[ -d $bat ]]; then
       battery_dir="$bat"
       break
     fi
   done
 
-  if [[ -z "$battery_dir" ]]; then
+  if [[ -z $battery_dir ]]; then
     log_message "ERROR: No battery found in $bat_path"
     exit 1
   fi
 
-  if [[ -r "$battery_dir/capacity" && -r "$battery_dir/status" ]]; then
+  if [[ -r $battery_dir/capacity && -r $battery_dir/status ]]; then
     battery_level=$(cat "$battery_dir/capacity")
     charging_status=$(cat "$battery_dir/status")
   else
@@ -98,7 +98,7 @@ main() {
     get_battery_info
     local battery_icon=$(get_battery_icon "$battery_level" "$charging_status")
 
-    if [[ "$charging_status" != "Charging" ]]; then
+    if [[ $charging_status != "Charging" ]]; then
       if ((battery_level <= VERY_CRITICAL_THRESHOLD)); then
         send_notification "critical" "󰂎 CRITICAL BATTERY" \
           "Battery at ${battery_level}%! System will shutdown soon. 󱐋 PLUG IN NOW!"

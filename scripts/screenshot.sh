@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -euo pipefail
 
 # Captures a user-selected screen region
@@ -30,7 +30,7 @@ mkdir -p "$SCREENSHOT_DIR"
 
 # Prompt user for region
 REGION="$(slurp)"
-if [[ -z "$REGION" ]]; then
+if [[ -z $REGION ]]; then
   notify-send -h boolean:transient:true \
     "Screenshot Canceled" \
     "No region selected." \
@@ -44,7 +44,7 @@ sleep 0.2
 
 grim -g "$REGION" "$FILENAME"
 
-if [[ -s "$FILENAME" ]]; then
+if [[ -s $FILENAME ]]; then
   notify-send -h boolean:transient:true \
     "Screenshot Taken" \
     "Saved to: $FILENAME\nRegion: $REGION" \

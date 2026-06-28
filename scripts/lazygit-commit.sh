@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Integrates Lazygit with Neovim
 # for seamless commit workflows.

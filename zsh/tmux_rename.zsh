@@ -92,7 +92,7 @@ typeset -gA DIR_MAP_UNIQUE=(
 
 # Helpers
 _tmux_is_renamable() {
-  [[ -z "$TMUX" || -n "$NVIM" ]] && return 1
+  [[ -z $TMUX || -n $NVIM ]] && return 1
 
   local tmux_state
   tmux_state=$(tmux display-message -p '#{window_panes}|#{@tmux_rename_locked}' 2>/dev/null)
@@ -100,8 +100,8 @@ _tmux_is_renamable() {
   local pane_count="${tmux_state%%|*}"
   local lock_value="${tmux_state##*|}"
 
-  [[ "$lock_value" == (1|on) ]] && return 1
-  [[ "$pane_count" -gt 1 ]] && return 1
+  [[ $lock_value == (1|on) ]] && return 1
+  ((pane_count > 1)) && return 1
 
   return 0
 }
@@ -114,10 +114,10 @@ _tmux_label_available() {
   local -a all_windows=("$@")
 
   # Already named this label — no conflict
-  [[ "$label" == "$current_window" ]] && return 0
+  [[ $label == $current_window ]] && return 0
 
   for window_name in "${all_windows[@]}"; do
-    [[ "$window_name" == "$label" ]] && return 1
+    [[ $window_name == $label ]] && return 1
   done
   return 0
 }
@@ -129,22 +129,22 @@ _tmux_rename_preexec() {
   local -a cmd_args=(${(z)1})
   local cmd="${cmd_args[1]##*/}"
 
-  [[ -z "$cmd" || "$cmd" == (zsh|bash|sh) ]] && return 0
+  [[ -z $cmd || $cmd == (zsh|bash|sh) ]] && return 0
 
   local name="${PROC_MAP[$cmd]}"
-  [[ -n "$name" ]] && tmux rename-window -t "$TMUX_PANE" "$name" 2>/dev/null
+  [[ -n $name ]] && tmux rename-window -t "$TMUX_PANE" "$name" 2>/dev/null
 }
 
 _tmux_rename_precmd() {
   _tmux_is_renamable || return 0
 
   local clean_pwd="${PWD%/}"
-  [[ -z "$clean_pwd" ]] && clean_pwd="/"
+  [[ -z $clean_pwd ]] && clean_pwd="/"
 
   local target_name="CMD"
   local unique_candidate="${DIR_MAP_UNIQUE[$clean_pwd]}"
 
-  if [[ -n "$unique_candidate" ]]; then
+  if [[ -n $unique_candidate ]]; then
     local tmux_data
     tmux_data=$(tmux display-message -p '#{window_name}' \; list-windows -F '#{window_name}' 2>/dev/null)
 

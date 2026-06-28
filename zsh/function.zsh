@@ -3,7 +3,7 @@ ai() {
 }
 
 bgc() {
-  if [ $# -eq 0 ]; then
+  if (($# == 0)); then
     printf 'bgc: no command provided\n' >&2
     return 2
   fi
@@ -56,7 +56,7 @@ open_file() {
 }
 
 rcopy() {
-  if [[ $# -lt 2 ]]; then
+  if (($# < 2)); then
     echo "Usage: rcopy <source> <destination>"
     return 1
   fi
@@ -64,7 +64,7 @@ rcopy() {
 }
 
 rmirror() {
-  if [[ $# -lt 2 ]]; then
+  if (($# < 2)); then
     echo "Usage: rmirror <source> <destination>"
     return 1
   fi
@@ -76,7 +76,7 @@ sshumount() {
   local mount_base="${HOME}/Mount"
   local mount="${mount_base}/${mount_name}"
 
-  if [[ -z "$mount_name" ]]; then
+  if [[ -z $mount_name ]]; then
     echo "Usage: sshumount <mount_name>"
     echo "Example: sshumount phone"
     return 1
@@ -84,7 +84,7 @@ sshumount() {
 
   # Helper logic to clean up empty directories safely
   _clean_dir() {
-    [[ -d "$1" ]] && rmdir "$1" 2>/dev/null
+    [[ -d $1 ]] && rmdir "$1" 2>/dev/null
   }
 
   if mountpoint -q "$mount"; then
@@ -98,7 +98,7 @@ sshumount() {
     fi
 
     # Check execution status
-    if [[ $? -eq 0 ]]; then
+    if (($? == 0)); then
       echo "Successfully unmounted."
       _clean_dir "$mount"
       _clean_dir "$mount_base"
@@ -130,8 +130,8 @@ _sshfs_execute() {
   local mount="${mount_base}/${mount_name}"
   local extra_opts=()
 
-  [[ -d "$mount_base" ]] || mkdir -p "$mount_base"
-  [[ -d "$mount" ]] || mkdir -p "$mount"
+  [[ -d $mount_base ]] || mkdir -p "$mount_base"
+  [[ -d $mount ]] || mkdir -p "$mount"
 
   if mountpoint -q "$mount"; then
     echo "Target '$mount' is already a mountpoint."
@@ -166,7 +166,7 @@ _sshfs_execute() {
 
 # For standard Linux/macOS machines (Port 22, Default Root Path)
 sshmount() {
-  if [[ -z "$1" ]]; then
+  if [[ -z $1 ]]; then
     echo "Usage: sshmount <ssh_alias/ip> [remote_path] [local_name]"
     return 1
   fi
@@ -175,7 +175,7 @@ sshmount() {
 
 # For Termux environments (Port 8022, Strict Sandbox Path)
 termuxmount() {
-  if [[ -z "$1" ]]; then
+  if [[ -z $1 ]]; then
     echo "Usage: termuxmount <ssh_alias/ip> [remote_path] [local_name]"
     return 1
   fi
@@ -186,7 +186,7 @@ termuxmount() {
 
 # Encrypt a file or folder using AES-256 ZIP
 ezip() {
-  if [[ -z "$1" ]]; then
+  if [[ -z $1 ]]; then
     echo "Usage: ezip <input_file_or_dir>"
     return 1
   fi
@@ -207,7 +207,7 @@ fslabel() {
   local name=$2
 
   # Check if device exists
-  if [ ! -b "$dev" ]; then
+  if [[ ! -b $dev ]]; then
     echo "Error: $dev is not a valid block device."
     return 1
   fi
@@ -244,7 +244,7 @@ fslabel() {
 f() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
   yazi "$@" --cwd-file="$tmp"
-  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+  if cwd="$(command cat -- "$tmp")" && [[ -n $cwd && $cwd != $PWD ]]; then
     builtin cd -- "$cwd"
   fi
   rm -f -- "$tmp"
@@ -252,14 +252,14 @@ f() {
 y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
   yazi "$@" --cwd-file="$tmp"
-  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+  if cwd="$(command cat -- "$tmp")" && [[ -n $cwd && $cwd != $PWD ]]; then
     builtin cd -- "$cwd"
   fi
   rm -f -- "$tmp"
 }
 
 extract() {
-  if [ -f "$1" ]; then
+  if [[ -f $1 ]]; then
     case "$1" in
     *.tar.bz2) tar xjf "$1" ;;
     *.tar.gz) tar xzf "$1" ;;
@@ -285,7 +285,7 @@ extract() {
 }
 
 compress() {
-  if [ $# -lt 2 ]; then
+  if (($# < 2)); then
     echo "Usage: compress <archive_name> <file_or_dir> [file_or_dir...]"
     return 1
   fi

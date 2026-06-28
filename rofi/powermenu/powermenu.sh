@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Directories & Theme
 dir="$HOME/.config/rofi/powermenu"
@@ -46,7 +46,7 @@ run_rofi() {
 # Execute Commands
 run_cmd() {
   selected="$(confirm_exit)"
-  if [[ "$selected" == "$yes" ]]; then
+  if [[ $selected == "$yes" ]]; then
     case "$1" in
     '--shutdown') systemctl poweroff ;;
     '--reboot') systemctl reboot ;;

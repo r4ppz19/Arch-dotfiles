@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -euo pipefail
 
 # Download YouTube audio (music) in the highest quality.
@@ -15,7 +15,7 @@ OUTPUT_TEMPLATE='%(artist,uploader)s - %(title)s.%(ext)s'
 # OUTPUT_TEMPLATE='%(title)s.%(ext)s'
 # OUTPUT_TEMPLATE='%(uploader)s - %(title)s.%(ext)s'
 
-if [ "$#" -lt 1 ]; then
+if (($# < 1)); then
   echo "Usage: $0 URL [URL...]"
   exit 2
 fi

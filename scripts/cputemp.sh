@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Fetches CPU temperature and categorizes it
 # into critical, warning, or normal levels.
@@ -8,13 +8,13 @@
 
 TEMP=$(sensors 2>/dev/null | awk '/^Package id 0:/ {gsub(/\+|°C/,"",$4); print int($4); exit}')
 
-if [ -z "$TEMP" ]; then
+if [[ -z $TEMP ]]; then
   TEMP=0
 fi
 
-if [ "$TEMP" -ge 80 ]; then
+if ((TEMP >= 80)); then
   CLASS="critical"
-elif [ "$TEMP" -ge 70 ]; then
+elif ((TEMP >= 70)); then
   CLASS="warning"
 else
   CLASS="normal"

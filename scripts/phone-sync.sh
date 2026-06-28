@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -euo pipefail
 
 SOURCE_BASE="/mnt/SHARED"
@@ -7,7 +7,7 @@ FOLDERS=("School" "Books" "Music" "pass")
 PHONE_MOUNT="$HOME/Phone"
 REMOTE="phone:/storage/emulated/0"
 
-[ -d "$PHONE_MOUNT" ] || mkdir -p "$PHONE_MOUNT"
+[[ -d $PHONE_MOUNT ]] || mkdir -p "$PHONE_MOUNT"
 
 printf "Mounting phone\n"
 if ! mountpoint -q "$PHONE_MOUNT"; then

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -euo pipefail
 
 # Captures a screen region, processes the
@@ -33,7 +33,7 @@ done
 
 # Prompt user for region
 REGION="$(slurp)"
-if [[ -z "$REGION" ]]; then
+if [[ -z $REGION ]]; then
   notify-send -h boolean:transient:true \
     "OCR failed" \
     "No region selected.." \
@@ -74,7 +74,7 @@ TEXT="$(tesseract "$PROCESSED" - -l eng --psm 6 --oem 1)" || {
   exit 1
 }
 
-if [[ -z "$TEXT" ]]; then
+if [[ -z $TEXT ]]; then
   notify-send -h boolean:transient:true \
     "OCR failed" \
     "No text detected in the image." \

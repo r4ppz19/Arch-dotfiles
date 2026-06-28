@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 SERVICE="$1"
 
 # Continuously streams logs for a
