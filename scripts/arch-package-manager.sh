@@ -5,11 +5,10 @@ if ! command -v gum &>/dev/null; then
   exit 1
 fi
 
-: "${EDITOR:=code}"
+: "${EDITOR:=vi}"
 
 # Gruvbox color palette
 GB_DARK0="#282828"
-GB_DARK1="#504945"
 GB_FG_WHITE="#ebdbb2"
 GB_FG_YELLOW="#fabd2f"
 GB_FG_BLUE="#83a598"
@@ -17,7 +16,7 @@ GB_FG_RED="#fb4934"
 GB_FG_AQUA="#8ec07c"
 
 log_header() {
-  gum style --border normal --border-foreground "$GB_FG_BLUE" --padding "0 2" --margin "1 0" --bold -- "$1"
+  gum style --border normal --border-foreground "$GB_FG_BLUE" --padding "0 2" --margin "0 0 1 0" --bold -- "$1"
 }
 
 log_info() {
@@ -37,7 +36,7 @@ log_error() {
 }
 
 print_usage() {
-  gum style --foreground "$GB_FG_BLUE" -- "Usage: $0 <install|remove|pkgbuild> <package...>"
+  gum style --foreground "$GB_FG_BLUE" -- "Usage: $0 <install|remove|pkgbuild|upgrade|clean> <package...>"
 }
 
 gum_confirm() {
@@ -64,8 +63,45 @@ print_summary() {
 
   ((${#arr[@]} == 0)) && return
 
-  local joined="${arr[*]}"
-  gum style --foreground "$color" -- "$label (${#arr[@]}): $joined"
+  gum style --foreground "$color" -- "$label (${#arr[@]}):"
+  for item in "${arr[@]}"; do
+    gum style --foreground "$color" -- "  - $item"
+  done
+}
+
+open_editor() {
+  local file=$1
+  if [[ $EDITOR == *code* || $EDITOR == *codium* ]]; then
+    $EDITOR --wait "$file"
+  else
+    $EDITOR "$file"
+  fi
+}
+
+_pkg_installed() {
+  pacman -Qq "$1" &>/dev/null
+}
+
+_pkg_exists() {
+  pacman -Si "$1" &>/dev/null || yay -Si "$1" &>/dev/null
+}
+
+view_pkgbuild() {
+  local pkg=$1
+  local tmp_file
+  tmp_file=$(mktemp -t pkgbuild-XXXXXX.sh)
+
+  if gum_spin --spinner line --title "Fetching PKGBUILD for $pkg..." -- sh -c "yay -Gp '$pkg' > '$tmp_file'"; then
+    if [[ -s $tmp_file ]]; then
+      open_editor "$tmp_file"
+    else
+      log_error "Could not retrieve a valid PKGBUILD for '$pkg'."
+    fi
+  else
+    log_error "Fetch transaction failed for '$pkg'."
+  fi
+
+  rm -f "$tmp_file"
 }
 
 # =============================================================================
@@ -75,110 +111,88 @@ print_summary() {
 do_install() {
   local not_found_pkgs=()
   local installed_pkgs=()
+  local reinstalled_pkgs=()
   local skipped_pkgs=()
   local error_pkgs=()
 
-  if (($# > 1)); then
-    log_header "Checking packages..."
-
-    local valid_pkgs=()
-    for pkg in "$@"; do
-      if gum_spin --spinner dot --title "Checking $pkg..." -- pacman -Si "$pkg" &>/dev/null; then
-        log_success "[Official] $pkg"
-        pacman -Si "$pkg"
-        valid_pkgs+=("$pkg")
-      elif gum_spin --spinner dot --title "Checking $pkg in AUR..." -- yay -Si "$pkg" &>/dev/null; then
-        log_info "[AUR] $pkg"
-        yay -Si "$pkg"
-        valid_pkgs+=("$pkg")
-      else
-        log_error "Package '$pkg' not found in repos or AUR."
-        not_found_pkgs+=("$pkg")
-      fi
-      echo ""
-    done
-
-    if ((${#valid_pkgs[@]} == 0)); then
-      log_error "No valid packages to install."
-      return 1
-    fi
-
-    if ! gum_confirm "Install ${#valid_pkgs[@]} package(s)?"; then
-      log_warn "Aborted."
-      return 1
-    fi
-
-    set -- "${valid_pkgs[@]}"
-  fi
-
   for pkg in "$@"; do
+    local source
+
+    if ! _pkg_exists "$pkg"; then
+      log_error "Package '$pkg' not found in repos or AUR."
+      not_found_pkgs+=("$pkg")
+      echo ""
+      continue
+    fi
+
     if pacman -Si "$pkg" &>/dev/null; then
-      log_header "Install [Official] $pkg"
+      log_header "Package information for $pkg"
+      pacman -Si "$pkg"
+      source="official"
+    else
+      log_header "Package information for $pkg"
+      yay -Si "$pkg"
+      source="aur"
+    fi
+    echo ""
 
-      if (($# == 1)); then
-        pacman -Si "$pkg"
-      fi
+    local reinstall=false
+    _pkg_installed "$pkg" && reinstall=true
 
-      if pacman -Qq "$pkg" &>/dev/null; then
-        if ! gum_confirm "Reinstall '$pkg'?"; then
-          log_warn "Skipped: $pkg"
-          skipped_pkgs+=("$pkg")
-          continue
-        fi
-      else
-        if ! gum_confirm "Install '$pkg'?"; then
-          log_warn "Skipped: $pkg"
-          skipped_pkgs+=("$pkg")
-          continue
-        fi
-      fi
+    local prompt="Install '$pkg'?"
+    $reinstall && prompt="Reinstall '$pkg'?"
 
+    if ! gum_confirm "$prompt"; then
+      log_warn "Skipped: $pkg"
+      skipped_pkgs+=("$pkg")
+      continue
+    fi
+
+    if $reinstall; then
+      log_header "Reinstalling: $pkg"
+    else
+      log_header "Installing: $pkg"
+    fi
+
+    local ok=false
+
+    if [[ $source == "official" ]]; then
       if sudo pacman -S --noconfirm "$pkg"; then
-        installed_pkgs+=("$pkg")
+        ok=true
       else
         log_error "Failed to install '$pkg'."
         log_info "Hint: check the error above — may be a conflict or missing dependency"
         error_pkgs+=("$pkg")
       fi
-    elif yay -Si "$pkg" &>/dev/null; then
-      log_header "Install [AUR] $pkg"
-
-      if (($# == 1)); then
-        yay -Si "$pkg"
-      fi
-
-      if yay -Qq "$pkg" &>/dev/null; then
-        if ! gum_confirm "Reinstall '$pkg'?"; then
-          log_warn "Skipped: $pkg"
-          skipped_pkgs+=("$pkg")
-          continue
-        fi
-      else
-        if ! gum_confirm "Install '$pkg'?"; then
-          log_warn "Skipped: $pkg"
-          skipped_pkgs+=("$pkg")
-          continue
-        fi
-      fi
+    else
+      local view_opts=()
+      local view_prompt="View PKGBUILD before installing '$pkg'?"
+      $reinstall && view_opts+=(--default=false) && view_prompt="View PKGBUILD before reinstalling '$pkg'?"
+      gum_confirm "${view_opts[@]}" "$view_prompt" && view_pkgbuild "$pkg"
 
       if yay -S --answerclean "None" --answerdiff "None" --noconfirm "$pkg"; then
-        installed_pkgs+=("$pkg")
+        ok=true
       else
         log_error "Failed to install '$pkg'."
         log_info "Hint: AUR builds can fail due to missing deps or PKGBUILD errors — check output above"
         error_pkgs+=("$pkg")
       fi
-    else
-      if (($# == 1)); then
-        log_error "Package '$pkg' could not be found via pacman or yay."
-      fi
-      not_found_pkgs+=("$pkg")
     fi
+
+    if $ok; then
+      if $reinstall; then
+        reinstalled_pkgs+=("$pkg")
+      else
+        installed_pkgs+=("$pkg")
+      fi
+    fi
+    echo ""
   done
 
-  if ((${#installed_pkgs[@]} > 0)); then
+  if ((${#installed_pkgs[@]} > 0 || ${#reinstalled_pkgs[@]} > 0)); then
     log_header "Install Summary"
     print_summary installed_pkgs "Installed" "$GB_FG_AQUA"
+    print_summary reinstalled_pkgs "Reinstalled" "$GB_FG_AQUA"
     print_summary skipped_pkgs "Skipped" "$GB_FG_YELLOW"
     print_summary not_found_pkgs "Not found" "$GB_FG_RED"
     print_summary error_pkgs "Failed" "$GB_FG_RED"
@@ -194,82 +208,53 @@ do_remove() {
   local skipped_pkgs=()
   local error_pkgs=()
 
-  if (($# > 1)); then
-    log_header "Checking packages..."
-
-    local valid_pkgs=()
-    for pkg in "$@"; do
-      if pacman -Qq "$pkg" &>/dev/null; then
-        log_success "[Official] $pkg"
-        pacman -Si "$pkg" 2>/dev/null || pacman -Qi "$pkg"
-        valid_pkgs+=("$pkg")
-      elif yay -Qq "$pkg" &>/dev/null; then
-        log_info "[AUR] $pkg"
-        yay -Si "$pkg" 2>/dev/null || yay -Qi "$pkg"
-        valid_pkgs+=("$pkg")
-      else
-        log_error "Package '$pkg' is not currently installed."
-        not_installed_pkgs+=("$pkg")
-      fi
-      echo ""
-    done
-
-    if ((${#valid_pkgs[@]} == 0)); then
-      log_error "No installed packages to remove."
-      return 1
-    fi
-
-    if ! gum_confirm "Remove ${#valid_pkgs[@]} package(s)?"; then
-      log_warn "Aborted."
-      return 1
-    fi
-
-    set -- "${valid_pkgs[@]}"
-  fi
-
   for pkg in "$@"; do
-    if pacman -Qq "$pkg" &>/dev/null; then
-      if (($# == 1)); then
-        log_header "Remove: $pkg"
-        pacman -Si "$pkg" 2>/dev/null || pacman -Qi "$pkg"
-      fi
+    local real_pkg source
 
-      if gum_confirm "Remove '$pkg'?"; then
-        if sudo pacman -R --noconfirm "$pkg"; then
-          removed_pkgs+=("$pkg")
-        else
-          log_error "Failed to remove '$pkg'."
-          log_info "Hint: use 'sudo pacman -Rdd $pkg' to force remove (may break dependencies)"
-          error_pkgs+=("$pkg")
-        fi
-      else
-        log_warn "Skipped: $pkg"
-        skipped_pkgs+=("$pkg")
-      fi
-    elif yay -Qq "$pkg" &>/dev/null; then
-      if (($# == 1)); then
-        log_header "Remove (AUR): $pkg"
-        yay -Si "$pkg" 2>/dev/null || yay -Qi "$pkg"
-      fi
+    real_pkg=$(pacman -Qq "$pkg" 2>/dev/null) || {
+      log_error "Package '$pkg' is not currently installed."
+      not_installed_pkgs+=("$pkg")
+      echo ""
+      continue
+    }
 
-      if gum_confirm "Remove '$pkg'?"; then
-        if yay -R --noconfirm "$pkg"; then
-          removed_pkgs+=("$pkg")
-        else
-          log_error "Failed to remove '$pkg'."
-          log_info "  Hint: use 'yay -Rdd $pkg' to force remove (may break dependencies)"
-          error_pkgs+=("$pkg")
-        fi
+    if pacman -Qn "$real_pkg" &>/dev/null; then
+      log_header "Package information for $pkg"
+      pacman -Si "$real_pkg" 2>/dev/null || pacman -Qi "$real_pkg"
+      source="native"
+    else
+      log_header "Package information for $pkg"
+      yay -Si "$real_pkg" 2>/dev/null || yay -Qi "$real_pkg"
+      source="foreign"
+    fi
+    echo ""
+
+    if ! gum_confirm "Remove '$real_pkg'?"; then
+      log_warn "Skipped: $pkg"
+      skipped_pkgs+=("$pkg")
+      continue
+    fi
+
+    log_header "Removing: $real_pkg"
+
+    if [[ $source == "native" ]]; then
+      if sudo pacman -R --noconfirm "$real_pkg"; then
+        removed_pkgs+=("$pkg")
       else
-        log_warn "Skipped: $pkg"
-        skipped_pkgs+=("$pkg")
+        log_error "Failed to remove '$real_pkg'."
+        log_info "Hint: use 'sudo pacman -Rdd $real_pkg' to force remove (may break dependencies)"
+        error_pkgs+=("$pkg")
       fi
     else
-      if (($# == 1)); then
-        log_error "Package '$pkg' is not currently installed."
+      if yay -R --noconfirm "$real_pkg"; then
+        removed_pkgs+=("$pkg")
+      else
+        log_error "Failed to remove '$real_pkg'."
+        log_info "Hint: use 'yay -Rdd $real_pkg' to force remove (may break dependencies)"
+        error_pkgs+=("$pkg")
       fi
-      not_installed_pkgs+=("$pkg")
     fi
+    echo ""
   done
 
   if ((${#removed_pkgs[@]} > 0)); then
@@ -290,14 +275,13 @@ do_pkgbuild() {
   local failed_pkgs=()
 
   for pkg in "$@"; do
-    if pacman -Si "$pkg" &>/dev/null || yay -Si "$pkg" &>/dev/null; then
+    if _pkg_exists "$pkg"; then
       local tmp_file
       tmp_file=$(mktemp -t pkgbuild-XXXXXX.sh)
-      trap 'rm -f "$tmp_file"' EXIT
 
       if gum_spin --spinner line --title "Fetching PKGBUILD for $pkg..." -- sh -c "yay -Gp '$pkg' > '$tmp_file'"; then
         if [[ -s $tmp_file ]]; then
-          $EDITOR "$tmp_file"
+          open_editor "$tmp_file"
           viewed_pkgs+=("$pkg")
         else
           log_error "Could not retrieve a valid PKGBUILD for '$pkg'."
@@ -309,7 +293,6 @@ do_pkgbuild() {
       fi
 
       rm -f "$tmp_file"
-      trap - EXIT
     else
       log_error "Package '$pkg' could not be found."
       not_found_pkgs+=("$pkg")
@@ -327,6 +310,19 @@ do_pkgbuild() {
   fi
 }
 
+do_upgrade() {
+  log_header "Upgrading system..."
+  echo ""
+  if yay -Syu --editmenu --diffmenu; then
+    echo ""
+    log_success "System upgraded."
+  else
+    echo ""
+    log_warn "Upgrade aborted or failed."
+    return 1
+  fi
+}
+
 do_clean() {
   if ! gum_confirm "Clean ALL package cache?"; then
     log_warn "Aborted."
@@ -336,7 +332,6 @@ do_clean() {
   log_header "Cleaning cache..."
   yes | yay -Scc
   yes | sudo pacman -Scc
-  sudo rm -rf /var/cache/pacman/pkg/download-*
 
   log_success "Cache cleaned."
 }
@@ -347,13 +342,6 @@ do_clean() {
 
 interactive_submenu() {
   local action=$1
-  local sc
-
-  case $action in
-  install) sc="install" ;;
-  remove) sc="remove" ;;
-  pkgbuild) sc="pkgbuild" ;;
-  esac
 
   while true; do
     clear
@@ -376,15 +364,14 @@ interactive_submenu() {
     packages=($raw_pkgs)
     set +f
 
-    case $sc in
+    case $action in
     install) do_install "${packages[@]}" ;;
     remove) do_remove "${packages[@]}" ;;
     pkgbuild) do_pkgbuild "${packages[@]}" ;;
     esac
 
-    if ! gum_confirm --affirmative "Try Again" --negative "Back to menu" ""; then
-      return
-    fi
+    echo ""
+    read -n1 -p "Press any key to continue..."
   done
 }
 
@@ -402,6 +389,7 @@ interactive_mode() {
       --header.foreground "$GB_FG_BLUE" \
       "Install Packages" \
       "Remove Packages" \
+      "Upgrade System" \
       "View PKGBUILD" \
       "Clean Cache" \
       "Exit")
@@ -412,7 +400,16 @@ interactive_mode() {
     "Install Packages") interactive_submenu "install" ;;
     "Remove Packages") interactive_submenu "remove" ;;
     "View PKGBUILD") interactive_submenu "pkgbuild" ;;
-    "Clean Cache") do_clean ;;
+    "Upgrade System")
+      do_upgrade
+      echo ""
+      read -n1 -p "Press any key to continue..."
+      ;;
+    "Clean Cache")
+      do_clean
+      echo ""
+      read -n1 -p "Press any key to continue..."
+      ;;
     esac
   done
 }
@@ -424,17 +421,25 @@ interactive_mode() {
 if (($# == 0)); then
   interactive_mode
   exit 0
-elif (($# == 1)); then
-  print_usage
-  exit 1
 fi
 
 subcommand=$1
 shift
 
+case $subcommand in
+upgrade | u | clean | c) ;;
+*)
+  if (($# == 0)); then
+    print_usage
+    exit 1
+  fi
+  ;;
+esac
+
 cleaned=()
 for pkg in "$@"; do
-  cleaned+=("${pkg//,/}")
+  IFS=',' read -ra parts <<<"$pkg"
+  cleaned+=("${parts[@]}")
 done
 set -- "${cleaned[@]}"
 
@@ -446,6 +451,7 @@ case $subcommand in
 install | i) do_install "$@" ;;
 remove | r) do_remove "$@" ;;
 pkgbuild | b) do_pkgbuild "$@" ;;
+upgrade | u) do_upgrade ;;
 clean | c) do_clean ;;
 *)
   log_error "Unknown subcommand '$subcommand'"
