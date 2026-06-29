@@ -33,6 +33,7 @@ composer
 cpio
 crush-bin
 ddcutil
+delve
 devtools
 dkms
 docker
@@ -45,6 +46,7 @@ duf
 dust
 ebook-tools
 efibootmgr
+elephant
 epr-git
 epy-ereader-git
 etckeeper
@@ -69,6 +71,7 @@ glow
 gnome-keyring
 go
 gocryptfs
+golangci-lint-bin
 google-java-format
 gptfdisk
 grim
@@ -79,6 +82,7 @@ gtrash
 gum
 gvfs
 gvfs-mtp
+helium-browser-bin
 htop
 hugo
 hypridle
@@ -159,6 +163,7 @@ pipewire
 pipewire-alsa
 pipewire-jack
 pipewire-pulse
+podman
 polkit-kde-agent
 postgresql
 python-mutagen
@@ -211,6 +216,7 @@ ttf-jetbrains-mono-nerd
 ttf-ms-win11-auto
 ttf-roboto
 ttf-roboto-mono-nerd
+typora
 udiskie
 ufw
 unixodbc
@@ -221,6 +227,7 @@ visual-studio-code-bin
 vlc
 vulkan-intel
 vulkan-tools
+walker
 waybar-git
 webkit2gtk-4.1
 wev
@@ -228,6 +235,7 @@ wget
 wireless_tools
 wireplumber
 wireshark-cli
+witr-bin
 wl-clip-persist
 wl-clipboard
 xarchiver
