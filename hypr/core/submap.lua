@@ -18,6 +18,7 @@ local websites = {
   huggingface = "https://huggingface.co/chat",
   duckduckgo = "https://duck.ai/chat",
   mistral = "https://chat.mistral.ai/incognito",
+  meta = "https://www.meta.ai",
 
   drive = "https://drive.google.com/drive/my-drive",
   mail = "https://mail.google.com",
@@ -117,6 +118,7 @@ hl.define_submap("AI Slop", "reset", function()
   bind_site(var.browser, "O", websites.duckduckgo)
   bind_site(var.browser, "M", websites.mistral)
   bind_site(var.browser, "A", websites.claude)
+  bind_site(var.browser, "T", websites.meta)
 
   bind_exits()
 end)

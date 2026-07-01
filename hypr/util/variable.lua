@@ -4,8 +4,8 @@ M.mod = "SUPER"
 
 -- Programs
 M.terminal = "kitty"
-M.browser = "helium-browser"
-M.browser_school = "chromium"
+M.browser = "brave-origin-nightly"
+M.browser_school = "helium-browser"
 M.filemanager_gui = "thunar"
 M.filemanager_tui = "yazi"
 M.lockscreen = "hyprlock"
