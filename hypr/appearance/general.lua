@@ -94,6 +94,9 @@ hl.config({
 
     enable_anr_dialog = true,
 
+    enable_swallow = true,
+    swallow_regex = "kitty",
+
     vrr = 1,
   },
 })
