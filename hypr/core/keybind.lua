@@ -3,19 +3,20 @@ local zen = require("util.zen")
 local zoom = require("util.zoom")
 
 -- Application launching
-hl.bind(var.mod .. " + RETURN", hl.dsp.exec_cmd(var.terminal))
-hl.bind(var.mod .. " + T", hl.dsp.exec_cmd(var.terminal))
-hl.bind(var.mod .. " + L", hl.dsp.exec_cmd(var.lockscreen))
-hl.bind(var.mod .. " + N", hl.dsp.exec_cmd(var.notifpanel))
-hl.bind(var.mod .. " + slash", hl.dsp.exec_cmd(var.websearch))
-hl.bind(var.mod .. " + V", hl.dsp.exec_cmd(var.ide_gui))
-hl.bind(var.mod .. " + E", hl.dsp.exec_cmd(var.filemanager_gui))
-hl.bind(var.mod .. " + P", hl.dsp.exec_cmd(var.passmanager))
+hl.bind(var.mod .. " + RETURN", hl.dsp.exec_cmd(var.apps.terminal))
+hl.bind(var.mod .. " + T", hl.dsp.exec_cmd(var.apps.terminal))
+hl.bind(var.mod .. " + L", hl.dsp.exec_cmd(var.apps.lockscreen))
+hl.bind(var.mod .. " + N", hl.dsp.exec_cmd(var.apps.notifpanel))
+hl.bind(var.mod .. " + slash", hl.dsp.exec_cmd(var.scripts.websearch))
+hl.bind(var.mod .. " + V", hl.dsp.exec_cmd(var.apps.ide))
+hl.bind(var.mod .. " + E", hl.dsp.exec_cmd(var.apps.filemanager_gui))
+hl.bind(var.mod .. " + P", hl.dsp.exec_cmd(var.apps.passmanager))
 
 -- TUIs
-hl.bind(var.mod .. " + SHIFT + E", hl.dsp.exec_cmd(var.terminal .. " -e " .. var.filemanager_tui))
-hl.bind(var.mod .. " + SHIFT + T", hl.dsp.exec_cmd(var.terminal .. " -e " .. var.taskmanager))
-hl.bind(var.mod .. " + SHIFT + N", hl.dsp.exec_cmd(var.terminal .. " -e " .. var.ide_tui))
+hl.bind(var.mod .. " + SHIFT + E", hl.dsp.exec_cmd(var.apps.terminal .. " -e " .. var.apps.filemanager_tui))
+hl.bind(var.mod .. " + SHIFT + T", hl.dsp.exec_cmd(var.apps.terminal .. " -e " .. var.apps.taskmanager))
+hl.bind(var.mod .. " + SHIFT + B", hl.dsp.exec_cmd(var.apps.terminal .. " -e " .. var.apps.bluetooth))
+hl.bind(var.mod .. " + SHIFT + N", hl.dsp.exec_cmd(var.apps.terminal .. " -e " .. var.apps.network))
 
 local toggle_waybar = [[
     if systemctl --user is-active --quiet waybar.service; then
@@ -31,6 +32,15 @@ hl.bind(var.mod .. " + SHIFT + K", hl.dsp.window.kill())
 hl.bind(var.mod .. " + SHIFT + Q", hl.dsp.window.close())
 hl.bind(var.mod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
 
+-- Change focus between floating windows
+hl.bind("ALT + TAB", function()
+  hl.dispatch(hl.dsp.window.cycle_next({ next = true, floating = true }))
+  hl.dispatch(hl.dsp.window.alter_zorder({ mode = "top" }))
+end)
+
+-- Center floating window
+hl.bind(var.mod .. " + C", hl.dsp.window.center())
+
 -- Fullscreen
 hl.bind(var.mod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind(
@@ -40,6 +50,20 @@ hl.bind(
     client = 2,
     action = "toggle",
   })
+)
+
+-- Explain using an LLM
+hl.bind(
+  var.mod .. " + ALT + E",
+  hl.dsp.exec_cmd(
+    var.scripts.web_paste .. " '" .. var.apps.browser .. "' '" .. var.websites.duckduckgo .. "' 'Explain:'"
+  )
+)
+
+-- Summarize using an LLM
+hl.bind(
+  var.mod .. " + ALT + S",
+  hl.dsp.exec_cmd(var.scripts.web_paste .. " '" .. var.apps.browser .. "' '" .. var.websites.gemini .. "' 'Summarize:'")
 )
 
 -- Toggle zen mode
@@ -59,7 +83,7 @@ hl.bind("SUPER + ALT + mouse:272", function()
 end)
 
 -- Power menu
-hl.bind("XF86PowerOff", hl.dsp.exec_cmd(var.powermenu))
+hl.bind("XF86PowerOff", hl.dsp.exec_cmd(var.scripts.powermenu))
 
 -- Go to previous workspace
 hl.bind(var.mod .. " + TAB", hl.dsp.focus({ workspace = "previous" }))
@@ -110,12 +134,12 @@ for i = 1, 10 do
 end
 
 -- Media keys
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(var.mediactl .. " volume-up"), { repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(var.mediactl .. " volume-down"), { repeating = true })
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(var.mediactl .. " brightness-up"), { repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(var.mediactl .. " brightness-down"), { repeating = true })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd(var.mediactl .. " mute"))
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(var.mediactl .. " mic-mute"))
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(var.scripts.mediactl .. " volume-up"), { repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(var.scripts.mediactl .. " volume-down"), { repeating = true })
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(var.scripts.mediactl .. " brightness-up"), { repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(var.scripts.mediactl .. " brightness-down"), { repeating = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd(var.scripts.mediactl .. " mute"))
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(var.scripts.mediactl .. " mic-mute"))
 
 hl.bind("XF86AudioStop", hl.dsp.exec_cmd("playerctl stop"))
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"))

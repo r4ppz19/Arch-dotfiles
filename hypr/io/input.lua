@@ -7,7 +7,7 @@ hl.config({
     kb_rules = "",
 
     float_switch_override_focus = 0,
-    follow_mouse = 1,
+    follow_mouse = 2,
     mouse_refocus = true,
     numlock_by_default = false,
     sensitivity = -0.6,

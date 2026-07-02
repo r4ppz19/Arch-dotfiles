@@ -4,60 +4,6 @@ local eyetemp = require("util.eyetemp")
 local notify = require("util.notify")
 local zen = require("util.zen")
 
-local websites = {
-  microsoft_copilot = "https://copilot.microsoft.com/chats/temporary",
-  github_copilot = "https://github.com/copilot",
-  kimi = "https://www.kimi.com",
-  chatgpt = "https://chatgpt.com/?temporary-chat=true",
-  perplexity = "https://www.perplexity.ai",
-  gemini = "https://gemini.google.com/app",
-  deepseek = "https://chat.deepseek.com",
-  notebooklm = "https://notebooklm.google.com",
-  qwen = "https://chat.qwen.ai/?temporary-chat=true",
-  claude = "https://claude.ai",
-  huggingface = "https://huggingface.co/chat",
-  duckduckgo = "https://duck.ai/chat",
-  mistral = "https://chat.mistral.ai/incognito",
-  meta = "https://www.meta.ai",
-
-  drive = "https://drive.google.com/drive/my-drive",
-  mail = "https://mail.google.com",
-  getemoji = "https://getemoji.com",
-  monkeytype = "https://monkeytype.com",
-  wifi = "http://192.168.1.254",
-
-  classroom = "https://classroom.google.com",
-  olsis = "https://tsis.assumptiondavao.edu.ph",
-
-  annas_archive = "https://annas-archive.is",
-  reddit = "https://www.reddit.com",
-  youtube = "https://www.youtube.com",
-  facebook = "https://www.facebook.com/messages",
-  news = "https://news.ycombinator.com",
-  spotify = "https://open.spotify.com",
-  ytmusic = "https://music.youtube.com",
-  mappltv = "https://mappl.tv",
-  twitter = "https://x.com/",
-  manga = "https://mangakatana.com",
-  medium = "https://medium.com",
-  discord = "https://discord.com/channels/@me",
-
-  codeberg = "https://codeberg.org/r4ppz",
-  github = "https://github.com/r4ppz",
-  devdocs = "https://devdocs.io",
-  arch = "https://archlinux.org",
-  render = "https://dashboard.render.com",
-  figma = "https://www.figma.com",
-  vercel = "https://vercel.com/r4ppz",
-  cloudflare = "https://dash.cloudflare.com",
-  w3school = "https://www.w3schools.com",
-  google_cloud = "https://console.cloud.google.com/apis",
-  react_aria = "https://react-aria.adobe.com/getting-started",
-  hl_wiki = "https://wiki.hypr.land",
-  qs_wiki = "https://quickshell.org/docs/v0.3.0/guide/introduction/",
-  zig = "https://ziglang.org/documentation/0.16.0/",
-}
-
 --- Starts or restarts a 2-second inactivity timer.
 local submap_timer = nil
 local function start_submap_timer()
@@ -105,20 +51,20 @@ hl.bind(var.mod .. " + A", function()
 end)
 
 hl.define_submap("AI Slop", "reset", function()
-  bind_site(var.browser, "V", websites.microsoft_copilot)
-  bind_site(var.browser, "K", websites.kimi)
-  bind_site(var.browser, "X", websites.github_copilot)
-  bind_site(var.browser, "C", websites.chatgpt)
-  bind_site(var.browser, "P", websites.perplexity)
-  bind_site(var.browser, "G", websites.gemini)
-  bind_site(var.browser, "D", websites.deepseek)
-  bind_site(var.browser, "N", websites.notebooklm)
-  bind_site(var.browser, "Q", websites.qwen)
-  bind_site(var.browser, "H", websites.huggingface)
-  bind_site(var.browser, "O", websites.duckduckgo)
-  bind_site(var.browser, "M", websites.mistral)
-  bind_site(var.browser, "A", websites.claude)
-  bind_site(var.browser, "T", websites.meta)
+  bind_site(var.apps.browser, "V", var.websites.microsoft_copilot)
+  bind_site(var.apps.browser, "K", var.websites.kimi)
+  bind_site(var.apps.browser, "X", var.websites.github_copilot)
+  bind_site(var.apps.browser, "C", var.websites.chatgpt)
+  bind_site(var.apps.browser, "P", var.websites.perplexity)
+  bind_site(var.apps.browser, "G", var.websites.gemini)
+  bind_site(var.apps.browser, "D", var.websites.deepseek)
+  bind_site(var.apps.browser, "N", var.websites.notebooklm)
+  bind_site(var.apps.browser, "Q", var.websites.qwen)
+  bind_site(var.apps.browser, "H", var.websites.huggingface)
+  bind_site(var.apps.browser, "O", var.websites.duckduckgo)
+  bind_site(var.apps.browser, "M", var.websites.mistral)
+  bind_site(var.apps.browser, "A", var.websites.claude)
+  bind_site(var.apps.browser, "T", var.websites.meta)
 
   bind_exits()
 end)
@@ -131,14 +77,14 @@ hl.bind(var.mod .. " + SPACE", function()
 end)
 
 hl.define_submap("Applications", "reset", function()
-  bind_site(var.browser, "D", websites.drive)
-  bind_site(var.browser, "M", websites.mail)
-  bind_site(var.browser, "E", websites.getemoji)
-  bind_site(var.browser, "T", websites.monkeytype)
-  bind_site(var.browser, "W", websites.wifi)
+  bind_site(var.apps.browser, "D", var.websites.drive)
+  bind_site(var.apps.browser, "M", var.websites.mail)
+  bind_site(var.apps.browser, "E", var.websites.getemoji)
+  bind_site(var.apps.browser, "T", var.websites.monkeytype)
+  bind_site(var.apps.browser, "W", var.websites.wifi)
 
-  hl.bind(var.mod .. " + B", hl.dsp.exec_cmd(var.browser))
-  hl.bind(var.mod .. " + SPACE", hl.dsp.exec_cmd(var.launcher))
+  hl.bind(var.mod .. " + B", hl.dsp.exec_cmd(var.apps.browser))
+  hl.bind(var.mod .. " + SPACE", hl.dsp.exec_cmd(var.scripts.launcher))
 
   bind_exits()
 end)
@@ -151,20 +97,21 @@ hl.bind(var.mod .. " + D", function()
 end)
 
 hl.define_submap("Dev Tools", "reset", function()
-  bind_site(var.browser, "G", websites.github)
-  bind_site(var.browser, "C", websites.cloudflare)
-  bind_site(var.browser, "R", websites.render)
-  bind_site(var.browser, "F", websites.figma)
-  bind_site(var.browser, "A", websites.arch)
-  bind_site(var.browser, "V", websites.vercel)
-  bind_site(var.browser, "D", websites.devdocs)
-  bind_site(var.browser, "W", websites.w3school)
-  bind_site(var.browser, "O", websites.google_cloud)
-  bind_site(var.browser, "E", websites.react_aria)
-  bind_site(var.browser, "H", websites.hl_wiki)
-  bind_site(var.browser, "Q", websites.qs_wiki)
-  bind_site(var.browser, "B", websites.codeberg)
-  bind_site(var.browser, "Z", websites.zig)
+  bind_site(var.apps.browser, "G", var.websites.github)
+  bind_site(var.apps.browser, "C", var.websites.cloudflare)
+  bind_site(var.apps.browser, "R", var.websites.render)
+  bind_site(var.apps.browser, "F", var.websites.figma)
+  bind_site(var.apps.browser, "A", var.websites.arch)
+  bind_site(var.apps.browser, "V", var.websites.vercel)
+  bind_site(var.apps.browser, "D", var.websites.devdocs)
+  bind_site(var.apps.browser, "W", var.websites.w3school)
+  bind_site(var.apps.browser, "O", var.websites.google_cloud)
+  bind_site(var.apps.browser, "E", var.websites.react_aria)
+  bind_site(var.apps.browser, "H", var.websites.hl_wiki)
+  bind_site(var.apps.browser, "Q", var.websites.qs_wiki)
+  bind_site(var.apps.browser, "B", var.websites.backblaze)
+  bind_site(var.apps.browser, "Z", var.websites.zig)
+  bind_site(var.apps.browser, "L", var.websites.leetcode)
 
   bind_exits()
 end)
@@ -177,18 +124,18 @@ hl.bind(var.mod .. " + M", function()
 end)
 
 hl.define_submap("Media", "reset", function()
-  bind_site(var.browser, "A", websites.annas_archive)
-  bind_site(var.browser, "Y", websites.youtube)
-  bind_site(var.browser, "R", websites.reddit)
-  bind_site(var.browser, "F", websites.facebook)
-  bind_site(var.browser, "N", websites.news)
-  bind_site(var.browser, "S", websites.spotify)
-  bind_site(var.browser, "M", websites.ytmusic)
-  bind_site(var.browser, "X", websites.twitter)
-  bind_site(var.browser, "V", websites.mappltv)
-  bind_site(var.browser, "G", websites.manga)
-  bind_site(var.browser, "I", websites.medium)
-  bind_site(var.browser, "D", websites.discord)
+  bind_site(var.apps.browser, "A", var.websites.annas_archive)
+  bind_site(var.apps.browser, "Y", var.websites.youtube)
+  bind_site(var.apps.browser, "R", var.websites.reddit)
+  bind_site(var.apps.browser, "F", var.websites.facebook)
+  bind_site(var.apps.browser, "N", var.websites.news)
+  bind_site(var.apps.browser, "S", var.websites.spotify)
+  bind_site(var.apps.browser, "M", var.websites.ytmusic)
+  bind_site(var.apps.browser, "X", var.websites.twitter)
+  bind_site(var.apps.browser, "V", var.websites.mappltv)
+  bind_site(var.apps.browser, "G", var.websites.manga)
+  bind_site(var.apps.browser, "I", var.websites.medium)
+  bind_site(var.apps.browser, "D", var.websites.discord)
 
   bind_exits()
 end)
@@ -201,11 +148,11 @@ hl.bind(var.mod .. " + S", function()
 end)
 
 hl.define_submap("School", "reset", function()
-  bind_site(var.browser_school, "C", websites.classroom)
-  bind_site(var.browser_school, "M", websites.mail)
-  bind_site(var.browser_school, "O", websites.olsis)
+  bind_site(var.apps.browser_school, "C", var.websites.classroom)
+  bind_site(var.apps.browser_school, "M", var.websites.mail)
+  bind_site(var.apps.browser_school, "O", var.websites.olsis)
 
-  hl.bind(var.mod .. " + S", hl.dsp.exec_cmd(var.browser_school))
+  hl.bind(var.mod .. " + S", hl.dsp.exec_cmd(var.apps.browser_school))
 
   bind_exits()
 end)
@@ -218,11 +165,11 @@ hl.bind(var.mod .. " + U", function()
 end)
 
 hl.define_submap("Util", "reset", function()
-  hl.bind("SHIFT + S", hl.dsp.exec_cmd(var.screenshotfull))
-  hl.bind("S", hl.dsp.exec_cmd(var.screenshot))
-  hl.bind("R", hl.dsp.exec_cmd(var.record))
-  hl.bind("O", hl.dsp.exec_cmd(var.ocr))
-  hl.bind("C", hl.dsp.exec_cmd(var.colorpicker))
+  hl.bind("SHIFT + S", hl.dsp.exec_cmd(var.scripts.screenshotfull))
+  hl.bind("S", hl.dsp.exec_cmd(var.scripts.screenshot))
+  hl.bind("R", hl.dsp.exec_cmd(var.scripts.record))
+  hl.bind("O", hl.dsp.exec_cmd(var.scripts.ocr))
+  hl.bind("C", hl.dsp.exec_cmd(var.apps.colorpicker))
   hl.bind("E", eyetemp.toggle)
 
   hl.bind("Shift_L", hl.dsp.exec_cmd("true"))
