@@ -17,6 +17,10 @@ hl.bind(var.mod .. " + SHIFT + E", hl.dsp.exec_cmd(var.apps.terminal .. " -e " .
 hl.bind(var.mod .. " + SHIFT + T", hl.dsp.exec_cmd(var.apps.terminal .. " -e " .. var.apps.taskmanager))
 hl.bind(var.mod .. " + SHIFT + B", hl.dsp.exec_cmd(var.apps.terminal .. " -e " .. var.apps.bluetooth))
 hl.bind(var.mod .. " + SHIFT + N", hl.dsp.exec_cmd(var.apps.terminal .. " -e " .. var.apps.network))
+hl.bind(
+  var.mod .. " + SHIFT + M",
+  hl.dsp.exec_cmd(var.apps.terminal .. " -d ~/Music/Better/OLD " .. var.apps.musicplayer .. " .")
+)
 
 local toggle_waybar = [[
     if systemctl --user is-active --quiet waybar.service; then
