@@ -37,6 +37,8 @@ if [[ $- == *i* ]]; then
     echo "Warning: zsh config directory '$zsh_config_dir' not found."
   fi
 
+  source "$zsh_config_dir/.env" 2>/dev/null
+
   # Auto-attach tmux for the first intance of kitty
   if [[ "$TERM" == "xterm-kitty" && -z "$TMUX" && -n "$HYPRLAND_INSTANCE_SIGNATURE" ]]; then
     if [[ $(hyprctl clients | grep -c "class: kitty") -eq 1 ]]; then

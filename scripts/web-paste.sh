@@ -6,7 +6,10 @@ URL="$2"
 PROMPT="$3"
 
 CLIP=$(wl-paste | tr '\n' ' ')
-[ -z "$CLIP" ] && notify-send "Web Paste" "Clipboard is empty" && exit 1
+if [[ -z $CLIP ]]; then
+  notify-send "Web Paste" "Clipboard is empty"
+  exit 1
+fi
 
 "$BROWSER" --app="$URL" &
 sleep 0.2
@@ -18,7 +21,9 @@ for i in $(seq 1 40); do
   WIN_JSON=$(hyprctl activewindow -j 2>/dev/null || echo '{"title":"","initialTitle":""}')
   INIT_TITLE=$(echo "$WIN_JSON" | jq -r '.initialTitle // ""')
   CUR_TITLE=$(echo "$WIN_JSON" | jq -r '.title // ""')
-  [ -n "$CUR_TITLE" ] && [ "$CUR_TITLE" != "$INIT_TITLE" ] && break
+  if [[ -n $CUR_TITLE ]] && [[ $CUR_TITLE != "$INIT_TITLE" ]]; then
+    break
+  fi
   sleep 0.1
 done
 
