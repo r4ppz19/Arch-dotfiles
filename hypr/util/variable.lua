@@ -48,6 +48,7 @@ M.websites = {
   duckduckgo = "https://duck.ai/chat",
   mistral = "https://chat.mistral.ai/incognito",
   meta = "https://www.meta.ai",
+  googleaistudio = "https://aistudio.google.com",
 
   drive = "https://drive.google.com/drive/my-drive",
   mail = "https://mail.google.com",
@@ -58,7 +59,7 @@ M.websites = {
   classroom = "https://classroom.google.com",
   olsis = "https://tsis.assumptiondavao.edu.ph",
 
-  annas_archive = "https://annas-archive.is",
+  annas_archive = "https://annas-archive.pk",
   reddit = "https://www.reddit.com",
   youtube = "https://www.youtube.com",
   facebook = "https://www.facebook.com/messages",
@@ -75,7 +76,7 @@ M.websites = {
   github = "https://github.com/r4ppz",
   devdocs = "https://devdocs.io",
   arch = "https://archlinux.org",
-  render = "https://dashboard.render.com",
+  coderabbit = "https://app.coderabbit.ai/wizard",
   figma = "https://www.figma.com",
   vercel = "https://vercel.com/r4ppz",
   cloudflare = "https://dash.cloudflare.com",
@@ -86,6 +87,7 @@ M.websites = {
   qs_wiki = "https://quickshell.org/docs/v0.3.0/guide/introduction/",
   zig = "https://ziglang.org/documentation/0.16.0/",
   leetcode = "https://leetcode.com",
+  learnxinyminutes = "https://learnxinyminutes.com",
 }
 
 return M
