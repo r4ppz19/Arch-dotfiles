@@ -64,5 +64,26 @@
       "gh pr view * ": "allow",
       "gh search issues *": "allow"
     }
+  },
+
+  "provider": {
+    "freetheai": {
+      "name": "FreeTheAi",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "apiKey": "{env:FREETHEAI_API_KEY}",
+        "baseURL": "https://api.freetheai.xyz/v1"
+      },
+      "models": {
+        "olm/deepseek-v4-pro": {
+          "name": "DeepSeek V4 Pro",
+          "limit": { "context": 50000, "output": 32000 }
+        },
+        "bbl/gpt-5.5-mini": {
+          "name": "GPT 5.4 Mini",
+          "limit": { "context": 80000, "output": 32000 }
+        }
+      }
+    }
   }
 }
