@@ -9,14 +9,11 @@ set -euo pipefail
 # - PipeWire volume/mute
 # - Microphone mute
 # - Laptop brightness via brightnessctl
-# - External monitor brightness via ddcutil
-#
+# ============================================================
 
 # Config
 VOLUME_STEP=5
 BRIGHTNESS_STEP=5
-
-DDCUTIL_ARGS="--sleep-multiplier=.1"
 
 notify() {
   local category="$1"
@@ -49,28 +46,12 @@ get_mic_state() {
     awk '{if ($3 == "[MUTED]") print "Muted"; else print "Unmuted"}'
 }
 
-has_external_monitor() {
-  ddcutil detect 2>/dev/null | grep -q "Display 1"
-}
-
-get_external_brightness() {
-  ddcutil getvcp 10 --brief 2>/dev/null | awk '{print $4}'
-}
-
-set_external_brightness() {
-  local value="$1"
-
-  ddcutil $DDCUTIL_ARGS setvcp 10 "$value" >/dev/null
-}
-
 get_laptop_brightness() {
   brightnessctl -m | awk -F, '{print $4}' | tr -d '%'
 }
 
 set_laptop_brightness() {
-  local direction="$1"
-
-  case "$direction" in
+  case "$1" in
   up)
     brightnessctl set "${BRIGHTNESS_STEP}%+" >/dev/null
     ;;
@@ -78,17 +59,6 @@ set_laptop_brightness() {
     brightnessctl set "${BRIGHTNESS_STEP}%-" >/dev/null
     ;;
   esac
-}
-
-clamp() {
-  local value="$1"
-  local min="$2"
-  local max="$3"
-
-  ((value < min)) && value=$min
-  ((value > max)) && value=$max
-
-  echo "$value"
 }
 
 # Actions
@@ -133,57 +103,23 @@ mute_mic() {
 }
 
 brightness_up() {
-  if has_external_monitor; then
-    local current
-    local new
+  set_laptop_brightness up
 
-    current=$(get_external_brightness)
-    new=$((current + BRIGHTNESS_STEP))
-    new=$(clamp "$new" 0 100)
-
-    set_external_brightness "$new"
-
-    notify \
-      "brightness" \
-      "External Brightness" \
-      "${new}%" \
-      "display-brightness-high-symbolic"
-  else
-    set_laptop_brightness up
-
-    notify \
-      "brightness" \
-      "Laptop Brightness" \
-      "$(get_laptop_brightness)%" \
-      "display-brightness-high-symbolic"
-  fi
+  notify \
+    "brightness" \
+    "Brightness" \
+    "$(get_laptop_brightness)%" \
+    "display-brightness-high-symbolic"
 }
 
 brightness_down() {
-  if has_external_monitor; then
-    local current
-    local new
+  set_laptop_brightness down
 
-    current=$(get_external_brightness)
-    new=$((current - BRIGHTNESS_STEP))
-    new=$(clamp "$new" 0 100)
-
-    set_external_brightness "$new"
-
-    notify \
-      "brightness" \
-      "External Brightness" \
-      "${new}%" \
-      "display-brightness-low-symbolic"
-  else
-    set_laptop_brightness down
-
-    notify \
-      "brightness" \
-      "Laptop Brightness" \
-      "$(get_laptop_brightness)%" \
-      "display-brightness-low-symbolic"
-  fi
+  notify \
+    "brightness" \
+    "Brightness" \
+    "$(get_laptop_brightness)%" \
+    "display-brightness-low-symbolic"
 }
 
 # Dispatcher

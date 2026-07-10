@@ -1,6 +1,5 @@
 hl.on("hyprland.start", function()
   hl.exec_cmd("systemctl --user start hyprland.target")
-  hl.exec_cmd("ddcutil --bus 5 setvcp D6 01")
   hl.exec_cmd("dbus-update-activation-environment --systemd --all")
   hl.exec_cmd("nm-applet --indicator")
   hl.exec_cmd("blueman-applet")
@@ -8,5 +7,4 @@ end)
 
 hl.on("hyprland.shutdown", function()
   hl.exec_cmd("systemctl --user stop hyprland.target")
-  hl.exec_cmd("ddcutil --bus 5 setvcp D6 05")
 end)
