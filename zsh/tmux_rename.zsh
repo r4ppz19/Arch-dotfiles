@@ -14,7 +14,6 @@ typeset -gA PROC_MAP=(
   ai LLM
   cline LLM
   crush LLM
-  kilocode LLM
   top TASK
   ollama LLM
   news NEWS
@@ -36,6 +35,7 @@ typeset -gA PROC_MAP=(
   sudo SUDO
   cargo CARGO
   gdu GDU
+  witr WITR
 )
 
 typeset -gA DIR_MAP=(
