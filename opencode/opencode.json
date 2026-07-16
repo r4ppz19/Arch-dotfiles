@@ -82,6 +82,14 @@
         "bbl/gpt-5.5-mini": {
           "name": "GPT 5.4 Mini",
           "limit": { "context": 80000, "output": 32000 }
+        },
+        "opc/north-mini-code-free": {
+          "name": "North Mini Code Free",
+          "limit": { "context": 80000, "output": 32000 }
+        },
+        "opc/deepseek-v4-flash-free": {
+          "name": "DeepSeek V4 Flash Free",
+          "limit": { "context": 80000, "output": 32000 }
         }
       }
     }
