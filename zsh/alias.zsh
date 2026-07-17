@@ -2,7 +2,6 @@
 alias ls='eza --icons --group-directories-first --color=auto'
 alias la='eza -a --icons --group-directories-first --color=auto'
 alias ll='eza -lh --icons --group-directories-first --color=auto'
-alias tree='eza -T --icons --group-directories-first --color=auto'
 alias less='less -SRXF'
 alias mv='mv -v'
 alias cp='cp -v'
@@ -17,7 +16,7 @@ alias nv='nvim'
 alias lg='lazygit'
 alias ld='lazydocker'
 alias top='btop'
-alias news='clx -n --indent 4 --article-width 100 --comment-width 100'
+alias news='clx -n --indent 3 --article-width 100 --comment-width 100 --reader-mode-images --pages 5'
 alias restore="gtrash r"
 alias bm="bashmount"
 alias op='opencode'

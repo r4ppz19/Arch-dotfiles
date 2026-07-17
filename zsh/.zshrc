@@ -52,4 +52,7 @@ if [[ $- == *i* ]]; then
   if command -v atuin &>/dev/null; then
     eval "$(atuin init zsh --disable-up-arrow)"
   fi
+
+  # Initialize zoxide for directory navigation
+  eval "$(zoxide init zsh --cmd cd)"
 fi

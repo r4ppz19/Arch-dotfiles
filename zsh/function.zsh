@@ -1,3 +1,9 @@
+tree() {
+  local depth_flag=""
+  [[ -n $1 ]] && depth_flag="--level=$1"
+  eza -T --icons --group-directories-first --color=auto $depth_flag "${@:2}"
+}
+
 ai() {
   tgpt --quiet "$@" | glow --pager --preserve-new-lines
 }
