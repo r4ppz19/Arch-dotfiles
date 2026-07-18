@@ -27,7 +27,11 @@ git:
   overrideGpg: true
   pagers:
     - colorArg: always
-      pager: delta --dark --paging=never --hyperlinks --file-style="omit" --width=-2
+      pager: delta --features=lazygit-theme --paging=never --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+
+    - pager: diff-so-fancy
+
+    - {}
 
 os:
   editInTerminal: true
@@ -49,3 +53,10 @@ keybinding:
       - K
       - <ctrl+u>
       - <ctrl+up>
+  commits:
+    moveDownCommit:
+      - <ctrl+j>
+      - <ctrl+alt-down>
+    moveUpCommit:
+      - <ctrl+k>
+      - <ctrl+alt-up>

@@ -69,6 +69,13 @@
 	hyperlinks = true
 	blame-code-style = syntax
 
+[delta "lazygit-theme"]
+    dark = true
+    file-style = omit
+    width = -2
+    syntax-theme = gruvbox-dark
+    plus-style = syntax "#002800"
+
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
