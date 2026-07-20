@@ -1,0 +1,12 @@
+[Unit]
+Description=NetworkManager Applet
+PartOf=hyprland.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/nm-applet --indicator
+Restart=on-failure
+
+[Install]
+WantedBy=hyprland.target
