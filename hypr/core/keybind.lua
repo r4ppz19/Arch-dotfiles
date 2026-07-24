@@ -76,10 +76,10 @@ hl.bind(var.mod .. "+ SHIFT + Z", function()
 end)
 
 -- Zoom in and out
-hl.bind("SUPER + ALT + mouse_down", function()
+hl.bind("SUPER + ALT + mouse_up", function()
   zoom.zoom_in()
 end)
-hl.bind("SUPER + ALT + mouse_up", function()
+hl.bind("SUPER + ALT + mouse_down", function()
   zoom.zoom_out()
 end)
 hl.bind("SUPER + ALT + mouse:272", function()
@@ -123,8 +123,8 @@ hl.bind(var.mod .. " + mouse:272", hl.dsp.window.drag())
 hl.bind(var.mod .. " + mouse:273", hl.dsp.window.resize())
 
 -- Scroll through workspaces with mouse wheel
-hl.bind(var.mod .. " + mouse_up", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(var.mod .. " + mouse_down", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(var.mod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(var.mod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 
 -- Page up/down for workspace navigation
 hl.bind("Page_Up", hl.dsp.focus({ workspace = "e-1" }))
