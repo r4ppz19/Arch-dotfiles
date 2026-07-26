@@ -60,17 +60,14 @@ M.websites = {
   olsis = "https://tsis.assumptiondavao.edu.ph",
 
   annas_archive = "https://annas-archive.pk",
-  reddit = "https://www.reddit.com",
   youtube = "https://www.youtube.com",
   facebook = "https://www.facebook.com/messages",
   news = "https://news.ycombinator.com",
   spotify = "https://open.spotify.com",
   ytmusic = "https://music.youtube.com",
   mappltv = "https://mappl.tv",
-  twitter = "https://x.com/",
   manga = "https://mangakatana.com",
   medium = "https://medium.com",
-  discord = "https://discord.com/channels/@me",
 
   backblaze = "https://secure.backblaze.com/b2_buckets.htm",
   github = "https://github.com/r4ppz",
