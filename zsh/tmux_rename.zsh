@@ -1,10 +1,8 @@
-# Tmux auto-rename
-
-# Prio:
-# 1 PROC_MAP (commands)
-# 2 DIR_MAP_UNIQUE (unique directories)
-# 3 DIR_MAP (general directories)
-# 4 CMD (default)
+# Tmux auto‑rename script
+# Renames the current tmux window based on the running command or cwd.
+# Priority: PROC_MAP (command) → DIR_MAP_UNIQUE → DIR_MAP → fallback "CMD".
+# Hooks: preexec (command) and precmd (directory).
+# Skips renaming when not in tmux, NVIM is set, window is locked, or multiple panes.
 
 typeset -gA PROC_MAP=(
   q LLM
@@ -36,6 +34,8 @@ typeset -gA PROC_MAP=(
   cargo CARGO
   gdu GDU
   witr WITR
+  rss RSS
+  bulletty RSS
 )
 
 typeset -gA DIR_MAP=(
