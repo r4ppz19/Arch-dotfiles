@@ -27,6 +27,9 @@ alias copy='wl-copy'
 alias blue='bluetuith'
 alias music='cliamp'
 
+# require sudo
+alias slg='sudo LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml" GIT_CONFIG_GLOBAL="$HOME/.gitconfig" EDITOR="nvim -R -n" lazygit'
+
 # script
 alias t="$DOTFILES/scripts/tmux-init.sh"
 alias of="$DOTFILES/scripts/open-file.sh"
