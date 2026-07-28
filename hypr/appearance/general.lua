@@ -15,6 +15,7 @@ hl.config({
     modal_parent_blocking = true,
 
     allow_tearing = true,
+    no_focus_fallback = true,
 
     snap = {
       enabled = true,
@@ -59,7 +60,7 @@ hl.config({
       enabled = false,
       range = 20,
       render_power = 3,
-      color = 0xee1a1a1a,
+      color = "0xee1a1a1a",
       color_inactive = nil,
     },
   },
