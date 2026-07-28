@@ -53,7 +53,7 @@ end
 
 --- Moves the mouse cursor
 function M.move(direction, speed)
-  local step = (speed == "slow") and 10 or 30
+  local step = (speed == "slow") and 10 or 40
   if direction == "left" then
     run(string.format("ydotool mousemove -- %d %d", -step, 0))
   elseif direction == "right" then
