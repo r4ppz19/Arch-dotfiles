@@ -1,6 +1,7 @@
 local var = require("util.variable")
 local zen = require("util.zen")
 local zoom = require("util.zoom")
+local layout = require("appearance.layout")
 
 -- Application launching
 hl.bind(var.mod .. " + RETURN", hl.dsp.exec_cmd(var.apps.terminal))
@@ -36,10 +37,20 @@ hl.bind(var.mod .. " + SHIFT + K", hl.dsp.window.kill())
 hl.bind(var.mod .. " + SHIFT + Q", hl.dsp.window.close())
 hl.bind(var.mod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
 
--- Change focus between floating windows
-hl.bind("ALT + TAB", function()
-  hl.dispatch(hl.dsp.window.cycle_next({ next = true, floating = true }))
-  hl.dispatch(hl.dsp.window.alter_zorder({ mode = "top" }))
+-- Focus next window and bring active floating window to top
+hl.bind("ALT + Tab", function()
+  if layout.has_floating_windows() then
+    hl.dispatch(hl.dsp.window.cycle_next())
+    hl.dispatch(hl.dsp.window.bring_to_top())
+  end
+end)
+
+-- Focus previous window and bring to top
+hl.bind("ALT + SHIFT + Tab", function()
+  if layout.has_floating_windows() then
+    hl.dispatch(hl.dsp.window.cycle_next({ next = false }))
+    hl.dispatch(hl.dsp.window.bring_to_top())
+  end
 end)
 
 -- Center floating window
