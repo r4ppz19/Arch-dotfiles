@@ -164,6 +164,15 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"))
 
 -- Special workspace (scratchpad)
 hl.workspace_rule({
+  workspace = "special:window2",
+  gaps_in = 3,
+  gaps_out = { top = 180, right = 350, bottom = 180, left = 350 },
+})
+
+hl.bind(var.mod .. " + BACKSLASH", hl.dsp.workspace.toggle_special("window2"))
+hl.bind(var.mod .. " + SHIFT + BACKSLASH", hl.dsp.window.move({ workspace = "special:window2" }))
+
+hl.workspace_rule({
   workspace = "special:window1",
   gaps_in = 3,
   gaps_out = { top = 180, right = 350, bottom = 180, left = 350 },
