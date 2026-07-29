@@ -162,6 +162,16 @@ hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"))
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"))
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"))
 
+hl.bind(var.mod .. "+ CTRL + 1", hl.dsp.exec_cmd(var.scripts.mediactl .. " mute"))
+hl.bind(var.mod .. "+ CTRL + 2", hl.dsp.exec_cmd(var.scripts.mediactl .. " mic-mute"))
+hl.bind(var.mod .. "+ CTRL + 3", hl.dsp.exec_cmd(var.scripts.mediactl .. " volume-down"), { repeating = true })
+hl.bind(var.mod .. "+ CTRL + 4", hl.dsp.exec_cmd(var.scripts.mediactl .. " volume-up"), { repeating = true })
+hl.bind(var.mod .. "+ CTRL + 5", hl.dsp.exec_cmd(var.scripts.mediactl .. " brightness-down"), { repeating = true })
+hl.bind(var.mod .. "+ CTRL + 6", hl.dsp.exec_cmd(var.scripts.mediactl .. " brightness-up"), { repeating = true })
+hl.bind(var.mod .. "+ CTRL + 7", hl.dsp.exec_cmd("playerctl previous"))
+hl.bind(var.mod .. "+ CTRL + 8", hl.dsp.exec_cmd("playerctl next"))
+hl.bind(var.mod .. "+ CTRL + 9", hl.dsp.exec_cmd("playerctl play-pause"))
+
 -- Special workspace (scratchpad)
 hl.workspace_rule({
   workspace = "special:window2",

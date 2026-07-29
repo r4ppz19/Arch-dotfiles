@@ -170,7 +170,6 @@ hl.define_submap("Util", "reset", function()
   hl.bind("O", hl.dsp.exec_cmd(var.scripts.ocr))
   hl.bind("C", hl.dsp.exec_cmd(var.apps.colorpicker))
   hl.bind("E", eyetemp.toggle)
-
   hl.bind("Shift_L", hl.dsp.exec_cmd("true"))
   bind_exits()
 end)
