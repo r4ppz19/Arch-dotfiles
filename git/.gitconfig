@@ -1,90 +1,90 @@
 [core]
-	editor = nvim
-	pager = delta
-	autocrlf = input
-	whitespace = -indent-with-non-tab,trailing-space,cr-at-eol
+  editor = nvim
+  pager = delta
+  autocrlf = input
+  whitespace = -indent-with-non-tab,trailing-space,cr-at-eol
 
 [user]
-	name = r4ppz
-	email = johnreyrabosa.f@gmail.com
-	signingKey = ~/.ssh/id_ed25519.pub
+  name = r4ppz
+  email = johnreyrabosa.f@gmail.com
+  signingKey = ~/.ssh/id_ed25519.pub
 
 [gpg]
-	format = ssh
+  format = ssh
 
 [init]
-	defaultBranch = main
+  defaultBranch = main
 
 [column]
-	ui = auto
+  ui = auto
 
 [tag]
-	gpgSign = true
-	sort = version:refname
+  gpgSign = true
+  sort = version:refname
 
 [push]
-	default = simple
-	autoSetupRemote = true
-	followTags = true
+  default = simple
+  autoSetupRemote = true
+  followTags = true
 
 [pull]
-	rebase = true
+  rebase = true
 
 [rebase]
-	updateRefs = true
+  updateRefs = true
 
 [commit]
-	verbose = true
-	gpgsign = true
+  verbose = true
+  gpgsign = true
 
 [branch]
-	sort = -committerdate
+  sort = -committerdate
 
 [fetch]
-	prune = true
-	pruneTags = true
-	all = true
+  prune = true
+  all = true
+  followTags = true
 
 [diff]
-	tool = nvimdiff
-	context = 3
+  tool = nvimdiff
+  context = 3
 
 [difftool "nvimdiff"]
-	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
 [merge]
-	tool = nvimdiff
-	conflictStyle = zdiff3
+  tool = nvimdiff
+  conflictStyle = zdiff3
 
 [mergetool "nvimdiff"]
-	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\" -c 'wincmd J'"
+  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\" -c 'wincmd J'"
 
 [interactive]
-	diffFilter = delta --color-only
+  diffFilter = delta --color-only
 
 [delta]
-	navigate = true
-	line-numbers = true
-	side-by-side = false
-	hyperlinks = true
-	blame-code-style = syntax
+  navigate = true
+  line-numbers = true
+  side-by-side = false
+  hyperlinks = true
+  blame-code-style = syntax
 
 [delta "lazygit-theme"]
-    dark = true
-    file-style = omit
-    width = -2
-    syntax-theme = gruvbox-dark
-    plus-style = syntax "#002800"
+  dark = true
+  file-style = omit
+  width = -2
+  syntax-theme = gruvbox-dark
+  plus-style = syntax "#002800"
 
 [filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
 
 [help]
-	autocorrect = prompt
+  autocorrect = prompt
 
 [rerere]
-	enabled = true
-	autoupdate = true
+  enabled = true
+  autoupdate = true
