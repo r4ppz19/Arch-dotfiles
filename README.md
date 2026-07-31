@@ -2,7 +2,7 @@
 
 > Configs I can't live without.
 
-This repository contains all my configurations. It’s meant as a reference for how I set up my environment.
+This repository contains all my configurations and scripts. It’s meant as a reference for how I set up my environment.
 
 These files reflect my workflow and personal taste. Browse through, grab ideas, and build your own setup ;)
 
