@@ -2,6 +2,7 @@
 hl.window_rule({
   name = "xdg-desktop-portal-gtk",
   match = { initial_class = "^.*(xdg-desktop-portal-gtk).*$" },
+  pin = true,
   float = true,
   center = true,
   size = { 700, 500 },
@@ -10,14 +11,15 @@ hl.window_rule({
 hl.window_rule({
   name = "DesktopEditors",
   match = { initial_class = "^.*(DesktopEditors).*$" },
+  pin = true,
   float = true,
   center = true,
   size = { 570, 120 },
 })
 
 hl.window_rule({
-  name = "network-dialogs",
-  match = { initial_class = "^.*(nm-connection-editor|blueman-manager).*$" },
+  name = "network/bluetooth-dialogs",
+  match = { initial_class = "^.*(nm-connection-editor|blueman-manager|bluetuith).*$" },
   float = true,
   center = true,
   size = { 800, 500 },
@@ -28,6 +30,7 @@ hl.window_rule({
   match = {
     initial_title = "^.*(Open File|Open Files|Save File|Open Folder|Choose Files|Choose Folder|Create Folder|Select Folder|Open Document|Save As).*$",
   },
+  pin = true,
   float = true,
   center = true,
   size = { 700, 500 },
@@ -36,6 +39,7 @@ hl.window_rule({
 hl.window_rule({
   name = "file-ops",
   match = { initial_title = "^(Rename|Move|File Operation Progress).*$" },
+  pin = true,
   float = true,
   center = true,
   size = { 350, 130 },
@@ -45,6 +49,7 @@ hl.window_rule({
 hl.window_rule({
   name = "export-download",
   match = { initial_title = "^.*(export-download|codeload|wants to).*$" },
+  pin = true,
   float = true,
   center = true,
   size = { 700, 500 },

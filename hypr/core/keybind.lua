@@ -16,26 +16,33 @@ hl.bind(var.mod .. " + P", hl.dsp.exec_cmd(var.apps.passmanager))
 -- TUIs
 hl.bind(var.mod .. " + SHIFT + E", hl.dsp.exec_cmd(var.apps.terminal .. " -e " .. var.apps.filemanager_tui))
 hl.bind(var.mod .. " + SHIFT + T", hl.dsp.exec_cmd(var.apps.terminal .. " -e " .. var.apps.taskmanager))
-hl.bind(var.mod .. " + SHIFT + B", hl.dsp.exec_cmd(var.apps.terminal .. " -e " .. var.apps.bluetooth))
+hl.bind(var.mod .. " + SHIFT + B", hl.dsp.exec_cmd(var.apps.terminal .. " -e --class bluetuith " .. var.apps.bluetooth))
 hl.bind(var.mod .. " + SHIFT + N", hl.dsp.exec_cmd(var.apps.terminal .. " -e " .. var.apps.network))
 hl.bind(
   var.mod .. " + SHIFT + M",
   hl.dsp.exec_cmd(var.apps.terminal .. " -d ~/Music/Better/OLD " .. var.apps.musicplayer .. " .")
 )
 
-local toggle_waybar = [[
-    if systemctl --user is-active --quiet waybar.service; then
-        systemctl --user disable --now waybar.service
-    else
-        systemctl --user enable --now waybar.service
-    fi
-]]
-hl.bind(var.mod .. " + B", hl.dsp.exec_cmd(toggle_waybar))
+hl.bind(
+  var.mod .. " + B",
+  hl.dsp.exec_cmd([[
+  if systemctl --user is-active --quiet waybar.service; then
+      systemctl --user disable --now waybar.service
+  else
+      systemctl --user enable --now waybar.service
+  fi
+]])
+)
 
 -- Window management
 hl.bind(var.mod .. " + SHIFT + K", hl.dsp.window.kill())
 hl.bind(var.mod .. " + SHIFT + Q", hl.dsp.window.close())
 hl.bind(var.mod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
+
+hl.bind(var.mod .. " + SHIFT + P", function()
+  hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
+  hl.dispatch(hl.dsp.window.pin())
+end)
 
 -- Focus next window and bring active floating window to top
 hl.bind("ALT + Tab", function()
@@ -46,7 +53,7 @@ hl.bind("ALT + Tab", function()
 end)
 
 -- Focus previous window and bring to top
-hl.bind("ALT + SHIFT + Tab", function()
+hl.bind("CTRL + SHIFT + Tab", function()
   if layout.has_floating_windows() then
     hl.dispatch(hl.dsp.window.cycle_next({ next = false }))
     hl.dispatch(hl.dsp.window.bring_to_top())
