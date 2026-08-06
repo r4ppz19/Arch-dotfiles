@@ -25,13 +25,13 @@ git:
   autoRefresh: true
 
   overrideGpg: true
-  pagers:
+
+  diffRenderers:
     - colorArg: always
-      pager: delta --features=lazygit-theme --paging=never --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+      command: delta --features=lazygit-theme --paging=never --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
 
-    - pager: diff-so-fancy
-
-    - {}
+    - command: diff-so-fancy
+    - type: rawGit
 
 os:
   editInTerminal: true
