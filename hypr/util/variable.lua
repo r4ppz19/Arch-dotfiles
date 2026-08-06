@@ -16,7 +16,7 @@ M.apps = {
   taskmanager = "btop",
   musicplayer = "cliamp",
   bluetooth = "bluetuith",
-  network = "nmtui",
+  network = "wlctl",
 }
 
 M.scripts = {

@@ -8,19 +8,25 @@ hl.bind(var.mod .. " + RETURN", hl.dsp.exec_cmd(var.apps.terminal))
 hl.bind(var.mod .. " + T", hl.dsp.exec_cmd(var.apps.terminal))
 hl.bind(var.mod .. " + L", hl.dsp.exec_cmd(var.apps.lockscreen))
 hl.bind(var.mod .. " + N", hl.dsp.exec_cmd(var.apps.notifpanel))
-hl.bind(var.mod .. " + slash", hl.dsp.exec_cmd(var.scripts.websearch))
+hl.bind(var.mod .. " + SLASH", hl.dsp.exec_cmd(var.scripts.websearch))
 hl.bind(var.mod .. " + V", hl.dsp.exec_cmd(var.apps.ide))
 hl.bind(var.mod .. " + E", hl.dsp.exec_cmd(var.apps.filemanager_gui))
 hl.bind(var.mod .. " + P", hl.dsp.exec_cmd(var.apps.passmanager))
 
 -- TUIs
-hl.bind(var.mod .. " + SHIFT + E", hl.dsp.exec_cmd(var.apps.terminal .. " -e " .. var.apps.filemanager_tui))
-hl.bind(var.mod .. " + SHIFT + T", hl.dsp.exec_cmd(var.apps.terminal .. " -e " .. var.apps.taskmanager))
-hl.bind(var.mod .. " + SHIFT + B", hl.dsp.exec_cmd(var.apps.terminal .. " -e --class bluetuith " .. var.apps.bluetooth))
-hl.bind(var.mod .. " + SHIFT + N", hl.dsp.exec_cmd(var.apps.terminal .. " -e " .. var.apps.network))
+hl.bind(var.mod .. " + SHIFT + B", hl.dsp.exec_cmd(var.apps.terminal .. " -e --class bluetooth " .. var.apps.bluetooth))
+hl.bind(var.mod .. " + SHIFT + N", hl.dsp.exec_cmd(var.apps.terminal .. " -e --class network " .. var.apps.network))
+hl.bind(
+  var.mod .. " + SHIFT + E",
+  hl.dsp.exec_cmd(var.apps.terminal .. " -e --class filemanager_tui " .. var.apps.filemanager_tui)
+)
+hl.bind(
+  var.mod .. " + SHIFT + T",
+  hl.dsp.exec_cmd(var.apps.terminal .. " -e --class taskmanager " .. var.apps.taskmanager)
+)
 hl.bind(
   var.mod .. " + SHIFT + M",
-  hl.dsp.exec_cmd(var.apps.terminal .. " -d ~/Music/Better/OLD " .. var.apps.musicplayer .. " .")
+  hl.dsp.exec_cmd(var.apps.terminal .. " -d ~/Music/Better/OLD --class musicplayer " .. var.apps.musicplayer .. " .")
 )
 
 hl.bind(
@@ -45,7 +51,7 @@ hl.bind(var.mod .. " + SHIFT + P", function()
 end)
 
 -- Focus next window and bring active floating window to top
-hl.bind("ALT + Tab", function()
+hl.bind("ALT + TAB", function()
   if layout.has_floating_windows() then
     hl.dispatch(hl.dsp.window.cycle_next())
     hl.dispatch(hl.dsp.window.bring_to_top())
@@ -53,7 +59,7 @@ hl.bind("ALT + Tab", function()
 end)
 
 -- Focus previous window and bring to top
-hl.bind("CTRL + SHIFT + Tab", function()
+hl.bind("CTRL + SHIFT + TAB", function()
   if layout.has_floating_windows() then
     hl.dispatch(hl.dsp.window.cycle_next({ next = false }))
     hl.dispatch(hl.dsp.window.bring_to_top())
@@ -111,22 +117,22 @@ hl.bind("XF86PowerOff", hl.dsp.exec_cmd(var.scripts.powermenu))
 hl.bind(var.mod .. " + TAB", hl.dsp.focus({ workspace = "previous" }))
 
 -- Move focus with arrow keys
-hl.bind(var.mod .. " + left", hl.dsp.focus({ direction = "l" }))
-hl.bind(var.mod .. " + right", hl.dsp.focus({ direction = "r" }))
-hl.bind(var.mod .. " + up", hl.dsp.focus({ direction = "u" }))
-hl.bind(var.mod .. " + down", hl.dsp.focus({ direction = "d" }))
+hl.bind(var.mod .. " + LEFT", hl.dsp.focus({ direction = "l" }))
+hl.bind(var.mod .. " + RIGHT", hl.dsp.focus({ direction = "r" }))
+hl.bind(var.mod .. " + UP", hl.dsp.focus({ direction = "u" }))
+hl.bind(var.mod .. " + DOWN", hl.dsp.focus({ direction = "d" }))
 
 -- Move windows with arrow keys
-hl.bind(var.mod .. " + SHIFT + left", hl.dsp.window.move({ direction = "l" }))
-hl.bind(var.mod .. " + SHIFT + right", hl.dsp.window.move({ direction = "r" }))
-hl.bind(var.mod .. " + SHIFT + up", hl.dsp.window.move({ direction = "u" }))
-hl.bind(var.mod .. " + SHIFT + down", hl.dsp.window.move({ direction = "d" }))
+hl.bind(var.mod .. " + SHIFT + LEFT", hl.dsp.window.move({ direction = "l" }))
+hl.bind(var.mod .. " + SHIFT + RIGHT", hl.dsp.window.move({ direction = "r" }))
+hl.bind(var.mod .. " + SHIFT + UP", hl.dsp.window.move({ direction = "u" }))
+hl.bind(var.mod .. " + SHIFT + DOWN", hl.dsp.window.move({ direction = "d" }))
 
 -- Move floating windows
-hl.bind(var.mod .. " + CTRL + left", hl.dsp.window.move({ direction = "l" }), { repeating = true })
-hl.bind(var.mod .. " + CTRL + right", hl.dsp.window.move({ direction = "r" }), { repeating = true })
-hl.bind(var.mod .. " + CTRL + up", hl.dsp.window.move({ direction = "u" }), { repeating = true })
-hl.bind(var.mod .. " + CTRL + down", hl.dsp.window.move({ direction = "d" }), { repeating = true })
+hl.bind(var.mod .. " + CTRL + LEFT", hl.dsp.window.move({ direction = "l" }), { repeating = true })
+hl.bind(var.mod .. " + CTRL + RIGHT", hl.dsp.window.move({ direction = "r" }), { repeating = true })
+hl.bind(var.mod .. " + CTRL + UP", hl.dsp.window.move({ direction = "u" }), { repeating = true })
+hl.bind(var.mod .. " + CTRL + DOWN", hl.dsp.window.move({ direction = "d" }), { repeating = true })
 
 -- Mouse
 hl.config({

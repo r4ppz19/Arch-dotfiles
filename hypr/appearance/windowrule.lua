@@ -18,8 +18,18 @@ hl.window_rule({
 })
 
 hl.window_rule({
+  name = "task and network managers",
+  match = { initial_class = "taskmanager|network" },
+  pin = true,
+  float = true,
+  center = true,
+  size = { 1000, 700 },
+})
+
+hl.window_rule({
   name = "network/bluetooth-dialogs",
-  match = { initial_class = "^.*(nm-connection-editor|blueman-manager|bluetuith).*$" },
+  match = { initial_class = "^.*(nm-connection-editor|blueman-manager|bluetuith|bluetooth).*$" },
+  pin = true,
   float = true,
   center = true,
   size = { 800, 500 },
@@ -55,6 +65,15 @@ hl.window_rule({
   size = { 700, 500 },
 })
 
+hl.window_rule({
+  name = "tempai",
+  match = { initial_class = "^brave-duck.ai__chat-Default$" },
+  pin = true,
+  float = true,
+  center = true,
+  size = { 800, 600 },
+})
+
 -- Workspace assignments
 hl.window_rule({
   name = "brave-browser",
@@ -69,9 +88,15 @@ hl.window_rule({
 })
 
 hl.window_rule({
-  name = "chromium",
-  match = { class = "Chromium" },
+  name = "helium",
+  match = { class = "helium" },
   workspace = 5,
+})
+
+hl.window_rule({
+  name = "musicplayer",
+  match = { class = "musicplayer" },
+  workspace = "special:window2",
 })
 
 hl.window_rule({
