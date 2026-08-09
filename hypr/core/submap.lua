@@ -132,7 +132,7 @@ hl.define_submap("Media", "reset", function()
   bind_site(var.apps.browser, "N", var.websites.news)
   bind_site(var.apps.browser, "S", var.websites.spotify)
   bind_site(var.apps.browser, "M", var.websites.ytmusic)
-  bind_site(var.apps.browser, "V", var.websites.mappltv)
+  bind_site(var.apps.browser, "V", var.websites.movie)
   bind_site(var.apps.browser, "G", var.websites.manga)
   bind_site(var.apps.browser, "I", var.websites.medium)
 

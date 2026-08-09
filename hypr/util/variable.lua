@@ -34,6 +34,7 @@ M.scripts = {
 }
 
 M.websites = {
+  -- ai shit
   microsoft_copilot = "https://copilot.microsoft.com/chats/temporary",
   github_copilot = "https://github.com/copilot",
   kimi = "https://www.kimi.com",
@@ -56,19 +57,22 @@ M.websites = {
   monkeytype = "https://monkeytype.com",
   wifi = "http://192.168.1.254",
 
+  -- school
   classroom = "https://classroom.google.com",
   olsis = "https://tsis.assumptiondavao.edu.ph",
 
+  -- media stuff
   annas_archive = "https://annas-archive.pk",
   youtube = "https://www.youtube.com",
   facebook = "https://www.facebook.com/messages",
   news = "https://news.ycombinator.com",
   spotify = "https://open.spotify.com",
   ytmusic = "https://music.youtube.com",
-  mappltv = "https://mappl.tv",
+  movie = "https://www.fmovies.gd",
   manga = "https://mangakatana.com",
   medium = "https://medium.com",
 
+  -- dev stuff
   backblaze = "https://secure.backblaze.com/b2_buckets.htm",
   github = "https://github.com/r4ppz",
   devdocs = "https://devdocs.io",

@@ -1,5 +1,3 @@
--- Hyprland v0.55 Lua Configuration
-
 require("core.environment")
 require("core.autostart")
 
