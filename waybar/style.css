@@ -1,3 +1,23 @@
+
+/* ---------- Palette ---------- */
+@define-color bg          #282828;
+@define-color border      #504945;
+@define-color fg          #ebdbb2;
+
+@define-color blue        #83a598;
+@define-color aqua        #8ec07c;
+@define-color green       #b8bb26;
+@define-color green-dim   #98971a;
+@define-color yellow      #d79921;
+@define-color gold        #d8a657;
+@define-color orange      #fe8019;
+@define-color orange-dim  #d65d0e;
+@define-color brown       #e78a4e;
+@define-color red         #cc241d;
+@define-color red-soft    #ea6962;
+@define-color purple      #d3869b;
+
+/* ---------- Reset ---------- */
 * {
   padding: 0;
   margin: 0;
@@ -9,37 +29,44 @@
   box-shadow: none;
 }
 
+/* ---------- Window ---------- */
 window#waybar {
-  background: #282828;
+  background: @bg;
 }
 
 window#waybar.hidden {
   opacity: 0.98;
 }
 
+window#waybar.empty #window {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  color: transparent;
+}
+
+/* ---------- Tooltip ---------- */
+tooltip {
+  background-color: @bg;
+  color: @fg;
+  padding: 5px 10px;
+  border: 1px solid @border;
+  border-radius: 2px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- Shared module typography ---------- */
 #custom-cputemp,
 #workspaces button,
-#workspaces button:hover,
-#workspaces button.visible,
-#workspaces button.visible:hover,
-#workspaces button.active,
-#workspaces button.active:hover,
-#workspaces button.urgent,
-#workspaces button.special,
-#workspaces button.special.active,
 #window,
 #tray,
 #disk,
 #cpu,
 #temperature,
-#temperature.critical,
 #backlight,
 #custom-memory,
 #pulseaudio,
-#pulseaudio.muted,
 #battery,
-#battery.critical,
-#battery.warning,
 #clock,
 #custom-web-links,
 #power-profiles-daemon,
@@ -50,257 +77,195 @@ window#waybar.hidden {
   font-family: "JetBrainsMono Nerd Font";
   font-size: 10px;
   font-weight: 800;
-  color: #282828;
-  /* background: #282828; */
-  /* border: 4px solid #282828; */
-  /* border-radius: 0px; */
+  color: @bg;
 }
 
+/* ---------- Shared module spacing ---------- */
 #custom-cputemp,
 #window,
 #tray,
 #disk,
 #cpu,
 #temperature,
-#temperature.critical,
 #backlight,
 #custom-memory,
 #pulseaudio,
-#pulseaudio.muted,
 #battery,
-#battery.critical,
-#battery.warning,
 #memory {
-  margin-right: 5px;
-  margin-left: 5px;
+  margin: 0 5px;
 }
 
-/* ================================= */
-
-tooltip {
-  background-color: #282828;
-  color: #ebdbb2;
-  padding: 5px 10px;
-  border: 1px solid #504945;
-  border-radius: 2px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
-
-/* ================================= */
-
+/* ---------- Workspaces ---------- */
 #workspaces button {
-  color: #ebdbb2;
+  color: @fg;
   border-radius: 0.7px;
-  margin-bottom: 3px;
-  margin-top: 3px;
-  margin-right: 4px;
-  margin-left: 4px;
+  margin: 3px 4px;
   min-width: 30px;
 }
 
-#workspaces button:hover {
-  background: #83a598;
+/* Hovered/active/visible/urgent/special buttons keep the dark base fg */
+#workspaces button:hover,
+#workspaces button.visible,
+#workspaces button.visible:hover,
+#workspaces button.active,
+#workspaces button.active:hover,
+#workspaces button.urgent,
+#workspaces button.special,
+#workspaces button.special.active {
+  color: @bg;
 }
 
-#workspaces button.visible {
-  background: #83a598;
-}
-
-#workspaces button.visible:hover {
-  background: #83a598;
-}
-
-#workspaces button.active {
-  background: #83a598;
-}
-
+#workspaces button:hover,
+#workspaces button.visible,
+#workspaces button.visible:hover,
+#workspaces button.active,
 #workspaces button.active:hover {
-  background: #83a598;
+  background-color: @blue;
 }
 
 #workspaces button.urgent {
-  background: #ea6962;
+  background-color: @red-soft;
 }
 
-/* ================================= */
-
+/* Special workspaces */
 #workspaces button.special {
-  background-color: #d65d0e;
+  background-color: @orange-dim;
 }
 
-#workspaces button.special:hover {
-  background-color: #83a598;
+#workspaces button.special:hover,
+#workspaces button.special.active:hover {
+  background-color: @blue;
 }
 
 #workspaces button.special.active {
-  background-color: #fe8019;
+  background-color: @orange;
 }
 
-#workspaces button.special.active:hover {
-  background-color: #83a598;
-}
-
-/* ================================= */
-
+/* ---------- Window module ---------- */
 #window {
-  color: #282828;
-  background: #83a598;
+  color: @bg;
+  background-color: @blue;
   border-radius: 0.7px;
-  margin-top: 4px;
-  margin-bottom: 4px;
-  margin-left: 5px;
-  margin-right: 3px;
-
-  padding-left: 5px;
-  padding-right: 5px;
-  /* min-width: 20px; */
+  margin: 4px 3px 4px 5px;
+  padding: 0 5px;
 }
 
-window#waybar.empty #window {
-  margin: 0;
-  padding: 0;
-  background: transparent;
-  color: transparent;
-}
-
-/* ================================= */
-
-#disk {
-  color: #ea6962;
-}
-
-/* ================================= */
-
-#cpu {
-  color: #e78a4e;
-}
-
-/* ================================= */
-
-#temperature {
-  color: #d8a657;
-}
-
-#temperature.critical {
-  color: #cc241d;
-}
-
-#custom-cputemp.normal {
-  color: #d8a657;
-}
-#custom-cputemp.warning {
-  color: #fe8019;
-}
-#custom-cputemp.critical {
-  color: #cc241d;
-}
-
-/* ================================= */
-
-#backlight {
-  color: #d8a657;
-}
-
-/* ================================= */
-
+/* ---------- Memory ---------- */
 #memory {
-  color: #b8bb26;
+  color: @green;
 }
 
-/* ================================= */
+/* ---------- CPU ---------- */
+#cpu {
+  color: @brown;
+}
 
+/* ---------- CPU temp ---------- */
+#custom-cputemp.normal {
+  color: @gold;
+}
+
+#custom-cputemp.warning {
+  color: @orange;
+}
+
+#custom-cputemp.critical {
+  color: @red;
+}
+
+/* ---------- PulseAudio ---------- */
 #pulseaudio {
-  color: #83a598;
+  color: @blue;
 }
 
 #pulseaudio.muted {
-  color: #ea6962;
+  color: @red-soft;
 }
 
-/* ================================= */
-
-#battery {
-  color: #b8bb26;
-}
-
-#battery.critical {
-  color: #cc241d;
+/* ---------- Battery ---------- */
+#battery,
+#battery.full {
+  color: @green;
 }
 
 #battery.warning {
-  color: #fe8019;
+  color: @orange;
 }
 
-#battery.full {
-  color: #b8bb26;
+#battery.critical {
+  color: @red;
 }
 
-#battery.charging {
-  color: #98971a;
-}
-
+#battery.charging,
 #battery.plugged {
-  color: #98971a;
+  color: @green-dim;
 }
 
 #battery.charging.warning {
-  color: #d79921;
+  color: @yellow;
 }
 
 #battery.charging.critical {
-  color: #cc241d;
+  color: @red;
 }
 
-/* ================================= */
-
+/* ---------- Clock ---------- */
 #clock {
-  color: #8ec07c;
+  color: @aqua;
 }
 
-/* ================================= */
-
-#power-profiles-daemon {
-  padding-left: 2px;
-  padding-right: 2px;
-  color: #d3869b;
-}
-
-/* ================================= */
-
-#custom-power-button {
-  color: #cc241d;
-  margin-left: 2px;
-}
-
-/* ================================= */
-
+/* ---------- Rofi launcher ---------- */
 #custom-rofi {
-  background: #cc241d;
+  background-color: @red;
   border-radius: 0.7px;
   min-width: 22px;
-  margin-left: 4px;
-  margin-right: 4px;
-  margin-bottom: 3px;
-  margin-top: 3px;
+  margin: 3px 4px;
 }
 
-/* ================================= */
-
+/* ---------- Submap ---------- */
 #submap {
-  background: #d79921;
-  margin-top: 4px;
-  margin-bottom: 4px;
-  margin-left: 3px;
-  margin-right: 3px;
-
-  padding-left: 4px;
-  padding-right: 4px;
+  background-color: @yellow;
+  margin: 4px 3px;
+  padding: 0 4px;
 }
 
-/* ================================= */
-
+/* ---------- Notification ---------- */
 #custom-notification {
   font-size: 12px;
-  padding-left: 1px;
-  padding-right: 7px;
+  padding: 0 7px 0 1px;
+}
+
+/* -------------------------------------------------------------
+ * Modules not currently enabled in config.jsonc
+ * ------------------------------------------------------------- */
+
+/* Disk */
+#disk {
+  color: @red-soft;
+}
+
+/* Temperature */
+#temperature {
+  color: @gold;
+}
+
+#temperature.critical {
+  color: @red;
+}
+
+/* Backlight */
+#backlight {
+  color: @gold;
+}
+
+/* Power profiles daemon */
+#power-profiles-daemon {
+  color: @purple;
+  padding: 0 2px;
+}
+
+/* Power button */
+#custom-power-button {
+  color: @red;
+  margin-left: 2px;
 }
