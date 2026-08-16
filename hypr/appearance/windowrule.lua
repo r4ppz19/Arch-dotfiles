@@ -27,6 +27,14 @@ hl.window_rule({
 })
 
 hl.window_rule({
+  name = "gsimplecal",
+  match = { class = "gsimplecal" },
+  pin = true,
+  float = true,
+  center = true,
+})
+
+hl.window_rule({
   name = "network/bluetooth-dialogs",
   match = { initial_class = "^.*(nm-connection-editor|blueman-manager|bluetuith|bluetooth).*$" },
   pin = true,
