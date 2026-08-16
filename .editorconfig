@@ -21,3 +21,8 @@ indent_size = 4
 
 [*.{bat,cmd}]
 end_of_line = crlf
+
+[*.go]
+indent_style = tab
+indent_size = 4
+tab_width = 4
