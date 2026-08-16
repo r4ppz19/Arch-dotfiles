@@ -4,6 +4,7 @@ local zoom = require("util.zoom")
 local layout = require("appearance.layout")
 
 -- Application launching
+hl.bind(var.mod .. " + SHIFT + RETURN", hl.dsp.exec_cmd(var.apps.browser))
 hl.bind(var.mod .. " + RETURN", hl.dsp.exec_cmd(var.apps.terminal))
 hl.bind(var.mod .. " + T", hl.dsp.exec_cmd(var.apps.terminal))
 hl.bind(var.mod .. " + L", hl.dsp.exec_cmd(var.apps.lockscreen))
