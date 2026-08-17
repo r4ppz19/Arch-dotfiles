@@ -1,6 +1,6 @@
 # Tmux auto‑rename script
 # Renames the current tmux window based on the running command or cwd.
-# Priority: PROC_MAP (command) → DIR_MAP_UNIQUE → DIR_MAP → fallback "CMD".
+# Priority: PROC_MAP (command) → DIR_MAP_UNIQUE → DIR_MAP → DIR_MAP_PREFIX → fallback "CMD".
 # Hooks: preexec (command) and precmd (directory).
 # Skips renaming when not in tmux, NVIM is set, window is locked, or multiple panes.
 
@@ -40,27 +40,7 @@ typeset -gA PROC_MAP=(
 
 typeset -gA DIR_MAP=(
   "/" ROOT
-  "/etc" ETC
-  "/mnt" MOUNT
-  "/tmp" TEMP
-  "/run/media" MOUNT
-  "/mnt/SHARED" SHARED
-  "/mnt/SHARED/Music (Better)/" MUSIC
-
   "$HOME" HOME
-  "$HOME/.config" DOTS
-  "$HOME/.local" LOCAL
-  "$HOME/Books" BOOKS
-  "$HOME/School" SCHOOL
-  "$HOME/Music" MUSIC
-  "$HOME/Documents" DOCUMENTS
-  "$HOME/Downloads" DOWNLOADS
-  "$HOME/Games" GAMES
-  "$HOME/Pictures" PICS
-  "$HOME/Repositories" REPOS
-  "$HOME/Vault" VAULT
-  "$HOME/Videos" VIDS
-  "$HOME/Documents/notes" NOTES
 )
 
 typeset -gA DIR_MAP_UNIQUE=(
@@ -73,21 +53,52 @@ typeset -gA DIR_MAP_UNIQUE=(
 
   "$HOME/Projects/r4ppz.github.io" PWEB
   "$HOME/Repositories/nvplug/lspeek.nvim" LSPEEK
+  "$HOME/Repositories/minidm" MINIDM
+  "$HOME/Projects/minidm" MINIDM
 
   # School projects/capstone
-  #
+
   # Project 1
-  "$HOME/Projects/research-repository" RESEARCH
+  "$HOME/Projects/research-repository" ACDRR
   "$HOME/Projects/research-repository/docs" DOCS
   "$HOME/Projects/research-repository/backend" BACK
   "$HOME/Projects/research-repository/frontend" FRONT
 
   # Project 2
-  "$HOME/Projects/mini-capstone/law-firm-management-system" CAPST
+  "$HOME/Projects/mini-capstone/law-firm-management-system" LFMS
   "$HOME/Projects/mini-capstone/documentation" DOCS
 
   # Project 3
   "$HOME/Projects/pacy" PACY
+)
+
+typeset -gA DIR_MAP_PREFIX=(
+  "/etc" ETC
+  "/mnt" MOUNT
+  "/tmp" TEMP
+  "/run/media" MOUNT
+  "/mnt/SHARED" SHARED
+  "/mnt/SHARED/Music (Better)/" MUSIC
+
+  "$HOME/.local" LOCAL
+  "$HOME/Books" BOOKS
+  "$HOME/School" SCHOOL
+  "$HOME/Music" MUSIC
+  "$HOME/Documents" DOCUMENTS
+  "$HOME/Downloads" DOWNLOADS
+  "$HOME/Games" GAMES
+  "$HOME/Pictures" PICS
+  "$HOME/Repositories" REPOS
+  "$HOME/Vault" VAULT
+  "$HOME/Videos" VIDS
+  "$HOME/Documents/notes" NOTES
+
+  "$HOME/Projects" PROJECTS
+  "$HOME/Repositories" REPOS
+  "$HOME/.config" DOTS
+  "$HOME/Arch-dotfiles" DOTS
+
+  "$HOME/Projects/mini-capstone" CAPTS
 )
 
 # Helpers
@@ -158,7 +169,16 @@ _tmux_rename_precmd() {
       target_name="CMD"
     fi
   else
-    target_name="${DIR_MAP[$clean_pwd]:-CMD}"
+    target_name="${DIR_MAP[$clean_pwd]}"
+    if [[ -z $target_name ]]; then
+      local prefix_match=""
+      for k in "${(@k)DIR_MAP_PREFIX}"; do
+        if [[ $clean_pwd == "$k" || $clean_pwd == "$k"/* && ${#k} -gt ${#prefix_match} ]]; then
+          prefix_match="$k"
+        fi
+      done
+      target_name="${DIR_MAP_PREFIX[$prefix_match]:-CMD}"
+    fi
   fi
 
   tmux rename-window -t "$TMUX_PANE" "$target_name" 2>/dev/null
