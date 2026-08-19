@@ -49,27 +49,27 @@ typeset -gA DIR_MAP_UNIQUE=(
   "$HOME/Arch-dotfiles/nvim" VDOTS
 
   # Personal projects
-  "$HOME/Projects" PROJECTS
+  "$HOME/Repositories/projects" PROJECTS
 
-  "$HOME/Projects/r4ppz.github.io" PWEB
+  "$HOME/Repositories/projects/r4ppz.github.io" PWEB
+  "$HOME/Repositories/projects/minidm" MINIDM
   "$HOME/Repositories/nvplug/lspeek.nvim" LSPEEK
-  "$HOME/Repositories/minidm" MINIDM
-  "$HOME/Projects/minidm" MINIDM
+  "$HOME/Repositories/projects/minidm" MINIDM
 
   # School projects/capstone
 
   # Project 1
-  "$HOME/Projects/research-repository" ACDRR
-  "$HOME/Projects/research-repository/docs" DOCS
-  "$HOME/Projects/research-repository/backend" BACK
-  "$HOME/Projects/research-repository/frontend" FRONT
+  "$HOME/Repositories/projects/research-repository" ACDRR
+  "$HOME/Repositories/projects/research-repository/docs" DOCS
+  "$HOME/Repositories/projects/research-repository/backend" BACK
+  "$HOME/Repositories/projects/research-repository/frontend" FRONT
 
   # Project 2
-  "$HOME/Projects/mini-capstone/law-firm-management-system" LFMS
-  "$HOME/Projects/mini-capstone/documentation" DOCS
+  "$HOME/Repositories/projects/mini-capstone/law-firm-management-system" LFMS
+  "$HOME/Repositories/projects/mini-capstone/documentation" DOCS
 
   # Project 3
-  "$HOME/Projects/pacy" PACY
+  "$HOME/Repositories/projects/pacy" PACY
 )
 
 typeset -gA DIR_MAP_PREFIX=(
@@ -93,12 +93,12 @@ typeset -gA DIR_MAP_PREFIX=(
   "$HOME/Videos" VIDS
   "$HOME/Documents/notes" NOTES
 
-  "$HOME/Projects" PROJECTS
+  "$HOME/Repositories/projects" PROJECTS
   "$HOME/Repositories" REPOS
   "$HOME/.config" DOTS
   "$HOME/Arch-dotfiles" DOTS
 
-  "$HOME/Projects/mini-capstone" CAPTS
+  "$HOME/Repositories/projects/mini-capstone" CAPTS
 )
 
 # Helpers
