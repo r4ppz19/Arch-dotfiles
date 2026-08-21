@@ -1,7 +1,9 @@
 -- Floating dialog windows
 hl.window_rule({
   name = "xdg-desktop-portal-gtk",
-  match = { initial_class = "^.*(xdg-desktop-portal-gtk).*$" },
+  match = {
+    initial_class = "^.*(xdg-desktop-portal-gtk).*$",
+  },
   pin = true,
   float = true,
   center = true,
@@ -10,11 +12,48 @@ hl.window_rule({
 
 hl.window_rule({
   name = "DesktopEditors",
-  match = { initial_class = "^.*(DesktopEditors).*$" },
+  match = {
+    initial_class = "^.*(DesktopEditors).*$",
+  },
   pin = true,
   float = true,
   center = true,
   size = { 570, 120 },
+})
+
+hl.window_rule({
+  name = "common-dialogs",
+  match = {
+    initial_title = "^.*(Open File|Open Files|Save File|Open Folder|Choose Files|Choose Folder|Create Folder|Select Folder|Open Document|Save As).*$",
+  },
+  pin = true,
+  float = true,
+  center = true,
+  size = { 700, 500 },
+})
+
+hl.window_rule({
+  name = "file-ops",
+  match = {
+    initial_title = "^(Rename|Move|File Operation Progress).*$",
+  },
+  pin = true,
+  float = true,
+  center = true,
+  size = { 350, 130 },
+})
+
+-- Web / specific popups
+hl.window_rule({
+  name = "export-download",
+  match = {
+    initial_title = "^.*(export-download|codeload|wants to).*$",
+    modal = true,
+  },
+  pin = true,
+  float = true,
+  center = true,
+  size = { 700, 500 },
 })
 
 hl.window_rule({
@@ -44,38 +83,8 @@ hl.window_rule({
 })
 
 hl.window_rule({
-  name = "common-dialogs",
-  match = {
-    initial_title = "^.*(Open File|Open Files|Save File|Open Folder|Choose Files|Choose Folder|Create Folder|Select Folder|Open Document|Save As).*$",
-  },
-  pin = true,
-  float = true,
-  center = true,
-  size = { 700, 500 },
-})
-
-hl.window_rule({
-  name = "file-ops",
-  match = { initial_title = "^(Rename|Move|File Operation Progress).*$" },
-  pin = true,
-  float = true,
-  center = true,
-  size = { 350, 130 },
-})
-
--- Web / specific popups
-hl.window_rule({
-  name = "export-download",
-  match = { initial_title = "^.*(export-download|codeload|wants to).*$" },
-  pin = true,
-  float = true,
-  center = true,
-  size = { 700, 500 },
-})
-
-hl.window_rule({
   name = "tempai",
-  match = { initial_class = "^brave-duck.ai__chat-Default$" },
+  match = { initial_class = "^brave-duck.ai__chat-Default|brave-chatgpt.com__-Default$" },
   pin = true,
   float = true,
   center = true,
