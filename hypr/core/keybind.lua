@@ -81,19 +81,9 @@ hl.bind(
   })
 )
 
--- Explain using an LLM
-hl.bind(
-  var.mod .. " + ALT + E",
-  hl.dsp.exec_cmd(
-    var.scripts.web_paste .. " '" .. var.apps.browser .. "' '" .. var.websites.duckduckgo .. "' 'Explain:'"
-  )
-)
-
--- Summarize using an LLM
-hl.bind(
-  var.mod .. " + ALT + S",
-  hl.dsp.exec_cmd(var.scripts.web_paste .. " '" .. var.apps.browser .. "' '" .. var.websites.gemini .. "' 'Summarize:'")
-)
+-- using an LLM
+hl.bind(var.mod .. " + ALT + E", hl.dsp.exec_cmd(var.scripts.web_paste))
+hl.bind(var.mod .. " + ALT + S", hl.dsp.exec_cmd(var.scripts.web_paste .. ' --premsg "Summarize: "'))
 
 -- Toggle zen mode
 hl.bind(var.mod .. "+ SHIFT + Z", function()

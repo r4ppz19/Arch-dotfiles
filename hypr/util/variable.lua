@@ -30,7 +30,7 @@ M.scripts = {
   mediactl = "$DOTFILES/scripts/mediactl.sh",
   zoom = "$DOTFILES/scripts/zoom.sh",
   record = "$DOTFILES/scripts/toggle-obs.sh",
-  web_paste = "$DOTFILES/scripts/web-paste.sh",
+  web_paste = "/home/r4ppz/.local/bin/webpaste",
 }
 
 M.websites = {
