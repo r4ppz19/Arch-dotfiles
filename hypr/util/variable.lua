@@ -15,7 +15,7 @@ M.apps = {
   passmanager = "bitwarden-desktop",
   taskmanager = "btop",
   musicplayer = "cliamp",
-  bluetooth = "bluetuith",
+  bluetooth = "bluetui",
   network = "wlctl",
 }
 
