@@ -48,9 +48,6 @@ typeset -gA DIR_MAP_UNIQUE=(
   "$HOME/Arch-dotfiles" DOTS
   "$HOME/Arch-dotfiles/nvim" VDOTS
 
-  # Personal projects
-  "$HOME/Repositories/projects" PROJECTS
-
   "$HOME/Repositories/projects/r4ppz.github.io" PWEB
   "$HOME/Repositories/projects/minidm" MINIDM
   "$HOME/Repositories/nvplug/lspeek.nvim" LSPEEK
@@ -93,7 +90,6 @@ typeset -gA DIR_MAP_PREFIX=(
   "$HOME/Videos" VIDS
   "$HOME/Documents/notes" NOTES
 
-  "$HOME/Repositories/projects" PROJECTS
   "$HOME/Repositories" REPOS
   "$HOME/.config" DOTS
   "$HOME/Arch-dotfiles" DOTS
