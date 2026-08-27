@@ -19,7 +19,7 @@ flock -n 200 || {
   exit 1
 }
 
-for cmd in grim slurp notify-send; do
+for cmd in grim slurp notify-send wl-copy; do
   if ! command -v "$cmd" &>/dev/null; then
     printf "Missing required command: %s\n" "$cmd" >&2
     exit 1
@@ -42,7 +42,10 @@ fi
 # Ensure slurp overlay clears before grim captures
 sleep 0.2
 
-grim -g "$REGION" "$FILENAME"
+grim -g "$REGION" - | tee "$FILENAME" | (
+  exec 200>&-
+  wl-copy --type image/png
+)
 
 if [[ -s $FILENAME ]]; then
   notify-send -h boolean:transient:true \
