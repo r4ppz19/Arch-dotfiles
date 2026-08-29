@@ -13,7 +13,7 @@ hl.config({
     sensitivity = -0.6,
 
     repeat_delay = 255,
-    repeat_rate = 60,
+    repeat_rate = 70,
 
     touchpad = {
       natural_scroll = true,
