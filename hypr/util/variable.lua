@@ -60,6 +60,7 @@ M.websites = {
   -- school
   classroom = "https://classroom.google.com",
   olsis = "https://tsis.assumptiondavao.edu.ph",
+  gdocs = "https://docs.google.com/document/u/0/",
 
   -- media stuff
   annas_archive = "https://annas-archive.pk",

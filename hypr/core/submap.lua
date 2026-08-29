@@ -83,6 +83,7 @@ hl.define_submap("Applications", "reset", function()
   bind_site(var.apps.browser, "E", var.websites.getemoji)
   bind_site(var.apps.browser, "T", var.websites.monkeytype)
   bind_site(var.apps.browser, "W", var.websites.wifi)
+  bind_site(var.apps.browser, "G", var.websites.gdocs)
 
   hl.bind(var.mod .. " + B", hl.dsp.exec_cmd(var.apps.browser))
   hl.bind(var.mod .. " + SPACE", hl.dsp.exec_cmd(var.scripts.launcher))
@@ -150,6 +151,8 @@ hl.define_submap("School", "reset", function()
   bind_site(var.apps.browser_school, "C", var.websites.classroom)
   bind_site(var.apps.browser_school, "M", var.websites.mail)
   bind_site(var.apps.browser_school, "O", var.websites.olsis)
+  bind_site(var.apps.browser_school, "D", var.websites.drive)
+  bind_site(var.apps.browser_school, "G", var.websites.gdocs)
 
   hl.bind(var.mod .. " + S", hl.dsp.exec_cmd(var.apps.browser_school))
 
