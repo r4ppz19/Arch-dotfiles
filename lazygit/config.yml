@@ -30,8 +30,11 @@ git:
     - colorArg: always
       command: delta --features=lazygit-theme --paging=never --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
 
-    - command: diff-so-fancy
     - type: rawGit
+    - command: diff-so-fancy
+
+    - type: extDiff
+      command: difft --color=always --display=inline --syntax-highlight=on --tab-width=2 --background=dark
 
 os:
   editInTerminal: true
