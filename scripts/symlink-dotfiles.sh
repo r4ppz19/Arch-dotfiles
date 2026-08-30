@@ -5,7 +5,7 @@ set -euo pipefail
 # The DOTFILES environment variable is set in:
 # hypr/core/environment.lu
 
-DOTFILES="${DOTFILES:-"$HOME/Arch-dotfiles")}"
+DOTFILES="${DOTFILES:-$HOME/Arch-dotfiles}"
 CONFIG_DIR="$HOME/.config"
 
 CONFIG_LINKS=(
@@ -20,7 +20,6 @@ CONFIG_LINKS=(
   waybar
   yazi
   fastfetch
-  pacseek
   gdu
   lazydocker
   opencode
